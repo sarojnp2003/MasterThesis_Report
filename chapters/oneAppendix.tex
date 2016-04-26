@@ -1,0 +1,344 @@
+\chapter{Components}
+%\section{Detailed Validation Results}
+\label{chapter:Components}
+
+\section{VM Master}
+
+
+\textbf{Interface}
+
+\begin{enumerate}
+	\item Ingoing
+	\begin{itemize}
+		\item $viewManagerAdded$
+		\item $viewManagerAssigned$
+		\item $viewManagerRemoved$
+		\item $viewManagerWithdrawn$
+		\item $viewManagerReassigned$
+		\item $regionServerAdded$
+		\item $regionServerRemoved$
+		\item $callLastCommitedUpdate$
+	\end{itemize}
+	\item Outgoing
+	\begin{itemize}
+		\item $createZookeperNode$
+		\item $assignViewManager$
+		\item $reassignViewManager$
+		\item $withdrawViewManager$
+		\item $removeViewManager$
+		\item $replayWriteAheadLog$
+
+	\end{itemize}
+\end{enumerate}
+
+
+\textbf{Subcomponents}
+
+\begin{enumerate}
+	\item $VM\:Master\:Controller$
+	\item $Event\:Processor$
+	\item $Load\:Balancer$
+	\item $Recover\:Manager$
+	\item $Component\:Controller$
+\end{enumerate}
+\newpage
+\begin{figure}[h!] 
+  \centering
+    \includegraphics[scale=0.8]{figures/Master}
+    \caption{Master}
+    \label{fig:master}
+\end{figure}
+
+\newpage
+
+\section{VM Region Server}
+
+\textbf{Interface}
+
+\begin{enumerate}
+	\item Ingoing
+	\begin{itemize}
+		\item $put, get, delete$
+		\item $assignViewManager$
+		\item $withdrawViewManager$
+		\item $replayWriteAheadLog$
+		\item $statusReportViewManager$
+	\end{itemize}
+	\item Outgoing
+	\begin{itemize}
+		\item $createZookeeperNode$
+		\item $sendUpdate$
+		\item $sendStatusReport$
+	\end{itemize}
+\end{enumerate}
+
+
+\textbf{Subcomponents}
+
+\begin{enumerate}
+	\item $HBase\:Region\:Server$
+	\item $RS\:Controller$
+	\item $Write\:Ahead\:Log$
+	\item $WAL\:Reader$
+	\item $Update\:Assigner$
+	\item $Update\:Distributor$
+\end{enumerate}
+
+\newpage
+\begin{figure}[h!]
+  
+  \centering
+    \includegraphics[scale=0.8]{figures/RegionServer}
+    \caption{Region Server}
+    \label{fig:regionserverAppendix}
+\end{figure}
+\newpage
+
+\section{View Manager}
+
+
+
+\textbf{Interface}
+
+\begin{enumerate}
+	\item Ingoing
+	\begin{itemize}
+		\item $receiveUpdate$
+		\item $assignViewManager$
+		\item $withdrawViewManager$
+		\item $reassignViewManager$
+		\item $removeViewManager$
+		\item $callLastCommitedUpdate$
+	\end{itemize}
+	\item Outgoing
+	\begin{itemize}
+		\item $createZookeeperNode$
+		\item $shutdownViewManager$
+		\item $assignViewManager$
+		\item $withdrawViewManager$
+		\item $getViewDefinitions$
+		\item $sendStatusReport$
+
+	\end{itemize}
+\end{enumerate}
+
+\textbf{Subcomponents}
+
+\begin{enumerate}
+	\item $VM\:Controller$
+	\item $Pre-Processor$
+	\item $Processor$
+	\item $Commit\:Log$
+\end{enumerate}
+
+\newpage
+
+\begin{figure}[h!]
+  
+  \centering
+    \includegraphics[width=\linewidth]{figures/ViewManager}
+    \caption{View Manager}
+    \label{fig:viewmanager}
+\end{figure}
+\newpage
+
+
+
+\chapter{System Operations}
+\label{chapter:Sytem Operations}
+
+
+\section{Add View Manager}
+\begin{figure}[h!]
+  \centering
+    \includegraphics[scale=0.8]{figures/SO_AddViewManager}
+    \caption{Add View Manager}
+    \label{fig:addviewmanager}
+\end{figure}
+\newpage
+
+\section{Assign View Manager}
+\begin{figure}[h!]
+  \centering
+    \includegraphics[scale=0.8]{figures/SO_AssignViewManager}
+     \caption{Assign View Manager}
+    \label{fig:assignviewmanager}
+\end{figure}
+\newpage
+
+\section{Withdraw View Manager}
+\begin{figure}[h!]
+  \centering
+    \includegraphics[scale=0.8]{figures/SO_WithdrawViewManager}
+     \caption{Withdraw View Manager}
+    \label{fig:withdrawviewmanager}
+\end{figure}
+\newpage
+\section{Reassign View Manager}
+\begin{figure}[h!]
+  \centering
+    \includegraphics[scale=0.8]{figures/SO_ReassignViewManager}
+     \caption{Reassign View Manager}
+    \label{fig:reassignviewmanager}
+\end{figure}
+
+\newpage
+
+\section{View Manager Crash}
+\begin{figure}[h!]
+  \centering
+    \includegraphics[scale=0.8]{figures/SO_ViewManagerCrash}
+     \caption{View Manager Crash}
+    \label{fig:so_viewmanagercrash}
+\end{figure}
+\newpage
+
+\section{Add Region Server}
+\begin{figure}[h!]
+  \centering
+    \includegraphics[scale=0.8]{figures/SO_AddRegionServer}
+     \caption{Add Region Server}
+    \label{fig:addregionserver}
+\end{figure}
+\newpage
+
+\section{Region Server Crash}
+\begin{figure}[h!]
+  \centering
+    \includegraphics[scale=0.8]{figures/SO_RegionServerCrash}
+     \caption{Region Server Crash}
+    \label{fig:regionservercrash}
+\end{figure}
+\newpage
+
+\section{Update Processing}
+\begin{figure}[h!]
+  
+  \centering
+    \includegraphics[scale=0.7]{figures/SO_UpdateProcessing}
+    \caption{Update Path}
+    \label{fig:updatepath}
+\end{figure}
+
+\newpage
+\section{Status Reports}
+\begin{figure}[h!]
+  
+  \centering
+    \includegraphics[width=\linewidth]{figures/SO_StatusReports}
+    \caption{Status Reports}
+    \label{fig:statusreports}
+\end{figure}
+
+\chapter{View Consistency}
+\label{chapter:viewconsistencyappendix}
+
+
+\section{Challenges to consistency}
+\begin{figure}[h!]
+  \centering
+    \includegraphics[scale=0.6]{figures/CO_ConsistencyProblems}
+     \caption{Consistency threats}
+    \label{fig:co_consistencyproblems}
+\end{figure}
+\newpage
+
+\subsection{Non idempotent view updates}
+\begin{figure}[h!]
+  \centering
+    \includegraphics[scale=0.8]{figures/CO_NonIdempotentViewUpdates}
+     \caption{Non idempotent view update}
+    \label{fig:co_nonidempotentviewupdates}
+\end{figure}
+
+\newpage
+
+\subsection{Wrong update order}
+\begin{figure}[h!]
+  \centering
+    \includegraphics[scale=0.8]{figures/CO_WrongUpdateOrderJoin}
+     \caption{Wrong update order join}
+    \label{fig:co_wrongupdateorderjoin}
+\end{figure}
+\newpage
+\begin{figure}[h!]
+  \centering
+    \includegraphics[scale=0.8]{figures/CO_WrongUpdateOrderSelection}
+     \caption{Wrong update order Selection}
+    \label{fig:co_wrongupdateorderselection}
+\end{figure}
+\newpage
+
+\subsection{Concurrent commit}
+\begin{figure}[h!]
+  \centering
+    \includegraphics[scale=0.8]{figures/CO_ConcurrentCommitSum}
+     \caption{Concurrent commit sum}
+    \label{fig:co_concurrentcommitsum}
+\end{figure}
+\newpage
+\begin{figure}[h!]
+  \centering
+    \includegraphics[scale=0.8]{figures/CO_ConcurrentCommitMin}
+     \caption{Concurrent commit min}
+    \label{fig:co_concurrentcommitmin}
+\end{figure}
+\newpage
+
+\subsection{Update interference}
+\begin{figure}[h!]
+  \centering
+    \includegraphics[scale=0.8]{figures/CO_UpdateInterferenceJoin}
+     \caption{Update interference join}
+    \label{fig:co_updateinterferencejoin}
+\end{figure}
+\newpage
+\begin{figure}[h!]
+  \centering
+    \includegraphics[scale=0.8]{figures/CO_UpdateInterferenceMin}
+     \caption{Update interference min}
+    \label{fig:co_updateinterferencemin}
+\end{figure}
+\newpage
+
+\chapter{Load Balancing}
+\label{chapter:loadbalancingappendix}
+
+
+\section{Add View Manager}
+\begin{figure}[h!]
+  \centering
+    \includegraphics[scale=0.8]{figures/LB_AddViewManager}
+     \caption{Add View Manager}
+    \label{fig:lb_addviewmanager}
+\end{figure}
+\newpage
+
+\section{Remove View Manager}
+\begin{figure}[h!]
+  \centering
+    \includegraphics[scale=0.8]{figures/LB_RemoveViewManager}
+     \caption{Remove View Manager}
+    \label{fig:lb_removeviewmanager}
+\end{figure}
+\newpage
+
+\section{Add Region Server}
+\begin{figure}[h!]
+  \centering
+    \includegraphics[scale=0.8]{figures/LB_AddRegionServer}
+     \caption{Add Region Server}
+    \label{fig:lb_addregionserver}
+\end{figure}
+\newpage
+
+\section{Remove Region Server}
+\begin{figure}[h!]
+  \centering
+    \includegraphics[scale=0.8]{figures/LB_RemoveRegionServer}
+    \caption{Remove Region Server}
+    \label{fig:lb_removeregionserver}
+\end{figure}
+\newpage
+
+

@@ -1,0 +1,101 @@
+\select@language {english}
+\select@language {english}
+\select@language {english}
+\select@language {english}
+\contentsline {chapter}{Acknowledgements}{vii}{section*.3}
+\contentsline {chapter}{Abstract}{ix}{section*.4}
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
+\contentsline {chapter}{\numberline {2}Background}{3}{chapter.2}
+\contentsline {section}{\numberline {2.1}Views}{3}{section.2.1}
+\contentsline {section}{\numberline {2.2}View Maintanence}{4}{section.2.2}
+\contentsline {section}{\numberline {2.3}View Types}{4}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Aggregation}{5}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}Selection}{5}{subsection.2.3.2}
+\contentsline {subsection}{\numberline {2.3.3}Join}{5}{subsection.2.3.3}
+\contentsline {section}{\numberline {2.4}HBase}{6}{section.2.4}
+\contentsline {section}{\numberline {2.5}Hadoop Distributed File Systems}{7}{section.2.5}
+\contentsline {section}{\numberline {2.6}Zookeeper}{8}{section.2.6}
+\contentsline {section}{\numberline {2.7}Consistent Hashing}{9}{section.2.7}
+\contentsline {chapter}{\numberline {3}Related Work}{11}{chapter.3}
+\contentsline {section}{\numberline {3.1}Foundations}{11}{section.3.1}
+\contentsline {section}{\numberline {3.2}Recent Research}{13}{section.3.2}
+\contentsline {chapter}{\numberline {4}Analysis}{15}{chapter.4}
+\contentsline {section}{\numberline {4.1}Requirements}{15}{section.4.1}
+\contentsline {section}{\numberline {4.2}Alternatives}{15}{section.4.2}
+\contentsline {chapter}{\numberline {5}Architecture}{17}{chapter.5}
+\contentsline {section}{\numberline {5.1}System Overview}{17}{section.5.1}
+\contentsline {section}{\numberline {5.2}System Components}{19}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}VM Master}{19}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}VM Region Server}{21}{subsection.5.2.2}
+\contentsline {subsection}{\numberline {5.2.3}View Manager}{22}{subsection.5.2.3}
+\contentsline {section}{\numberline {5.3}System Operations}{22}{section.5.3}
+\contentsline {section}{\numberline {5.4}Update path}{24}{section.5.4}
+\contentsline {chapter}{\numberline {6}View Consistency}{27}{chapter.6}
+\contentsline {section}{\numberline {6.1}Consistency model}{27}{section.6.1}
+\contentsline {subsection}{\numberline {6.1.1}Levels of Consistency}{28}{subsection.6.1.1}
+\contentsline {section}{\numberline {6.2}Threats to consistency}{28}{section.6.2}
+\contentsline {subsection}{\numberline {6.2.1}Non idempotent updates}{28}{subsection.6.2.1}
+\contentsline {subsection}{\numberline {6.2.2}Wrong update order}{30}{subsection.6.2.2}
+\contentsline {subsection}{\numberline {6.2.3}Concurrent commit}{33}{subsection.6.2.3}
+\contentsline {subsection}{\numberline {6.2.4}Update Interference}{33}{subsection.6.2.4}
+\contentsline {chapter}{\numberline {7}Load balancing}{35}{chapter.7}
+\contentsline {section}{\numberline {7.1}Local load balancing}{35}{section.7.1}
+\contentsline {section}{\numberline {7.2}Global load balancing}{36}{section.7.2}
+\contentsline {chapter}{\numberline {8}Failure Detection}{41}{chapter.8}
+\contentsline {section}{\numberline {8.1}Crash of View Manager}{41}{section.8.1}
+\contentsline {section}{\numberline {8.2}Crash of Region Server}{43}{section.8.2}
+\contentsline {chapter}{\numberline {9}Implementation}{45}{chapter.9}
+\contentsline {section}{\numberline {9.1}Components}{45}{section.9.1}
+\contentsline {section}{\numberline {9.2}Communication}{46}{section.9.2}
+\contentsline {subsection}{\numberline {9.2.1}Update Flow}{47}{subsection.9.2.1}
+\contentsline {subsection}{\numberline {9.2.2}Message Flow}{47}{subsection.9.2.2}
+\contentsline {section}{\numberline {9.3}Zookeeper Integration}{48}{section.9.3}
+\contentsline {section}{\numberline {9.4}HBase Integration}{50}{section.9.4}
+\contentsline {subsection}{\numberline {9.4.1}Reading WAL Records}{50}{subsection.9.4.1}
+\contentsline {subsection}{\numberline {9.4.2}Forwarding WAL Records}{52}{subsection.9.4.2}
+\contentsline {subsection}{\numberline {9.4.3}Log Cleaning}{53}{subsection.9.4.3}
+\contentsline {section}{\numberline {9.5}Commit Log}{54}{section.9.5}
+\contentsline {chapter}{\numberline {10}Evaluation}{55}{chapter.10}
+\contentsline {section}{\numberline {10.1}Experiment setup}{55}{section.10.1}
+\contentsline {subsection}{\numberline {10.1.1}Deployment}{55}{subsection.10.1.1}
+\contentsline {subsection}{\numberline {10.1.2}Table configuration}{56}{subsection.10.1.2}
+\contentsline {section}{\numberline {10.2}Workload}{57}{section.10.2}
+\contentsline {section}{\numberline {10.3}Performance metrics used}{57}{section.10.3}
+\contentsline {section}{\numberline {10.4}Summary of control parameters}{59}{section.10.4}
+\contentsline {section}{\numberline {10.5}Execution}{60}{section.10.5}
+\contentsline {section}{\numberline {10.6}Experiment 1}{61}{section.10.6}
+\contentsline {section}{\numberline {10.7}Experiment 2}{63}{section.10.7}
+\contentsline {section}{\numberline {10.8}Experiment 3}{64}{section.10.8}
+\contentsline {section}{\numberline {10.9}Experiment 4}{64}{section.10.9}
+\contentsline {section}{\numberline {10.10}Experiment 5}{66}{section.10.10}
+\contentsline {section}{\numberline {10.11}Experiment 6}{67}{section.10.11}
+\contentsline {section}{\numberline {10.12}Experiment 7}{68}{section.10.12}
+\contentsline {chapter}{\numberline {11}Conclusion}{71}{chapter.11}
+\contentsline {chapter}{\numberline {12}Future Work}{73}{chapter.12}
+\contentsline {part}{Appendix}{77}{part*.26}
+\contentsline {chapter}{\numberline {A}Components}{77}{appendix.A}
+\contentsline {section}{\numberline {A.1}VM Master}{77}{section.A.1}
+\contentsline {section}{\numberline {A.2}VM Region Server}{79}{section.A.2}
+\contentsline {section}{\numberline {A.3}View Manager}{81}{section.A.3}
+\contentsline {chapter}{\numberline {B}System Operations}{83}{appendix.B}
+\contentsline {section}{\numberline {B.1}Add View Manager}{83}{section.B.1}
+\contentsline {section}{\numberline {B.2}Assign View Manager}{84}{section.B.2}
+\contentsline {section}{\numberline {B.3}Withdraw View Manager}{85}{section.B.3}
+\contentsline {section}{\numberline {B.4}Reassign View Manager}{86}{section.B.4}
+\contentsline {section}{\numberline {B.5}View Manager Crash}{87}{section.B.5}
+\contentsline {section}{\numberline {B.6}Add Region Server}{88}{section.B.6}
+\contentsline {section}{\numberline {B.7}Region Server Crash}{89}{section.B.7}
+\contentsline {section}{\numberline {B.8}Update Processing}{90}{section.B.8}
+\contentsline {section}{\numberline {B.9}Status Reports}{91}{section.B.9}
+\contentsline {chapter}{\numberline {C}View Consistency}{101}{appendix.C}
+\contentsline {section}{\numberline {C.1}Challenges to consistency}{101}{section.C.1}
+\contentsline {subsection}{\numberline {C.1.1}Non idempotent view updates}{102}{subsection.C.1.1}
+\contentsline {subsection}{\numberline {C.1.2}Wrong update order}{103}{subsection.C.1.2}
+\contentsline {subsection}{\numberline {C.1.3}Concurrent commit}{104}{subsection.C.1.3}
+\contentsline {subsection}{\numberline {C.1.4}Update interference}{105}{subsection.C.1.4}
+\contentsline {chapter}{\numberline {D}Load Balancing}{113}{appendix.D}
+\contentsline {section}{\numberline {D.1}Add View Manager}{113}{section.D.1}
+\contentsline {section}{\numberline {D.2}Remove View Manager}{114}{section.D.2}
+\contentsline {section}{\numberline {D.3}Add Region Server}{115}{section.D.3}
+\contentsline {section}{\numberline {D.4}Remove Region Server}{116}{section.D.4}
+\contentsline {chapter}{\nonumberline Bibliography}{117}{chapter*.51}

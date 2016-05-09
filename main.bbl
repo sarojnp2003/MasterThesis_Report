@@ -1,11 +1,11 @@
 \begin{thebibliography}{10}
 
-\bibitem{barykin:scuba}
-Lior Abraham, John Allen, Oleksandr Barykin, Vinayak Borkar, Bhuwan Chopra,
-  Ciprian Gerea, Daniel Merl, Josh Metzler, David Reiss, Subbu Subramanian,
-  Janet~L. Wiener, and Okay Zed.
-\newblock Scuba: Diving into data at facebook.
-\newblock {\em Proc. VLDB Endow.}, 6(11):1057--1067, August 2013.
+\bibitem{incrementalmaintenance:materializedviews}
+Serge Abitebouly, Jason McHughz, Michael Rysz, Vasilis Vassalosz, and Janet~L.
+  Wienerz.
+\newblock Incremental maintenance for materialized views over semistructured
+  data.
+\newblock 1998.
 
 \bibitem{agrawal:efficient}
 D.~Agrawal, A.~El~Abbadi, A.~Singh, and T.~Yurek.
@@ -19,6 +19,10 @@ Parag Agrawal, Adam Silberstein, Brian~F. Cooper, Utkarsh Srivastava, and Raghu
 \newblock In {\em Proceedings of the 2009 ACM SIGMOD International Conference
   on Management of Data}, SIGMOD '09, pages 179--192, New York, NY, USA, 2009.
   ACM.
+
+\bibitem{matt:rdb}
+Matt Allen.
+\newblock Relational databases are not designed for scale, November 2015.
 
 \bibitem{blakeley:efficiently}
 Jose~A. Blakeley, Per-Ake Larson, and Frank~Wm Tompa.
@@ -58,18 +62,20 @@ Brian~F. Cooper, Raghu Ramakrishnan, Utkarsh Srivastava, Adam Silberstein,
 \newblock Pnuts: Yahoo!'s hosted data serving platform.
 \newblock {\em Proc. VLDB Endow.}, 1(2):1277--1288, August 2008.
 
-\bibitem{decandia:dynamo}
-Giuseppe DeCandia, Deniz Hastorun, Madan Jampani, Gunavardhan Kakulapati,
-  Avinash Lakshman, Alex Pilchin, Swaminathan Sivasubramanian, Peter Vosshall,
-  and Werner Vogels.
-\newblock Dynamo: Amazon's highly available key-value store.
-\newblock In {\em Proceedings of Twenty-first ACM SIGOPS Symposium on Operating
-  Systems Principles}, SOSP '07, pages 205--220, New York, NY, USA, 2007. ACM.
+\bibitem{materializedview:oracle}
+Oracle Corporation.
+\newblock Materialized views, 1999.
 
 \bibitem{george:HBase}
 Lars George.
 \newblock {\em HBase: The Definitive Guide}.
 \newblock O'Reilly Media, Inc., Reading, Massachusetts, 2011.
+
+\bibitem{maintenance:materializedviews}
+Ashish Gupta and Inderpal~Singh Mumick.
+\newblock Maintenance of materialized views: Problems, techniques, and
+  applications.
+\newblock June 1995.
 
 \bibitem{gupta:maintaining}
 Ashish Gupta, Inderpal~Singh Mumick, and V.~S. Subrahmanian.
@@ -96,9 +102,9 @@ David Karger, Alex Sherman, Andy Berkheimer, Bill Bogstad, Rizwan Dhanidina,
   Wide Web}, WWW '99, pages 1203--1213, New York, NY, USA, 1999. Elsevier
   North-Holland, Inc.
 
-\bibitem{parikh:facebook}
-Jay Parikh.
-\newblock Data infrastructure at web scale, Keynote VLDB 2013.
+\bibitem{daniel:datastats}
+Daniel Price.
+\newblock Surprising facts and stats about the big data industry, March 2015.
 
 \bibitem{salem:how}
 Kenneth Salem, Kevin Beyer, Bruce Lindsay, and Roberta Cochrane.

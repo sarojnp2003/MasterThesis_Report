@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.4.22)  26 APR 2016 17:28
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.4.22)  8 MAY 2016 22:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -589,11 +589,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 
 
 Writing glossary file main.glo 
-(./main.aux
-
-LaTeX Warning: Label `fig:throughput' multiply defined.
-
-)
+(./main.aux)
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 46.
@@ -690,7 +686,7 @@ Class scrbook Warning: Usage of deprecated font command `\bf'!
 
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <20.74> not available
 (Font)              Font shape `OT1/ppl/b/n' tried instead on input line 43.
-<styles/informat.png, id=391, 355.3275pt x 355.3275pt>
+<styles/informat.png, id=54, 355.3275pt x 355.3275pt>
 File: styles/informat.png Graphic file (type png)
 
 <use styles/informat.png>
@@ -801,28 +797,14 @@ for-ma-tion on-line, ser-vice providers
 ]
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <10.95> not available
 (Font)              Font shape `OT1/ppl/b/n' tried instead on input line 69.
- (./main.toc [11]
-Overfull \hbox (2.18993pt too wide) detected at line 70
-\OT1/ppl/m/n/10.95 10.10. 
- []
-
-
-Overfull \hbox (2.18993pt too wide) detected at line 71
-\OT1/ppl/m/n/10.95 10.11. 
- []
-
-[12]
-Overfull \hbox (2.18993pt too wide) detected at line 72
-\OT1/ppl/m/n/10.95 10.12. 
- []
-
+ (./main.toc
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 75.
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 16.
 )
 \tf@toc=\write5
 \openout5 = `main.toc'.
 
- [13] [14
+ [11] [12
 
 
 ]
@@ -842,834 +824,61 @@ Class scrbook Warning: \float@addtolists detected!
 (scrbook)              a package that still implements the
 (scrbook)              deprecated \float@addtolist interface .
 
-
-Overfull \hbox (3.19176pt too wide) in paragraph at lines 82--83
-\OT1/ppl/m/n/10.95 At VLDB 2013 Face-books Vice Pres-i-dent of In-fras-truc-tur
-e En-gi-neer-ing Jay Parikh stated[[]],
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 84--85
-
- []
-
 [1
 
-] [2]
+] [2
+
+]
 chapter 2.
-[3
+[3] <figures/HBase.pdf, id=154, 597.23125pt x 845.1575pt>
+File: figures/HBase.pdf Graphic file (type pdf)
 
-]
-Underfull \vbox (badness 4254) has occurred while \output is active []
+<use figures/HBase.pdf>
+Package pdftex.def Info: figures/HBase.pdf used on input line 129.
+(pdftex.def)             Requested size: 433.35742pt x 613.25868pt.
 
- [4]
-Overfull \hbox (1.04628pt too wide) in paragraph at lines 128--129
-\OT1/ppl/m/n/10.95 Large Scale Dis-tributed Databases, as in-tro-duced in Chap-
-ter [][]1[][], are a prod-uct of the progress
- []
 
-[5] [6] [7] [8] [9] [10
+LaTeX Warning: Float too large for page by 68.25842pt on input line 132.
 
-]
-chapter 3.
-[11]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [12]
-[13] [14]
-chapter 4.
-[15
-
-] [16]
-chapter 5.
-<figures/SystemOverview2.pdf, id=728, 455.30101pt x 313.04956pt>
-File: figures/SystemOverview2.pdf Graphic file (type pdf)
-
-<use figures/SystemOverview2.pdf>
-Package pdftex.def Info: figures/SystemOverview2.pdf used on input line 235.
-(pdftex.def)             Requested size: 433.35742pt x 297.97337pt.
- [17
-
- <./figures/SystemOverview2.pdf>]
-Overfull \hbox (1.4437pt too wide) in paragraph at lines 249--251
-\OT1/ppl/m/n/10.95 e.g a sum view is de-fined as $\OML/cmm/m/it/10.95 basetable
-\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 viewtable$ $sum;$ $aggregationKey;$ $ag
-gregationValue\OT1/cmr/m/n/10.95 )$\OT1/ppl/m/n/10.95 .
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 249--251
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 255--256
-
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [18]
-Underfull \hbox (badness 10000) in paragraph at lines 266--267
-
- []
-
-[19] <figures/RegionServer.pdf, id=755, 455.30101pt x 483.72722pt>
-File: figures/RegionServer.pdf Graphic file (type pdf)
-
-<use figures/RegionServer.pdf>
-Package pdftex.def Info: figures/RegionServer.pdf used on input line 275.
-(pdftex.def)             Requested size: 433.35742pt x 460.43135pt.
- [20 <./figures/RegionServer.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 290--291
-
- []
-
-[21]
-Underfull \hbox (badness 10000) in paragraph at lines 305--306
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 307--309
-
- []
-
-[22]
-Underfull \hbox (badness 10000) in paragraph at lines 310--312
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 313--315
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 316--318
-
- []
-
-[23]
-Underfull \hbox (badness 10000) in paragraph at lines 319--321
-
- []
-
-[24] [25] [26
-
-]
-chapter 6.
-
-Underfull \hbox (badness 10000) in paragraph at lines 345--351
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 345--351
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 345--351
-
- []
-
-
-Underfull \vbox (badness 7397) has occurred while \output is active []
-
- [27]
-Underfull \hbox (badness 10000) in paragraph at lines 354--355
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 359--360
-
- []
-
-[28]
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 363.
-
- (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
-File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-)
-<figures/HBaseRow.pdf, id=823, 398.32814pt x 313.04956pt>
-File: figures/HBaseRow.pdf Graphic file (type pdf)
-
-<use figures/HBaseRow.pdf>
-Package pdftex.def Info: figures/HBaseRow.pdf used on input line 375.
-(pdftex.def)             Requested size: 433.35742pt x 340.59149pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 381--383
-
- []
-
-
-Underfull \vbox (badness 2781) has occurred while \output is active []
-
- [29]
-[30 <./figures/HBaseRow.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 398--399
-
- []
-
-LaTeX Font Info:    Try loading font information for TS1+ppl on input line 403.
-
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ppl.fd
-File: ts1ppl.fd 2001/06/04 font definitions for TS1/ppl.
-)
-<figures/ConsistentHashing.pdf, id=851, 398.32814pt x 313.04956pt>
-File: figures/ConsistentHashing.pdf Graphic file (type pdf)
-
-<use figures/ConsistentHashing.pdf>
-Package pdftex.def Info: figures/ConsistentHashing.pdf used on input line 412.
-(pdftex.def)             Requested size: 433.35742pt x 340.59149pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 417--418
-
- []
-
-[31]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [32 <./figures/ConsistentHashing.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 420--421
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 429--431
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 434--435
-
- []
-
-[33]
-Underfull \hbox (badness 10000) in paragraph at lines 436--438
-
- []
-
-[34]
-chapter 7.
-
-Underfull \hbox (badness 10000) in paragraph at lines 445--446
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 450--451
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 452--454
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 456--457
-
- []
-
-[35
-
-]
-Underfull \hbox (badness 10000) in paragraph at lines 467--468
-
- []
-
-<figures/LoadBalancing.pdf, id=897, 455.30101pt x 483.72722pt>
-File: figures/LoadBalancing.pdf Graphic file (type pdf)
-
-<use figures/LoadBalancing.pdf>
-Package pdftex.def Info: figures/LoadBalancing.pdf used on input line 473.
-(pdftex.def)             Requested size: 433.35742pt x 460.43135pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[36] [37 <./figures/LoadBalancing.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 484--486
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 488--490
-
- []
-
-[38]
-Underfull \hbox (badness 10000) in paragraph at lines 507--509
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 510--512
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 513--516
-
- []
-
-[39] [40]
-chapter 8.
-
-Underfull \hbox (badness 10000) in paragraph at lines 529--530
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 531--533
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 536--538
-
- []
-
-<figures/SO_ViewManagerCrash.pdf, id=940, 512.27383pt x 512.27383pt>
-File: figures/SO_ViewManagerCrash.pdf Graphic file (type pdf)
-
-<use figures/SO_ViewManagerCrash.pdf>
-Package pdftex.def Info: figures/SO_ViewManagerCrash.pdf used on input line 542
-.
-(pdftex.def)             Requested size: 433.35742pt x 433.3712pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[41
-
-]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [42 <./figures/SO_ViewManagerCrash.pdf>] [43] [44
-
-]
-chapter 9.
-<figures/ImplementationOverview.pdf, id=984, 967.45442pt x 711.37767pt>
-File: figures/ImplementationOverview.pdf Graphic file (type pdf)
-
-<use figures/ImplementationOverview.pdf>
-Package pdftex.def Info: figures/ImplementationOverview.pdf used on input line 
-574.
-(pdftex.def)             Requested size: 433.35742pt x 318.6516pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[45] [46 <./figures/ImplementationOverview.pdf>]
-Overfull \hbox (6.28294pt too wide) in paragraph at lines 590--591
-\OT1/ppl/m/n/10.95 tire sys-tem. The sys-tem ID again, cor-re-sponds to a cer-t
-ain for-mat: $\OML/cmm/m/it/10.95 < name\OT1/cmr/m/n/10.95 ; \OML/cmm/m/it/10.9
-5 ip\OT1/cmr/m/n/10.95 ; \OML/cmm/m/it/10.95 messagePort\OT1/cmr/m/n/10.95 ;$
- []
-
-
-Overfull \hbox (4.47873pt too wide) in paragraph at lines 590--591
-\OML/cmm/m/it/10.95 updatePort >$\OT1/ppl/m/n/10.95 . For ex-am-ple, the sys-te
-m ID of a View Man-ager could be $\OML/cmm/m/it/10.95 < vm\OT1/cmr/m/n/10.95 1;
- 192\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 168\OML/cmm/m/it/10.95 :\OT1/cmr/m/
-n/10.95 0\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 20;$
- []
-
-[47]
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<figures/Zookeeper.pdf, id=1009, 569.12625pt x 341.47577pt>
-File: figures/Zookeeper.pdf Graphic file (type pdf)
-
-<use figures/Zookeeper.pdf>
-Package pdftex.def Info: figures/Zookeeper.pdf used on input line 643.
-(pdftex.def)             Requested size: 433.35742pt x 260.02448pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[48] [49 <./figures/Zookeeper.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 658--659
-
- []
-
-[50] <figures/HDFS.pdf, id=1056, 569.12625pt x 398.32814pt>
-File: figures/HDFS.pdf Graphic file (type pdf)
-
-<use figures/HDFS.pdf>
-Package pdftex.def Info: figures/HDFS.pdf used on input line 663.
-(pdftex.def)             Requested size: 433.35742pt x 303.31601pt.
- [51 <./figures/HDFS.pdf>]
-<figures/BaseTableUpdateObject.pdf, id=1071, 625.97867pt x 170.79811pt>
-File: figures/BaseTableUpdateObject.pdf Graphic file (type pdf)
-
-<use figures/BaseTableUpdateObject.pdf>
-Package pdftex.def Info: figures/BaseTableUpdateObject.pdf used on input line 6
-81.
-(pdftex.def)             Requested size: 433.35742pt x 118.24173pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[52] [53 <./figures/BaseTableUpdateObject.pdf>] [54]
-chapter 10.
-
-Underfull \hbox (badness 10000) in paragraph at lines 706--707
-
- []
-
-[55
-
-] [56]
-Underfull \hbox (badness 10000) in paragraph at lines 736--738
-
- []
-
-[57]
-Underfull \hbox (badness 10000) in paragraph at lines 746--748
-
- []
-
-[58]
-Overfull \hbox (5.04106pt too wide) in paragraph at lines 767--768
-[]$\OML/cmm/m/it/10.95 numberOfClients$ \OT1/ppl/m/n/10.95 The num-ber of clien
-ts, that are send-ing up-date op-er-a-tions to HBase
- []
-
-
-Overfull \hbox (6.55264pt too wide) in paragraph at lines 768--769
-[]$\OML/cmm/m/it/10.95 numberOfRegionServer$ \OT1/ppl/m/n/10.95 The num-ber of 
-Re-gion Servers, that are con-fig-ured for HBase
- []
-
-[59]
-Overfull \hbox (8.96509pt too wide) in paragraph at lines 774--775
-\OT1/ppl/m/n/10.95 records. The fac-tor $\OML/cmm/m/it/10.95 numberOfCreateBase
-TableRecords=numberOfAggregationKeys$
- []
-
-[60] <figures/Throughput.pdf, id=1133, 361.35pt x 216.81pt>
-File: figures/Throughput.pdf Graphic file (type pdf)
-
-<use figures/Throughput.pdf>
-Package pdftex.def Info: figures/Throughput.pdf used on input line 803.
-(pdftex.def)             Requested size: 433.35742pt x 260.0152pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[61]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [62 <./figures/Throughput.pdf>]
-<figures/Throughput_uniform.pdf, id=1156, 361.35pt x 216.81pt>
-File: figures/Throughput_uniform.pdf Graphic file (type pdf)
-
-<use figures/Throughput_uniform.pdf>
-Package pdftex.def Info: figures/Throughput_uniform.pdf used on input line 820.
-
-(pdftex.def)             Requested size: 433.35742pt x 260.0152pt.
- [63 <./figures/Throughput_uniform.pdf>]
-<figures/Throughput_zipf2.pdf, id=1171, 361.35pt x 216.81pt>
-File: figures/Throughput_zipf2.pdf Graphic file (type pdf)
-
-<use figures/Throughput_zipf2.pdf>
-Package pdftex.def Info: figures/Throughput_zipf2.pdf used on input line 840.
-(pdftex.def)             Requested size: 433.35742pt x 260.0152pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[64] <figures/DifferentDataSize.pdf, id=1178, 361.35pt x 216.81pt>
-File: figures/DifferentDataSize.pdf Graphic file (type pdf)
-
-<use figures/DifferentDataSize.pdf>
-Package pdftex.def Info: figures/DifferentDataSize.pdf used on input line 859.
-(pdftex.def)             Requested size: 433.35742pt x 260.0152pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [65 <./figures/Throughput_zipf2.pdf>]
-<figures/AggregationKeys.pdf, id=1194, 361.35pt x 216.81pt>
-File: figures/AggregationKeys.pdf Graphic file (type pdf)
-
-<use figures/AggregationKeys.pdf>
-Package pdftex.def Info: figures/AggregationKeys.pdf used on input line 876.
-(pdftex.def)             Requested size: 433.35742pt x 260.0152pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-Underfull \vbox (badness 1038) has occurred while \output is active []
-
- [66 <./figures/DifferentDataSize.pdf>]
-<figures/ViewTableSplit2.pdf, id=1211, 361.35pt x 216.81pt>
-File: figures/ViewTableSplit2.pdf Graphic file (type pdf)
-
-<use figures/ViewTableSplit2.pdf>
-Package pdftex.def Info: figures/ViewTableSplit2.pdf used on input line 896.
-(pdftex.def)             Requested size: 212.3475pt x 127.40732pt.
- [67 <./figures/AggregationKeys.pdf>] [68 <./figures/ViewTableSplit2.pdf>] [69]
-
-<figures/CommitLog.pdf, id=1249, 361.35pt x 216.81pt>
-File: figures/CommitLog.pdf Graphic file (type pdf)
-
-<use figures/CommitLog.pdf>
-Package pdftex.def Info: figures/CommitLog.pdf used on input line 918.
-(pdftex.def)             Requested size: 433.35742pt x 260.0152pt.
- [70 <./figures/CommitLog.pdf>]
-chapter 11.
-[71
-
-] [72
-
-]
-chapter 12.
-[73] [74
+[4] [5 <./figures/HBase.pdf>] [6
 
 ]
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <24.88> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 957.
- [75] [76] (./chapters/oneAppendix.tex
-chapter A.
-[77
-
-] <figures/Master.pdf, id=1307, 512.27383pt x 512.27383pt>
-File: figures/Master.pdf Graphic file (type pdf)
-
-<use figures/Master.pdf>
-Package pdftex.def Info: figures/Master.pdf used on input line 47.
-(pdftex.def)             Requested size: 409.81961pt x 409.81961pt.
- [78 <./figures/Master.pdf>] [79]
-File: figures/RegionServer.pdf Graphic file (type pdf)
-
-<use figures/RegionServer.pdf>
-Package pdftex.def Info: figures/RegionServer.pdf used on input line 91.
-(pdftex.def)             Requested size: 364.2413pt x 386.98228pt.
- [80] [81]
-<figures/ViewManager.pdf, id=1345, 398.32814pt x 483.72722pt>
-File: figures/ViewManager.pdf Graphic file (type pdf)
-
-<use figures/ViewManager.pdf>
-Package pdftex.def Info: figures/ViewManager.pdf used on input line 139.
-(pdftex.def)             Requested size: 433.35742pt x 526.2853pt.
- [82 <./figures/ViewManager.pdf>]
-chapter B.
-<figures/SO_AddViewManager.pdf, id=1357, 512.27383pt x 512.27383pt>
-File: figures/SO_AddViewManager.pdf Graphic file (type pdf)
-
-<use figures/SO_AddViewManager.pdf>
-Package pdftex.def Info: figures/SO_AddViewManager.pdf used on input line 154.
-(pdftex.def)             Requested size: 409.81961pt x 409.81961pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[83
-
-] <figures/SO_AssignViewManager.pdf, id=1363, 455.30101pt x 682.95152pt>
-File: figures/SO_AssignViewManager.pdf Graphic file (type pdf)
-
-<use figures/SO_AssignViewManager.pdf>
-Package pdftex.def Info: figures/SO_AssignViewManager.pdf used on input line 16
-3.
-(pdftex.def)             Requested size: 364.2413pt x 546.36195pt.
-
-
-LaTeX Warning: Float too large for page by 1.3617pt on input line 166.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[84 <./figures/SO_AddViewManager.pdf>]
-<figures/SO_WithdrawViewManager.pdf, id=1397, 512.27383pt x 682.95152pt>
-File: figures/SO_WithdrawViewManager.pdf Graphic file (type pdf)
-
-<use figures/SO_WithdrawViewManager.pdf>
-Package pdftex.def Info: figures/SO_WithdrawViewManager.pdf used on input line 
-172.
-(pdftex.def)             Requested size: 409.81961pt x 546.36195pt.
-
-
-LaTeX Warning: Float too large for page by 1.3617pt on input line 175.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[85] <figures/SO_ReassignViewManager.pdf, id=1402, 512.27383pt x 455.30101pt>
-File: figures/SO_ReassignViewManager.pdf Graphic file (type pdf)
-
-<use figures/SO_ReassignViewManager.pdf>
-Package pdftex.def Info: figures/SO_ReassignViewManager.pdf used on input line 
-180.
-(pdftex.def)             Requested size: 409.81961pt x 364.2413pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[86]
-File: figures/SO_ViewManagerCrash.pdf Graphic file (type pdf)
- <use figures/SO_ViewManagerCrash.pdf>
-Package pdftex.def Info: figures/SO_ViewManagerCrash.pdf used on input line 190
-.
-(pdftex.def)             Requested size: 409.81961pt x 409.81961pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[87] <figures/SO_AddRegionServer.pdf, id=1411, 512.27383pt x 512.27383pt>
-File: figures/SO_AddRegionServer.pdf Graphic file (type pdf)
-
-<use figures/SO_AddRegionServer.pdf>
-Package pdftex.def Info: figures/SO_AddRegionServer.pdf used on input line 199.
-
-(pdftex.def)             Requested size: 409.81961pt x 409.81961pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[88] <figures/SO_RegionServerCrash.pdf, id=1416, 512.27383pt x 654.52531pt>
-File: figures/SO_RegionServerCrash.pdf Graphic file (type pdf)
-
-<use figures/SO_RegionServerCrash.pdf>
-Package pdftex.def Info: figures/SO_RegionServerCrash.pdf used on input line 20
-8.
-(pdftex.def)             Requested size: 409.81961pt x 523.62096pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[89] <figures/SO_UpdateProcessing.pdf, id=1422, 512.27383pt x 711.37767pt>
-File: figures/SO_UpdateProcessing.pdf Graphic file (type pdf)
-
-<use figures/SO_UpdateProcessing.pdf>
-Package pdftex.def Info: figures/SO_UpdateProcessing.pdf used on input line 218
-.
-(pdftex.def)             Requested size: 358.58923pt x 497.96097pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[90] <figures/SO_StatusReports.pdf, id=1427, 512.27383pt x 569.12625pt>
-File: figures/SO_StatusReports.pdf Graphic file (type pdf)
-
-<use figures/SO_StatusReports.pdf>
-Package pdftex.def Info: figures/SO_StatusReports.pdf used on input line 228.
-(pdftex.def)             Requested size: 433.35742pt x 481.46698pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[91] [92 <./figures/SO_AssignViewManager.pdf>] [93 <./figures/SO_WithdrawViewMa
-nager.pdf>] [94 <./figures/SO_ReassignViewManager.pdf>] [95] [96 <./figures/SO_
-AddRegionServer.pdf>] [97 <./figures/SO_RegionServerCrash.pdf>] [98 <./figures/
-SO_UpdateProcessing.pdf>] [99 <./figures/SO_StatusReports.pdf>] [100
-
-]
-chapter C.
-<figures/CO_ConsistencyProblems.pdf, id=1622, 512.27383pt x 682.95152pt>
-File: figures/CO_ConsistencyProblems.pdf Graphic file (type pdf)
-
-<use figures/CO_ConsistencyProblems.pdf>
-Package pdftex.def Info: figures/CO_ConsistencyProblems.pdf used on input line 
-240.
-(pdftex.def)             Requested size: 307.36665pt x 409.77406pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[101]
-<figures/CO_NonIdempotentViewUpdates.pdf, id=1628, 512.27383pt x 569.12625pt>
-File: figures/CO_NonIdempotentViewUpdates.pdf Graphic file (type pdf)
-
-<use figures/CO_NonIdempotentViewUpdates.pdf>
-Package pdftex.def Info: figures/CO_NonIdempotentViewUpdates.pdf used on input 
-line 249.
-(pdftex.def)             Requested size: 409.81961pt x 455.30162pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[102 <./figures/CO_ConsistencyProblems.pdf>]
-<figures/CO_WrongUpdateOrderJoin.pdf, id=1643, 512.27383pt x 682.95152pt>
-File: figures/CO_WrongUpdateOrderJoin.pdf Graphic file (type pdf)
-
-<use figures/CO_WrongUpdateOrderJoin.pdf>
-Package pdftex.def Info: figures/CO_WrongUpdateOrderJoin.pdf used on input line
- 259.
-(pdftex.def)             Requested size: 409.81961pt x 546.36195pt.
-
-
-LaTeX Warning: Float too large for page by 1.3617pt on input line 262.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[103 <./figures/CO_NonIdempotentViewUpdates.pdf>]
-<figures/CO_WrongUpdateOrderSelection.pdf, id=1665, 512.27383pt x 569.12625pt>
-File: figures/CO_WrongUpdateOrderSelection.pdf Graphic file (type pdf)
-
-<use figures/CO_WrongUpdateOrderSelection.pdf>
-Package pdftex.def Info: figures/CO_WrongUpdateOrderSelection.pdf used on input
- line 266.
-(pdftex.def)             Requested size: 409.81961pt x 455.30162pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<figures/CO_ConcurrentCommitSum.pdf, id=1666, 512.27383pt x 625.97867pt>
-File: figures/CO_ConcurrentCommitSum.pdf Graphic file (type pdf)
-
-<use figures/CO_ConcurrentCommitSum.pdf>
-Package pdftex.def Info: figures/CO_ConcurrentCommitSum.pdf used on input line 
-275.
-(pdftex.def)             Requested size: 409.81961pt x 500.78362pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[104] <figures/CO_ConcurrentCommitMin.pdf, id=1671, 512.27383pt x 625.97867pt>
-File: figures/CO_ConcurrentCommitMin.pdf Graphic file (type pdf)
-
-<use figures/CO_ConcurrentCommitMin.pdf>
-Package pdftex.def Info: figures/CO_ConcurrentCommitMin.pdf used on input line 
-282.
-(pdftex.def)             Requested size: 409.81961pt x 500.78362pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<figures/CO_UpdateInterferenceJoin.pdf, id=1672, 512.27383pt x 682.95152pt>
-File: figures/CO_UpdateInterferenceJoin.pdf Graphic file (type pdf)
-
-<use figures/CO_UpdateInterferenceJoin.pdf>
-Package pdftex.def Info: figures/CO_UpdateInterferenceJoin.pdf used on input li
-ne 291.
-(pdftex.def)             Requested size: 409.81961pt x 546.36195pt.
-
-
-LaTeX Warning: Float too large for page by 1.3617pt on input line 294.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[105]
-<figures/CO_UpdateInterferenceMin.pdf, id=1677, 512.27383pt x 682.95152pt>
-File: figures/CO_UpdateInterferenceMin.pdf Graphic file (type pdf)
-
-<use figures/CO_UpdateInterferenceMin.pdf>
-Package pdftex.def Info: figures/CO_UpdateInterferenceMin.pdf used on input lin
-e 298.
-(pdftex.def)             Requested size: 409.81961pt x 546.36195pt.
-
-
-LaTeX Warning: Float too large for page by 1.3617pt on input line 301.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[106 <./figures/CO_WrongUpdateOrderJoin.pdf>] [107 <./figures/CO_WrongUpdateOrd
-erSelection.pdf>] [108 <./figures/CO_ConcurrentCommitSum.pdf>] [109 <./figures/
-CO_ConcurrentCommitMin.pdf>] [110 <./figures/CO_UpdateInterferenceJoin.pdf>]
-[111 <./figures/CO_UpdateInterferenceMin.pdf>] [112
-
-]
-chapter D.
-<figures/LB_AddViewManager.pdf, id=1813, 455.30101pt x 398.32814pt>
-File: figures/LB_AddViewManager.pdf Graphic file (type pdf)
-
-<use figures/LB_AddViewManager.pdf>
-Package pdftex.def Info: figures/LB_AddViewManager.pdf used on input line 311.
-(pdftex.def)             Requested size: 364.2413pt x 318.66293pt.
- [113 <./figures/LB_AddViewManager.pdf>]
-<figures/LB_RemoveViewManager.pdf, id=1845, 455.30101pt x 398.32814pt>
-File: figures/LB_RemoveViewManager.pdf Graphic file (type pdf)
-
-<use figures/LB_RemoveViewManager.pdf>
-Package pdftex.def Info: figures/LB_RemoveViewManager.pdf used on input line 32
-0.
-(pdftex.def)             Requested size: 364.2413pt x 318.66293pt.
- [114 <./figures/LB_RemoveViewManager.pdf>] <figures/LB_AddRegionServer.pdf, id
-=1859, 455.30101pt x 398.32814pt>
-File: figures/LB_AddRegionServer.pdf Graphic file (type pdf)
-
-<use figures/LB_AddRegionServer.pdf>
-Package pdftex.def Info: figures/LB_AddRegionServer.pdf used on input line 329.
-
-(pdftex.def)             Requested size: 364.2413pt x 318.66293pt.
- [115 <./figures/LB_AddRegionServer.pdf>]
-<figures/LB_RemoveRegionServer.pdf, id=1873, 398.32814pt x 398.32814pt>
-File: figures/LB_RemoveRegionServer.pdf Graphic file (type pdf)
-
-<use figures/LB_RemoveRegionServer.pdf>
-Package pdftex.def Info: figures/LB_RemoveRegionServer.pdf used on input line 3
-38.
-(pdftex.def)             Requested size: 318.66293pt x 318.66293pt.
- [116 <./figures/LB_RemoveRegionServer.pdf>]) (./main.bbl
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 142.
+ [7] [8] (./main.bbl
 chapter without number
-[117
+[9
 
 
-] [118])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 969.
- [119]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 969.
+] [10])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 154.
+ [11]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 154.
  (./main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 969.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 969.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 154.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 154.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: DC19C1E68F0AC9F9102A3E78E88E1A65;6037.
-
-
-LaTeX Warning: There were multiply-defined labels.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 969.
+(rerunfilecheck)             Checksum: 0189AE02DAB22739DDD362835E7A092F;763.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 154.
  ) 
 Here is how much of TeX's memory you used:
- 11386 strings out of 493029
- 178581 string characters out of 6136234
- 330448 words of memory out of 5000000
- 14317 multiletter control sequences out of 15000+600000
- 24805 words of font info for 65 fonts, out of 8000000 for 9000
+ 10692 strings out of 493029
+ 165754 string characters out of 6136234
+ 322288 words of memory out of 5000000
+ 13933 multiletter control sequences out of 15000+600000
+ 21383 words of font info for 56 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 43i,11n,66p,3414b,521s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 43i,10n,66p,1398b,489s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy1
-0.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><
-/usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/t
-ype1/urw/palatino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/pal
-atino/uplri8a.pfb>
-Output written on main.pdf (133 pages, 4945811 bytes).
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/urw/palatino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/p
+alatino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplr
+i8a.pfb>
+Output written on main.pdf (23 pages, 143740 bytes).
 PDF statistics:
- 2021 PDF objects out of 2073 (max. 8388607)
- 1709 compressed objects within 18 object streams
- 320 named destinations out of 1000 (max. 500000)
- 977 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 262 PDF objects out of 1000 (max. 8388607)
+ 220 compressed objects within 3 object streams
+ 65 named destinations out of 1000 (max. 500000)
+ 115 words of extra memory for PDF output out of 10000 (max. 10000000)
 

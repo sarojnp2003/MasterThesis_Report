@@ -1,8 +1,55 @@
-This is BibTeX, Version 0.99dThe top-level auxiliary file: main.aux
+This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: main.aux
 The style file: plain.bst
 Database file #1: bibliography/literature.bib
-Warning--entry type for "parikh:facebook" isn't style-file defined
---line 412 of file bibliography/literature.bib
-Warning--string name "august" is undefined
---line 415 of file bibliography/literature.bib
-(There were 2 warnings)
+Warning--entry type for "daniel:datastats" isn't style-file defined
+--line 877 of file bibliography/literature.bib
+Warning--entry type for "matt:rdb" isn't style-file defined
+--line 895 of file bibliography/literature.bib
+Warning--entry type for "materializedview:oracle" isn't style-file defined
+--line 913 of file bibliography/literature.bib
+Warning--empty journal in incrementalmaintenance:materializedviews
+Warning--empty journal in maintenance:materializedviews
+You've used 23 entries,
+            2118 wiz_defined-function locations,
+            637 strings with 8556 characters,
+and the built_in function-call counts, 9753 in all, are:
+= -- 969
+> -- 539
+< -- 8
++ -- 214
+- -- 190
+* -- 757
+:= -- 1577
+add.period$ -- 74
+call.type$ -- 23
+change.case$ -- 163
+chr.to.int$ -- 0
+cite$ -- 25
+duplicate$ -- 338
+empty$ -- 684
+format.name$ -- 190
+if$ -- 2047
+int.to.chr$ -- 0
+int.to.str$ -- 23
+missing$ -- 21
+newline$ -- 115
+num.names$ -- 46
+pop$ -- 168
+preamble$ -- 1
+purify$ -- 141
+quote$ -- 0
+skip$ -- 263
+stack$ -- 0
+substring$ -- 604
+swap$ -- 96
+text.length$ -- 8
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 90
+warning$ -- 2
+while$ -- 87
+width$ -- 25
+write$ -- 265
+(There were 5 warnings)

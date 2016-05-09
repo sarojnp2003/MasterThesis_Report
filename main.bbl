@@ -1,5 +1,11 @@
 \begin{thebibliography}{10}
 
+\bibitem{loading:coprocessors}
+Apache hbase reference guide, Apr 2011.
+
+\bibitem{hbase:site}
+Quick start, Apr 2014.
+
 \bibitem{incrementalmaintenance:materializedviews}
 Serge Abitebouly, Jason McHughz, Michael Rysz, Vasilis Vassalosz, and Janet~L.
   Wienerz.
@@ -7,69 +13,27 @@ Serge Abitebouly, Jason McHughz, Michael Rysz, Vasilis Vassalosz, and Janet~L.
   data.
 \newblock 1998.
 
-\bibitem{agrawal:efficient}
-D.~Agrawal, A.~El~Abbadi, A.~Singh, and T.~Yurek.
-\newblock Efficient view maintenance at data warehouses.
-\newblock {\em SIGMOD Rec.}, 26(2):417--427, June 1997.
-
-\bibitem{agrawal:asynchronous}
-Parag Agrawal, Adam Silberstein, Brian~F. Cooper, Utkarsh Srivastava, and Raghu
-  Ramakrishnan.
-\newblock Asynchronous view maintenance for vlsd databases.
-\newblock In {\em Proceedings of the 2009 ACM SIGMOD International Conference
-  on Management of Data}, SIGMOD '09, pages 179--192, New York, NY, USA, 2009.
-  ACM.
-
 \bibitem{matt:rdb}
 Matt Allen.
 \newblock Relational databases are not designed for scale, November 2015.
 
-\bibitem{blakeley:efficiently}
-Jose~A. Blakeley, Per-Ake Larson, and Frank~Wm Tompa.
-\newblock Efficiently updating materialized views.
-\newblock {\em SIGMOD Rec.}, 15(2):61--71, June 1986.
-
-\bibitem{borthakur:facebook}
-Dhruba Borthakur, Jonathan Gray, Joydeep~Sen Sarma, Kannan Muthukkaruppan,
-  Nicolas Spiegelberg, Hairong Kuang, Karthik Ranganathan, Dmytro Molkov,
-  Aravind Menon, Samuel Rash, Rodrigo Schmidt, and Amitanand Aiyer.
-\newblock Apache hadoop goes realtime at facebook.
-\newblock In {\em Proceedings of the 2011 international conference on
-  Management of data}, SIGMOD '11, pages 1071--1080, New York, NY, USA, 2011.
-  ACM.
-
-\bibitem{chang:bigtable}
-Fay Chang, Jeffrey Dean, Sanjay Ghemawat, Wilson~C. Hsieh, Deborah~A. Wallach,
-  Mike Burrows, Tushar Chandra, Andrew Fikes, and Robert~E. Gruber.
-\newblock Bigtable: A distributed storage system for structured data.
-\newblock {\em ACM Trans. Comput. Syst.}, 26(2):4:1--4:26, June 2008.
-
-\bibitem{chen:multiversion}
-Songting Chen, Bin Liu, and Elke~A. Rundensteiner.
-\newblock Multiversion-based view maintenance over distributed data sources.
-\newblock {\em ACM Trans. Database Syst.}, 29(4):675--709, December 2004.
-
-\bibitem{colby:algorithms}
-Latha~S. Colby, Timothy Griffin, Leonid Libkin, Inderpal~Singh Mumick, and
-  Howard Trickey.
-\newblock Algorithms for deferred view maintenance.
-\newblock {\em SIGMOD Rec.}, 25(2):469--480, June 1996.
-
-\bibitem{cooper:pnuts}
-Brian~F. Cooper, Raghu Ramakrishnan, Utkarsh Srivastava, Adam Silberstein,
-  Philip Bohannon, Hans-Arno Jacobsen, Nick Puz, Daniel Weaver, and Ramana
-  Yerneni.
-\newblock Pnuts: Yahoo!'s hosted data serving platform.
-\newblock {\em Proc. VLDB Endow.}, 1(2):1277--1288, August 2008.
+\bibitem{hbase:coprocessors}
+GAURAV BHARDWAJ.
+\newblock The how to of hbase coprocessors, Apr 2014.
 
 \bibitem{materializedview:oracle}
 Oracle Corporation.
 \newblock Materialized views, 1999.
 
-\bibitem{george:HBase}
-Lars George.
-\newblock {\em HBase: The Definitive Guide}.
-\newblock O'Reilly Media, Inc., Reading, Massachusetts, 2011.
+\bibitem{coprocessor:detail}
+Nick Dimiduk and Amandeep Khurana.
+\newblock Hbase in action.
+\newblock 2013.
+
+\bibitem{hbase:essential}
+Nishant Garg.
+\newblock Hbase essentials.
+\newblock page 164, Nov 2014.
 
 \bibitem{maintenance:materializedviews}
 Ashish Gupta and Inderpal~Singh Mumick.
@@ -77,65 +41,22 @@ Ashish Gupta and Inderpal~Singh Mumick.
   applications.
 \newblock June 1995.
 
-\bibitem{gupta:maintaining}
-Ashish Gupta, Inderpal~Singh Mumick, and V.~S. Subrahmanian.
-\newblock Maintaining views incrementally.
-\newblock {\em SIGMOD Rec.}, 22(2):157--166, June 1993.
+\bibitem{coprocessor:coprocessor}
+Dan Han and Eleni Stroulia.
+\newblock Hgrid: A data model for large geospatial data sets in hbase.
+\newblock 2013.
 
-\bibitem{jacobsen:viewmaintenance}
-Ramana~Yerneni Hans-Arno~Jacobsen, Patric~Lee.
-\newblock View maintenance in web data platforms.
-\newblock {\em ACM Trans. Program. Lang. Syst.}, 15(5):795--825, November 2009.
+\bibitem{cloudera:instandupg}
+Cloudera Inc.
+\newblock Cloudera installation and upgrade.
+\newblock page 164, Apr 2016.
 
-\bibitem{hunt:zookeeper}
-Patrick Hunt, Mahadev Konar, Flavio~P. Junqueira, and Benjamin Reed.
-\newblock Zookeeper: Wait-free coordination for internet-scale systems.
-\newblock In {\em Proceedings of the 2010 USENIX Conference on USENIX Annual
-  Technical Conference}, USENIXATC'10, pages 11--11, Berkeley, CA, USA, 2010.
-  USENIX Association.
-
-\bibitem{karger:webcaching}
-David Karger, Alex Sherman, Andy Berkheimer, Bill Bogstad, Rizwan Dhanidina,
-  Ken Iwamoto, Brian Kim, Luke Matkins, and Yoav Yerushalmi.
-\newblock Web caching with consistent hashing.
-\newblock In {\em Proceedings of the Eighth International Conference on World
-  Wide Web}, WWW '99, pages 1203--1213, New York, NY, USA, 1999. Elsevier
-  North-Holland, Inc.
+\bibitem{coprocessor:types}
+Mingjie Lai, Eugene Koontz, and Andrew Purtell.
+\newblock Coprocessor introduction, 2012.
 
 \bibitem{daniel:datastats}
 Daniel Price.
 \newblock Surprising facts and stats about the big data industry, March 2015.
-
-\bibitem{salem:how}
-Kenneth Salem, Kevin Beyer, Bruce Lindsay, and Roberta Cochrane.
-\newblock How to roll a join: Asynchronous incremental view maintenance.
-\newblock In {\em Proceedings of the 2000 ACM SIGMOD International Conference
-  on Management of Data}, SIGMOD '00, pages 129--140, New York, NY, USA, 2000.
-  ACM.
-
-\bibitem{wang:efficient}
-Hui Wang, Maria Orlowska, and Weifa Liang.
-\newblock Efficient refreshment of materialized views with multiple sources.
-\newblock In {\em Proceedings of the Eighth International Conference on
-  Information and Knowledge Management}, CIKM '99, pages 375--382, New York,
-  NY, USA, 1999. ACM.
-
-\bibitem{zhou:lazy}
-Jingren Zhou, Per-Ake Larson, and Hicham~G. Elmongui.
-\newblock Lazy maintenance of materialized views.
-\newblock In {\em Proceedings of the 33rd International Conference on Very
-  Large Data Bases}, VLDB '07, pages 231--242. VLDB Endowment, 2007.
-
-\bibitem{zhuge:view}
-Yue Zhuge, H{\'e}ctor Garc\'{\i}a-Molina, Joachim Hammer, and Jennifer Widom.
-\newblock View maintenance in a warehousing environment.
-\newblock {\em SIGMOD Rec.}, 24(2):316--327, May 1995.
-
-\bibitem{zhuge:strobe}
-Yue Zhuge, Hector Garcia-Molina, and Janet~L. Wiener.
-\newblock The strobe algorithms for multi-source warehouse consistency.
-\newblock In {\em Proceedings of the Fourth International Conference on on
-  Parallel and Distributed Information Systems}, DIS '96, pages 146--157,
-  Washington, DC, USA, 1996. IEEE Computer Society.
 
 \end{thebibliography}

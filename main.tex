@@ -121,7 +121,6 @@ Join and Selection case is similar to the Join and Aggregation case, the only di
 
 \section{HBase}
 \label{sec:hbase}
-
 HBase is an open source sortedMap Datastore from Apache Software Foundation. HBase is modeled after Google's BigTable framework. A basic table structure of HBase consists of Row Key, which is similar to the primary key in relational database table, Column Family and Column Qualifier.  
 
 \begin{figure}
@@ -131,6 +130,206 @@ HBase is an open source sortedMap Datastore from Apache Software Foundation. HBa
 	\label{fig:hbasetable}
 \end{figure}
 
+\newpage
+\section{Coprocessor}
+\label{sec:coprocessor}
+
+HBase Coprocessor framework provides library to run user code in the HBase Region Server. The advantage of this framework is that it decreases the communication overhead of transferring the data from HBase region server to the client, thus improving the performance by allowing the real computation to happen in the HBase region server\cite{coprocessor:coprocessor}. There are two types of coprocessor, Observer coprocessor  which acts more like relational database triggers and Endpoint coprocessor that resembles stored procedures of RDBMS\cite{coprocessor:types} 
+
+
+\subsection{Observer coprocessor}
+Observer coprocessor as stated earlier, are more like database triggers that executes our code when certain events occurs. In the figure below, we first try to explain a simple life cycle of put() operation as an example\cite{coprocessor:detail}. Observer coprocessor resides between the client and the HMaster. Observer coprocessor can be triggered after every get(), put() or delete() command. The CoprocessorHost class is responsible for observer registration and execution\cite{coprocessor:detail}.  During the life cycle of events, Observer coprocessor allows us to hook triggers in two stages. The first one is before the occurrence of the event and the other is after the completion of the event. For example, if we want to perform some computations before the occurrence of put event, we can use prePut() method to perform our custom computation. Then the life cycle of put event starts and after the life cycle of put event is completed, we can use postPut() method to perform custom computation. In the figure below, we try to explain the lifecycle of observer coprocessor when a put event is fired\cite{coprocessor:detail}.
+\newline
+There are four types of Observer Interfaces provided as of HBase version 1.1.3\cite{hbase:essential}.
+
+\begin{enumerate}
+	
+\item RegionObserver: RegionObserver runs on all the Region of a HBase table. RegionObserver provides hook for data manipulation for events like put(), get() add delete() events. All the data manipulations are done with pre hook and post hook\cite{hbase:essential} such as pre and post observers. For instance, preGetOp() and postGetOp() provides hook for manipulating get request. 
+
+\item RegionServerObserver: Likewise in RegionObserver, RegionServerObserver provides hook for data manipulation for events like merge, commits and rollback. All the data manipulation are done with pre hook and post hook such as preMerge() and postMerge(). 
+
+\item WALObserver: WALObserver interface provides hook for Write-Ahead-Log(WAL)\cite{hbase:essential} related operations. This interface provides only preWALWrite() which is triggered before WALEdit is written to Write-Ahead-Log and postWALWrite() which is triggered after WALEdit is written to a Write-Ahead-Log.
+
+\item MasterObserver: MasterObserver Interface provides hook for data manipulation for DDL events such as table creation, table deletion or table modification\cite{cloudera:instandupg}. For instance, if the secondary indexes needs to be deleted when primary table is deleted, we can use postDeleteTable(). The MasterObserver runs on master node.
+
+\end{enumerate}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{PutRequestLifeCycle}
+	\caption{Life cycle of put request}
+	
+\end{figure}
+
+In the figure below, We can see the life-cycle of a put request with observer coprocessor implemented.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{PutRequestWithObserverCoprocessor}
+	\caption{Life cycle of put request with observer coprocessor}
+	
+\end{figure}
+
+\subsection{Endpoint coprocessor}
+
+Endpoint coprocessor are similar to the Stored Procedures in RDBMS. This type of coprocessor is more useful in the scenario where the computation is needed for the whole table and are not provided by observer coprocessor\cite{hbase:coprocessors}. Invoking the endpoint coprocessor is similar to invoking any other commands in HBase from the client\textquotesingle s point of view but the result is based on the code that defines the coprocessor\cite{coprocessor:detail}. The figure below explains the Aggregation example\cite{coprocessor:detail}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{EndPointCoprocessor}
+	\caption{EndPoint Coprocessor}
+	
+\end{figure}
+
+When a request is invoked from a client, an instance of Batch.call() encapsulates the request invocation and the request is forwarded to coprocessorExec() method of HTableInterface. Then the coprocessorExec() handles the request invocation and distributes the request to all the Regions of the RegionServer. Assuming that no interruptions occurs and all the requests are completed, the results is then returned to client and aggregated\cite{coprocessor:detail}.
+
+
+\newpage
+\chapter{Implementation}
+In this section we will first discuss about the prerequisite of implementation and then the proposed method for our research.
+
+\section{Prerequisite}
+Before we begin with our implementation of coprocessor, there are few steps to load coprocessor into our HBase table. Coprocessor can be loaded to the base tables in two ways: statically and dynamically\cite{loading:coprocessors}. 
+
+\subsection{Static Loading of coprocessor}
+We have to define coprocessor properties in a $hbase$-$site.xml$ file inside a \textless property\textgreater \space element followed by \textless name\textgreater \space and a \textless value\textgreater \space sub element. The \textless name\textgreater \space sub element should have one of the followings\cite{hbase:site}:
+
+\begin{enumerate}
+	\item hbase.coprocessor.region.classes for RegionObservers and Endpoints coprocessor
+	\item hbase.coprocessor.wal.classes for WALObservers
+	\item hbase.coprocessor.master.classes for MasterObservers
+	
+\end{enumerate}
+
+The \textless value\textgreater \space sub-element should contain the full path of the coprocessor implementation class. A typical example for static loading of coprocessor looks as,\newline \newline \textless property\textgreater \newline
+\textless name\textgreater hbase.coprocessor.region.classes\textless /name\textgreater \newline
+\textless value\textgreater \texttt{org.apache.hbase.HBase\_coprocessor.HBaseCoprocessor}\textless /value\textgreater \newline
+\textless /property\textgreater \newline
+
+ If we have multiple classes, then the path in \textless value\textgreater \space sub element should be comma separated. In this setup, the framework will attempt to load all the configured classes, so we have to create a jar with dependencies, for all the classes and place the location of jar to HBase classpath. For that, we have to export /path/to/jar in $hbase$-$env.sh$ file. A typical example for exporting classpath is given below, \newline \newline
+ export \texttt{HBASE\_CLASSPATH}='/path/to/jar' \newline
+ 
+Now if HBase is restarted without any errors, we have managed to load system coprocessor successfully. 
+
+\subsection{Static Unloading of coprocesssor}
+\begin{enumerate}
+	\item Delete entry from $hbase$-$site.xml$
+	\item Delete entry for $hbase$-$env.sh$
+	\item Restart HBase
+\end{enumerate}
+
+\subsection{Dynamic Loading of coprocessor}
+In this approach, rather than loading coprocessor to all the tables in a Region, the coprocessor are loaded to specific tables of the region. There are two implementations of loading coprocessor dynamically, from HBase shell or using Java API\cite{hbase:site}.
+
+\subsubsection{Using HBase shell}
+\begin{enumerate}
+	\item disable table \newline
+			\space \space hbase\textgreater disable '\textless \texttt{table\_name}\textgreater'
+	\item load coprocessor using the following command \newline
+	alter '\textless \texttt{table\_name}\textgreater', \newline 
+	METHOD =\textgreater '\textless \texttt{table\_att}\textgreater', 'coprocessor' =\textgreater '/file/to/path\text{\textbar}\newline/source/path/to/impementation/class\text{\textbar}1001\text{\textbar}'
+	\newline \newline
+	A typical example looks like,\newline \newline
+	alter 'BaseTableA', METHOD =\textgreater '\texttt{table\_att}', 'coprocessor' =\textgreater 'file:///home/saroj-gautam/Documents/HBase-coprocessor-0.0.1-SNAPSHOT-jar-with-dependencies.jar\text{\textbar}\texttt \newline {org.apache.hbase.HBase\_coprocessor.HBaseCoprocessor}\text{\textbar}1001\text{\textbar}'
+	
+	\item enable table \newline
+	See if coprocessor is loaded successfully. We can see it by seeing the table properties. \newline 
+	hbase\textgreater describe '\textless \texttt{table\_name}\textgreater \space should list the coprocessor under \texttt{TABLE\_ATTRIBUTES.} \newline
+
+\end{enumerate}
+
+In the above scenario, the coprocessor tries to read class information from \texttt{table\_att} property. There are certain arguments separated by pipe (\text{\textbar}). The first argument in the value is the file path to the jar file that contains the implementation class. The second argument contains the full classname of the implemented coprocessor. The last argument represents the execution sequence of registered observers. If this field is left blank, the framework will itself assign a default priority value\cite{hbase:site}.
+
+\subsubsection{Using Java API}
+Prior to HBase version 0.96, the coprocessors were loaded in a different way. After HBase version 0.96 and newer, HTableDescriptor class provides addCoprocessor() method that helps to load coprocessor in an easier way. A code snippet\cite{loading:coprocessors} below will give us a basic insight of how coprocessor is loaded dynamically from Java API in older versions and newer versions of HBase.
+\newline \newline
+\textbf{Older than 0.96} \newline
+\lstset{language=Java}
+\begin{lstlisting}
+String path = "/path/to/jar"
+admin.disableTable(<table_name>)
+hTableDescriptor.setValue("COPROCESSOR$1", path + "|"
+	+ RegionObserverExample.class.getCanonicalName() + "|"
+	+ Coprocessor.PRIORITY_USER);
+admin.enableTable(<table_name>)
+\end{lstlisting}
+
+\textbf{0.96 or newer} \newline
+\lstset{language=Java}
+\begin{lstlisting}
+String path = "/path/to/jar"
+admin.disableTable(<table_name>)
+hTableDescriptor.addCoprocessor(<class_name>.class.getCanonicalName(),
+			 path, Coprocessor.PRIORITY_USER, null);
+admin.enableTable(<table_name>)
+\end{lstlisting}
+
+\subsection{Dynamic Unloading of coprocessor}
+Dynamic unloading of coprocessor can also be done in two ways, from shell and from Java API. 
+
+\subsubsection{Using HBase shell}
+\begin{enumerate}
+	\item disable table
+	hbase\textgreater disable '\textless \texttt{table\_name}\textgreater'
+	\item alter table, remove coprocessor
+	hbase\textgreater alter '\textless \texttt{table\_name}\textgreater', \newline
+	METHOD =\textgreater '\texttt{table\_att\_unset}', NAME=\textgreater 'coprocessor\$1' =\textgreater
+	\item enable table
+	hbase\textgreater enable '\textless \texttt{table\_name}\textgreater'
+	 
+\end{enumerate}
+
+\subsubsection{Using Java API}
+Using Java API, in the newer version we can use removeCoprocessor() method provided by HTableDescriptor class and in the older version, we can use setValue() to unload coprocessor.
+
+\section{Proposed Method}
+In this section we will explain about the algorithms we've implemented to incrementally maintain materialized views for 
+\begin{enumerate}
+	\item Aggregation
+	\item Join and Aggregation
+	\item Join and Selection
+\end{enumerate}
+
+One of the most important feature in our implementation is the introduction of intermediate table. We have introduced intermediate table in order to restrict the scanning of entire base table for a simple get, put or delete operation. Scanning billions of rows for such operations can be expensive in terms of processing power and CPU usage. 
+
+\subsubsection{Creation of Intermediate table}
+If there are two base tables, then we merge column families of both tables into the intermediate table. If there is only one base table, then we have the same column family in our intermediate table. The $key$ from base table becomes row key for the intermediate table, $row key$ of base table becomes $column$ $qualifier$ in the intermediate table. So the value for key and row key from base table is now plotted in intermediate table for that particular key. The figure below explains transformation of base table into intermediate table in more detail. 
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{IntermediateTable}
+	\caption{Intermediate Table}
+	
+\end{figure}
+
+\newpage
+\subsection{Aggregation}
+In our implementation, we've implemented basic aggregation functions like sum, count, min and max. All these operations are carried out based on a particular key. The base table contains key,value pairs. We construct an intermediate table from the base table. The reason behind constructing intermediate table is to restrict scanning of whole base table for a update/delete trigger for a particular key in base table. We take the unique keys and map them as a row key in intermediate table, and accordingly the values are plotted. Once all the values are plotted in the intermediate table, we then construct view table. The view table contains aggregate functions like Sum, Count, Min and Max for each row Key i.e. for each unique keys of the base table. The figure below explains how we map base table to a view table.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{Aggregation}
+	\caption{Aggregation}
+	\label{sec:aggregation}
+	
+\end{figure}
+
+\newpage
+Once we have base table, intermediate table and view table, and successfully loaded coprocessor on our base table, we are ready to go ahead with our implementation. There are certain scenarios where coprocessor are triggered for an update and delete operations.
+
+\begin{enumerate}
+	\item New row is inserted
+	\item Existing value of a row is updated
+	\item Existing key of a row is update
+	\item Existing row is deleted
+\end{enumerate}
+
+\subsubsection{New row is inserted}
+Whenever a new row is inserted in a base table with key,value pair, the value has to be plotted in the intermediate table accordingly. 
+
+
+\newpage
+\chapter{Discussion and Conclusion}
 
 
 		% ---------------------------------------------------------------------------

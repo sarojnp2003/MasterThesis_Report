@@ -44,6 +44,7 @@
 \@writefile{toc}{\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{lol}{\addvspace {10\p@ }}
 \newlabel{chap:introduction}{{1}{1}{Introduction}{chapter.1}{}}
 \citation{materializedview:oracle}
 \citation{maintenance:materializedviews}
@@ -51,6 +52,7 @@
 \@writefile{toc}{\contentsline {chapter}{\numberline {2}Background}{3}{chapter.2}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{lol}{\addvspace {10\p@ }}
 \newlabel{chap:background}{{2}{3}{Background}{chapter.2}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.1}Materialized Views}{3}{section.2.1}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.2}View Maintenance}{3}{section.2.2}}
@@ -63,31 +65,71 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces HBase Table\relax }}{5}{figure.caption.6}}
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
 \newlabel{fig:hbasetable}{{2.1}{5}{HBase Table\relax }{figure.caption.6}{}}
-\bibdata{bibliography/literature}
-\bibcite{incrementalmaintenance:materializedviews}{1}
-\bibcite{agrawal:efficient}{2}
-\bibcite{agrawal:asynchronous}{3}
-\bibcite{matt:rdb}{4}
-\bibcite{blakeley:efficiently}{5}
-\bibcite{borthakur:facebook}{6}
-\bibcite{chang:bigtable}{7}
-\bibcite{chen:multiversion}{8}
-\bibcite{colby:algorithms}{9}
-\bibcite{cooper:pnuts}{10}
-\@writefile{toc}{\contentsline {part}{Appendix}{9}{part*.8}}
-\@writefile{toc}{\contentsline {chapter}{\nonumberline Bibliography}{9}{chapter*.9}}
+\citation{coprocessor:coprocessor}
+\citation{coprocessor:types}
+\citation{coprocessor:detail}
+\citation{coprocessor:detail}
+\citation{coprocessor:detail}
+\citation{hbase:essential}
+\citation{hbase:essential}
+\citation{hbase:essential}
+\citation{cloudera:instandupg}
+\@writefile{toc}{\contentsline {section}{\numberline {2.5}Coprocessor}{6}{section.2.5}}
+\newlabel{sec:coprocessor}{{2.5}{6}{Coprocessor}{section.2.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.1}Observer coprocessor}{6}{subsection.2.5.1}}
+\citation{hbase:coprocessors}
+\citation{coprocessor:detail}
+\citation{coprocessor:detail}
+\citation{coprocessor:detail}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.2}Endpoint coprocessor}{7}{subsection.2.5.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.2}{\ignorespaces Life cycle of put request\relax }}{8}{figure.caption.7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.3}{\ignorespaces Life cycle of put request with observer coprocessor\relax }}{9}{figure.caption.8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.4}{\ignorespaces EndPoint Coprocessor\relax }}{10}{figure.caption.9}}
+\citation{loading:coprocessors}
+\citation{hbase:site}
+\@writefile{toc}{\contentsline {chapter}{\numberline {3}Implementation}{11}{chapter.3}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\bibcite{materializedview:oracle}{11}
-\bibcite{george:HBase}{12}
-\bibcite{maintenance:materializedviews}{13}
-\bibcite{gupta:maintaining}{14}
-\bibcite{jacobsen:viewmaintenance}{15}
-\bibcite{hunt:zookeeper}{16}
-\bibcite{karger:webcaching}{17}
-\bibcite{daniel:datastats}{18}
-\bibcite{salem:how}{19}
-\bibcite{wang:efficient}{20}
-\bibcite{zhou:lazy}{21}
-\bibcite{zhuge:view}{22}
-\bibcite{zhuge:strobe}{23}
+\@writefile{lol}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}Prerequisite}{11}{section.3.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.1}Static Loading of coprocessor}{11}{subsection.3.1.1}}
+\citation{hbase:site}
+\citation{hbase:site}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.2}Static Unloading of coprocesssor}{12}{subsection.3.1.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.3}Dynamic Loading of coprocessor}{12}{subsection.3.1.3}}
+\@writefile{toc}{\contentsline {subsubsection}{\nonumberline Using HBase shell}{12}{section*.10}}
+\citation{loading:coprocessors}
+\@writefile{toc}{\contentsline {subsubsection}{\nonumberline Using Java API}{13}{section*.11}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.4}Dynamic Unloading of coprocessor}{13}{subsection.3.1.4}}
+\@writefile{toc}{\contentsline {subsubsection}{\nonumberline Using HBase shell}{13}{section*.12}}
+\@writefile{toc}{\contentsline {subsubsection}{\nonumberline Using Java API}{14}{section*.13}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Proposed Method}{14}{section.3.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\nonumberline Creation of Intermediate table}{14}{section*.14}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Intermediate Table\relax }}{15}{figure.caption.15}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}Aggregation}{16}{subsection.3.2.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Aggregation\relax }}{17}{figure.caption.16}}
+\newlabel{sec:aggregation}{{3.2}{17}{Aggregation\relax }{figure.caption.16}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\nonumberline New row is inserted}{18}{section*.17}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}Discussion and Conclusion}{19}{chapter.4}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{lol}{\addvspace {10\p@ }}
+\bibdata{bibliography/literature}
+\bibcite{loading:coprocessors}{1}
+\bibcite{hbase:site}{2}
+\bibcite{incrementalmaintenance:materializedviews}{3}
+\bibcite{matt:rdb}{4}
+\bibcite{hbase:coprocessors}{5}
+\bibcite{materializedview:oracle}{6}
+\bibcite{coprocessor:detail}{7}
+\bibcite{hbase:essential}{8}
+\bibcite{maintenance:materializedviews}{9}
+\bibcite{coprocessor:coprocessor}{10}
+\bibcite{cloudera:instandupg}{11}
+\bibcite{coprocessor:types}{12}
+\bibcite{daniel:datastats}{13}
+\@writefile{toc}{\contentsline {part}{Appendix}{23}{part*.19}}
+\@writefile{toc}{\contentsline {chapter}{\nonumberline Bibliography}{23}{chapter*.20}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{lol}{\addvspace {10\p@ }}

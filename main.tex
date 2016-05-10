@@ -295,6 +295,8 @@ In this section we will explain about the algorithms we've implemented to increm
 One of the most important feature in our implementation is the introduction of intermediate table. We have introduced intermediate table in order to restrict the scanning of entire base table for a simple get, put or delete operation. Scanning billions of rows for such operations can be expensive in terms of processing power and CPU usage. 
 
 \subsubsection{Creation of Intermediate table}
+\label{subsec:intermediatetable}
+
 If there are two base tables, then we merge column families of both tables into the intermediate table. If there is only one base table, then we have the same column family in our intermediate table. The $key$ from base table becomes row key for the intermediate table, $row key$ of base table becomes $column$ $qualifier$ in the intermediate table. So the value for key and row key from base table is now plotted in intermediate table for that particular key. So whenever there is a CRUD operation for a particular key, we can scan row for the particular key instead of scanning the whole table. The figure below explains transformation of base table into intermediate table in more detail. 
 
 \begin{figure}
@@ -306,17 +308,21 @@ If there are two base tables, then we merge column families of both tables into 
 
 \newpage
 \subsection{Aggregation}
-In our implementation, we've implemented basic aggregation functions like sum, count, min and max. All these operations are carried out based on a particular key. The base table contains key,value pairs. We construct an intermediate table from the base table. The reason behind constructing intermediate table is to restrict scanning of whole base table for a update/delete trigger for a particular key in base table. We take the unique keys and map them as a row key in intermediate table, and accordingly the values are plotted. Once all the values are plotted in the intermediate table, we then construct view table. The view table contains aggregate functions like Sum, Count, Min and Max for each row Key i.e. for each unique keys of the base table. The figure below explains how we map base table to a view table.
+\label{sec:aggregationImpl}
 
-\begin{figure}
-	\centering
-	\includegraphics[width=\linewidth]{Aggregation}
-	\caption{Aggregation}
-	\label{sec:aggregation}
+In our implementation, we've implemented basic aggregation functions like sum, count, min and max. All these operations are carried out based on a particular key. The base table contains key,value pairs. We construct an intermediate table from the base table. The reason behind constructing intermediate table is to restrict scanning of whole base table for a update/delete trigger for a particular key in base table. We take the unique keys and map them as a row key in intermediate table, and accordingly the values are plotted. Once all the values are plotted in the intermediate table, we then construct view table. The view table contains aggregate functions like Sum, Count, Min and Max for each row Key i.e. for each unique keys of the base table. 
+
+%The figure below explains how we map base table to a view table.
+
+%\begin{figure}
+%	\centering
+%	\includegraphics[width=\linewidth]{Aggregation}
+%	\caption{Aggregation}
+%	\label{sec:aggregation}
 	
-\end{figure}
+%\end{figure}
+%\newpage
 
-\newpage
 Once we have base table, intermediate table and view table, and successfully loaded coprocessor on our base table, we are ready to go ahead with our implementation. There are certain scenarios where coprocessor are triggered for an update and delete operations.
 
 \begin{enumerate}
@@ -378,6 +384,46 @@ In the figure below, we have a delete() call for row key $5$. The $key$ for row 
 	\label{sec:deleteexistingrow}
 	
 \end{figure} 
+
+\newpage
+\subsection{Join and Aggregation}
+In this sub section, we have implemented Join and Aggregation functionalities. For this, we have joined two base tables and in the view table we have sum of the values for a same $key$. We also have intermediate table where both the base tables are merged by a particular $key$ and values are plotted in the intermediate table base on that $key$. As described in \ref{sec:aggregationImpl}, we have implemented sum for same $key$ in both the base tables. 
+
+%The figure below explains how we map base table to a view table.
+
+%\begin{figure}
+%	\centering
+%	\includegraphics[width=\linewidth]{JoinAndAggregation}
+%	\caption{Join and Aggregation}
+%	\label{sec:joinandaggregation}
+	
+%\end{figure}
+
+%\newpage
+There are certain scenarios where coprocessor are triggered for an update and delete operations.
+
+\begin{enumerate}
+	\item New row is inserted
+	\item Existing value of a row is updated
+	\item Existing key of a row is updated
+	\item Existing row is deleted
+\end{enumerate}
+
+\subsubsection{New row is inserted}
+Whenever a new row is inserted in a base table with (key,value) pair, the (key,value) pair has to be inserted in the base table and we have to plot the new (key,value) pair in the intermediate table and also view table has to be updated accordingly. Here, we create an intermediate table by merging two base tables and plotting values accordingly. The algorithm for plotting values has already been discussed in sub section \ref{subsec:intermediatetable}. In the view table, we implement sum function for same $keys$ in both base tables.
+The figure below describes the scenario in more detail. The updated table on the right has new values plotted in red.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{NewRowInsertJoinAggr}
+	\caption{New row is inserted for Join and Aggregation}
+	\label{sec:insertnewrowjoinandaggr}
+	
+\end{figure}
+
+\newpage
+
+\subsubsection{Existing value of a row is updated}
 
 
 \newpage

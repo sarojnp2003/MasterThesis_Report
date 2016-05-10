@@ -138,6 +138,7 @@ HBase Coprocessor framework provides library to run user code in the HBase Regio
 
 
 \subsection{Observer coprocessor}
+\label{sec:observercoprocessor}
 Observer coprocessor as stated earlier, are more like database triggers that executes our code when certain events occurs. In the figure below, we first try to explain a simple life cycle of put() operation as an example\cite{coprocessor:detail}. Observer coprocessor resides between the client and the HMaster. Observer coprocessor can be triggered after every get(), put() or delete() command. The CoprocessorHost class is responsible for observer registration and execution\cite{coprocessor:detail}.  During the life cycle of events, Observer coprocessor allows us to hook triggers in two stages. The first one is before the occurrence of the event and the other is after the completion of the event. For example, if we want to perform some computations before the occurrence of put event, we can use prePut() method to perform our custom computation. Then the life cycle of put event starts and after the life cycle of put event is completed, we can use postPut() method to perform custom computation. In the figure below, we try to explain the lifecycle of observer coprocessor when a put event is fired\cite{coprocessor:detail}.
 \newline
 There are four types of Observer Interfaces provided as of HBase version 1.1.3\cite{hbase:essential}.
@@ -293,7 +294,7 @@ In this section we will explain about the algorithms we've implemented to increm
 One of the most important feature in our implementation is the introduction of intermediate table. We have introduced intermediate table in order to restrict the scanning of entire base table for a simple get, put or delete operation. Scanning billions of rows for such operations can be expensive in terms of processing power and CPU usage. 
 
 \subsubsection{Creation of Intermediate table}
-If there are two base tables, then we merge column families of both tables into the intermediate table. If there is only one base table, then we have the same column family in our intermediate table. The $key$ from base table becomes row key for the intermediate table, $row key$ of base table becomes $column$ $qualifier$ in the intermediate table. So the value for key and row key from base table is now plotted in intermediate table for that particular key. The figure below explains transformation of base table into intermediate table in more detail. 
+If there are two base tables, then we merge column families of both tables into the intermediate table. If there is only one base table, then we have the same column family in our intermediate table. The $key$ from base table becomes row key for the intermediate table, $row key$ of base table becomes $column$ $qualifier$ in the intermediate table. So the value for key and row key from base table is now plotted in intermediate table for that particular key. So whenever there is a CRUD operation for a particular key, we can scan row for the particular key instead of scanning the whole table. The figure below explains transformation of base table into intermediate table in more detail. 
 
 \begin{figure}
 	\centering
@@ -325,7 +326,9 @@ Once we have base table, intermediate table and view table, and successfully loa
 \end{enumerate}
 
 \subsubsection{New row is inserted}
-Whenever a new row is inserted in a base table with key,value pair, the value has to be plotted in the intermediate table accordingly. 
+Whenever a new row is inserted in a base table with (key,value) pair, the value has to be inserted in the base table and we have to plot the new (key,value) pair in the intermediate table and also view table has to be updated accordingly. Using prePut() and postPut() triggers from observer coprocessor, we perform all the required operations.
+
+As we have already discussed about put() request life cycle in \ref{sec:observercoprocessor}, after the (key,value) has been inserted, we catch the request using prePut() api provided by the observer coprocessor.
 
 
 \newpage

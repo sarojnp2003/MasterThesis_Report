@@ -171,6 +171,7 @@ In the figure below, We can see the life-cycle of a put request with observer co
 	
 \end{figure}
 
+\newpage
 \subsection{Endpoint coprocessor}
 
 Endpoint coprocessor are similar to the Stored Procedures in RDBMS. This type of coprocessor is more useful in the scenario where the computation is needed for the whole table and are not provided by observer coprocessor\cite{hbase:coprocessors}. Invoking the endpoint coprocessor is similar to invoking any other commands in HBase from the client\textquotesingle s point of view but the result is based on the code that defines the coprocessor\cite{coprocessor:detail}. The figure below explains the Aggregation example\cite{coprocessor:detail}.
@@ -321,14 +322,62 @@ Once we have base table, intermediate table and view table, and successfully loa
 \begin{enumerate}
 	\item New row is inserted
 	\item Existing value of a row is updated
-	\item Existing key of a row is update
+	\item Existing key of a row is updated
 	\item Existing row is deleted
 \end{enumerate}
 
 \subsubsection{New row is inserted}
-Whenever a new row is inserted in a base table with (key,value) pair, the value has to be inserted in the base table and we have to plot the new (key,value) pair in the intermediate table and also view table has to be updated accordingly. Using prePut() and postPut() triggers from observer coprocessor, we perform all the required operations.
+Whenever a new row is inserted in a base table with (key,value) pair, the (key,value) pair has to be inserted in the base table and we have to plot the new (key,value) pair in the intermediate table and also view table has to be updated accordingly. Using prePut() and postPut() triggers from observer coprocessor, we perform all the required operations.
 
-As we have already discussed about put() request life cycle in \ref{sec:observercoprocessor}, after the (key,value) has been inserted, we catch the request using prePut() api provided by the observer coprocessor.
+As we have already discussed about put() request life cycle in \ref{sec:observercoprocessor}, before the (key,value) is inserted, we catch the request using prePut() method provided by the observer coprocessor. In the prePut() method, we verify the inputs and check if new row is inserted or existing row is updated. After we verify that new row is being inserted, we let the request to insert new (key,value) pairs to be inserted into the base table. After new (key,value) pair is inserted into the base table, we again catch the request in postPut() method. In postPut() method, we plot the (key,value) pair in the intermediate table and then update aggregation functions in our view table. The figure below explains the scenario when new row is inserted. The left side tables are the default tables and right side tables explains the behavior when a new row is inserted. The text displayed in red mark the changes that is happening on base table, intermediate table and view table. 
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{NewRowInsertAggr}
+	\caption{New row insert}
+	\label{sec:newrowinsertagggregation}
+	
+\end{figure}
+
+\newpage
+\subsubsection{Existing value of a row is updated}
+Whenever an existing value of a key is updated, the base table is updated accordingly. Before base table is updated, we catch the request via prePut() method of observer coprocessor. In the prePut() method, we get the row key for which the value is going to be updated and also we verify if value is being updated or the key is being updated. After we verify that value is updated, then we release the request and the value is updated in the base table. After the insertion, we catch the request via postPut() method of observer coprocessor, and then plot the updated value in our intermediate table for particular row key. Since we already have row key, we only need to can that particular row, instead of scanning the whole table. This saves a lot of execution time and processing power. Once we plot updated value in the intermediate table, we then calculate aggregation functions for that particular row key and then update our view table accordingly.
+The figure below explains the process in a more detail. The updated value is marked in red on the right table and also from the figure we can see that we only iterate over a particular row key instead of scanning the whole base table and view table.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{ValueUpdateAggr}
+	\caption{Update value for a existing row key}
+	\label{sec:updatevalueforexistingkey}
+	
+\end{figure}  
+
+\newpage
+\subsubsection{Existing key of a row is updated}
+Whenever there is a trigger for $key$ of the particular row key to be updated, we first catch the request via prePut() method. In this scenario, we first have to find out the $key$ to be updated, and delete the plotting from intermediate table. In the prePut() method, we find the (key,value) pair for a $key$ to be updated and store it somewhere in memory. Then we release the request and the $key$ is updated in the base table. In this case, now we have $old$ $key$ and the $new$ $key$. 
+
+In the postPut() method, first we find the column to be deleted from the intermediate table. Then we delete that particular column and update our view table accordingly. After the process is complete without any interruption, the process is similar as of inserting new (key,value) pair. We plot the $new$ $key$ and $value$ in our intermediate table and update the view table accordingly. This is the most complex scenario because it might affect more than one row in our view table. In the figure below, the old key $A$ is updated to new key $B$. In the intermediate table, the plotting for old key $A$ is deleted and aggregation functions for old key $A$ are also updated in the view table. After the process is completed, new values for updated key $B$ is plotted in the intermediate table and then the view table for row key $B$ is also updated accordingly.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{KeyUpdateAggr}
+	\caption{Update Key for a existing row key}
+	\label{sec:updateKeyforexistingrow}
+	
+\end{figure} 
+
+\newpage
+\subsubsection{Existing row is deleted}
+When an existing row is deleted in the base table, in the postPut() method of observer coprocessor, we delete the plotting for that particular $key$. In this case there are two scenarios. If the $key$ to be deleted has more than one values in the intermediate table, then we delete the particular plotting in the intermediate table and update aggregation functions for that $key$ in the view table. If the $Key$ in the intermediate table only has a single plotting, then we delete that plotting from intermediate table and then also delete the entry for that $key$ from the view table.
+
+In the figure below, we have a delete() call for row key $5$. The $key$ for row key $5$ is $C$. Now we delete the row key $5$ from the base table. After that, we delete the plotting for key $C$ in our intermediate table. Since the key $C$ has only one plotting, we delete entry for row key $C$ from the view table instead of recomputing aggregation functions for row key $C$. 
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{DeleteExistingRowAggr}
+	\caption{Delete an existing row}
+	\label{sec:deleteexistingrow}
+	
+\end{figure} 
 
 
 \newpage

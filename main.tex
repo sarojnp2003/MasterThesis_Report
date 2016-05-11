@@ -359,6 +359,7 @@ The figure below explains the process in a more detail. The updated value is mar
 
 \newpage
 \subsubsection{Existing key of a row is updated}
+\label{subsubsec:keyupdate}
 Whenever there is a trigger for $key$ of the particular row key to be updated, we first catch the request via prePut() method. In this scenario, we first have to find out the $key$ to be updated, and delete the plotting from intermediate table. In the prePut() method, we find the (key,value) pair for a $key$ to be updated and store it somewhere in memory. Then we release the request and the $key$ is updated in the base table. In this case, now we have $old$ $key$ and the $new$ $key$. 
 
 In the postPut() method, first we find the column to be deleted from the intermediate table. Then we delete that particular column and update our view table accordingly. After the process is complete without any interruption, the process is similar as of inserting new (key,value) pair. We plot the $new$ $key$ and $value$ in our intermediate table and update the view table accordingly. This is the most complex scenario because it might affect more than one row in our view table. In the figure below, the old key $A$ is updated to new key $B$. In the intermediate table, the plotting for old key $A$ is deleted and aggregation functions for old key $A$ are also updated in the view table. After the process is completed, new values for updated key $B$ is plotted in the intermediate table and then the view table for row key $B$ is also updated accordingly.
@@ -373,6 +374,7 @@ In the postPut() method, first we find the column to be deleted from the interme
 
 \newpage
 \subsubsection{Existing row is deleted}
+\label{subsubsec:rowdelete}
 When an existing row is deleted in the base table, in the postPut() method of observer coprocessor, we delete the plotting for that particular $key$. In this case there are two scenarios. If the $key$ to be deleted has more than one values in the intermediate table, then we delete the particular plotting in the intermediate table and update aggregation functions for that $key$ in the view table. If the $Key$ in the intermediate table only has a single plotting, then we delete that plotting from intermediate table and then also delete the entry for that $key$ from the view table.
 
 In the figure below, we have a delete() call for row key $5$. The $key$ for row key $5$ is $C$. Now we delete the row key $5$ from the base table. After that, we delete the plotting for key $C$ in our intermediate table. Since the key $C$ has only one plotting, we delete entry for row key $C$ from the view table instead of recomputing aggregation functions for row key $C$. 
@@ -387,6 +389,7 @@ In the figure below, we have a delete() call for row key $5$. The $key$ for row 
 
 \newpage
 \subsection{Join and Aggregation}
+\label{subsec:joinandaggregation}
 In this sub section, we have implemented Join and Aggregation functionalities. For this, we have joined two base tables and in the view table we have sum of the values for a same $key$. We also have intermediate table where both the base tables are merged by a particular $key$ and values are plotted in the intermediate table base on that $key$. As described in \ref{sec:aggregationImpl}, we have implemented sum for same $key$ in both the base tables. 
 
 %The figure below explains how we map base table to a view table.
@@ -424,7 +427,16 @@ The figure below describes the scenario in more detail. The updated table on the
 \newpage
 
 \subsubsection{Existing value of a row is updated}
+When a value of a $key$ is updated in base table, the consistency should also be maintained in the view table. So when the base table is updated, the request is triggered by the postPut() method and intermediate table and view tables are updated accordingly.
 
+\subsubsection{Existing key of a row is updated}
+As described in \ref{subsubsec:keyupdate}, when $key$ is modified in the base table, we first have to delete entry from intermediate table and view table if row exists for that particular $key$. Once delete operation is completed without interruption, then we insert the updated key in the intermediate table and view table.
+
+\subsubsection{Existing row is deleted}
+The implementation for this scenario is same as described in sub section \ref{subsubsec:rowdelete}. The entry is first deleted from base table, and if entry exists in intermediate table and view table, the entries are deleted from those table accordingly.
+
+\subsection{Join and Selection}
+This approach is similar to approach described in sub section \ref{subsec:joinandaggregation}. We do not use any aggregation functions but instead just select the values and put them in the view table. As already described in \ref{subsec:joinandaggregation}, there are also four possible scenarios where we update view table incrementally.
 
 \newpage
 \chapter{Discussion and Conclusion}

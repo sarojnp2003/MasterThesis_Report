@@ -36,6 +36,9 @@
 \contentsline {subsection}{\numberline {3.2.2}Join and Aggregation}{26}{subsection.3.2.2}
 \contentsline {subsubsection}{\nonumberline New row is inserted}{26}{section*.24}
 \contentsline {subsubsection}{\nonumberline Existing value of a row is updated}{28}{section*.26}
+\contentsline {subsubsection}{\nonumberline Existing key of a row is updated}{28}{section*.27}
+\contentsline {subsubsection}{\nonumberline Existing row is deleted}{28}{section*.28}
+\contentsline {subsection}{\numberline {3.2.3}Join and Selection}{28}{subsection.3.2.3}
 \contentsline {chapter}{\numberline {4}Discussion and Conclusion}{29}{chapter.4}
-\contentsline {part}{Appendix}{33}{part*.28}
-\contentsline {chapter}{\nonumberline Bibliography}{33}{chapter*.29}
+\contentsline {part}{Appendix}{33}{part*.30}
+\contentsline {chapter}{\nonumberline Bibliography}{33}{chapter*.31}

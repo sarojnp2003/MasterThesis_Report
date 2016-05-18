@@ -121,6 +121,9 @@ Join and Selection case is similar to the Join and Aggregation case, the only di
 
 \section{HBase}
 \label{sec:hbase}
+
+Before the evolution of HBase, Relational database system were used particularly for storing and processing of data. Relational database systems have been used widely over a decade and are considered to be successful. In relational database, multiple tables are used to store different types of data, this segregation of data gives more clear and systematic view of the data\cite{relational:dbs}. However, one of the biggest drawbacks in Relational database is the difficulty of scaling horizontally. The major disadvantage of relational database design is the performance, if the number of tables between which the relationships has to be defined are large, i.e. more operation power needed for computation\cite{relational:dbs}. 
+
 HBase is an open source sortedMap Datastore from Apache Software Foundation. HBase is modeled after Google's BigTable framework. A basic table structure of HBase consists of Row Key, which is similar to the primary key in relational database table, Column Family and Column Qualifier.  
 
 \begin{figure}
@@ -129,6 +132,8 @@ HBase is an open source sortedMap Datastore from Apache Software Foundation. HBa
 	\caption{HBase Table}
 	\label{fig:hbasetable}
 \end{figure}
+
+HBase is a hadoop database that is used for storing and retrieving data with a random access. HBase architecture is designed to run on cluster of computers rather than a single machine \cite{coprocessor:detail}. HBase is designed to scale horizontally by adding more machines to the cluster. 
 
 \newpage
 \section{Coprocessor}

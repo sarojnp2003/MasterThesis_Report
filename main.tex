@@ -118,13 +118,16 @@ In the intermediate table, the unique keys from both the base tables act as the 
 \subsection{Join and Selection}
 Join and Selection case is similar to the Join and Aggregation case, the only difference is instead of applying aggregation function, the join is applied for a particular row key and value is selected and inserted into the view table.
 
-
+\newpage
 \section{HBase}
 \label{sec:hbase}
 
 Before the evolution of HBase, Relational database system were used particularly for storing and processing of data. Relational database systems have been used widely over a decade and are considered to be successful. In relational database, multiple tables are used to store different types of data, this segregation of data gives more clear and systematic view of the data\cite{relational:dbs}. However, one of the biggest drawbacks in Relational database is the difficulty of scaling horizontally. The major disadvantage of relational database design is the performance, if the number of tables between which the relationships has to be defined are large, i.e. more operation power needed for computation\cite{relational:dbs}. 
 
-HBase is an open source sortedMap Datastore from Apache Software Foundation. HBase is modeled after Google's BigTable framework. A basic table structure of HBase consists of Row Key, which is similar to the primary key in relational database table, Column Family and Column Qualifier.  
+HBase is an open source sortedMap Datastore from Apache Software Foundation. HBase is modeled after Google's BigTable framework. It is a hadoop database that is used for storing and retrieving data with a random access. HBase architecture is designed to run on cluster of computers rather than a single machine \cite{coprocessor:detail}. HBase is designed to scale horizontally by adding more machines to the cluster. HBase runs on top of HDFS(Hadoop Distribution File System) that provides the functionality alike of Google's Big Table and provides a fault tolerant way of storing large volume of semi structured and unstructured data\cite{bigdata:analysis}.
+
+HBase is built on top of Hadoop and Zookeeper\cite{coprocessor:detail}. Both Hadoop and Zookeeper are open source projects from Apache Software foundation. Apache Hadoop is an open source framework that provides facility for storing and processing large dataset in a distributed fashion. Zookeeper, which was developed under Apache software foundations, as a sub project of Hadoop, is an open source distributed configuration service for large distributes applications. A basic table structure of HBase consists of Row Key, which is similar to the primary key in relational database table, Column Family and Column Qualifier. A figure below describes a HBase table and it's mapping to the relational database table.
+
 
 \begin{figure}
 	\centering
@@ -133,7 +136,10 @@ HBase is an open source sortedMap Datastore from Apache Software Foundation. HBa
 	\label{fig:hbasetable}
 \end{figure}
 
-HBase is a hadoop database that is used for storing and retrieving data with a random access. HBase architecture is designed to run on cluster of computers rather than a single machine \cite{coprocessor:detail}. HBase is designed to scale horizontally by adding more machines to the cluster. 
+\newpage
+\subsection{HBase Architecture}
+\label{HBase Architecture}
+
 
 \newpage
 \section{Coprocessor}

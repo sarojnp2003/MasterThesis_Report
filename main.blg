@@ -17,53 +17,56 @@ Warning--entry type for "loading:coprocessors" isn't style-file defined
 --line 1103 of file bibliography/literature.bib
 Warning--entry type for "hbase:site" isn't style-file defined
 --line 1121 of file bibliography/literature.bib
+Warning--entry type for "relational:dbs" isn't style-file defined
+--line 1139 of file bibliography/literature.bib
 Warning--to sort, need author or key in loading:coprocessors
 Warning--to sort, need author or key in hbase:site
 Warning--empty journal in incrementalmaintenance:materializedviews
+Warning--empty journal in bigdata:analysis
 Warning--empty journal in coprocessor:detail
 Warning--empty journal in hbase:essential
 Warning--empty journal in maintenance:materializedviews
 Warning--empty journal in coprocessor:coprocessor
 Warning--empty journal in cloudera:instandupg
-You've used 13 entries,
+You've used 15 entries,
             2118 wiz_defined-function locations,
-            546 strings with 5120 characters,
-and the built_in function-call counts, 3019 in all, are:
-= -- 268
-> -- 129
+            555 strings with 5324 characters,
+and the built_in function-call counts, 3578 in all, are:
+= -- 319
+> -- 155
 < -- 2
-+ -- 53
-- -- 40
-* -- 152
-:= -- 495
-add.period$ -- 30
-call.type$ -- 13
-change.case$ -- 59
++ -- 63
+- -- 48
+* -- 191
+:= -- 586
+add.period$ -- 35
+call.type$ -- 15
+change.case$ -- 69
 chr.to.int$ -- 0
-cite$ -- 21
-duplicate$ -- 125
-empty$ -- 271
-format.name$ -- 40
-if$ -- 639
+cite$ -- 24
+duplicate$ -- 143
+empty$ -- 320
+format.name$ -- 48
+if$ -- 756
 int.to.chr$ -- 0
-int.to.str$ -- 13
-missing$ -- 6
-newline$ -- 59
-num.names$ -- 22
-pop$ -- 110
+int.to.str$ -- 15
+missing$ -- 7
+newline$ -- 68
+num.names$ -- 26
+pop$ -- 125
 preamble$ -- 1
-purify$ -- 46
+purify$ -- 54
 quote$ -- 0
-skip$ -- 116
+skip$ -- 133
 stack$ -- 0
-substring$ -- 77
-swap$ -- 21
+substring$ -- 108
+swap$ -- 22
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 52
-warning$ -- 8
-while$ -- 24
-width$ -- 15
-write$ -- 110
-(There were 15 warnings)
+type$ -- 60
+warning$ -- 9
+while$ -- 29
+width$ -- 17
+write$ -- 128
+(There were 17 warnings)

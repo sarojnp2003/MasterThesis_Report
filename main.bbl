@@ -25,6 +25,11 @@ GAURAV BHARDWAJ.
 Oracle Corporation.
 \newblock Materialized views, 1999.
 
+\bibitem{bigdata:analysis}
+TK~Das and P.Mohan Kumar.
+\newblock Big data analytics: A framework for unstructured data analysis.
+\newblock 5(1):152--153, Feb-Mar 2013.
+
 \bibitem{coprocessor:detail}
 Nick Dimiduk and Amandeep Khurana.
 \newblock Hbase in action.
@@ -54,6 +59,10 @@ Cloudera Inc.
 \bibitem{coprocessor:types}
 Mingjie Lai, Eugene Koontz, and Andrew Purtell.
 \newblock Coprocessor introduction, 2012.
+
+\bibitem{relational:dbs}
+Sayed Mahbub and Hasan Amiri.
+\newblock Advantage \& disadvantage of relational database, Apr 2016.
 
 \bibitem{daniel:datastats}
 Daniel Price.

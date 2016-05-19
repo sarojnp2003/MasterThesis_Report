@@ -57,15 +57,21 @@
 \@writefile{toc}{\contentsline {section}{\numberline {2.1}Materialized Views}{3}{section.2.1}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.2}View Maintenance}{3}{section.2.2}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.3}Incremental Maintenance of Materialized View}{3}{section.2.3}}
-\citation{coprocessor:detail}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.3.1}Aggregation}{4}{subsection.2.3.1}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.3.2}Join and Aggregation}{4}{subsection.2.3.2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.3.3}Join and Selection}{4}{subsection.2.3.3}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.4}HBase}{4}{section.2.4}}
-\newlabel{sec:hbase}{{2.4}{4}{HBase}{section.2.4}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces HBase Table\relax }}{5}{figure.caption.6}}
+\citation{relational:dbs}
+\citation{relational:dbs}
+\citation{coprocessor:detail}
+\citation{bigdata:analysis}
+\citation{coprocessor:detail}
+\@writefile{toc}{\contentsline {section}{\numberline {2.4}HBase}{5}{section.2.4}}
+\newlabel{sec:hbase}{{2.4}{5}{HBase}{section.2.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces HBase Table\relax }}{6}{figure.caption.6}}
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig:hbasetable}{{2.1}{5}{HBase Table\relax }{figure.caption.6}{}}
+\newlabel{fig:hbasetable}{{2.1}{6}{HBase Table\relax }{figure.caption.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.1}HBase Architecture}{7}{subsection.2.4.1}}
+\newlabel{HBase Architecture}{{2.4.1}{7}{HBase Architecture}{subsection.2.4.1}{}}
 \citation{coprocessor:coprocessor}
 \citation{coprocessor:types}
 \citation{coprocessor:detail}
@@ -75,66 +81,66 @@
 \citation{hbase:essential}
 \citation{hbase:essential}
 \citation{cloudera:instandupg}
-\@writefile{toc}{\contentsline {section}{\numberline {2.5}Coprocessor}{6}{section.2.5}}
-\newlabel{sec:coprocessor}{{2.5}{6}{Coprocessor}{section.2.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.1}Observer coprocessor}{6}{subsection.2.5.1}}
-\newlabel{sec:observercoprocessor}{{2.5.1}{6}{Observer coprocessor}{subsection.2.5.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.2}{\ignorespaces Life cycle of put request\relax }}{8}{figure.caption.7}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.3}{\ignorespaces Life cycle of put request with observer coprocessor\relax }}{9}{figure.caption.8}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.5}Coprocessor}{8}{section.2.5}}
+\newlabel{sec:coprocessor}{{2.5}{8}{Coprocessor}{section.2.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.1}Observer coprocessor}{8}{subsection.2.5.1}}
+\newlabel{sec:observercoprocessor}{{2.5.1}{8}{Observer coprocessor}{subsection.2.5.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.2}{\ignorespaces Life cycle of put request\relax }}{10}{figure.caption.7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.3}{\ignorespaces Life cycle of put request with observer coprocessor\relax }}{11}{figure.caption.8}}
 \citation{hbase:coprocessors}
 \citation{coprocessor:detail}
 \citation{coprocessor:detail}
 \citation{coprocessor:detail}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.2}Endpoint coprocessor}{10}{subsection.2.5.2}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.4}{\ignorespaces EndPoint Coprocessor\relax }}{11}{figure.caption.9}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.2}Endpoint coprocessor}{12}{subsection.2.5.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.4}{\ignorespaces EndPoint Coprocessor\relax }}{13}{figure.caption.9}}
 \citation{loading:coprocessors}
 \citation{hbase:site}
-\@writefile{toc}{\contentsline {chapter}{\numberline {3}Implementation}{13}{chapter.3}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {3}Implementation}{15}{chapter.3}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{lol}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {3.1}Prerequisite}{13}{section.3.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.1}Static Loading of coprocessor}{13}{subsection.3.1.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}Prerequisite}{15}{section.3.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.1}Static Loading of coprocessor}{15}{subsection.3.1.1}}
 \citation{hbase:site}
 \citation{hbase:site}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.2}Static Unloading of coprocesssor}{14}{subsection.3.1.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.3}Dynamic Loading of coprocessor}{14}{subsection.3.1.3}}
-\@writefile{toc}{\contentsline {subsubsection}{\nonumberline Using HBase shell}{14}{section*.10}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.2}Static Unloading of coprocesssor}{16}{subsection.3.1.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.3}Dynamic Loading of coprocessor}{16}{subsection.3.1.3}}
+\@writefile{toc}{\contentsline {subsubsection}{\nonumberline Using HBase shell}{16}{section*.10}}
 \citation{loading:coprocessors}
-\@writefile{toc}{\contentsline {subsubsection}{\nonumberline Using Java API}{15}{section*.11}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.4}Dynamic Unloading of coprocessor}{15}{subsection.3.1.4}}
-\@writefile{toc}{\contentsline {subsubsection}{\nonumberline Using HBase shell}{15}{section*.12}}
-\@writefile{toc}{\contentsline {subsubsection}{\nonumberline Using Java API}{16}{section*.13}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.2}Proposed Method}{16}{section.3.2}}
-\@writefile{toc}{\contentsline {subsubsection}{\nonumberline Creation of Intermediate table}{16}{section*.14}}
-\newlabel{subsec:intermediatetable}{{3.2}{16}{Creation of Intermediate table}{section*.14}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Intermediate Table\relax }}{17}{figure.caption.15}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}Aggregation}{18}{subsection.3.2.1}}
-\newlabel{sec:aggregationImpl}{{3.2.1}{18}{Aggregation}{subsection.3.2.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\nonumberline New row is inserted}{18}{section*.16}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces New row insert\relax }}{19}{figure.caption.17}}
-\newlabel{sec:newrowinsertagggregation}{{3.2}{19}{New row insert\relax }{figure.caption.17}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\nonumberline Existing value of a row is updated}{20}{section*.18}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces Update value for a existing row key\relax }}{21}{figure.caption.19}}
-\newlabel{sec:updatevalueforexistingkey}{{3.3}{21}{Update value for a existing row key\relax }{figure.caption.19}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\nonumberline Existing key of a row is updated}{22}{section*.20}}
-\newlabel{subsubsec:keyupdate}{{3.2.1}{22}{Existing key of a row is updated}{section*.20}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces Update Key for a existing row key\relax }}{23}{figure.caption.21}}
-\newlabel{sec:updateKeyforexistingrow}{{3.4}{23}{Update Key for a existing row key\relax }{figure.caption.21}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\nonumberline Existing row is deleted}{24}{section*.22}}
-\newlabel{subsubsec:rowdelete}{{3.2.1}{24}{Existing row is deleted}{section*.22}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.5}{\ignorespaces Delete an existing row\relax }}{25}{figure.caption.23}}
-\newlabel{sec:deleteexistingrow}{{3.5}{25}{Delete an existing row\relax }{figure.caption.23}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}Join and Aggregation}{26}{subsection.3.2.2}}
-\newlabel{subsec:joinandaggregation}{{3.2.2}{26}{Join and Aggregation}{subsection.3.2.2}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\nonumberline New row is inserted}{26}{section*.24}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.6}{\ignorespaces New row is inserted for Join and Aggregation\relax }}{27}{figure.caption.25}}
-\newlabel{sec:insertnewrowjoinandaggr}{{3.6}{27}{New row is inserted for Join and Aggregation\relax }{figure.caption.25}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\nonumberline Existing value of a row is updated}{28}{section*.26}}
-\@writefile{toc}{\contentsline {subsubsection}{\nonumberline Existing key of a row is updated}{28}{section*.27}}
-\@writefile{toc}{\contentsline {subsubsection}{\nonumberline Existing row is deleted}{28}{section*.28}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.3}Join and Selection}{28}{subsection.3.2.3}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {4}Discussion and Conclusion}{29}{chapter.4}}
+\@writefile{toc}{\contentsline {subsubsection}{\nonumberline Using Java API}{17}{section*.11}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.4}Dynamic Unloading of coprocessor}{17}{subsection.3.1.4}}
+\@writefile{toc}{\contentsline {subsubsection}{\nonumberline Using HBase shell}{17}{section*.12}}
+\@writefile{toc}{\contentsline {subsubsection}{\nonumberline Using Java API}{18}{section*.13}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Proposed Method}{18}{section.3.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\nonumberline Creation of Intermediate table}{18}{section*.14}}
+\newlabel{subsec:intermediatetable}{{3.2}{18}{Creation of Intermediate table}{section*.14}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Intermediate Table\relax }}{19}{figure.caption.15}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}Aggregation}{20}{subsection.3.2.1}}
+\newlabel{sec:aggregationImpl}{{3.2.1}{20}{Aggregation}{subsection.3.2.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\nonumberline New row is inserted}{20}{section*.16}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces New row insert\relax }}{21}{figure.caption.17}}
+\newlabel{sec:newrowinsertagggregation}{{3.2}{21}{New row insert\relax }{figure.caption.17}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\nonumberline Existing value of a row is updated}{22}{section*.18}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces Update value for a existing row key\relax }}{23}{figure.caption.19}}
+\newlabel{sec:updatevalueforexistingkey}{{3.3}{23}{Update value for a existing row key\relax }{figure.caption.19}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\nonumberline Existing key of a row is updated}{24}{section*.20}}
+\newlabel{subsubsec:keyupdate}{{3.2.1}{24}{Existing key of a row is updated}{section*.20}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces Update Key for a existing row key\relax }}{25}{figure.caption.21}}
+\newlabel{sec:updateKeyforexistingrow}{{3.4}{25}{Update Key for a existing row key\relax }{figure.caption.21}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\nonumberline Existing row is deleted}{26}{section*.22}}
+\newlabel{subsubsec:rowdelete}{{3.2.1}{26}{Existing row is deleted}{section*.22}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.5}{\ignorespaces Delete an existing row\relax }}{27}{figure.caption.23}}
+\newlabel{sec:deleteexistingrow}{{3.5}{27}{Delete an existing row\relax }{figure.caption.23}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}Join and Aggregation}{28}{subsection.3.2.2}}
+\newlabel{subsec:joinandaggregation}{{3.2.2}{28}{Join and Aggregation}{subsection.3.2.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\nonumberline New row is inserted}{28}{section*.24}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.6}{\ignorespaces New row is inserted for Join and Aggregation\relax }}{29}{figure.caption.25}}
+\newlabel{sec:insertnewrowjoinandaggr}{{3.6}{29}{New row is inserted for Join and Aggregation\relax }{figure.caption.25}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\nonumberline Existing value of a row is updated}{30}{section*.26}}
+\@writefile{toc}{\contentsline {subsubsection}{\nonumberline Existing key of a row is updated}{30}{section*.27}}
+\@writefile{toc}{\contentsline {subsubsection}{\nonumberline Existing row is deleted}{30}{section*.28}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.3}Join and Selection}{30}{subsection.3.2.3}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}Discussion and Conclusion}{31}{chapter.4}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{lol}{\addvspace {10\p@ }}
@@ -145,15 +151,17 @@
 \bibcite{matt:rdb}{4}
 \bibcite{hbase:coprocessors}{5}
 \bibcite{materializedview:oracle}{6}
-\bibcite{coprocessor:detail}{7}
-\bibcite{hbase:essential}{8}
-\bibcite{maintenance:materializedviews}{9}
-\bibcite{coprocessor:coprocessor}{10}
-\bibcite{cloudera:instandupg}{11}
-\bibcite{coprocessor:types}{12}
-\bibcite{daniel:datastats}{13}
-\@writefile{toc}{\contentsline {part}{Appendix}{33}{part*.30}}
-\@writefile{toc}{\contentsline {chapter}{\nonumberline Bibliography}{33}{chapter*.31}}
+\bibcite{bigdata:analysis}{7}
+\bibcite{coprocessor:detail}{8}
+\bibcite{hbase:essential}{9}
+\bibcite{maintenance:materializedviews}{10}
+\bibcite{coprocessor:coprocessor}{11}
+\bibcite{cloudera:instandupg}{12}
+\bibcite{coprocessor:types}{13}
+\bibcite{relational:dbs}{14}
+\bibcite{daniel:datastats}{15}
+\@writefile{toc}{\contentsline {part}{Appendix}{35}{part*.30}}
+\@writefile{toc}{\contentsline {chapter}{\nonumberline Bibliography}{35}{chapter*.31}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{lol}{\addvspace {10\p@ }}

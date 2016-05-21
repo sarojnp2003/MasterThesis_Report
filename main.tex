@@ -79,9 +79,10 @@
 \chapter{Introduction}
 \label{chap:introduction}
 
-Whenever we see our friends posting pictures on Facebook or Instagram, we generally like them or comment on them. Whenever we feel like sharing our thoughts, we either update status on Facebook or just tweet about it. If we need some relevant information, we just google it. The amount of data generated in such a fashion has to be stored somewhere. Companies like Facebook stores 500 TB of data each day\cite{daniel:datastats}, including 2.7 billion likes and 300 million photos. As of 2012, Facebook already has 100 petabyte of photos\cite{daniel:datastats}. Google, on the other hand processes 3.5 billion request per day \cite{daniel:datastats}. In Early 2000s, where there were less data shared on social media, data were stored in a relational database. Relational database were designed in such a fashion to store small amount of data and maintain integrity between them\cite{matt:rdb}. The amount of information we share on social media is expected to grow from 4.4 zettabytes in 2013 to 44 zettabytes in 2020(1 zettabyte is 1 trillion gigabytes)\cite{matt:rdb}. The scaling in RDBMS depends on adding more powerful CPU's and memory, i.e. only the vertical scaling is possible which is rather expensive.  One of the advantages of big data storage system is that it can be scaled horizontally and is also useful for storing unstructured or semi structured data. 
+Whenever we see our friends posting pictures on Facebook or Instagram, we like them or comment on them. Whenever we feel like sharing our thoughts, we either update status on Facebook or just tweet about it. If we need some relevant information, we just google it. The amount of data generated in such a fashion has to be stored somewhere. Companies like Facebook stores 500 TB of data each day\cite{daniel:datastats}, including 2.7 billion likes and 300 million photos. As of 2012, Facebook already has 100 petabytes of photos\cite{daniel:datastats}. Google, on the other hand, processes 3.5 billion requests per day \cite{daniel:datastats}. In the early 2000s, where there were fewer data shared on social media, data were stored in a relational database. Relational databases were designed in such a fashion to store a small amount of data and maintain integrity between them\cite{matt:rdb}. The amount of information we share on social media is expected to grow from 4.4 zettabytes in 2013 to 44 zettabytes in 2020(1 zettabyte is 1 trillion gigabytes)\cite{matt:rdb}. The scaling in RDBMS depends on adding more powerful CPU's and memory, i.e. only the vertical scaling is possible which is rather expensive.  One of the advantages of the big data storage system is that it can be scaled horizontally and is also useful for storing unstructured or semi-structured data. 
 
-HBase is an open source sortedMap Datastore from Apache Software Foundation which is used as a database to store huge volume of data. HBase supports horizontal scalability, i.e. parts of a table can be put on several machines. This way a table is broken down to multiple pieces, thus making computation really fast. But when we are talking about petabytes of data, scanning each part of table for a single user query is still considered to be expensive in terms of processing time. There are several techniques to reduce this effort, but we will be talking about $Materialized$ $Views$ approach. 
+HBase is an open source sortedMap Datastore from Apache Software Foundation which is used as a database to store huge volume of data. HBase supports horizontal scalability, i.e. parts of a table can be put on several machines. This way a table is broken down into multiple pieces, thus making computation fast. But when we are talking about petabytes of data, scanning each part of the table for a single user query is still considered to be expensive regarding processing time. There are several techniques to reduce this effort, but we will be talking about $Materialized$ $Views$ approach. 
+
 
 
 %In Chapter \ref{chap:background}, we analyse the fundamentals of views and view maintenance. In Chapter \ref{chap:relatedwork}, we present research, that is related to this thesis. In Chapter \ref{chap:analysis}, we define the requirements of the View Maintenance System and discuss possible alternatives.  In Chapter \ref{chap:architecture}, we align the architecture of the system and define its functionalities. In Chapter \ref{chap:viewconsistency}, we discuss threats to consistency and apply consistency techniques. In Chapter \ref{chap:loadbalancing}, we show how load balancing can be accomplished in the View Maintenance System. In Chapter \ref{chap:failuredetection}, we take counter measures to component failure. In Chapter \ref{chap:implementation}, we show challenges of the implementation. Finally, we evaluate and interpret the behaviour of the system in Chapter \ref{chap:evaluation}.\\%
@@ -94,10 +95,10 @@ In this chapter we will first discuss about the fundamentals of $Materialized$ $
 
 \section{Materialized Views}
 
-Materialized views are defined as the database object that stores the result of a query in a table or a disk. Materialized views are widely used for gaining performance advantage, i.e. to speed up query processing time over large datasets. The need for Materialized view addresses the problem of having to query large datasets that often needs joins and aggregations between multiple tables. These kind of queries are very expensive, in terms of execution time and processing power. Materialized views speeds up the query processing time by pre-computing joins and aggregations prior to execution and stores these results in a table or disk\cite{materializedview:oracle}. 
+Materialized views are defined as the database object that stores the result of a query in a table or a disk. Materialized views are widely used for gaining performance advantage, i.e. to speed up query processing time over large datasets. The need for Materialized view addresses the problem of having to query large datasets that often needs joins and aggregations between multiple tables. These kind of queries are very expensive regarding execution time and processing power. Materialized views speed up the query processing time by pre-computing joins and aggregations before execution and stores these results in a table or disk\cite{materializedview:oracle}. 
 
 \section{View Maintenance}
-Once the Materialized views are created, our query is redirected to Materialized View table rather than base table. Whenever there is an update in the base table, the Materialized View table also has to be updated accordingly. One of the solutions would be recomputing the whole Materialized View from the scratch or using the heuristic of inertia\cite{maintenance:materializedviews} approach i.e. incremental maintenance with respect to the base table.
+Once the Materialized views are created, our query is redirected to Materialized View table rather than base table. Whenever there is an update in the base table, the Materialized View table also has to be updated accordingly. One of the solutions would be recomputing the entire Materialized View from the scratch or using the heuristic of inertia\cite{maintenance:materializedviews} approach i.e. incremental maintenance with respect to the base table.
 
 \section{Incremental Maintenance of Materialized View}
 "A view V is considered consistent with the database DB if the evaluation of the view specification S over the database yields the view instance (V = S(DB)). Therefore, when the database DB is updated to DB0 , we need to update the view V to V0 = S(DB0) in order to preserve its consistency"\cite{incrementalmaintenance:materializedviews}. 
@@ -106,7 +107,7 @@ Recomputing Materialized view from scratch every time there is an update on base
 
 
 \subsection{Aggregation}
-In Aggregation view type, the data of base table is merged on the basis of a particular key. In our implementation, we've implemented basic aggregation functions like sum, count, min and max. All these operations are carried out based on a particular key. So a unique key has sum, count, min and max operations. Whenever an update is triggered to update value for a particular key in the base table, in this case, count remains same and sum, min and max has to be recalculated. If a delete is triggered for a particular key in the base table, each of the aggregation functions has to be recalculated. 
+In Aggregation view type, the data from the base table is merged on the basis of a particular key. In our implementation, we've implemented basic aggregation functions like sum, count, min and max. All these operations are carried out based on a particular key. So a unique key has sum, count, min and max operations. Whenever an update is triggered to update value for a particular key in the base table, in this case, count remains same and sum, min and max has to be recalculated. If a delete is triggered for a particular key in the base table, each of the aggregation functions has to be recalculated. 
 
 
 \subsection{Join and Aggregation}
@@ -122,11 +123,11 @@ Join and Selection case is similar to the Join and Aggregation case, the only di
 \section{HBase}
 \label{sec:hbase}
 
-Before the evolution of HBase, Relational database system were used particularly for storing and processing of data. Relational database systems have been used widely over a decade and are considered to be successful. In relational database, multiple tables are used to store different types of data, this segregation of data gives more clear and systematic view of the data\cite{relational:dbs}. However, one of the biggest drawbacks in Relational database is the difficulty of scaling horizontally. The major disadvantage of relational database design is the performance, if the number of tables between which the relationships has to be defined are large, i.e. more operation power needed for computation\cite{relational:dbs}. 
+Before the evolution of HBase, Relational database systems were used particularly for storing and processing of data. Relational database systems have been used widely over a decade and are considered to be successful. In a relational database, multiple tables are used to store different types of data, this segregation of data gives more clear and systematic view of the data\cite{relational:dbs}. However, one of the biggest drawbacks in Relational database is the difficulty of scaling horizontally. The major disadvantage of relational database design is the performance if the number of tables between which the relationships has to be defined is large, i.e. more operation power needed for computation\cite{relational:dbs}. 
 
-HBase is an open source sortedMap Datastore from Apache Software Foundation. HBase is modeled after Google's BigTable framework. It is a hadoop database that is used for storing and retrieving data with a random access. HBase architecture is designed to run on cluster of computers rather than a single machine \cite{coprocessor:detail}. HBase is designed to scale horizontally by adding more machines to the cluster. HBase runs on top of HDFS(Hadoop Distribution File System) that provides the functionality alike of Google's Big Table and provides a fault tolerant way of storing large volume of semi structured and unstructured data\cite{bigdata:analysis}.
+HBase is an open source sortedMap Datastore from Apache Software Foundation. HBase is modelled after Google's BigTable framework. It is a Hadoop database that is used for storing and retrieving data with random access. HBase architecture is designed to run on a cluster of computers rather than a single machine \cite{coprocessor:detail}. HBase aims to scale horizontally by adding more machines to the cluster. HBase runs on top of HDFS(Hadoop Distribution File System) that provides the functionality alike of Google's Big Table and provides a fault-tolerant way of storing a large volume of semi-structured and unstructured data\cite{bigdata:analysis}.
 
-HBase is built on top of Hadoop and Zookeeper\cite{coprocessor:detail}. Both Hadoop and Zookeeper are open source projects from Apache Software foundation. Apache Hadoop is an open source framework that provides facility for storing and processing large dataset in a distributed fashion. Zookeeper, which was developed under Apache software foundations, as a sub project of Hadoop, is an open source distributed configuration service for large distributes applications. A basic table structure of HBase consists of Row Key, which is similar to the primary key in relational database table, Column Family and Column Qualifier. A figure below describes a HBase table and it's mapping to the relational database table.
+HBase is built on top of Hadoop and Zookeeper\cite{coprocessor:detail}. Both Hadoop and Zookeeper are open source projects from Apache Software Foundation. Apache Hadoop is an open source framework that facilitates storing and processing large dataset in a distributed fashion. Zookeeper, which was developed under Apache software foundations, as a sub-project of Hadoop, is an open source distributed configuration service for large distributes applications. A basic table structure of HBase consists of Row Key, which is similar to the primary key in a relational database table, Column Family and Column Qualifier. A figure below describes a HBase table and it's mapping to the relational database table.
 
 
 \begin{figure}
@@ -145,53 +146,53 @@ HBase is built on top of Hadoop and Zookeeper\cite{coprocessor:detail}. Both Had
 \section{Coprocessor}
 \label{sec:coprocessor}
 
-HBase Coprocessor framework provides library to run user code in the HBase Region Server. The advantage of this framework is that it decreases the communication overhead of transferring the data from HBase region server to the client, thus improving the performance by allowing the real computation to happen in the HBase region server\cite{coprocessor:coprocessor}. There are two types of coprocessor, Observer coprocessor  which acts more like relational database triggers and Endpoint coprocessor that resembles stored procedures of RDBMS\cite{coprocessor:types} 
+HBase Coprocessor framework provides a library to run user code in the HBase Region Server. The advantage of this framework is that it decreases the communication overhead of transferring the data from HBase region server to the client, thus improving the performance by allowing the real computation to happen in the HBase region server\cite{coprocessor:coprocessor}. There are two types of coprocessor, Observer coprocessor  which acts more like relational database triggers and Endpoint coprocessor that resembles stored procedures of RDBMS\cite{coprocessor:types} 
 
 
 \subsection{Observer coprocessor}
 \label{sec:observercoprocessor}
-Observer coprocessor as stated earlier, are more like database triggers that executes our code when certain events occurs. In the figure below, we first try to explain a simple life cycle of put() operation as an example\cite{coprocessor:detail}. Observer coprocessor resides between the client and the HMaster. Observer coprocessor can be triggered after every get(), put() or delete() command. The CoprocessorHost class is responsible for observer registration and execution\cite{coprocessor:detail}.  During the life cycle of events, Observer coprocessor allows us to hook triggers in two stages. The first one is before the occurrence of the event and the other is after the completion of the event. For example, if we want to perform some computations before the occurrence of put event, we can use prePut() method to perform our custom computation. Then the life cycle of put event starts and after the life cycle of put event is completed, we can use postPut() method to perform custom computation. In the figure below, we try to explain the lifecycle of observer coprocessor when a put event is fired\cite{coprocessor:detail}.
+Observer coprocessor as stated earlier, is more like database triggers that executes our code when certain events occur. In the figure below, we first try to explain a simple life cycle of put() operation as an example\cite{coprocessor:detail}. Observer coprocessor resides between the client and the HMaster. Observer coprocessor can be triggered after every get(), put() or delete() command. The CoprocessorHost class is responsible for observer registration and execution\cite{coprocessor:detail}.  During the life cycle of events, Observer coprocessor allows us to hook triggers in two stages. The first one is before the occurrence of the event and the other is after the completion of the event. For example, if we want to perform some computations before the occurrence of put event, we can use prePut() method to perform our custom computation. Then the life cycle of put event starts and after the life cycle of put event is completed, we can use postPut() method to perform custom computation. In the figure below, we try to explain the lifecycle of observer coprocessor when a put event is fired\cite{coprocessor:detail}.
 \newline
 There are four types of Observer Interfaces provided as of HBase version 1.1.3\cite{hbase:essential}.
 
 \begin{enumerate}
-	
-\item RegionObserver: RegionObserver runs on all the Region of a HBase table. RegionObserver provides hook for data manipulation for events like put(), get() add delete() events. All the data manipulations are done with pre hook and post hook\cite{hbase:essential} such as pre and post observers. For instance, preGetOp() and postGetOp() provides hook for manipulating get request. 
+    
+\item RegionObserver: RegionObserver runs on all the Region of a HBase table. RegionObserver provides hook for data manipulation for events like put(), get() add delete() events. All the data manipulations are done with pre-hook and post hook\cite{hbase:essential} such as pre and post observers. For instance, preGetOp() and postGetOp() provides hook for manipulating get request. 
 
-\item RegionServerObserver: Likewise in RegionObserver, RegionServerObserver provides hook for data manipulation for events like merge, commits and rollback. All the data manipulation are done with pre hook and post hook such as preMerge() and postMerge(). 
+\item RegionServerObserver: Likewise in RegionObserver, RegionServerObserver provides a hook for data manipulation for events like merge, commits and rollback. All the data manipulation are done with pre-hook and post hook such as preMerge() and postMerge(). 
 
-\item WALObserver: WALObserver interface provides hook for Write-Ahead-Log(WAL)\cite{hbase:essential} related operations. This interface provides only preWALWrite() which is triggered before WALEdit is written to Write-Ahead-Log and postWALWrite() which is triggered after WALEdit is written to a Write-Ahead-Log.
+\item WALObserver: WALObserver interface provides a hook for Write-Ahead-Log(WAL)\cite{hbase:essential} related operations. This interface provides only preWALWrite() which is triggered before WALEdit is written to Write-Ahead-Log and postWALWrite() which is triggered after WALEdit is written to a Write-Ahead-Log.
 
-\item MasterObserver: MasterObserver Interface provides hook for data manipulation for DDL events such as table creation, table deletion or table modification\cite{cloudera:instandupg}. For instance, if the secondary indexes needs to be deleted when primary table is deleted, we can use postDeleteTable(). The MasterObserver runs on master node.
+\item MasterObserver: MasterObserver Interface provides a hook for data manipulation for DDL events such as table creation, table deletion or table modification\cite{cloudera:instandupg}. For instance, if the secondary indexes need to be deleted when primary table is deleted, we can use postDeleteTable(). The MasterObserver runs on the master node.
 
 \end{enumerate}
 
 \begin{figure}
-	\centering
-	\includegraphics[width=\linewidth]{PutRequestLifeCycle}
-	\caption{Life cycle of put request}
-	
+    \centering
+    \includegraphics[width=\linewidth]{PutRequestLifeCycle}
+    \caption{Life cycle of put request}
+    
 \end{figure}
 
 In the figure below, We can see the life-cycle of a put request with observer coprocessor implemented.
 
 \begin{figure}
-	\centering
-	\includegraphics[width=\linewidth]{PutRequestWithObserverCoprocessor}
-	\caption{Life cycle of put request with observer coprocessor}
-	
+    \centering
+    \includegraphics[width=\linewidth]{PutRequestWithObserverCoprocessor}
+    \caption{Life cycle of put request with observer coprocessor}
+    
 \end{figure}
 
 \newpage
 \subsection{Endpoint coprocessor}
 
-Endpoint coprocessor are similar to the Stored Procedures in RDBMS. This type of coprocessor is more useful in the scenario where the computation is needed for the whole table and are not provided by observer coprocessor\cite{hbase:coprocessors}. Invoking the endpoint coprocessor is similar to invoking any other commands in HBase from the client\textquotesingle s point of view but the result is based on the code that defines the coprocessor\cite{coprocessor:detail}. The figure below explains the Aggregation example\cite{coprocessor:detail}.
+Endpoint coprocessor is similar to the Stored Procedures in RDBMS. This type of coprocessor is more useful in the scenario where the computation is needed for the whole table and are not provided by observer coprocessor\cite{hbase:coprocessors}. Invoking the endpoint coprocessor is similar to invoking any other commands in HBase from the client\textquotesingle s point of view but the result is based on the code that defines the coprocessor\cite{coprocessor:detail}. The figure below explains the Aggregation example\cite{coprocessor:detail}.
 
 \begin{figure}
-	\centering
-	\includegraphics[width=\linewidth]{EndPointCoprocessor}
-	\caption{EndPoint Coprocessor}
-	
+    \centering
+    \includegraphics[width=\linewidth]{EndPointCoprocessor}
+    \caption{EndPoint Coprocessor}
+    
 \end{figure}
 
 When a request is invoked from a client, an instance of Batch.call() encapsulates the request invocation and the request is forwarded to coprocessorExec() method of HTableInterface. Then the coprocessorExec() handles the request invocation and distributes the request to all the Regions of the RegionServer. Assuming that no interruptions occurs and all the requests are completed, the results is then returned to client and aggregated\cite{coprocessor:detail}.
@@ -199,19 +200,19 @@ When a request is invoked from a client, an instance of Batch.call() encapsulate
 
 \newpage
 \chapter{Implementation}
-In this section we will first discuss about the prerequisite of implementation and then the proposed method for our research.
+In this section, we will first discuss the prerequisite of implementation and then the proposed method for our research.
 
 \section{Prerequisite}
-Before we begin with our implementation of coprocessor, there are few steps to load coprocessor into our HBase table. Coprocessor can be loaded to the base tables in two ways: statically and dynamically\cite{loading:coprocessors}. 
+Before we begin with our implementation of the coprocessor, there are few steps to load coprocessor into our HBase table. The coprocessor can be loaded to the base tables in two ways: statically and dynamically\cite{loading:coprocessors}. 
 
 \subsection{Static Loading of coprocessor}
 We have to define coprocessor properties in a $hbase$-$site.xml$ file inside a \textless property\textgreater \space element followed by \textless name\textgreater \space and a \textless value\textgreater \space sub element. The \textless name\textgreater \space sub element should have one of the followings\cite{hbase:site}:
 
 \begin{enumerate}
-	\item hbase.coprocessor.region.classes for RegionObservers and Endpoints coprocessor
-	\item hbase.coprocessor.wal.classes for WALObservers
-	\item hbase.coprocessor.master.classes for MasterObservers
-	
+    \item hbase.coprocessor.region.classes for RegionObservers and Endpoints coprocessor
+    \item hbase.coprocessor.wal.classes for WALObservers
+    \item hbase.coprocessor.master.classes for MasterObservers
+    
 \end{enumerate}
 
 The \textless value\textgreater \space sub-element should contain the full path of the coprocessor implementation class. A typical example for static loading of coprocessor looks as,\newline \newline \textless property\textgreater \newline
@@ -219,20 +220,20 @@ The \textless value\textgreater \space sub-element should contain the full path 
 \textless value\textgreater \texttt{org.apache.hbase.HBase\_coprocessor.HBaseCoprocessor}\textless /value\textgreater \newline
 \textless /property\textgreater \newline
 
- If we have multiple classes, then the path in \textless value\textgreater \space sub element should be comma separated. In this setup, the framework will attempt to load all the configured classes, so we have to create a jar with dependencies, for all the classes and place the location of jar to HBase classpath. For that, we have to export /path/to/jar in $hbase$-$env.sh$ file. A typical example for exporting classpath is given below, \newline \newline
+ If we have multiple classes, then the path in \textless value\textgreater \space sub-element should be comma separated. In this setup, the framework will attempt to load all the configured classes, so we have to create a jar with dependencies, for all the classes and place the location of the jar to HBase classpath. For that, we have to export /path/to/jar in $hbase$-$env.sh$ file. A typical example for exporting classpath is given below, \newline \newline
  export \texttt{HBASE\_CLASSPATH}='/path/to/jar' \newline
  
 Now if HBase is restarted without any errors, we have managed to load system coprocessor successfully. 
 
 \subsection{Static Unloading of coprocesssor}
 \begin{enumerate}
-	\item Delete entry from $hbase$-$site.xml$
-	\item Delete entry for $hbase$-$env.sh$
-	\item Restart HBase
+    \item Delete entry from $hbase$-$site.xml$
+    \item Delete entry for $hbase$-$env.sh$
+    \item Restart HBase
 \end{enumerate}
 
 \subsection{Dynamic Loading of coprocessor}
-In this approach, rather than loading coprocessor to all the tables in a Region, the coprocessor are loaded to specific tables of the region. There are two implementations of loading coprocessor dynamically, from HBase shell or using Java API\cite{hbase:site}.
+In this approach, rather than loading coprocessor to all the tables in a Region, the coprocessor is loaded to specific tables of the region. There are two implementations of loading coprocessor dynamically, from HBase shell or using Java API\cite{hbase:site}.
 
 \subsubsection{Using HBase shell}
 \begin{enumerate}
@@ -262,8 +263,8 @@ Prior to HBase version 0.96, the coprocessors were loaded in a different way. Af
 String path = "/path/to/jar"
 admin.disableTable(<table_name>)
 hTableDescriptor.setValue("COPROCESSOR$1", path + "|"
-	+ RegionObserverExample.class.getCanonicalName() + "|"
-	+ Coprocessor.PRIORITY_USER);
+    + RegionObserverExample.class.getCanonicalName() + "|"
+    + Coprocessor.PRIORITY_USER);
 admin.enableTable(<table_name>)
 \end{lstlisting}
 
@@ -273,7 +274,7 @@ admin.enableTable(<table_name>)
 String path = "/path/to/jar"
 admin.disableTable(<table_name>)
 hTableDescriptor.addCoprocessor(<class_name>.class.getCanonicalName(),
-			 path, Coprocessor.PRIORITY_USER, null);
+             path, Coprocessor.PRIORITY_USER, null);
 admin.enableTable(<table_name>)
 \end{lstlisting}
 
@@ -282,145 +283,145 @@ Dynamic unloading of coprocessor can also be done in two ways, from shell and fr
 
 \subsubsection{Using HBase shell}
 \begin{enumerate}
-	\item disable table
-	hbase\textgreater disable '\textless \texttt{table\_name}\textgreater'
-	\item alter table, remove coprocessor
-	hbase\textgreater alter '\textless \texttt{table\_name}\textgreater', \newline
-	METHOD =\textgreater '\texttt{table\_att\_unset}', NAME=\textgreater 'coprocessor\$1' =\textgreater
-	\item enable table
-	hbase\textgreater enable '\textless \texttt{table\_name}\textgreater'
-	 
+    \item disable table
+    hbase\textgreater disable '\textless \texttt{table\_name}\textgreater'
+    \item alter table, remove coprocessor
+    hbase\textgreater alter '\textless \texttt{table\_name}\textgreater', \newline
+    METHOD =\textgreater '\texttt{table\_att\_unset}', NAME=\textgreater 'coprocessor\$1' =\textgreater
+    \item enable table
+    hbase\textgreater enable '\textless \texttt{table\_name}\textgreater'
+     
 \end{enumerate}
 
 \subsubsection{Using Java API}
 Using Java API, in the newer version we can use removeCoprocessor() method provided by HTableDescriptor class and in the older version, we can use setValue() to unload coprocessor.
 
 \section{Proposed Method}
-In this section we will explain about the algorithms we've implemented to incrementally maintain materialized views for 
+In this section, we will explain about the algorithms we've implemented to maintain incrementally materialized views for 
 \begin{enumerate}
-	\item Aggregation
-	\item Join and Aggregation
-	\item Join and Selection
+    \item Aggregation
+    \item Join and Aggregation
+    \item Join and Selection
 \end{enumerate}
 
-One of the most important feature in our implementation is the introduction of intermediate table. We have introduced intermediate table in order to restrict the scanning of entire base table for a simple get, put or delete operation. Scanning billions of rows for such operations can be expensive in terms of processing power and CPU usage. 
+One of the most important features in our implementation is the introduction of intermediate table. We have introduced intermediate table in order to restrict the scanning of the entire base table for a simple get, put or delete operation. Scanning billions of rows for such operations can be expensive in terms of processing power and CPU usage. 
 
 \subsubsection{Creation of Intermediate table}
 \label{subsec:intermediatetable}
 
-If there are two base tables, then we merge column families of both tables into the intermediate table. If there is only one base table, then we have the same column family in our intermediate table. The $key$ from base table becomes row key for the intermediate table, $row key$ of base table becomes $column$ $qualifier$ in the intermediate table. So the value for key and row key from base table is now plotted in intermediate table for that particular key. So whenever there is a CRUD operation for a particular key, we can scan row for the particular key instead of scanning the whole table. The figure below explains transformation of base table into intermediate table in more detail. 
+If there are two base tables, then we merge column families of both tables into the intermediate table. If there is only one base table, then we have the same column family in our intermediate table. The $key$ from base table becomes row key for the intermediate table, $row key$ of the base table becomes $column$ $qualifier$ in the intermediate table. So the value for key and row key from base table is now plotted in intermediate table for that particular key. So whenever there is a CRUD operation for a particular key, we can scan row for the particular key instead of scanning the whole table. The figure below explains the transformation of base table into an intermediate table in more detail. 
 
 \begin{figure}
-	\centering
-	\includegraphics[width=\linewidth]{IntermediateTable}
-	\caption{Intermediate Table}
-	
+    \centering
+    \includegraphics[width=\linewidth]{IntermediateTable}
+    \caption{Intermediate Table}
+    
 \end{figure}
 
 \newpage
 \subsection{Aggregation}
 \label{sec:aggregationImpl}
 
-In our implementation, we've implemented basic aggregation functions like sum, count, min and max. All these operations are carried out based on a particular key. The base table contains key,value pairs. We construct an intermediate table from the base table. The reason behind constructing intermediate table is to restrict scanning of whole base table for a update/delete trigger for a particular key in base table. We take the unique keys and map them as a row key in intermediate table, and accordingly the values are plotted. Once all the values are plotted in the intermediate table, we then construct view table. The view table contains aggregate functions like Sum, Count, Min and Max for each row Key i.e. for each unique keys of the base table. 
+In our implementation, we've implemented basic aggregation functions like sum, count, min and max. All these operations are carried out based on a particular key. The base table contains key,value pairs. We construct an intermediate table from the base table. The reason behind constructing intermediate table is to restrict scanning of the whole base table for an update/delete trigger for a particular key in a base table. We take the unique keys and map them as a row key in the intermediate table, and accordingly the values are plotted. Once all the values are plotted in the intermediate table, we then construct view table. The view table contains aggregate functions like Sum, Count, Min and Max for each row Key i.e. for each unique keys of the base table. 
 
 %The figure below explains how we map base table to a view table.
 
 %\begin{figure}
-%	\centering
-%	\includegraphics[width=\linewidth]{Aggregation}
-%	\caption{Aggregation}
-%	\label{sec:aggregation}
-	
+%    \centering
+%    \includegraphics[width=\linewidth]{Aggregation}
+%    \caption{Aggregation}
+%    \label{sec:aggregation}
+    
 %\end{figure}
 %\newpage
 
-Once we have base table, intermediate table and view table, and successfully loaded coprocessor on our base table, we are ready to go ahead with our implementation. There are certain scenarios where coprocessor are triggered for an update and delete operations.
+Once we have a base table, intermediate table and view table, and successfully loaded coprocessor on our base table, we are ready to go ahead with our implementation. There are certain scenarios where coprocessor is triggered for an update and delete operations.
 
 \begin{enumerate}
-	\item New row is inserted
-	\item Existing value of a row is updated
-	\item Existing key of a row is updated
-	\item Existing row is deleted
+    \item New row is inserted
+    \item Existing value of a row is updated
+    \item Existing key of a row is updated
+    \item Existing row is deleted
 \end{enumerate}
 
 \subsubsection{New row is inserted}
 Whenever a new row is inserted in a base table with (key,value) pair, the (key,value) pair has to be inserted in the base table and we have to plot the new (key,value) pair in the intermediate table and also view table has to be updated accordingly. Using prePut() and postPut() triggers from observer coprocessor, we perform all the required operations.
 
-As we have already discussed about put() request life cycle in \ref{sec:observercoprocessor}, before the (key,value) is inserted, we catch the request using prePut() method provided by the observer coprocessor. In the prePut() method, we verify the inputs and check if new row is inserted or existing row is updated. After we verify that new row is being inserted, we let the request to insert new (key,value) pairs to be inserted into the base table. After new (key,value) pair is inserted into the base table, we again catch the request in postPut() method. In postPut() method, we plot the (key,value) pair in the intermediate table and then update aggregation functions in our view table. The figure below explains the scenario when new row is inserted. The left side tables are the default tables and right side tables explains the behavior when a new row is inserted. The text displayed in red mark the changes that is happening on base table, intermediate table and view table. 
+As we have already discussed put() request life cycle in \ref{sec:observercoprocessor}, before the (key,value) is inserted, we catch the request using prePut() method provided by the observer coprocessor. In the prePut() method, we verify the inputs and check if new row is inserted or existing row is updated. After we verify that new row is being inserted, we let the request to insert new (key,value) pairs to be inserted into the base table. After new (key,value) pair is inserted into the base table, we again catch the request in postPut() method. In postPut() method, we plot the (key,value) pair in the intermediate table and then update aggregation functions in our view table. The figure below explains the scenario when a new row is inserted. The left side tables are the default tables and right side tables explain the behavior when a new row is inserted. The text displayed in red mark the changes that are happening on base table, intermediate table and view table. 
 \begin{figure}
-	\centering
-	\includegraphics[width=\linewidth]{NewRowInsertAggr}
-	\caption{New row insert}
-	\label{sec:newrowinsertagggregation}
-	
+    \centering
+    \includegraphics[width=\linewidth]{NewRowInsertAggr}
+    \caption{New row insert}
+    \label{sec:newrowinsertagggregation}
+    
 \end{figure}
 
 \newpage
 \subsubsection{Existing value of a row is updated}
-Whenever an existing value of a key is updated, the base table is updated accordingly. Before base table is updated, we catch the request via prePut() method of observer coprocessor. In the prePut() method, we get the row key for which the value is going to be updated and also we verify if value is being updated or the key is being updated. After we verify that value is updated, then we release the request and the value is updated in the base table. After the insertion, we catch the request via postPut() method of observer coprocessor, and then plot the updated value in our intermediate table for particular row key. Since we already have row key, we only need to can that particular row, instead of scanning the whole table. This saves a lot of execution time and processing power. Once we plot updated value in the intermediate table, we then calculate aggregation functions for that particular row key and then update our view table accordingly.
-The figure below explains the process in a more detail. The updated value is marked in red on the right table and also from the figure we can see that we only iterate over a particular row key instead of scanning the whole base table and view table.
+Whenever an existing value of a key is updated, the base table is updated accordingly. Before the base table is updated, we catch the request via prePut() method of observer coprocessor. In the prePut() method, we get the row key for which the value is going to be updated and also we verify if the value is being updated or the key is being updated. After we verify that value is updated, then we release the request and the value is updated in the base table. After the insertion, we catch the request via postPut() method of observer coprocessor, and then plot the updated value in our intermediate table for particular row key. Since we already have  the row key, we only need to can that particular row, instead of scanning the whole table. This saves a lot of execution time and processing power. Once we plot updated value in the intermediate table, we then calculate aggregation functions for that particular row key and then update our view table accordingly.
+The figure below explains the process in more detail. The updated value is marked in red on the right table, and also from the figure, we can see that we only iterate over a particular row key instead of scanning the whole base table and view table.
 
 \begin{figure}
-	\centering
-	\includegraphics[width=\linewidth]{ValueUpdateAggr}
-	\caption{Update value for a existing row key}
-	\label{sec:updatevalueforexistingkey}
-	
+    \centering
+    \includegraphics[width=\linewidth]{ValueUpdateAggr}
+    \caption{Update value for a existing row key}
+    \label{sec:updatevalueforexistingkey}
+    
 \end{figure}  
 
 \newpage
 \subsubsection{Existing key of a row is updated}
 \label{subsubsec:keyupdate}
-Whenever there is a trigger for $key$ of the particular row key to be updated, we first catch the request via prePut() method. In this scenario, we first have to find out the $key$ to be updated, and delete the plotting from intermediate table. In the prePut() method, we find the (key,value) pair for a $key$ to be updated and store it somewhere in memory. Then we release the request and the $key$ is updated in the base table. In this case, now we have $old$ $key$ and the $new$ $key$. 
+Whenever there is a trigger for $key$ of the particular row key to be updated, we first catch the request via prePut() method. In this scenario, we first have to find out the $key$ to be updated and delete the plotting from intermediate table. In the prePut() method, we find the (key,value) pair for a $key$ to be updated and store it somewhere in memory. Then we release the request and the $key$ is updated in the base table. In this case, now we have $old$ $key$ and the $new$ $key$. 
 
 In the postPut() method, first we find the column to be deleted from the intermediate table. Then we delete that particular column and update our view table accordingly. After the process is complete without any interruption, the process is similar as of inserting new (key,value) pair. We plot the $new$ $key$ and $value$ in our intermediate table and update the view table accordingly. This is the most complex scenario because it might affect more than one row in our view table. In the figure below, the old key $A$ is updated to new key $B$. In the intermediate table, the plotting for old key $A$ is deleted and aggregation functions for old key $A$ are also updated in the view table. After the process is completed, new values for updated key $B$ is plotted in the intermediate table and then the view table for row key $B$ is also updated accordingly.
 
 \begin{figure}
-	\centering
-	\includegraphics[width=\linewidth]{KeyUpdateAggr}
-	\caption{Update Key for a existing row key}
-	\label{sec:updateKeyforexistingrow}
-	
+    \centering
+    \includegraphics[width=\linewidth]{KeyUpdateAggr}
+    \caption{Update Key for a existing row key}
+    \label{sec:updateKeyforexistingrow}
+    
 \end{figure} 
 
 \newpage
 \subsubsection{Existing row is deleted}
 \label{subsubsec:rowdelete}
-When an existing row is deleted in the base table, in the postPut() method of observer coprocessor, we delete the plotting for that particular $key$. In this case there are two scenarios. If the $key$ to be deleted has more than one values in the intermediate table, then we delete the particular plotting in the intermediate table and update aggregation functions for that $key$ in the view table. If the $Key$ in the intermediate table only has a single plotting, then we delete that plotting from intermediate table and then also delete the entry for that $key$ from the view table.
+When an existing row is deleted in the base table, in the postPut() method of observer coprocessor, we delete the plotting for that particular $key$. In this case, there are two scenarios. If the $key$ to be deleted has more than one values in the intermediate table, then we delete the particular plotting in the intermediate table and update aggregation functions for that $key$ in the view table. If the $Key$ in the intermediate table only has a single plotting, then we delete that plotting from an intermediate table and then also delete the entry for that $key$ from the view table.
 
 In the figure below, we have a delete() call for row key $5$. The $key$ for row key $5$ is $C$. Now we delete the row key $5$ from the base table. After that, we delete the plotting for key $C$ in our intermediate table. Since the key $C$ has only one plotting, we delete entry for row key $C$ from the view table instead of recomputing aggregation functions for row key $C$. 
 
 \begin{figure}
-	\centering
-	\includegraphics[width=\linewidth]{DeleteExistingRowAggr}
-	\caption{Delete an existing row}
-	\label{sec:deleteexistingrow}
-	
+    \centering
+    \includegraphics[width=\linewidth]{DeleteExistingRowAggr}
+    \caption{Delete an existing row}
+    \label{sec:deleteexistingrow}
+    
 \end{figure} 
 
 \newpage
 \subsection{Join and Aggregation}
 \label{subsec:joinandaggregation}
-In this sub section, we have implemented Join and Aggregation functionalities. For this, we have joined two base tables and in the view table we have sum of the values for a same $key$. We also have intermediate table where both the base tables are merged by a particular $key$ and values are plotted in the intermediate table base on that $key$. As described in \ref{sec:aggregationImpl}, we have implemented sum for same $key$ in both the base tables. 
+In this subsection, we have implemented Join and Aggregation functionalities. For this, we have joined two base tables and in the view table, we have the sum of the values for a same $key$. We also have an intermediate table where both the base tables are merged by a particular $key$ and values are plotted in the intermediate table base on that $key$. As described in \ref{sec:aggregationImpl}, we have implemented sum for same $key$ in both the base tables. 
 
 %The figure below explains how we map base table to a view table.
 
 %\begin{figure}
-%	\centering
-%	\includegraphics[width=\linewidth]{JoinAndAggregation}
-%	\caption{Join and Aggregation}
-%	\label{sec:joinandaggregation}
-	
+%    \centering
+%    \includegraphics[width=\linewidth]{JoinAndAggregation}
+%    \caption{Join and Aggregation}
+%    \label{sec:joinandaggregation}
+    
 %\end{figure}
 
 %\newpage
-There are certain scenarios where coprocessor are triggered for an update and delete operations.
+There are certain scenarios where coprocessor is triggered for an update and delete operations.
 
 \begin{enumerate}
-	\item New row is inserted
-	\item Existing value of a row is updated
-	\item Existing key of a row is updated
-	\item Existing row is deleted
+    \item New row is inserted
+    \item Existing value of a row is updated
+    \item Existing key of a row is updated
+    \item Existing row is deleted
 \end{enumerate}
 
 \subsubsection{New row is inserted}
@@ -428,26 +429,26 @@ Whenever a new row is inserted in a base table with (key,value) pair, the (key,v
 The figure below describes the scenario in more detail. The updated table on the right has new values plotted in red.
 
 \begin{figure}
-	\centering
-	\includegraphics[width=\linewidth]{NewRowInsertJoinAggr}
-	\caption{New row is inserted for Join and Aggregation}
-	\label{sec:insertnewrowjoinandaggr}
-	
+    \centering
+    \includegraphics[width=\linewidth]{NewRowInsertJoinAggr}
+    \caption{New row is inserted for Join and Aggregation}
+    \label{sec:insertnewrowjoinandaggr}
+    
 \end{figure}
 
 \newpage
 
 \subsubsection{Existing value of a row is updated}
-When a value of a $key$ is updated in base table, the consistency should also be maintained in the view table. So when the base table is updated, the request is triggered by the postPut() method and intermediate table and view tables are updated accordingly.
+When a value of a $key$ is updated in the base table, the consistency should also be maintained in the view table. So when the base table is updated, the request is triggered by the postPut() method and intermediate table and view tables are updated accordingly.
 
 \subsubsection{Existing key of a row is updated}
-As described in \ref{subsubsec:keyupdate}, when $key$ is modified in the base table, we first have to delete entry from intermediate table and view table if row exists for that particular $key$. Once delete operation is completed without interruption, then we insert the updated key in the intermediate table and view table.
+As described in \ref{subsubsec:keyupdate}, when $key$ is modified in the base table, we first have to delete an entry from the intermediate table and view table if the row exists for that particular $key$. Once delete operation is completed without interruption, then we insert the updated key in the intermediate table and view table.
 
 \subsubsection{Existing row is deleted}
-The implementation for this scenario is same as described in sub section \ref{subsubsec:rowdelete}. The entry is first deleted from base table, and if entry exists in intermediate table and view table, the entries are deleted from those table accordingly.
+The implementation for this scenario is same as described in subsection \ref{subsubsec:rowdelete}. The entry is first deleted from the base table, and if an entry exists in the intermediate table and view table, the entries are deleted from those table accordingly.
 
 \subsection{Join and Selection}
-This approach is similar to approach described in sub section \ref{subsec:joinandaggregation}. We do not use any aggregation functions but instead just select the values and put them in the view table. As already described in \ref{subsec:joinandaggregation}, there are also four possible scenarios where we update view table incrementally.
+This approach is similar to approach described in subsection \ref{subsec:joinandaggregation}. We do not use any aggregation functions but instead just select the values and put them in the view table. As already described in \ref{subsec:joinandaggregation}, there are also four possible scenarios where we update view table incrementally.
 
 \newpage
 \chapter{Discussion and Conclusion}

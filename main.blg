@@ -19,6 +19,12 @@ Warning--entry type for "hbase:site" isn't style-file defined
 --line 1121 of file bibliography/literature.bib
 Warning--entry type for "relational:dbs" isn't style-file defined
 --line 1139 of file bibliography/literature.bib
+Warning--entry type for "hbase:architecture" isn't style-file defined
+--line 1157 of file bibliography/literature.bib
+Warning--entry type for "hbase:zookeeper" isn't style-file defined
+--line 1175 of file bibliography/literature.bib
+Warning--entry type for "hbase:insights" isn't style-file defined
+--line 1193 of file bibliography/literature.bib
 Warning--to sort, need author or key in loading:coprocessors
 Warning--to sort, need author or key in hbase:site
 Warning--empty journal in incrementalmaintenance:materializedviews
@@ -28,45 +34,45 @@ Warning--empty journal in hbase:essential
 Warning--empty journal in maintenance:materializedviews
 Warning--empty journal in coprocessor:coprocessor
 Warning--empty journal in cloudera:instandupg
-You've used 15 entries,
+You've used 18 entries,
             2118 wiz_defined-function locations,
-            555 strings with 5324 characters,
-and the built_in function-call counts, 3578 in all, are:
-= -- 319
-> -- 155
+            566 strings with 5537 characters,
+and the built_in function-call counts, 4177 in all, are:
+= -- 370
+> -- 176
 < -- 2
-+ -- 63
-- -- 48
-* -- 191
-:= -- 586
-add.period$ -- 35
-call.type$ -- 15
-change.case$ -- 69
++ -- 73
+- -- 54
+* -- 215
+:= -- 682
+add.period$ -- 41
+call.type$ -- 18
+change.case$ -- 81
 chr.to.int$ -- 0
-cite$ -- 24
-duplicate$ -- 143
-empty$ -- 320
-format.name$ -- 48
-if$ -- 756
+cite$ -- 27
+duplicate$ -- 164
+empty$ -- 386
+format.name$ -- 54
+if$ -- 885
 int.to.chr$ -- 0
-int.to.str$ -- 15
+int.to.str$ -- 18
 missing$ -- 7
-newline$ -- 68
-num.names$ -- 26
-pop$ -- 125
+newline$ -- 80
+num.names$ -- 32
+pop$ -- 152
 preamble$ -- 1
-purify$ -- 54
+purify$ -- 63
 quote$ -- 0
-skip$ -- 133
+skip$ -- 157
 stack$ -- 0
-substring$ -- 108
-swap$ -- 22
+substring$ -- 124
+swap$ -- 25
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 60
+type$ -- 72
 warning$ -- 9
-while$ -- 29
-width$ -- 17
-write$ -- 128
-(There were 17 warnings)
+while$ -- 35
+width$ -- 20
+write$ -- 152
+(There were 20 warnings)

@@ -127,7 +127,7 @@ Before the evolution of HBase, Relational database systems were used particularl
 
 HBase is an open source sortedMap Datastore from Apache Software Foundation. HBase is modelled after Google's BigTable framework. It is a Hadoop database that is used for storing and retrieving data with random access. HBase architecture is designed to run on a cluster of computers rather than a single machine \cite{coprocessor:detail}. HBase aims to scale horizontally by adding more machines to the cluster. HBase runs on top of HDFS(Hadoop Distribution File System) that provides the functionality alike of Google's Big Table and provides a fault-tolerant way of storing a large volume of semi-structured and unstructured data\cite{bigdata:analysis}.
 
-HBase is built on top of Hadoop and Zookeeper\cite{coprocessor:detail}. Both Hadoop and Zookeeper are open source projects from Apache Software Foundation. Apache Hadoop is an open source framework that facilitates storing and processing large dataset in a distributed fashion. Zookeeper, which was developed under Apache software foundations, as a sub-project of Hadoop, is an open source distributed configuration service for large distributes applications. A basic table structure of HBase consists of Row Key, which is similar to the primary key in a relational database table, Column Family and Column Qualifier. A figure below describes a HBase table and it's mapping to the relational database table.
+HBase is built on top of Hadoop and Zookeeper\cite{coprocessor:detail}. Both Hadoop and Zookeeper are open source projects from Apache Software Foundation. Apache Hadoop is an open source framework that facilitates storing and processing large dataset in a distributed fashion. Zookeeper, which was developed under Apache software foundations, as a sub-project of Hadoop, is an open source distributed configuration service for large distributes applications. A basic table structure of HBase consists of Row Key, which is similar to the primary key in a relational database table, Column Family and Column Qualifier. The figure below describes a HBase table and it's mapping to the relational database table.
 
 
 \begin{figure}
@@ -140,6 +140,50 @@ HBase is built on top of Hadoop and Zookeeper\cite{coprocessor:detail}. Both Had
 \newpage
 \subsection{HBase Architecture}
 \label{HBase Architecture}
+HBase architecture consists of three major components and three sub components. The major components are Master, Region server and zookeeper. The three sub components are Write-Ahead-Log(WAL), HFile and Memstore\cite{hbase:insights}. HBase architecture is based on Master-Slave architecture, where the Master is known as HMaster, is the master node and Region Servers are the slave nodes. Whenever the write request is sent, HMaster receives the request and forwards it to the respective Region Server\cite{hbase:insights}. 
+
+\subsubsection{HMaster}
+\label{hmaster}
+HBase Master is mainly responsible for region assignments within the region servers and DDL operations like creating and deleting tables\cite{hbase:architecture}. Apart from these roles, HMaster is also responsible for assigning the regions and re-assigning of the regions for recovery or load balancing\cite{hbase:architecture}. HMaster also monitors all the instances of Region Servers in the cluster\cite{hbase:architecture} and mainly provides administrative operations.
+
+\subsubsection{Region Servers}
+\label{region serves}
+Region servers are systems within HBase that acts like a data node\cite{hbase:insights}. When a HMaster receives a write request, it forwards the request to the Region Server. Region server can have multiple regions within it, and it directs the request to the specific region. Region servers are mainly responsible for handling data related operations and communication. Region servers handle the read/write request for all the regions within it. 
+A Region Server runs on data node and it has four sub components as described below\cite{hbase:architecture}
+\begin{description}
+	\item[$\bullet$]  Write Ahead Log(WAL): Write Ahead Log is basically a log file. Region server adds each request to WAL first before sending that request to the appropriate region. It is mainly used for recovery in case of failure\cite{hbase:insights}. If the request is not written in the WAL file, there is a possibility of data loss in case of Region Server failure.
+\end{description}
+
+\begin{description}
+	\item[$\bullet$]  BlockCache: BlockCache is the read cache that is used to store frequently read data\cite{hbase:insights}. When the cache is full, last read data is removed from the cache.
+\end{description}
+
+\begin{description}
+	\item[$\bullet$] MemStore: MemStore is the write cache. All the new data that has not been written to the disk are stored in MemStore. It is mainly responsible for keeping tracks of all the logs for read and write operations to be performed for a specific Region Server\cite{hbase:architecture}. Each column family in a region has one MemStore\cite{hbase:insights}.
+\end{description}
+
+\begin{description}
+	\item[$\bullet$] HFile: In HBase, column family is a collection of multiple HFiles. HFiles are used to store rows as keyValue pairs and are immutable and sorted\cite{hbase:insights}.
+\end{description}
+
+\subsubsection{Zookeeper}
+\label{zookeeper}
+Zookeeper an open source project under Apache Software Foundations, is a distributed software system that provides a infrastructure for synchronization across the clusters. It provides coordination between distributed processes across the cluster so that client receives consistent data. The architecture of Zookeeper is based on client-server model. The client acts as a node that make use of the service and server acts as a node that provides the service\cite{hbase:zookeeper}. Many Zookeeper servers can be collected together, that is known as $Zookeeper$ $ensemble$\cite{hbase:zookeeper}. Each server node of the zookeeper at a given time can handle large number of client connections. It is essential to know if the connection is alive, so the client node sends a ping request to the server it is connected to make sure it is connected and alive\cite{hbase:zookeeper}. The server, after receiving ping request, sends an acknowledgement to indicate that server is alive. If the client doesnot receive acknowledgement within a given specific time, then the client connects to another zookeeper server within a $Zookeeper$ $ensemble$ and the client session is transferred to the new zookeeper server\cite{hbase:zookeeper}.
+\newline
+HBase has a tight integration with Zookeeper. HBase uses Zookeeper as a distributed coordination service to facilitate synchronization between the servers in a cluster. HBase also uses Zookeeper to keep track of state of the servers, which servers are alive and available\cite{hbase:architecture}. Whenever a HBase instance is started, it automatically starts Zookeeper instance, as Zookeeper comes integrated with HBase\cite{hbase:insights}. Zookeeper is used to keep tracks of the number of regions servers available, and the data hold by each region servers. 
+\newline
+
+The figure below explains the HBase Architecture and its components.
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{HBase_Architecture}
+	\caption{HBase Architecture}
+	\label{fig:hbasetable}
+\end{figure}
+
+\newpage
+\section{Hadoop Distributed File System}
+\label{Hadoop Distributed File System}
 
 
 \newpage

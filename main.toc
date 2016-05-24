@@ -14,32 +14,36 @@
 \contentsline {subsection}{\numberline {2.3.3}Join and Selection}{4}{subsection.2.3.3}
 \contentsline {section}{\numberline {2.4}HBase}{5}{section.2.4}
 \contentsline {subsection}{\numberline {2.4.1}HBase Architecture}{7}{subsection.2.4.1}
-\contentsline {section}{\numberline {2.5}Coprocessor}{8}{section.2.5}
-\contentsline {subsection}{\numberline {2.5.1}Observer coprocessor}{8}{subsection.2.5.1}
-\contentsline {subsection}{\numberline {2.5.2}Endpoint coprocessor}{12}{subsection.2.5.2}
-\contentsline {chapter}{\numberline {3}Implementation}{15}{chapter.3}
-\contentsline {section}{\numberline {3.1}Prerequisite}{15}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}Static Loading of coprocessor}{15}{subsection.3.1.1}
-\contentsline {subsection}{\numberline {3.1.2}Static Unloading of coprocesssor}{16}{subsection.3.1.2}
-\contentsline {subsection}{\numberline {3.1.3}Dynamic Loading of coprocessor}{16}{subsection.3.1.3}
-\contentsline {subsubsection}{\nonumberline Using HBase shell}{16}{section*.10}
-\contentsline {subsubsection}{\nonumberline Using Java API}{17}{section*.11}
-\contentsline {subsection}{\numberline {3.1.4}Dynamic Unloading of coprocessor}{17}{subsection.3.1.4}
-\contentsline {subsubsection}{\nonumberline Using HBase shell}{17}{section*.12}
-\contentsline {subsubsection}{\nonumberline Using Java API}{18}{section*.13}
-\contentsline {section}{\numberline {3.2}Proposed Method}{18}{section.3.2}
-\contentsline {subsubsection}{\nonumberline Creation of Intermediate table}{18}{section*.14}
-\contentsline {subsection}{\numberline {3.2.1}Aggregation}{20}{subsection.3.2.1}
-\contentsline {subsubsection}{\nonumberline New row is inserted}{20}{section*.16}
-\contentsline {subsubsection}{\nonumberline Existing value of a row is updated}{22}{section*.18}
-\contentsline {subsubsection}{\nonumberline Existing key of a row is updated}{24}{section*.20}
-\contentsline {subsubsection}{\nonumberline Existing row is deleted}{26}{section*.22}
-\contentsline {subsection}{\numberline {3.2.2}Join and Aggregation}{28}{subsection.3.2.2}
-\contentsline {subsubsection}{\nonumberline New row is inserted}{28}{section*.24}
-\contentsline {subsubsection}{\nonumberline Existing value of a row is updated}{30}{section*.26}
-\contentsline {subsubsection}{\nonumberline Existing key of a row is updated}{30}{section*.27}
-\contentsline {subsubsection}{\nonumberline Existing row is deleted}{30}{section*.28}
-\contentsline {subsection}{\numberline {3.2.3}Join and Selection}{30}{subsection.3.2.3}
-\contentsline {chapter}{\numberline {4}Discussion and Conclusion}{31}{chapter.4}
-\contentsline {part}{Appendix}{35}{part*.30}
-\contentsline {chapter}{\nonumberline Bibliography}{35}{chapter*.31}
+\contentsline {subsubsection}{\nonumberline HMaster}{7}{section*.7}
+\contentsline {subsubsection}{\nonumberline Region Servers}{7}{section*.8}
+\contentsline {subsubsection}{\nonumberline Zookeeper}{8}{section*.9}
+\contentsline {section}{\numberline {2.5}Hadoop Distributed File System}{10}{section.2.5}
+\contentsline {section}{\numberline {2.6}Coprocessor}{11}{section.2.6}
+\contentsline {subsection}{\numberline {2.6.1}Observer coprocessor}{11}{subsection.2.6.1}
+\contentsline {subsection}{\numberline {2.6.2}Endpoint coprocessor}{15}{subsection.2.6.2}
+\contentsline {chapter}{\numberline {3}Implementation}{17}{chapter.3}
+\contentsline {section}{\numberline {3.1}Prerequisite}{17}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Static Loading of coprocessor}{17}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}Static Unloading of coprocesssor}{18}{subsection.3.1.2}
+\contentsline {subsection}{\numberline {3.1.3}Dynamic Loading of coprocessor}{18}{subsection.3.1.3}
+\contentsline {subsubsection}{\nonumberline Using HBase shell}{18}{section*.14}
+\contentsline {subsubsection}{\nonumberline Using Java API}{19}{section*.15}
+\contentsline {subsection}{\numberline {3.1.4}Dynamic Unloading of coprocessor}{19}{subsection.3.1.4}
+\contentsline {subsubsection}{\nonumberline Using HBase shell}{19}{section*.16}
+\contentsline {subsubsection}{\nonumberline Using Java API}{20}{section*.17}
+\contentsline {section}{\numberline {3.2}Proposed Method}{20}{section.3.2}
+\contentsline {subsubsection}{\nonumberline Creation of Intermediate table}{20}{section*.18}
+\contentsline {subsection}{\numberline {3.2.1}Aggregation}{22}{subsection.3.2.1}
+\contentsline {subsubsection}{\nonumberline New row is inserted}{22}{section*.20}
+\contentsline {subsubsection}{\nonumberline Existing value of a row is updated}{24}{section*.22}
+\contentsline {subsubsection}{\nonumberline Existing key of a row is updated}{26}{section*.24}
+\contentsline {subsubsection}{\nonumberline Existing row is deleted}{28}{section*.26}
+\contentsline {subsection}{\numberline {3.2.2}Join and Aggregation}{30}{subsection.3.2.2}
+\contentsline {subsubsection}{\nonumberline New row is inserted}{30}{section*.28}
+\contentsline {subsubsection}{\nonumberline Existing value of a row is updated}{32}{section*.30}
+\contentsline {subsubsection}{\nonumberline Existing key of a row is updated}{32}{section*.31}
+\contentsline {subsubsection}{\nonumberline Existing row is deleted}{32}{section*.32}
+\contentsline {subsection}{\numberline {3.2.3}Join and Selection}{32}{subsection.3.2.3}
+\contentsline {chapter}{\numberline {4}Discussion and Conclusion}{33}{chapter.4}
+\contentsline {part}{Appendix}{37}{part*.34}
+\contentsline {chapter}{\nonumberline Bibliography}{37}{chapter*.35}

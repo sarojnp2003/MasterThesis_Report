@@ -40,6 +40,10 @@ Nishant Garg.
 \newblock Hbase essentials.
 \newblock page 164, Nov 2014.
 
+\bibitem{hbase:zookeeper}
+Mark Grover.
+\newblock Zookeeper fundamentals, deployment, and applications, Aug 2013.
+
 \bibitem{maintenance:materializedviews}
 Ashish Gupta and Inderpal~Singh Mumick.
 \newblock Maintenance of materialized views: Problems, techniques, and
@@ -56,6 +60,10 @@ Cloudera Inc.
 \newblock Cloudera installation and upgrade.
 \newblock page 164, Apr 2016.
 
+\bibitem{hbase:insights}
+Edureka Inc.
+\newblock Insights on hbase architecture, Jan 2014.
+
 \bibitem{coprocessor:types}
 Mingjie Lai, Eugene Koontz, and Andrew Purtell.
 \newblock Coprocessor introduction, 2012.
@@ -63,6 +71,10 @@ Mingjie Lai, Eugene Koontz, and Andrew Purtell.
 \bibitem{relational:dbs}
 Sayed Mahbub and Hasan Amiri.
 \newblock Advantage \& disadvantage of relational database, Apr 2016.
+
+\bibitem{hbase:architecture}
+Carol McDonald.
+\newblock An in-depth look at the hbase architecture, Aug 2015.
 
 \bibitem{daniel:datastats}
 Daniel Price.

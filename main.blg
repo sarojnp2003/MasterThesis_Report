@@ -54,7 +54,7 @@ Warning--empty journal in database:concepts
 Warning--empty year in database:concepts
 You've used 29 entries,
             2118 wiz_defined-function locations,
-            619 strings with 6865 characters,
+            619 strings with 6864 characters,
 and the built_in function-call counts, 7386 in all, are:
 = -- 664
 > -- 356

@@ -271,13 +271,15 @@ In paper \cite{maintenance:materializedviews}, the researchers have classified f
 \begin{itemize}
 	\item Information Dimension: This dimension deals with the amount of information available for view maintenance. Some of the prior information regarding integrity constraints and keys, access to materialized views has to be known before developing an algorithm for incremental maintenance.
 	
-	\item Modification Dimension: This dimension deals with problem statements related to modification of a system. Some prior knowledge has to be acquired such as set of what modifications can be handled by a view maintenance algorithm, how update tuples are handled, are they handled directly or are they modeled as deletion followed by insertion tuples.
+	\item Modification Dimension: This dimension deals with problem statements related to modification of a system. Some prior knowledge has to be acquired such as what modifications can be handled by a view maintenance algorithm, how update tuples are handled, are they handled directly or are they modeled as deletion followed by insertion tuples.
 	
-	\item Language Dimension: 
-	\item Instance Dimension:
+	\item Language Dimension: This dimension addresses problem related with select-project-join query, i.e. does view consists of entire SQL or subset of SQL. It also defines problem statements whether SQL statement can use aggregation function, recursion function or closure. 
+	
+	\item Instance Dimension: This dimension addresses problems related to instance of database such as if view maintenance algorithm works for all the instances of the database for just for some particular instances. 
+
 \end{itemize}
 
-
+In paper \cite{maintenance:optimizingqueries}, researchers found that blind applications using materialized views resulted in much worse results than application not using materialized views. The research found out that using materialized views to optimize query performance depends on the query and statistical properties of the database\cite{maintenance:optimizingqueries}. The statistical properties of the database are time-varying and also most of the times, queries are generated using tools, $cost-based$ decision has to be taken whether to use or not to use materialized views to answer a given query in the database\cite{maintenance:optimizingqueries}. There might also be cases where more than one materialized view can be relevant for a given query, so in this case, incorrect alternatives has to be avoided to gain performance advantage. Researchers in paper \cite{maintenance:optimizingqueries} have proposed an algorithm for optimizing materialized views in three steps. In the first step, the query is translated into canonical unfolded form, i.e. system that supports views. In the second step, they identify possible ways to generate one or more materialized views for a given query. In the third step, they use efficient join enumeration algorithm to predict the cost of each alternative formulations and the path with least cost is selected\cite{maintenance:optimizingqueries}.
 
 \newpage
 \chapter{Implementation}

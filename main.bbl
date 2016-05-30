@@ -37,7 +37,7 @@ Robert Chansler, Hairong Kuang, Sanjay Radia, Konstantin Shvachko, and Suresh
 \newblock The hadoop distributed file system, 2011.
 
 \bibitem{maintenance:optimizingqueries}
-Sura~jit Chaudhuri, Ravi Krishnamurthy, Spyros Potamianosz, and Kyuseok Shim.
+Surajit Chaudhuri, Ravi Krishnamurthy, Spyros Potamianosz, and Kyuseok Shim.
 \newblock Optimizing queries with materialized views.
 \newblock June 1995.
 

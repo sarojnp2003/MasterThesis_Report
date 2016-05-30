@@ -25,6 +25,14 @@ Warning--entry type for "hbase:zookeeper" isn't style-file defined
 --line 1175 of file bibliography/literature.bib
 Warning--entry type for "hbase:insights" isn't style-file defined
 --line 1193 of file bibliography/literature.bib
+Warning--entry type for "hadoop:architecture" isn't style-file defined
+--line 1211 of file bibliography/literature.bib
+Warning--entry type for "HDFS:architecture" isn't style-file defined
+--line 1229 of file bibliography/literature.bib
+Warning--entry type for "HDFS:namenodeanddatanode" isn't style-file defined
+--line 1247 of file bibliography/literature.bib
+Warning--entry type for "HDFS:secondarynamenode" isn't style-file defined
+--line 1265 of file bibliography/literature.bib
 Warning--to sort, need author or key in loading:coprocessors
 Warning--to sort, need author or key in hbase:site
 Warning--empty journal in incrementalmaintenance:materializedviews
@@ -34,45 +42,45 @@ Warning--empty journal in hbase:essential
 Warning--empty journal in maintenance:materializedviews
 Warning--empty journal in coprocessor:coprocessor
 Warning--empty journal in cloudera:instandupg
-You've used 18 entries,
+You've used 22 entries,
             2118 wiz_defined-function locations,
-            566 strings with 5537 characters,
-and the built_in function-call counts, 4177 in all, are:
-= -- 370
-> -- 176
+            582 strings with 5975 characters,
+and the built_in function-call counts, 5138 in all, are:
+= -- 450
+> -- 231
 < -- 2
-+ -- 73
-- -- 54
-* -- 215
-:= -- 682
-add.period$ -- 41
-call.type$ -- 18
-change.case$ -- 81
++ -- 96
+- -- 72
+* -- 266
+:= -- 840
+add.period$ -- 49
+call.type$ -- 22
+change.case$ -- 102
 chr.to.int$ -- 0
-cite$ -- 27
-duplicate$ -- 164
-empty$ -- 386
-format.name$ -- 54
-if$ -- 885
+cite$ -- 31
+duplicate$ -- 192
+empty$ -- 474
+format.name$ -- 72
+if$ -- 1086
 int.to.chr$ -- 0
-int.to.str$ -- 18
+int.to.str$ -- 22
 missing$ -- 7
-newline$ -- 80
-num.names$ -- 32
-pop$ -- 152
+newline$ -- 96
+num.names$ -- 40
+pop$ -- 193
 preamble$ -- 1
-purify$ -- 63
+purify$ -- 80
 quote$ -- 0
-skip$ -- 157
+skip$ -- 190
 stack$ -- 0
-substring$ -- 124
-swap$ -- 25
+substring$ -- 145
+swap$ -- 29
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 72
+type$ -- 88
 warning$ -- 9
-while$ -- 35
-width$ -- 20
-write$ -- 152
-(There were 20 warnings)
+while$ -- 43
+width$ -- 24
+write$ -- 184
+(There were 24 warnings)

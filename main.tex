@@ -184,7 +184,20 @@ The figure below explains the HBase Architecture and its components.
 \newpage
 \section{Hadoop Distributed File System}
 \label{Hadoop Distributed File System}
+The Hadoop Distributed File System (HDFS) is an open source distributed file system developed for the Hadoop framework. HDFS is designed to store very large data sets and run on a commodity hardware. In HDFS, each files are divided into blocks of fixed size and are stored across multiple machines\cite{HDFS:architecture}. HDFS is also based on client-server architecture and each HDFS cluster consists of a single NameNode, also called as Master Node and multiple DataNodes, known as Slave nodes. All the metadata are stored in NameNode wheres the application data resides in DataNodes\cite{hadoop:architecture}.
 
+\subsection{NameNode}
+\label{NameNode}
+NameNode is the master node of HDFS file system. NameNode is the centerpiece in the HDFS architecture and is responsible for keeping the directory tree of all the files in a system\cite{HDFS:namenodeanddatanode}. Namenode does not store any data of the files, it stores 
+only the metadata like namespace information and block information of HDFS\cite{HDFS:namenodeanddatanode}, and the data are stored in Data nodes. NameNode maps files into the set of blocks, and maps those blocks to a data nodes and directs data nodes to execute I/O operations\cite{HDFS:namenodeanddatanode}. For example, when a client wants to locate a particular file, Namenode intercepts the request from the client and returns response by retrieving all the possible data nodes where the file resides. Since there is only one NameNode in the HDFS cluster, it is subjected to a single point of failure in HDFS Cluster. If a Namenode is down, all the running processes will terminate as a result of which the entire HDFS cluster goes offline\cite{HDFS:namenodeanddatanode}.  
+
+\subsection{SecondaryNameNode}
+\label{SecondaryNameNode}
+As the name suggests, it is assumed that SecondaryNameNode is used as a backup node in case of single point of failure. From subsection \ref{NameNode}, we know that NameNode stores meta information like namespace and block information. All these informations are stored in main memory and also in the physical disc for persistence storage\cite{HDFS:secondarynamenode}. Whenever a NameNode is started, the snapshot of the file system is stored in fsimage file and logs of the changes made after NameNode is started is written in Edit logs. There might be an issue when edit logs become very large and hard to manage. So SecondaryNameNode is used as a checkpoint in the HDFS. It fetches the edit logs from the namenode in reqular interval and updates fsimage with edit logs.The recent fsimage is copied back to the NameNode\cite{HDFS:secondarynamenode}. Since SecondaryNameNode cannot process the metadata to the disc\cite{HDFS:architecture}, it can not be used as a substitution to the NameNode.
+
+\subsection{DataNode}
+\label{DataNode}
+DataNodes are the slave nodes in the HDFS file system. There can be one or many data nodes in a HDFS cluster. The data nodes are responsible for storing the files in a HDFS cluster. 
 
 \newpage
 \section{Coprocessor}

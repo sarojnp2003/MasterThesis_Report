@@ -21,6 +21,11 @@ Matt Allen.
 GAURAV BHARDWAJ.
 \newblock The how to of hbase coprocessors, Apr 2014.
 
+\bibitem{hadoop:architecture}
+Robert Chansler, Hairong Kuang, Sanjay Radia, Konstantin Shvachko, and Suresh
+  Srinivas.
+\newblock The hadoop distributed file system, 2011.
+
 \bibitem{materializedview:oracle}
 Oracle Corporation.
 \newblock Materialized views, 1999.
@@ -29,6 +34,10 @@ Oracle Corporation.
 TK~Das and P.Mohan Kumar.
 \newblock Big data analytics: A framework for unstructured data analysis.
 \newblock 5(1):152--153, Feb-Mar 2013.
+
+\bibitem{HDFS:architecture}
+Big Data and Hadoop.
+\newblock Apache hadoop hdfs architecture, May 2013.
 
 \bibitem{coprocessor:detail}
 Nick Dimiduk and Amandeep Khurana.
@@ -76,8 +85,16 @@ Sayed Mahbub and Hasan Amiri.
 Carol McDonald.
 \newblock An in-depth look at the hbase architecture, Aug 2015.
 
+\bibitem{HDFS:secondarynamenode}
+Madhukara Pathak.
+\newblock Secondary namenode - what it really do?, Dec 2013.
+
 \bibitem{daniel:datastats}
 Daniel Price.
 \newblock Surprising facts and stats about the big data industry, March 2015.
+
+\bibitem{HDFS:namenodeanddatanode}
+Hadoop Team.
+\newblock Namenode and datanode - hadoop in real world, July 2015.
 
 \end{thebibliography}

@@ -18,6 +18,9 @@
 \contentsline {subsubsection}{\nonumberline Region Servers}{7}{section*.8}
 \contentsline {subsubsection}{\nonumberline Zookeeper}{8}{section*.9}
 \contentsline {section}{\numberline {2.5}Hadoop Distributed File System}{10}{section.2.5}
+\contentsline {subsection}{\numberline {2.5.1}NameNode}{10}{subsection.2.5.1}
+\contentsline {subsection}{\numberline {2.5.2}SecondaryNameNode}{10}{subsection.2.5.2}
+\contentsline {subsection}{\numberline {2.5.3}DataNode}{10}{subsection.2.5.3}
 \contentsline {section}{\numberline {2.6}Coprocessor}{11}{section.2.6}
 \contentsline {subsection}{\numberline {2.6.1}Observer coprocessor}{11}{subsection.2.6.1}
 \contentsline {subsection}{\numberline {2.6.2}Endpoint coprocessor}{15}{subsection.2.6.2}

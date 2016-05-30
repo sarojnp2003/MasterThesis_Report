@@ -197,7 +197,8 @@ As the name suggests, it is assumed that SecondaryNameNode is used as a backup n
 
 \subsection{DataNode}
 \label{DataNode}
-DataNodes are the slave nodes in the HDFS file system. There can be one or many data nodes in a HDFS cluster. The data nodes are responsible for storing the files in a HDFS cluster. 
+DataNodes are the slave nodes in the HDFS file system. There can be one or many data nodes in a HDFS cluster. The data nodes are responsible for storing the files in a HDFS cluster. When the DataNode is started, it sends information about all the files and blocks stored in that node to the NameNode\cite{HDFS:datanode}. DataNode, likewise NameNode, is also expected to fail at some point. But this doesnot let the HDFS cluster to go offline. In such scenario, NameNode will replicate the blocks and files managed by failed DataNode\cite{HDFS:namenodeanddatanode}. 
+
 
 \newpage
 \section{Coprocessor}
@@ -253,6 +254,29 @@ Endpoint coprocessor is similar to the Stored Procedures in RDBMS. This type of 
 \end{figure}
 
 When a request is invoked from a client, an instance of Batch.call() encapsulates the request invocation and the request is forwarded to coprocessorExec() method of HTableInterface. Then the coprocessorExec() handles the request invocation and distributes the request to all the Regions of the RegionServer. Assuming that no interruptions occurs and all the requests are completed, the results is then returned to client and aggregated\cite{coprocessor:detail}.
+
+\newpage
+\chapter{Related Work}
+In this chapter, we will discuss the existing research that have been made to maintain consistency between base table and view table.
+
+\section{Foundations}
+\label{Foundations}
+In the early 90's when relational database systems were popular and widely used, several research were conducted to optimize the query processing time. The idea of using materialized view when-ever possible to evaluate a query for the benefit of improved query processing was proposed more than a decade ago\cite{maintenance:optimizingqueries}. Several methods have been proposed for incremental view maintenance in the past\cite{blakeley:efficiently, gupta:maintaining, agrawal:efficient}.
+
+In\cite{incremental:materializedviews}, the researchers have investigated the problem of incremental maintenance of a materialized view. The researchers in paper\cite{incremental:materializedviews} have proposed an auxiliary relations to reduce the cost of view maintenance. They proposed a view that can be represented by an operator tree\cite{database:concepts} where leaf nodes represented database relations and non-leaf nodes represented relational algebraic operations. An auxiliary relation was maintained for each node, and the key of auxiliary relations is a foreign key that matched the primary key of each relation, thus maintaining referential integrity between auxiliary relations and base relations\cite{database:concepts}. These auxiliary relations are also changed in response to the base relations changes.
+
+In paper \cite{incrementalmaintenance:materializedviews}, the researchers have demonstrated an algorithm for incremental view maintenance based on graph-based data model and query language Lorel developed at Stanford. Their algorithm produces a set of queries that computes the changes to be made to the view table based on the changes to the base table. Researchers proposed a view specification extension to Lorel query language\cite{incrementalmaintenance:materializedviews} that introduced two objects in the view model: $select-from-where$ and $with$. The $select-from-where$ model specified the primary objects imported to the view and the later one $with$ model specified paths from primary objects to the adjunct objects\cite{incrementalmaintenance:materializedviews}. Their algorithm generates a set of maintenance statements for a given view and a database object, evaluates the updates on the database to generate new set of view updates and finally installs the updates in the view\cite{incrementalmaintenance:materializedviews}.
+
+In paper \cite{maintenance:materializedviews}, the researchers have classified four dimensions along which the view maintenance problems has to be studied. 
+\begin{itemize}
+	\item Information Dimension: This dimension deals with the amount of information available for view maintenance. Some of the prior information regarding integrity constraints and keys, access to materialized views has to be known before developing an algorithm for incremental maintenance.
+	
+	\item Modification Dimension: This dimension deals with problem statements related to modification of a system. Some prior knowledge has to be acquired such as set of what modifications can be handled by a view maintenance algorithm, how update tuples are handled, are they handled directly or are they modeled as deletion followed by insertion tuples.
+	
+	\item Language Dimension: 
+	\item Instance Dimension:
+\end{itemize}
+
 
 
 \newpage

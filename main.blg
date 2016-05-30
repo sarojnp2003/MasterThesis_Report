@@ -3,84 +3,94 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: main.aux
 The style file: plain.bst
 Database file #1: bibliography/literature.bib
+You're missing a field name---line 167 of file bibliography/literature.bib
+ :  month = {},
+ :             ,
+I'm skipping whatever remains of this entry
 Warning--entry type for "daniel:datastats" isn't style-file defined
---line 1013 of file bibliography/literature.bib
+--line 551 of file bibliography/literature.bib
 Warning--entry type for "matt:rdb" isn't style-file defined
---line 1031 of file bibliography/literature.bib
+--line 569 of file bibliography/literature.bib
 Warning--entry type for "materializedview:oracle" isn't style-file defined
---line 1049 of file bibliography/literature.bib
+--line 587 of file bibliography/literature.bib
 Warning--entry type for "coprocessor:types" isn't style-file defined
---line 1067 of file bibliography/literature.bib
+--line 605 of file bibliography/literature.bib
 Warning--entry type for "hbase:coprocessors" isn't style-file defined
---line 1085 of file bibliography/literature.bib
+--line 623 of file bibliography/literature.bib
 Warning--entry type for "loading:coprocessors" isn't style-file defined
---line 1103 of file bibliography/literature.bib
+--line 641 of file bibliography/literature.bib
 Warning--entry type for "hbase:site" isn't style-file defined
---line 1121 of file bibliography/literature.bib
+--line 659 of file bibliography/literature.bib
 Warning--entry type for "relational:dbs" isn't style-file defined
---line 1139 of file bibliography/literature.bib
+--line 677 of file bibliography/literature.bib
 Warning--entry type for "hbase:architecture" isn't style-file defined
---line 1157 of file bibliography/literature.bib
+--line 695 of file bibliography/literature.bib
 Warning--entry type for "hbase:zookeeper" isn't style-file defined
---line 1175 of file bibliography/literature.bib
+--line 713 of file bibliography/literature.bib
 Warning--entry type for "hbase:insights" isn't style-file defined
---line 1193 of file bibliography/literature.bib
+--line 731 of file bibliography/literature.bib
 Warning--entry type for "hadoop:architecture" isn't style-file defined
---line 1211 of file bibliography/literature.bib
+--line 749 of file bibliography/literature.bib
 Warning--entry type for "HDFS:architecture" isn't style-file defined
---line 1229 of file bibliography/literature.bib
+--line 767 of file bibliography/literature.bib
+Warning--entry type for "HDFS:datanode" isn't style-file defined
+--line 785 of file bibliography/literature.bib
 Warning--entry type for "HDFS:namenodeanddatanode" isn't style-file defined
---line 1247 of file bibliography/literature.bib
+--line 803 of file bibliography/literature.bib
 Warning--entry type for "HDFS:secondarynamenode" isn't style-file defined
---line 1265 of file bibliography/literature.bib
+--line 821 of file bibliography/literature.bib
 Warning--to sort, need author or key in loading:coprocessors
 Warning--to sort, need author or key in hbase:site
 Warning--empty journal in incrementalmaintenance:materializedviews
+Warning--empty journal in maintenance:optimizingqueries
 Warning--empty journal in bigdata:analysis
 Warning--empty journal in coprocessor:detail
 Warning--empty journal in hbase:essential
 Warning--empty journal in maintenance:materializedviews
 Warning--empty journal in coprocessor:coprocessor
 Warning--empty journal in cloudera:instandupg
-You've used 22 entries,
+Warning--empty journal in incremental:materializedviews
+Warning--empty journal in database:concepts
+Warning--empty year in database:concepts
+You've used 29 entries,
             2118 wiz_defined-function locations,
-            582 strings with 5975 characters,
-and the built_in function-call counts, 5138 in all, are:
-= -- 450
-> -- 231
+            619 strings with 6865 characters,
+and the built_in function-call counts, 7386 in all, are:
+= -- 664
+> -- 356
 < -- 2
-+ -- 96
-- -- 72
-* -- 266
-:= -- 840
-add.period$ -- 49
-call.type$ -- 22
-change.case$ -- 102
++ -- 145
+- -- 114
+* -- 448
+:= -- 1225
+add.period$ -- 69
+call.type$ -- 29
+change.case$ -- 144
 chr.to.int$ -- 0
-cite$ -- 31
-duplicate$ -- 192
-empty$ -- 474
-format.name$ -- 72
-if$ -- 1086
+cite$ -- 42
+duplicate$ -- 263
+empty$ -- 635
+format.name$ -- 114
+if$ -- 1529
 int.to.chr$ -- 0
-int.to.str$ -- 22
-missing$ -- 7
-newline$ -- 96
-num.names$ -- 40
-pop$ -- 193
+int.to.str$ -- 29
+missing$ -- 13
+newline$ -- 130
+num.names$ -- 54
+pop$ -- 238
 preamble$ -- 1
-purify$ -- 80
+purify$ -- 115
 quote$ -- 0
-skip$ -- 190
+skip$ -- 240
 stack$ -- 0
-substring$ -- 145
-swap$ -- 29
+substring$ -- 274
+swap$ -- 33
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 88
-warning$ -- 9
-while$ -- 43
-width$ -- 24
-write$ -- 184
-(There were 24 warnings)
+type$ -- 116
+warning$ -- 13
+while$ -- 65
+width$ -- 31
+write$ -- 253
+(There was 1 error message)

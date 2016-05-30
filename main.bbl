@@ -13,6 +13,11 @@ Serge Abitebouly, Jason McHughz, Michael Rysz, Vasilis Vassalosz, and Janet~L.
   data.
 \newblock 1998.
 
+\bibitem{agrawal:efficient}
+D.~Agrawal, A.~El~Abbadi, A.~Singh, and T.~Yurek.
+\newblock Efficient view maintenance at data warehouses.
+\newblock {\em SIGMOD Rec.}, 26(2):417--427, June 1997.
+
 \bibitem{matt:rdb}
 Matt Allen.
 \newblock Relational databases are not designed for scale, November 2015.
@@ -21,10 +26,20 @@ Matt Allen.
 GAURAV BHARDWAJ.
 \newblock The how to of hbase coprocessors, Apr 2014.
 
+\bibitem{blakeley:efficiently}
+Jose~A. Blakeley, Per-Ake Larson, and Frank~Wm Tompa.
+\newblock Efficiently updating materialized views.
+\newblock {\em SIGMOD Rec.}, 15(2):61--71, June 1986.
+
 \bibitem{hadoop:architecture}
 Robert Chansler, Hairong Kuang, Sanjay Radia, Konstantin Shvachko, and Suresh
   Srinivas.
 \newblock The hadoop distributed file system, 2011.
+
+\bibitem{maintenance:optimizingqueries}
+Sura~jit Chaudhuri, Ravi Krishnamurthy, Spyros Potamianosz, and Kyuseok Shim.
+\newblock Optimizing queries with materialized views.
+\newblock June 1995.
 
 \bibitem{materializedview:oracle}
 Oracle Corporation.
@@ -59,6 +74,11 @@ Ashish Gupta and Inderpal~Singh Mumick.
   applications.
 \newblock June 1995.
 
+\bibitem{gupta:maintaining}
+Ashish Gupta, Inderpal~Singh Mumick, and V.~S. Subrahmanian.
+\newblock Maintaining views incrementally.
+\newblock {\em SIGMOD Rec.}, 22(2):157--166, June 1993.
+
 \bibitem{coprocessor:coprocessor}
 Dan Han and Eleni Stroulia.
 \newblock Hgrid: A data model for large geospatial data sets in hbase.
@@ -85,6 +105,15 @@ Sayed Mahbub and Hasan Amiri.
 Carol McDonald.
 \newblock An in-depth look at the hbase architecture, Aug 2015.
 
+\bibitem{HDFS:datanode}
+Rohit Menon.
+\newblock Introducing hadoop - part ii, Jan 2013.
+
+\bibitem{incremental:materializedviews}
+Mukesh Mohania, Shin'ichi Konomi, and Yahiko Kambayashi.
+\newblock Incremental maintenance of materialized views.
+\newblock 1308:551--560, June 2005.
+
 \bibitem{HDFS:secondarynamenode}
 Madhukara Pathak.
 \newblock Secondary namenode - what it really do?, Dec 2013.
@@ -92,6 +121,11 @@ Madhukara Pathak.
 \bibitem{daniel:datastats}
 Daniel Price.
 \newblock Surprising facts and stats about the big data industry, March 2015.
+
+\bibitem{database:concepts}
+Abraham Silberschatz, Henry~F. Korth, and Shashank Sudarshan.
+\newblock Database system concepts.
+\newblock 4.
 
 \bibitem{HDFS:namenodeanddatanode}
 Hadoop Team.

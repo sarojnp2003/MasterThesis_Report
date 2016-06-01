@@ -22,9 +22,9 @@
 \contentsline {subsection}{\numberline {2.6.1}NameNode}{11}{subsection.2.6.1}
 \contentsline {subsection}{\numberline {2.6.2}SecondaryNameNode}{11}{subsection.2.6.2}
 \contentsline {subsection}{\numberline {2.6.3}DataNode}{11}{subsection.2.6.3}
-\contentsline {section}{\numberline {2.7}Coprocessor}{13}{section.2.7}
-\contentsline {subsection}{\numberline {2.7.1}Observer coprocessor}{13}{subsection.2.7.1}
-\contentsline {subsection}{\numberline {2.7.2}Endpoint coprocessor}{17}{subsection.2.7.2}
+\contentsline {section}{\numberline {2.7}Coprocessor}{12}{section.2.7}
+\contentsline {subsection}{\numberline {2.7.1}Observer coprocessor}{12}{subsection.2.7.1}
+\contentsline {subsection}{\numberline {2.7.2}Endpoint coprocessor}{16}{subsection.2.7.2}
 \contentsline {chapter}{\numberline {3}Related Work}{19}{chapter.3}
 \contentsline {section}{\numberline {3.1}Foundations}{19}{section.3.1}
 \contentsline {chapter}{\numberline {4}Implementation}{21}{chapter.4}
@@ -51,5 +51,6 @@
 \contentsline {subsubsection}{\nonumberline Existing row is deleted}{36}{section*.32}
 \contentsline {subsection}{\numberline {4.2.3}Join and Selection}{36}{subsection.4.2.3}
 \contentsline {chapter}{\numberline {5}Discussion and Conclusion}{37}{chapter.5}
-\contentsline {part}{Appendix}{41}{part*.34}
-\contentsline {chapter}{\nonumberline Bibliography}{41}{chapter*.35}
+\contentsline {chapter}{\numberline {6}Future Work}{39}{chapter.6}
+\contentsline {part}{Appendix}{43}{part*.34}
+\contentsline {chapter}{\nonumberline Bibliography}{43}{chapter*.35}

@@ -139,8 +139,8 @@ HBase is built on top of Hadoop and Zookeeper\cite{coprocessor:detail}. Both Had
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{HBase}
-	\caption{HBase Table}
-	\label{fig:hbasetable}
+	\caption{HBase}
+	\label{fig:HBase}
 \end{figure}
 
 \newpage
@@ -206,7 +206,6 @@ As the name suggests, it is assumed that SecondaryNameNode is used as a backup n
 DataNodes are the slave nodes in the HDFS file system. There can be one or many data nodes in a HDFS cluster. The data nodes are responsible for storing the files in a HDFS cluster. When the DataNode is started, it sends information about all the files and blocks stored in that node to the NameNode\cite{HDFS:datanode}. DataNode, likewise NameNode, is also expected to fail at some point. But this doesnot let the HDFS cluster to go offline. In such scenario, NameNode will replicate the blocks and files managed by failed DataNode\cite{HDFS:namenodeanddatanode}. 
 
 
-\newpage
 \section{Coprocessor}
 \label{sec:coprocessor}
 
@@ -541,6 +540,9 @@ This approach is similar to approach described in subsection \ref{subsec:joinand
 
 \newpage
 \chapter{Discussion and Conclusion}
+
+\newpage
+\chapter{Future Work}
 
 
 		% ---------------------------------------------------------------------------

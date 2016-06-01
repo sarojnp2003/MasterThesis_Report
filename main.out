@@ -2,33 +2,34 @@
 \BOOKMARK [0][-]{section*.4}{Abstract}{}% 2
 \BOOKMARK [0][-]{chapter.1}{Introduction}{}% 3
 \BOOKMARK [0][-]{chapter.2}{Background}{}% 4
-\BOOKMARK [1][-]{section.2.1}{Materialized Views}{chapter.2}% 5
-\BOOKMARK [1][-]{section.2.2}{View Maintenance}{chapter.2}% 6
-\BOOKMARK [1][-]{section.2.3}{Incremental Maintenance of Materialized View}{chapter.2}% 7
-\BOOKMARK [2][-]{subsection.2.3.1}{Aggregation}{section.2.3}% 8
-\BOOKMARK [2][-]{subsection.2.3.2}{Join and Aggregation}{section.2.3}% 9
-\BOOKMARK [2][-]{subsection.2.3.3}{Join and Selection}{section.2.3}% 10
-\BOOKMARK [1][-]{section.2.4}{HBase}{chapter.2}% 11
-\BOOKMARK [2][-]{subsection.2.4.1}{HBase Architecture}{section.2.4}% 12
-\BOOKMARK [1][-]{section.2.5}{Hadoop Distributed File System}{chapter.2}% 13
-\BOOKMARK [2][-]{subsection.2.5.1}{NameNode}{section.2.5}% 14
-\BOOKMARK [2][-]{subsection.2.5.2}{SecondaryNameNode}{section.2.5}% 15
-\BOOKMARK [2][-]{subsection.2.5.3}{DataNode}{section.2.5}% 16
-\BOOKMARK [1][-]{section.2.6}{Coprocessor}{chapter.2}% 17
-\BOOKMARK [2][-]{subsection.2.6.1}{Observer coprocessor}{section.2.6}% 18
-\BOOKMARK [2][-]{subsection.2.6.2}{Endpoint coprocessor}{section.2.6}% 19
-\BOOKMARK [0][-]{chapter.3}{Related Work}{}% 20
-\BOOKMARK [1][-]{section.3.1}{Foundations}{chapter.3}% 21
-\BOOKMARK [0][-]{chapter.4}{Implementation}{}% 22
-\BOOKMARK [1][-]{section.4.1}{Prerequisite}{chapter.4}% 23
-\BOOKMARK [2][-]{subsection.4.1.1}{Static Loading of coprocessor}{section.4.1}% 24
-\BOOKMARK [2][-]{subsection.4.1.2}{Static Unloading of coprocesssor}{section.4.1}% 25
-\BOOKMARK [2][-]{subsection.4.1.3}{Dynamic Loading of coprocessor}{section.4.1}% 26
-\BOOKMARK [2][-]{subsection.4.1.4}{Dynamic Unloading of coprocessor}{section.4.1}% 27
-\BOOKMARK [1][-]{section.4.2}{Proposed Method}{chapter.4}% 28
-\BOOKMARK [2][-]{subsection.4.2.1}{Aggregation}{section.4.2}% 29
-\BOOKMARK [2][-]{subsection.4.2.2}{Join and Aggregation}{section.4.2}% 30
-\BOOKMARK [2][-]{subsection.4.2.3}{Join and Selection}{section.4.2}% 31
-\BOOKMARK [0][-]{chapter.5}{Discussion and Conclusion}{}% 32
-\BOOKMARK [-1][]{part*.34}{Appendix}{}% 33
-\BOOKMARK [0][-]{chapter*.35}{Bibliography}{part*.34}% 34
+\BOOKMARK [1][-]{section.2.1}{Views}{chapter.2}% 5
+\BOOKMARK [1][-]{section.2.2}{Materialized Views}{chapter.2}% 6
+\BOOKMARK [1][-]{section.2.3}{View Maintenance}{chapter.2}% 7
+\BOOKMARK [1][-]{section.2.4}{Incremental Maintenance of Materialized View}{chapter.2}% 8
+\BOOKMARK [2][-]{subsection.2.4.1}{Aggregation}{section.2.4}% 9
+\BOOKMARK [2][-]{subsection.2.4.2}{Join and Aggregation}{section.2.4}% 10
+\BOOKMARK [2][-]{subsection.2.4.3}{Join and Selection}{section.2.4}% 11
+\BOOKMARK [1][-]{section.2.5}{HBase}{chapter.2}% 12
+\BOOKMARK [2][-]{subsection.2.5.1}{HBase Architecture}{section.2.5}% 13
+\BOOKMARK [1][-]{section.2.6}{Hadoop Distributed File System}{chapter.2}% 14
+\BOOKMARK [2][-]{subsection.2.6.1}{NameNode}{section.2.6}% 15
+\BOOKMARK [2][-]{subsection.2.6.2}{SecondaryNameNode}{section.2.6}% 16
+\BOOKMARK [2][-]{subsection.2.6.3}{DataNode}{section.2.6}% 17
+\BOOKMARK [1][-]{section.2.7}{Coprocessor}{chapter.2}% 18
+\BOOKMARK [2][-]{subsection.2.7.1}{Observer coprocessor}{section.2.7}% 19
+\BOOKMARK [2][-]{subsection.2.7.2}{Endpoint coprocessor}{section.2.7}% 20
+\BOOKMARK [0][-]{chapter.3}{Related Work}{}% 21
+\BOOKMARK [1][-]{section.3.1}{Foundations}{chapter.3}% 22
+\BOOKMARK [0][-]{chapter.4}{Implementation}{}% 23
+\BOOKMARK [1][-]{section.4.1}{Prerequisite}{chapter.4}% 24
+\BOOKMARK [2][-]{subsection.4.1.1}{Static Loading of coprocessor}{section.4.1}% 25
+\BOOKMARK [2][-]{subsection.4.1.2}{Static Unloading of coprocesssor}{section.4.1}% 26
+\BOOKMARK [2][-]{subsection.4.1.3}{Dynamic Loading of coprocessor}{section.4.1}% 27
+\BOOKMARK [2][-]{subsection.4.1.4}{Dynamic Unloading of coprocessor}{section.4.1}% 28
+\BOOKMARK [1][-]{section.4.2}{Proposed Method}{chapter.4}% 29
+\BOOKMARK [2][-]{subsection.4.2.1}{Aggregation}{section.4.2}% 30
+\BOOKMARK [2][-]{subsection.4.2.2}{Join and Aggregation}{section.4.2}% 31
+\BOOKMARK [2][-]{subsection.4.2.3}{Join and Selection}{section.4.2}% 32
+\BOOKMARK [0][-]{chapter.5}{Discussion and Conclusion}{}% 33
+\BOOKMARK [-1][]{part*.34}{Appendix}{}% 34
+\BOOKMARK [0][-]{chapter*.35}{Bibliography}{part*.34}% 35

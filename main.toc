@@ -6,24 +6,25 @@
 \contentsline {chapter}{Abstract}{ix}{section*.4}
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
 \contentsline {chapter}{\numberline {2}Background}{3}{chapter.2}
-\contentsline {section}{\numberline {2.1}Materialized Views}{3}{section.2.1}
-\contentsline {section}{\numberline {2.2}View Maintenance}{3}{section.2.2}
-\contentsline {section}{\numberline {2.3}Incremental Maintenance of Materialized View}{3}{section.2.3}
-\contentsline {subsection}{\numberline {2.3.1}Aggregation}{4}{subsection.2.3.1}
-\contentsline {subsection}{\numberline {2.3.2}Join and Aggregation}{4}{subsection.2.3.2}
-\contentsline {subsection}{\numberline {2.3.3}Join and Selection}{4}{subsection.2.3.3}
-\contentsline {section}{\numberline {2.4}HBase}{5}{section.2.4}
-\contentsline {subsection}{\numberline {2.4.1}HBase Architecture}{7}{subsection.2.4.1}
-\contentsline {subsubsection}{\nonumberline HMaster}{7}{section*.7}
-\contentsline {subsubsection}{\nonumberline Region Servers}{7}{section*.8}
-\contentsline {subsubsection}{\nonumberline Zookeeper}{8}{section*.9}
-\contentsline {section}{\numberline {2.5}Hadoop Distributed File System}{10}{section.2.5}
-\contentsline {subsection}{\numberline {2.5.1}NameNode}{10}{subsection.2.5.1}
-\contentsline {subsection}{\numberline {2.5.2}SecondaryNameNode}{10}{subsection.2.5.2}
-\contentsline {subsection}{\numberline {2.5.3}DataNode}{10}{subsection.2.5.3}
-\contentsline {section}{\numberline {2.6}Coprocessor}{12}{section.2.6}
-\contentsline {subsection}{\numberline {2.6.1}Observer coprocessor}{12}{subsection.2.6.1}
-\contentsline {subsection}{\numberline {2.6.2}Endpoint coprocessor}{16}{subsection.2.6.2}
+\contentsline {section}{\numberline {2.1}Views}{3}{section.2.1}
+\contentsline {section}{\numberline {2.2}Materialized Views}{3}{section.2.2}
+\contentsline {section}{\numberline {2.3}View Maintenance}{4}{section.2.3}
+\contentsline {section}{\numberline {2.4}Incremental Maintenance of Materialized View}{4}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Aggregation}{4}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}Join and Aggregation}{4}{subsection.2.4.2}
+\contentsline {subsection}{\numberline {2.4.3}Join and Selection}{5}{subsection.2.4.3}
+\contentsline {section}{\numberline {2.5}HBase}{6}{section.2.5}
+\contentsline {subsection}{\numberline {2.5.1}HBase Architecture}{8}{subsection.2.5.1}
+\contentsline {subsubsection}{\nonumberline HMaster}{8}{section*.7}
+\contentsline {subsubsection}{\nonumberline Region Servers}{8}{section*.8}
+\contentsline {subsubsection}{\nonumberline Zookeeper}{9}{section*.9}
+\contentsline {section}{\numberline {2.6}Hadoop Distributed File System}{11}{section.2.6}
+\contentsline {subsection}{\numberline {2.6.1}NameNode}{11}{subsection.2.6.1}
+\contentsline {subsection}{\numberline {2.6.2}SecondaryNameNode}{11}{subsection.2.6.2}
+\contentsline {subsection}{\numberline {2.6.3}DataNode}{11}{subsection.2.6.3}
+\contentsline {section}{\numberline {2.7}Coprocessor}{13}{section.2.7}
+\contentsline {subsection}{\numberline {2.7.1}Observer coprocessor}{13}{subsection.2.7.1}
+\contentsline {subsection}{\numberline {2.7.2}Endpoint coprocessor}{17}{subsection.2.7.2}
 \contentsline {chapter}{\numberline {3}Related Work}{19}{chapter.3}
 \contentsline {section}{\numberline {3.1}Foundations}{19}{section.3.1}
 \contentsline {chapter}{\numberline {4}Implementation}{21}{chapter.4}

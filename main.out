@@ -30,7 +30,14 @@
 \BOOKMARK [2][-]{subsection.4.2.1}{Aggregation}{section.4.2}% 30
 \BOOKMARK [2][-]{subsection.4.2.2}{Join and Aggregation}{section.4.2}% 31
 \BOOKMARK [2][-]{subsection.4.2.3}{Join and Selection}{section.4.2}% 32
-\BOOKMARK [0][-]{chapter.5}{Discussion and Conclusion}{}% 33
-\BOOKMARK [0][-]{chapter.6}{Future Work}{}% 34
-\BOOKMARK [-1][]{part*.34}{Appendix}{}% 35
-\BOOKMARK [0][-]{chapter*.35}{Bibliography}{part*.34}% 36
+\BOOKMARK [0][-]{chapter.5}{Evaluation}{}% 33
+\BOOKMARK [1][-]{section.5.1}{Experiment Setup \(Pseudo Distributed Mode\)}{chapter.5}% 34
+\BOOKMARK [2][-]{subsection.5.1.1}{Deployment}{section.5.1}% 35
+\BOOKMARK [2][-]{subsection.5.1.2}{Table Configuration}{section.5.1}% 36
+\BOOKMARK [2][-]{subsection.5.1.3}{Control Parameter}{section.5.1}% 37
+\BOOKMARK [1][-]{section.5.2}{Experiment 1 \(Aggregation\)}{chapter.5}% 38
+\BOOKMARK [2][-]{subsection.5.2.1}{View Re-computation vs Maintenance}{section.5.2}% 39
+\BOOKMARK [0][-]{chapter.6}{Discussion and Conclusion}{}% 40
+\BOOKMARK [0][-]{chapter.7}{Future Work}{}% 41
+\BOOKMARK [-1][]{part*.34}{Appendix}{}% 42
+\BOOKMARK [0][-]{chapter*.35}{Bibliography}{part*.34}% 43

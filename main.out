@@ -36,12 +36,25 @@
 \BOOKMARK [2][-]{subsection.5.1.2}{Table Configuration}{section.5.1}% 36
 \BOOKMARK [2][-]{subsection.5.1.3}{Control Parameter}{section.5.1}% 37
 \BOOKMARK [1][-]{section.5.2}{Experiment 1 \(Aggregation\)}{chapter.5}% 38
-\BOOKMARK [2][-]{subsection.5.2.1}{View Re-computation vs Maintenance}{section.5.2}% 39
-\BOOKMARK [2][-]{subsection.5.2.2}{Insert Records}{section.5.2}% 40
-\BOOKMARK [2][-]{subsection.5.2.3}{Update View Table}{section.5.2}% 41
+\BOOKMARK [2][-]{subsection.5.2.1}{Aggregation: View Re-computation vs Maintenance}{section.5.2}% 39
+\BOOKMARK [2][-]{subsection.5.2.2}{Aggregation: Insert Records}{section.5.2}% 40
+\BOOKMARK [2][-]{subsection.5.2.3}{Aggregation: Update View Table}{section.5.2}% 41
 \BOOKMARK [1][-]{section.5.3}{Experiment 2 \(Join and Aggregation\)}{chapter.5}% 42
 \BOOKMARK [2][-]{subsection.5.3.1}{Join and Aggregation: Insert records}{section.5.3}% 43
-\BOOKMARK [0][-]{chapter.6}{Discussion and Conclusion}{}% 44
-\BOOKMARK [0][-]{chapter.7}{Future Work}{}% 45
-\BOOKMARK [-1][]{part*.35}{Appendix}{}% 46
-\BOOKMARK [0][-]{chapter*.36}{Bibliography}{part*.35}% 47
+\BOOKMARK [2][-]{subsection.5.3.2}{Join and Aggregation: View Re-computation vs Maintenance}{section.5.3}% 44
+\BOOKMARK [2][-]{subsection.5.3.3}{Join and Aggregation: Insert Records}{section.5.3}% 45
+\BOOKMARK [2][-]{subsection.5.3.4}{Join and Aggregation: Update View Table}{section.5.3}% 46
+\BOOKMARK [1][-]{section.5.4}{Experiment 3 \(Join and Selection\)}{chapter.5}% 47
+\BOOKMARK [2][-]{subsection.5.4.1}{Join and Selection: Insert records}{section.5.4}% 48
+\BOOKMARK [2][-]{subsection.5.4.2}{Join and Selection: View Re-computation vs Maintenance}{section.5.4}% 49
+\BOOKMARK [2][-]{subsection.5.4.3}{Join and Selection: Insert Records}{section.5.4}% 50
+\BOOKMARK [2][-]{subsection.5.4.4}{Join and Selection: Update View Table}{section.5.4}% 51
+\BOOKMARK [1][-]{section.5.5}{Experiment Setup \(Fully Distributed Mode\)}{chapter.5}% 52
+\BOOKMARK [2][-]{subsection.5.5.1}{Deployment}{section.5.5}% 53
+\BOOKMARK [2][-]{subsection.5.5.2}{Table Configuration}{section.5.5}% 54
+\BOOKMARK [2][-]{subsection.5.5.3}{Control Parameter}{section.5.5}% 55
+\BOOKMARK [1][-]{section.5.6}{Experiment 4 \(Aggregation\)}{chapter.5}% 56
+\BOOKMARK [0][-]{chapter.6}{Discussion and Conclusion}{}% 57
+\BOOKMARK [0][-]{chapter.7}{Future Work}{}% 58
+\BOOKMARK [-1][]{part*.37}{Appendix}{}% 59
+\BOOKMARK [0][-]{chapter*.38}{Bibliography}{part*.37}% 60

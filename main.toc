@@ -56,12 +56,25 @@
 \contentsline {subsection}{\numberline {5.1.2}Table Configuration}{37}{subsection.5.1.2}
 \contentsline {subsection}{\numberline {5.1.3}Control Parameter}{38}{subsection.5.1.3}
 \contentsline {section}{\numberline {5.2}Experiment 1 (Aggregation)}{38}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}View Re-computation vs Maintenance}{38}{subsection.5.2.1}
-\contentsline {subsection}{\numberline {5.2.2}Insert Records}{40}{subsection.5.2.2}
-\contentsline {subsection}{\numberline {5.2.3}Update View Table}{40}{subsection.5.2.3}
+\contentsline {subsection}{\numberline {5.2.1}Aggregation: View Re-computation vs Maintenance}{38}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}Aggregation: Insert Records}{40}{subsection.5.2.2}
+\contentsline {subsection}{\numberline {5.2.3}Aggregation: Update View Table}{40}{subsection.5.2.3}
 \contentsline {section}{\numberline {5.3}Experiment 2 (Join and Aggregation)}{40}{section.5.3}
 \contentsline {subsection}{\numberline {5.3.1}Join and Aggregation: Insert records}{41}{subsection.5.3.1}
-\contentsline {chapter}{\numberline {6}Discussion and Conclusion}{43}{chapter.6}
-\contentsline {chapter}{\numberline {7}Future Work}{45}{chapter.7}
-\contentsline {part}{Appendix}{49}{part*.35}
-\contentsline {chapter}{\nonumberline Bibliography}{49}{chapter*.36}
+\contentsline {subsection}{\numberline {5.3.2}Join and Aggregation: View Re-computation vs Maintenance}{41}{subsection.5.3.2}
+\contentsline {subsection}{\numberline {5.3.3}Join and Aggregation: Insert Records}{41}{subsection.5.3.3}
+\contentsline {subsection}{\numberline {5.3.4}Join and Aggregation: Update View Table}{41}{subsection.5.3.4}
+\contentsline {section}{\numberline {5.4}Experiment 3 (Join and Selection)}{43}{section.5.4}
+\contentsline {subsection}{\numberline {5.4.1}Join and Selection: Insert records}{43}{subsection.5.4.1}
+\contentsline {subsection}{\numberline {5.4.2}Join and Selection: View Re-computation vs Maintenance}{43}{subsection.5.4.2}
+\contentsline {subsection}{\numberline {5.4.3}Join and Selection: Insert Records}{43}{subsection.5.4.3}
+\contentsline {subsection}{\numberline {5.4.4}Join and Selection: Update View Table}{43}{subsection.5.4.4}
+\contentsline {section}{\numberline {5.5}Experiment Setup (Fully Distributed Mode)}{44}{section.5.5}
+\contentsline {subsection}{\numberline {5.5.1}Deployment}{44}{subsection.5.5.1}
+\contentsline {subsection}{\numberline {5.5.2}Table Configuration}{44}{subsection.5.5.2}
+\contentsline {subsection}{\numberline {5.5.3}Control Parameter}{46}{subsection.5.5.3}
+\contentsline {section}{\numberline {5.6}Experiment 4 (Aggregation)}{46}{section.5.6}
+\contentsline {chapter}{\numberline {6}Discussion and Conclusion}{47}{chapter.6}
+\contentsline {chapter}{\numberline {7}Future Work}{49}{chapter.7}
+\contentsline {part}{Appendix}{53}{part*.37}
+\contentsline {chapter}{\nonumberline Bibliography}{53}{chapter*.38}

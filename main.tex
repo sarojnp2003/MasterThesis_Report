@@ -592,13 +592,13 @@ In the first set, we insert 10.000 rows in the base table and we compute interme
 	
 \end{figure} 
 \newpage
-In the figure \ref{sec:AggrExpStandalone}, $Fig(a)$ shows the time taken to insert records in view table vs update view table incrementally whenever there is an update in the base table. This experiment is run in three different datasets and in each datasets we know that updating view table takes significantly less amount of time than recomputing view table. Fig(d) shows shows the performance metrics calculated in recomputing base table vs incremental maintenance. In the x-axis, we show types of client operations performed in base table and in y-axis we show performance matrix in percent. We calculate performance matrix using the formula,
+In the figure \ref{sec:AggrExpStandalone}, $Fig(a)$ shows the time taken to insert records in view table vs update view table incrementally whenever there is an update in the base table. This experiment is run in three different datasets and in each datasets we know that updating view table takes significantly less amount of time than recomputing view table. Fig(d) shows shows the performance calculated in recomputing base table vs incremental maintenance. In the x-axis, we show types of client operations performed in base table and in y-axis we show performance optimized in percent. We calculate performance using the formula,
 \newline
 \begin{equation}
 \text{performance} = \frac{\text{time taken to compute view table} - \text{incremental update}}{\text{time taken to compute view table}} \times 100
 \end{equation}
 	 
-One of the reasons for this performance optimization is that when recomputing a base table, we first have to perform read operation on base table and then write operation on view table. In incremental maintenance approach, only write operations is performed for every rows affected by the client operation on base table. The other reason is that the no. of rows updated in view table is less in comparison to the total no of rows in the base table.
+One of the reasons for this performance optimization is that when recomputing a view table, we first have to perform read operation on base table and then write operation on view table. In incremental maintenance approach, only write operation is performed for every rows affected by the client operation on base table. The other reason is that the no. of rows updated in view table are less in comparison to the total no of rows in the base table.
 
 \subsection{Aggregation: Insert Records}
 \label{Insert Records Aggr}

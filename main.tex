@@ -578,27 +578,31 @@ There are certain control parameters defined for our experiments to determine pe
 
 \section{Experiment 1 (Aggregation)}
 \label{(sec:AggrExp)}
-For $Aggregation$ view type, we have performed three different types of experiments. The first experiment $View$ $Re$-$computation$ $vs$ $Maintenance$ is performed on three different datasets on a single region and the remaining two experiments are performed on fixed dataset of 1.00.000 records with varying number of regions on a region server. 
+To evaluate the performance of $Aggregation$ view type, we perform three different experiments. In the first experiment, we compare the single region execution time for $View\Re$-$computation$ and $Incremental \  maintenance$ on three different datasets. Next, we perform the same experiments on a dataset with 100,000 records by varying the number of regions on a single region server.
  
 \subsection{Aggregation: View Re-computation vs Maintenance}
-In the first set, we insert 10.000 rows in the base table and we compute intermediate table and view tables accordingly. In the view table, we compute four different aggregation functions $Sum$, $Count$, $Min$ and $Max$. When client issues any update operation, either we re-compute view table from scratch and compute aggregation functions or we update view table incrementally. The graph shows time taken to re-compute view table vs time taken to update view table incrementally for each type of update operations. We conduct same experiment for 1.00.000 and 2.50.000 records. From the graph, we see that updating view table incrementally saves significant amount of time than re-computing view table for every client operation. The graph below shows time required in millisecond to recompute view table and incrementally update view table.
+% In the first set, we insert 10.000 rows in the base table and we compute intermediate table and view tables accordingly. In the view table, we compute four different aggregation functions $Sum$, $Count$, $Min$ and $Max$. When client issues any update operation, either we re-compute view table from scratch and compute aggregation functions or we update view table incrementally. The graph shows time taken to re-compute view table vs time taken to update view table incrementally for each type of update operations. We conduct same experiment for 1.00.000 and 2.50.000 records. From the graph, we see that updating view table incrementally saves significant amount of time than re-computing view table for every client operation. The graph below shows time required in millisecond to recompute view table and incrementally update view table.
 
+To evaluate ......, we first create a base table with 10,000 rows and generate corresponding intermediate and view tables. The view table consists of four different aggregations of the base table data, namely $Sum$, $Count$, $Min$ and $Max$. For operation in a base table, view table can be updated to reflect changes in two different ways, (a) re-compute (b) incremental update. In our experiments, we compare the execution time for these two methods. Further, we perform the experiments for 100,000 and 250,000 records. In our experiments, we report the execution time in milliseconds.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{Aggregation_exp_standalone}
 	\caption{Aggregation Experiment Standalone}
 	\label{sec:AggrExpStandalone}
-	
 \end{figure} 
 \newpage
-In the figure \ref{sec:AggrExpStandalone}, $Fig(a)$ shows the time taken to insert records in view table vs update view table incrementally whenever there is an update in the base table. This experiment is run in three different datasets and in each datasets we know that updating view table takes significantly less amount of time than recomputing view table. Fig(d) shows shows the performance calculated in recomputing base table vs incremental maintenance. In the x-axis, we show types of client operations performed in base table and in y-axis we show performance optimized in percent. We calculate performance using the formula,
+% In the figure \ref{sec:AggrExpStandalone}, $Fig(a)$ shows the time taken to insert records in view table vs update view table incrementally whenever there is an update in the base table. This experiment is run in three different datasets and in each datasets we know that updating view table takes significantly less amount of time than recomputing view table. Fig(d) shows shows the performance calculated in recomputing base table vs incremental maintenance. In the x-axis, we show types of client operations performed in base table and in y-axis we show performance optimized in percent. We calculate performance using the formula,
+In Figure..., we compare the time taken while inserting records using the above methods. In figure..., we observe that incremental update outperforms re-compute method by orders of magnitude. Further, In Fig...., we report the percentage improvement achieved by an incremental update for four different operations over the re-compute baseline. Here we observe that incremental method yields up to 88\% improvement over the baseline.
 \newline
 \begin{equation}
 \text{performance} = \frac{\text{time taken to compute view table} - \text{incremental update}}{\text{time taken to compute view table}} \times 100
 \end{equation}
 	 
-One of the reasons for this performance optimization is that when recomputing a view table, we first have to perform read operation on base table and then write operation on view table. In incremental maintenance approach, only write operation is performed for every rows affected by the client operation on base table. The other reason is that the no. of rows updated in view table are less in comparison to the total no of rows in the base table.
+% One of the reasons for this performance optimization is that when recomputing a view table, we first have to perform read operation on base table and then write operation on view table. In incremental maintenance approach, only write operation is performed for every rows affected by the client operation on base table. The other reason is that the no. of rows updated in view table are less in comparison to the total no of rows in the base table.
+The reason for the significant improvement in performance of incremental update over the baseline is due to read-write and recompute overhead.
+In the recompute method, we need to read the whole base table and
+reconstruct the view table. However, in the incremental method, we do not reconstruct the view table but only update the rows that are affected by the operation on the base table. 
 
 \subsection{Aggregation: Insert Records}
 \label{Insert Records Aggr}

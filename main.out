@@ -54,7 +54,20 @@
 \BOOKMARK [2][-]{subsection.5.5.2}{Table Configuration}{section.5.5}% 54
 \BOOKMARK [2][-]{subsection.5.5.3}{Control Parameter}{section.5.5}% 55
 \BOOKMARK [1][-]{section.5.6}{Experiment 4 \(Aggregation\)}{chapter.5}% 56
-\BOOKMARK [0][-]{chapter.6}{Discussion and Conclusion}{}% 57
-\BOOKMARK [0][-]{chapter.7}{Future Work}{}% 58
-\BOOKMARK [-1][]{part*.37}{Appendix}{}% 59
-\BOOKMARK [0][-]{chapter*.38}{Bibliography}{part*.37}% 60
+\BOOKMARK [2][-]{subsection.5.6.1}{Aggregation: View Re-computation vs Maintenance}{section.5.6}% 57
+\BOOKMARK [2][-]{subsection.5.6.2}{Aggregation: Insert Records}{section.5.6}% 58
+\BOOKMARK [2][-]{subsection.5.6.3}{Aggregation: Update View Table}{section.5.6}% 59
+\BOOKMARK [1][-]{section.5.7}{Experiment 5 \(Join and Aggregation\)}{chapter.5}% 60
+\BOOKMARK [2][-]{subsection.5.7.1}{Join and Aggregation: Insert records}{section.5.7}% 61
+\BOOKMARK [2][-]{subsection.5.7.2}{Join and Aggregation: View Re-computation vs Maintenance}{section.5.7}% 62
+\BOOKMARK [2][-]{subsection.5.7.3}{Join and Aggregation: Insert Records}{section.5.7}% 63
+\BOOKMARK [2][-]{subsection.5.7.4}{Join and Aggregation: Update View Table}{section.5.7}% 64
+\BOOKMARK [1][-]{section.5.8}{Experiment 6 \(Join and Selection\)}{chapter.5}% 65
+\BOOKMARK [2][-]{subsection.5.8.1}{Join and Selection: Insert records}{section.5.8}% 66
+\BOOKMARK [2][-]{subsection.5.8.2}{Join and Selection: View Re-computation vs Maintenance}{section.5.8}% 67
+\BOOKMARK [2][-]{subsection.5.8.3}{Join and Selection: Insert Records}{section.5.8}% 68
+\BOOKMARK [2][-]{subsection.5.8.4}{Join and Selection: Update View Table}{section.5.8}% 69
+\BOOKMARK [0][-]{chapter.6}{Discussion and Conclusion}{}% 70
+\BOOKMARK [0][-]{chapter.7}{Future Work}{}% 71
+\BOOKMARK [-1][]{part*.40}{Appendix}{}% 72
+\BOOKMARK [0][-]{chapter*.41}{Bibliography}{part*.40}% 73

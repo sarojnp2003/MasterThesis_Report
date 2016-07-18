@@ -58,12 +58,12 @@
 \BOOKMARK [2][-]{subsection.5.6.2}{Aggregation: Insert Records}{section.5.6}% 58
 \BOOKMARK [2][-]{subsection.5.6.3}{Aggregation: Update View Table}{section.5.6}% 59
 \BOOKMARK [1][-]{section.5.7}{Experiment 5 \(Join and Aggregation\)}{chapter.5}% 60
-\BOOKMARK [2][-]{subsection.5.7.1}{Join and Aggregation: Insert records}{section.5.7}% 61
+\BOOKMARK [2][-]{subsection.5.7.1}{Join and Aggregation: Compute base tables and view table}{section.5.7}% 61
 \BOOKMARK [2][-]{subsection.5.7.2}{Join and Aggregation: View Re-computation vs Maintenance}{section.5.7}% 62
 \BOOKMARK [2][-]{subsection.5.7.3}{Join and Aggregation: Insert Records}{section.5.7}% 63
 \BOOKMARK [2][-]{subsection.5.7.4}{Join and Aggregation: Update View Table}{section.5.7}% 64
 \BOOKMARK [1][-]{section.5.8}{Experiment 6 \(Join and Selection\)}{chapter.5}% 65
-\BOOKMARK [2][-]{subsection.5.8.1}{Join and Selection: Insert records}{section.5.8}% 66
+\BOOKMARK [2][-]{subsection.5.8.1}{Join and Selection: Compute base tables and view tables}{section.5.8}% 66
 \BOOKMARK [2][-]{subsection.5.8.2}{Join and Selection: View Re-computation vs Maintenance}{section.5.8}% 67
 \BOOKMARK [2][-]{subsection.5.8.3}{Join and Selection: Insert Records}{section.5.8}% 68
 \BOOKMARK [2][-]{subsection.5.8.4}{Join and Selection: Update View Table}{section.5.8}% 69

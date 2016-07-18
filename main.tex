@@ -729,7 +729,7 @@ From the Fig(a) and Fig(b), we proved that incremental maintenance takes less ti
 
 \subsection{Aggregation: Insert Records}
 \label{Insert Records Aggr Dist}
-In this experiment, we wanted to prove that splitting tables in multiple regions across multiple region servers in a cluster also improves the performance. We performed the experiment on a dataset with 100,000 records in a clustered environment. In the first scenario, we had one region in each of the region servers making three regions in total. First we inserted 1.00.000 records and compute intermediate and view table and noted the time take for each operation. We ran same experiment for two, three and four regions per region server and noted time take for each operation to be completed. We plotted a graph and from the Fig(c) in the figure \ref{sec:AggrExpDist}, we proved that having more regions yields to the better performance. The key reason for this performance optimization is having load balancer to evenly distribute load to all the available regions.
+In this experiment we wanted to prove that splitting tables in multiple regions across multiple region servers in a cluster also improves the performance. We performed the experiment on a dataset with 100,000 records in a clustered environment. In the first scenario, we had one region in each of the region servers making three regions in total. First we inserted 1.00.000 records and compute intermediate and view table and noted the time take for each operation. We ran same experiment for two, three and four regions per region server and noted time take for each operation to be completed. We plotted a graph and from the Fig(c) in the figure \ref{sec:AggrExpDist}, we proved that having more regions yields to the better performance. The key reason for this performance optimization is having load balancer to evenly distribute load to all the available regions.
 
 
 \subsection{Aggregation: Update View Table} 
@@ -738,23 +738,45 @@ In section \ref{Insert Records Aggr Dist}, we proved that we can improve perform
 
 \section{Experiment 5 (Join and Aggregation)}
 \label{(sec:Join and Aggregation Dist)} 
-For $Join$ \& $Aggregation$, we create two base tables as it involves k-kf joins, an intermediate table and a view table. We insert 2.000 rows in both the base table, apply k-fk joins and calculate sum for those joins and insert result in the view table. We then run experiments to see how we can improve performance as we split our tables in multiple regions across multiple region servers.
+For $Join$ \& $Aggregation$, we create two base tables as it involves k-kf joins and generate corresponding intermediate and view tables. We insert 2.000 rows in both the base table, apply k-fk joins and calculate sum for k-fk joins and insert result in the view table. We then run experiments to see how we can improve performance as we split our tables in multiple regions across multiple region servers.
 
-\subsection{Join and Aggregation: Insert records}
-\label{Join and Aggregation: Insert records Distributed}
-In this experiment, we insert 2.000 records in each of the base tables and apply k-fk join in the two base tables. First we run this experiment in a single region and see the number of rows generated in the view table after applying k-fk joins. We run this experiment for 2, 3 and 4 regions and split our tables accordingly. In the figure \ref{sec:JoinAggrExpStandalone}, Fig(a) shows the graph of no. of records inserted in view tables. We use this statistics for running other sub-experiments.
+\subsection{Join and Aggregation: Compute base tables and view table}
+\label{Join and Aggregation: Compute base tables and view table}
+In this experiment, we insert 2.000 records in both base tables. We then apply k-fk join and compute intermediate table and view table. We calculate sum based on the result of k-fk join and store it in the view table. In such case, we don't know the no. of rows generated based on the k-fk join so we analyze no. of rows generated as a benchmark for rest of the experiments. We pre-split tables into multiple regions and run the experiment for each of the scenarios. Based on the k-fk join on the base tables, we generated 1.53.000-1.55.000 rows in the view table.
+
+ %First we run this experiment in a single region and see the number of rows generated in the view table after applying k-fk joins. We run this experiment for 2, 3 and 4 regions and split our tables accordingly. In the figure \ref{sec:JoinAggrExpStandalone}, Fig(a) shows the graph of no. of records inserted in view tables. We use this statistics for running other sub-experiments.
 
 \subsection{Join and Aggregation: View Re-computation vs Maintenance}
 \label{Join and Aggregation: View Re-computation vs Maintenance Distributed}
-In this experiment, we wanted to show that by incrementally maintaining our view tables, we can increase the overall performance of the system. We ran this experiment on the basis of data gathered in sub-section \ref{Join and Aggregation: Insert records Standalone}. As a proof, we first ran this experiment on dataset of 1.53.761 records. From the graph \ref{sec:JoinAggrExpStandalone}, $Fig(b)$ shows the time required for re-computing view table vs time required to incrementally update view table. If we need to re-compute view table, in such scenario, we first need to perform read operation on the entire base table and then write operation in view table. Whereas in incremental maintenance, we only update the affected rows in view table. To ensure our hypothesis works, we ran our experiment on bigger dataset of 3.45.658 rows. From the experiment results, we proved that maintaining views incrementally is significantly less expensive than re-computing view table for every client request in base table.
+
+To evaluate performance in View Re-computation vs Maintenance, we first create two base tables with 2.000 rows and generate corresponding intermediate and view tables. The view table consists of a aggregation(sum) of k-fk join between the two base table data. We wanted to show that incrementally maintaining our view tables yields in significant improvement on the performance. To prove our assumption, we ran our experiment on the basis of rows generated in section \ref{Join and Aggregation: Compute base tables and view table}. From the Figure \ref{sec:JoinAggrExpDist}, Fig(a) shows time taken to re-compute view table vs time taken to incrementally update view table. Here we observe that incremental method yields up to 98\% improvement over the baseline. The reason for the significant improvement in performance of incremental update over the baseline is due to read-write and recompute overhead. In the re-compute method, we need to read the whole base table and
+reconstruct the view table. However, in the incremental method, we do not reconstruct the view table but only update the rows that are affected by the operation on the base table. 
+
 
 \subsection{Join and Aggregation: Insert Records}
 \label{Join and Aggregation: Insert Records Distributed}
-We ran this experiment on the basis of data collected in section \ref{Join and Aggregation: Insert records Standalone}. In this experiment, we split our tables into multiple regions, and we want to show that splitting table across multiple regions enhances performance of the system. From the graph \ref{sec:JoinAggrExpStandalone}, $Fig(c)$ shows that we were able to optimize performance by splitting tables into multiple regions. In x-axis we show no. of regions and in y-axis we show time taken in milliseconds to insert records in base table, intermediate table and view table.
+In this experiment we first create two base tables with 2.000 rows and generate corresponding intermediate and view tables. The view table consists of aggregation(sum) of k-fk join between the two base table data. In this experiment we wanted to prove that evenly distributing load to multiple regions can yield to a significant performance optimization. For that we evenly distributed base tables, intermediate table and a view table across all the regions on a multiple region servers.  
+To prove our assumption, we ran our experiment on the basis of rows generated in section \ref{Join and Aggregation: Compute base tables and view table}. In the x-axis, we showed no. of regions and in y-axis we showed time taken in millisecond to complete the operation. From the figure \ref{sec:JoinAggrExpDist}, Fig(c), we can see that splitting tables into multiple regions and using load balancing can significantly reduce operation time.
 
 \subsection{Join and Aggregation: Update View Table} 
 \label{Join and Aggr: Update View Table Distributed}
-In section \ref{Join and Aggregation: Insert Records Standalone}, we showed that client operation time can be reduced significantly if we split our tables across multiple regions. In this section,we ran an experiment to see how we are able to optimize performance if we split $View$ $Table$ across multiple regions. For that, we split $View$ $Table$ across multiple regions and ran this experiment. From the graph \ref{sec:JoinAggrExpStandalone}, $Fig(d)$ proved that we also can reduce operation time if we split $View$ $Table$ across multiple regions. In x-axis we show no. of regions and in y-axis we show time in milliseconds required to complete client operation. We ran this experiment on different types of client operations and for each operation we were able to decrease time taken to complete required operation.
+
+In section \ref{Join and Aggregation: Insert Records Distributed},  we proved that we can improve optimization if we split our tables in multiple regions across multiple region servers. In this experiment, we wanted to see how it affects the performance if we split $View$ $Table$ across multiple regions. For that, we split $View$ $Table$ across multiple regions and ran this experiment. 
+In the figure \ref{sec:JoinAggrExpDist}, $Fig(d)$, we show time taken to update view table incrementally in millisecond. In the first experiment set, we pre-split $View$ $Table$ into three regions. Then we evaluate time taken to update view table incrementally for each of the update operations on the base table. We run this experiment again after pre-splitting $view$ $table$ into multiple regions and evaluate time taken to update view table incrementally. From the figure \ref{sec:JoinAggrExpDist}, $Fig(d)$, we again proved that the more table is split into more no. of regions, the less time is required to update view table incrementally. 
+
+\section{Experiment 6 (Join and Selection)}
+\label{(sec:Join and Selection Exp Distributed)} 
+For $Join$ \& $Selection$, we create two base tables as it also involves k-kf joins, an intermediate table and a view table. We insert 3.000 rows in both the base table, apply k-fk joins and select values for those joins and insert result in the view table. We then run experiments to see how we can improve performance as we split our tables across multiple regions.
+
+\subsection{Join and Selection: Compute base tables and view tables}
+\label{Join and Selection: Compute base tables and view table}
+In this experiment, we insert 2.000 records in both base tables. We then apply k-fk join and compute intermediate table and view table. We then select values based on the result of k-fk join and store it in the view table. In such case, we don't know the no. of rows generated based on the k-fk join so we analyze no. of rows generated as a benchmark for rest of the experiments. We pre-split tables into multiple regions and run the experiment for each of the scenarios. Based on the k-fk join on the base tables, we generated 1.53.000-1.54.000 rows in the view table.
+
+\subsection{Join and Selection: View Re-computation vs Maintenance}
+\label{Join and Selection: View Re-computation vs Maintenance Distributed}
+
+To evaluate performance in View Re-computation vs Maintenance, we first create two base tables with 2.000 rows and generate corresponding intermediate and view tables. The view table consists of a selection of k-fk join between the two base table data. We wanted to show that incrementally maintaining our view tables yields in significant improvement on the performance. To prove our assumption, we ran our experiment on the basis of rows generated in section \ref{Join and Selection: Compute base tables and view table}. From the Figure \ref{sec:JoinSelExpDist}, Fig(a) shows time taken to re-compute view table vs time taken to incrementally update view table. Here we observe that incremental method yields up to 98\% improvement over the baseline. The reason for the significant improvement in performance of incremental update over the baseline is due to read-write and recompute overhead. In the re-compute method, we need to read the whole base table and
+reconstruct the view table. However, in the incremental method, we do not reconstruct the view table but only update the rows that are affected by the operation on the base table. 
 
 \begin{figure}
 	\centering
@@ -765,21 +787,19 @@ In section \ref{Join and Aggregation: Insert Records Standalone}, we showed that
 \end{figure} 
 \newpage
 
-\section{Experiment 6 (Join and Selection)}
-\label{(sec:Join and Selection Exp Distributed)} 
-For $Join$ \& $Selection$, we create two base tables as it also involves k-kf joins, an intermediate table and a view table. We insert 3.000 rows in both the base table, apply k-fk joins and select values for those joins and insert result in the view table. We then run experiments to see how we can improve performance as we split our tables across multiple regions.
 
-\subsection{Join and Selection: Insert records}
-\label{Join and Selection: Insert records Distributed}
-In this experiment, we insert 3.000 records in each of the base tables and apply k-fk join in the two base tables. First we run this experiment in a single region and see the number of rows generated in the view table after applying k-fk joins. We run this experiment for 2, 3 and 4 regions and split our tables accordingly across those regions. In the figure \ref{sec:JoinSelExpStandalone}, Fig(a) shows the graph of no. of records inserted in view tables. We use this statistics for running other sub-experiments.
-
-\subsection{Join and Selection: View Re-computation vs Maintenance}
-\label{Join and Selection: View Re-computation vs Maintenance Distributed}
-In this experiment, we wanted to show that by incrementally maintaining our view tables, we can increase the overall performance of the system. We ran this experiment on the basis of data gathered in sub-section \ref{Join and Selection: Insert records Standalone}. As a proof, we first ran this experiment on dataset of 1.53.561 records. From the graph \ref{sec:JoinSelExpStandalone}, $Fig(b)$ shows the time required for re-computing view table vs time required to incrementally update view table. If we need to re-compute view table, in such scenario, we first need to perform read operation on the entire base table and then write operation in view table. Whereas in incremental maintenance, we only update the affected rows in view table. To ensure our hypothesis works, we ran our experiment on bigger dataset of 3.45.049 rows. From the experiment results, we proved that maintaining views incrementally is significantly less expensive than re-computing view table for every client request in base table.
 
 \subsection{Join and Selection: Insert Records}
 \label{Join and Selection: Insert Records Distributed}
-We ran this experiment on the basis of data collected in section \ref{Join and Selection: Insert records Standalone}. In this experiment, we split our tables into multiple regions, and we want to show that splitting table across multiple regions enhances performance of the system. From the graph \ref{sec:JoinSelExpStandalone}, $Fig(c)$ shows that we were able to optimize performance by splitting tables into multiple regions. In x-axis we show no. of regions and in y-axis we show time taken in milliseconds to insert records in base table, intermediate table and view table.
+
+In this experiment we first create two base tables with 2.000 rows and generate corresponding intermediate and view tables. The view table consists of selection of k-fk join between the two base table data. In this experiment we wanted to prove that evenly distributing load to multiple regions can yield to a significant performance optimization. For that we evenly distributed base tables, intermediate table and a view table across all the regions on a multiple region servers.  
+To prove our assumption, we ran our experiment on the basis of rows generated in section \ref{Join and Selection: Compute base tables and view table}. In the x-axis, we showed no. of regions and in y-axis we showed time taken in millisecond to complete the operation. From the figure \ref{sec:JoinSelExpDist}, Fig(c), we can see that splitting tables into multiple regions and using load balancing can significantly reduce operation time.
+
+\subsection{Join and Selection: Update View Table} 
+\label{Join and Sel: Update View Table Distributed}
+
+In section \ref{Join and Selection: Insert Records Distributed},  we proved that we can improve optimization if we split our tables in multiple regions across multiple region servers. In this experiment, we wanted to see how it affects the performance if we split $View$ $Table$ across multiple regions. For that, we split $View$ $Table$ across multiple regions and ran this experiment. 
+In the figure \ref{sec:JoinSelExpDist}, $Fig(d)$, we show time taken to update view table incrementally in millisecond. In the first experiment set, we pre-split $View$ $Table$ into three regions. Then we evaluate time taken to update view table incrementally for each of the update operations on the base table. We run this experiment again after pre-splitting $view$ $table$ into multiple regions and evaluate time taken to update view table incrementally. From the figure \ref{sec:JoinSelExpDist}, $Fig(d)$, we again proved that the more table is split into more no. of regions, the less time is required to update view table incrementally. 
 
 \begin{figure}
 	\centering
@@ -790,9 +810,7 @@ We ran this experiment on the basis of data collected in section \ref{Join and S
 \end{figure} 
 \newpage
 
-\subsection{Join and Selection: Update View Table} 
-\label{Join and Sel: Update View Table Distributed}
-In section \ref{Join and Selection: Insert Records Standalone}, we showed that client operation time can be reduced significantly if we split our tables across multiple regions. In this section,we ran an experiment to see how we are able to optimize performance if we split $View$ $Table$ across multiple regions. For that, we split $View$ $Table$ across multiple regions and ran this experiment. From the graph \ref{sec:JoinSelExpStandalone}, $Fig(d)$ proved that we also can reduce operation time if we split $View$ $Table$ across multiple regions. In x-axis we show no. of regions and in y-axis we show time in milliseconds required to complete client operation. We ran this experiment on different types of client operations and for each operation we were able to decrease time taken to complete required operation. 
+
 
 
 \newpage

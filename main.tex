@@ -286,6 +286,18 @@ In paper \cite{maintenance:materializedviews}, the researchers have classified f
 
 In paper \cite{maintenance:optimizingqueries}, researchers found that blind applications using materialized views resulted in much worse results than application not using materialized views. The research found out that using materialized views to optimize query performance depends on the query and statistical properties of the database\cite{maintenance:optimizingqueries}. The statistical properties of the database are time-varying and also most of the times, queries are generated using tools, $cost-based$ decision has to be taken whether to use or not to use materialized views to answer a given query in the database\cite{maintenance:optimizingqueries}. There might also be cases where more than one materialized view can be relevant for a given query, so in this case, incorrect alternatives has to be avoided to gain performance advantage. Researchers in paper \cite{maintenance:optimizingqueries} have proposed an algorithm for optimizing materialized views in three steps. In the first step, the query is translated into canonical unfolded form, i.e. system that supports views. In the second step, they identify possible ways to generate one or more materialized views for a given query. In the third step, they use efficient join enumeration algorithm to predict the cost of each alternative formulations and the path with least cost is selected\cite{maintenance:optimizingqueries}.
 
+\chapter{Failure Detection}
+\label{Failure Detection}
+Many of the large scale distributed systems are often subjected to Failure. Likewise, HBase is also subjected to failure. However, like other large scale distributed systems, HBase also guarantees availability and reliability in case of node failures. In such a large scale distributed systems where there are hundred's of nodes, manually detecting failure nodes and replacing them with new nodes is nearly impossible. In our design, we mainly focus on master failure and region server failure.
+
+\section{Master Failure}
+\label{Master Failure}
+The primary job of HBase Master is to monitor all the available Region Server Instances in the cluster. In order for HBase to be up and running, HBase Master should always be available. HMaster, with no exception, is subjected to failure at some point of time. If no master is running at some point of time, the entire system goes offline. So to avoid such failure, HBase always has a single running master and multiple backup masters running at the same time. The master and backup masters are managed by Zookeeper. When the running master goes offline, Zookeeper appoints a new master from the available backup masters.
+
+\section{Region Server Failure}
+\label{Region Server Failure}
+HBase Master monitors all the available Region Servers in a cluster. There can be multiple ways in which the region servers can go offline. When a particular region server fails, all the regions within that region server also go offline. Zookeeper then finds out about the failed region server when it looses heart beat with it. After the failed region server is detected, Zookeeper notifies HMaster about the failed Region Server. HMaster then reassigns all the regions from failed region server to the active region server. Now HMaster has to recover memstore edits from the failed region server. The Write-Ahead-Log(WAL) of the failed region server is split into separate files and stored in new region server's data node by HMaster.
+
 \newpage
 \chapter{Implementation}
 In this section, we will first discuss the prerequisite of implementation and then the proposed method for our research.
@@ -808,16 +820,18 @@ In the figure \ref{sec:JoinSelExpDist}, $Fig(d)$, we show time taken to update v
 	\label{sec:JoinSelExpDist}
 	
 \end{figure} 
-\newpage
 
 
+\chapter{Conclusion}
+\label{Conclusion}
+We have presented an approach to maintain consistency between base table and view table incrementally using HBase Coprocessor. We have provided a solution for incremental maintenance of view table without re-computing view table for every updates on base table. We managed to load coprocessor in the base table. For every updates on the base table, we managed to trigger required updates on the view table using coprocessor and apply them in the view table. This solution addressed the problem of having read-write overhead for re-computing view table even for small changes in the base table. We introduced an intermediate table where all the values for a particular key were plotted in a single row. So for every update for a particular key on base table, we only need to scan one row in intermediate table to determine updates required in view table. This architecture overcomes read overhead i.e. we only need to scan one particular row instead of scanning whole base table to determine changes required for view table. As we overcome read-write overhead, we managed to improve performance of the system up to 98\% in the best case scenario. To prove our hypothesis, we ran experiments on different datasets ranging from 10.000 rows to 2.50.000 rows. We tested our solution for different view types namely $Sum$, $Count$, $Min$, $Max$ and $k-fk$ $join$ views. We performed several experiments both on pseudo-distributed mode and fully distributed mode. In both environments, we were able to optimize performance significantly. 
 
 
-\newpage
-\chapter{Discussion and Conclusion}
-
-\newpage
 \chapter{Future Work}
+\label{Future Work}
+We have used HBase Client API and HBase shell to read and write data into the HBase tables. Many of us are more familiar with SQL queries, we also can use SQL like queries to read from and write into hbase tables. Apache Spark provides Spark DataFrame DataSource which helps to integrate Spark SQL with HBase and write SQL alike queries to read and write into hbase tables. Apache Hive also provides HiveQL for SQL like query to the HBase tables. 
+\newline
+We ran our experiment in a laptop with two virtual machine acting as a multi-node cluster. 
 
 
 		% ---------------------------------------------------------------------------

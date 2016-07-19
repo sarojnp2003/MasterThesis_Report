@@ -27,67 +27,70 @@
 \contentsline {subsection}{\numberline {2.7.2}Endpoint coprocessor}{16}{subsection.2.7.2}
 \contentsline {chapter}{\numberline {3}Related Work}{19}{chapter.3}
 \contentsline {section}{\numberline {3.1}Foundations}{19}{section.3.1}
-\contentsline {chapter}{\numberline {4}Implementation}{21}{chapter.4}
-\contentsline {section}{\numberline {4.1}Prerequisite}{21}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}Static Loading of coprocessor}{21}{subsection.4.1.1}
-\contentsline {subsection}{\numberline {4.1.2}Static Unloading of coprocesssor}{22}{subsection.4.1.2}
-\contentsline {subsection}{\numberline {4.1.3}Dynamic Loading of coprocessor}{22}{subsection.4.1.3}
-\contentsline {subsubsection}{\nonumberline Using HBase shell}{22}{section*.14}
-\contentsline {subsubsection}{\nonumberline Using Java API}{23}{section*.15}
-\contentsline {subsection}{\numberline {4.1.4}Dynamic Unloading of coprocessor}{23}{subsection.4.1.4}
-\contentsline {subsubsection}{\nonumberline Using HBase shell}{23}{section*.16}
-\contentsline {subsubsection}{\nonumberline Using Java API}{24}{section*.17}
-\contentsline {section}{\numberline {4.2}Proposed Method}{24}{section.4.2}
-\contentsline {subsubsection}{\nonumberline Creation of Intermediate table}{24}{section*.18}
-\contentsline {subsection}{\numberline {4.2.1}Aggregation}{26}{subsection.4.2.1}
-\contentsline {subsubsection}{\nonumberline New row is inserted}{26}{section*.20}
-\contentsline {subsubsection}{\nonumberline Existing value of a row is updated}{28}{section*.22}
-\contentsline {subsubsection}{\nonumberline Existing key of a row is updated}{30}{section*.24}
-\contentsline {subsubsection}{\nonumberline Existing row is deleted}{32}{section*.26}
-\contentsline {subsection}{\numberline {4.2.2}Join and Aggregation}{34}{subsection.4.2.2}
-\contentsline {subsubsection}{\nonumberline New row is inserted}{34}{section*.28}
-\contentsline {subsubsection}{\nonumberline Existing value of a row is updated}{36}{section*.30}
-\contentsline {subsubsection}{\nonumberline Existing key of a row is updated}{36}{section*.31}
-\contentsline {subsubsection}{\nonumberline Existing row is deleted}{36}{section*.32}
-\contentsline {subsection}{\numberline {4.2.3}Join and Selection}{36}{subsection.4.2.3}
-\contentsline {chapter}{\numberline {5}Evaluation}{37}{chapter.5}
-\contentsline {section}{\numberline {5.1}Experiment Setup (Pseudo Distributed Mode)}{37}{section.5.1}
-\contentsline {subsection}{\numberline {5.1.1}Deployment}{37}{subsection.5.1.1}
-\contentsline {subsection}{\numberline {5.1.2}Table Configuration}{37}{subsection.5.1.2}
-\contentsline {subsection}{\numberline {5.1.3}Control Parameter}{38}{subsection.5.1.3}
-\contentsline {section}{\numberline {5.2}Experiment 1 (Aggregation)}{38}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}Aggregation: View Re-computation vs Maintenance}{38}{subsection.5.2.1}
-\contentsline {subsection}{\numberline {5.2.2}Aggregation: Insert Records}{40}{subsection.5.2.2}
-\contentsline {subsection}{\numberline {5.2.3}Aggregation: Update View Table}{40}{subsection.5.2.3}
-\contentsline {section}{\numberline {5.3}Experiment 2 (Join and Aggregation)}{41}{section.5.3}
-\contentsline {subsection}{\numberline {5.3.1}Join and Aggregation: Insert records}{41}{subsection.5.3.1}
-\contentsline {subsection}{\numberline {5.3.2}Join and Aggregation: View Re-computation vs Maintenance}{41}{subsection.5.3.2}
-\contentsline {subsection}{\numberline {5.3.3}Join and Aggregation: Insert Records}{41}{subsection.5.3.3}
-\contentsline {subsection}{\numberline {5.3.4}Join and Aggregation: Update View Table}{42}{subsection.5.3.4}
-\contentsline {section}{\numberline {5.4}Experiment 3 (Join and Selection)}{44}{section.5.4}
-\contentsline {subsection}{\numberline {5.4.1}Join and Selection: Insert records}{44}{subsection.5.4.1}
-\contentsline {subsection}{\numberline {5.4.2}Join and Selection: View Re-computation vs Maintenance}{44}{subsection.5.4.2}
-\contentsline {subsection}{\numberline {5.4.3}Join and Selection: Insert Records}{44}{subsection.5.4.3}
-\contentsline {subsection}{\numberline {5.4.4}Join and Selection: Update View Table}{44}{subsection.5.4.4}
-\contentsline {section}{\numberline {5.5}Experiment Setup (Fully Distributed Mode)}{45}{section.5.5}
-\contentsline {subsection}{\numberline {5.5.1}Deployment}{45}{subsection.5.5.1}
-\contentsline {subsection}{\numberline {5.5.2}Table Configuration}{45}{subsection.5.5.2}
-\contentsline {subsection}{\numberline {5.5.3}Control Parameter}{47}{subsection.5.5.3}
-\contentsline {section}{\numberline {5.6}Experiment 4 (Aggregation)}{47}{section.5.6}
-\contentsline {subsection}{\numberline {5.6.1}Aggregation: View Re-computation vs Maintenance}{47}{subsection.5.6.1}
-\contentsline {subsection}{\numberline {5.6.2}Aggregation: Insert Records}{49}{subsection.5.6.2}
-\contentsline {subsection}{\numberline {5.6.3}Aggregation: Update View Table}{49}{subsection.5.6.3}
-\contentsline {section}{\numberline {5.7}Experiment 5 (Join and Aggregation)}{49}{section.5.7}
-\contentsline {subsection}{\numberline {5.7.1}Join and Aggregation: Compute base tables and view table}{50}{subsection.5.7.1}
-\contentsline {subsection}{\numberline {5.7.2}Join and Aggregation: View Re-computation vs Maintenance}{50}{subsection.5.7.2}
-\contentsline {subsection}{\numberline {5.7.3}Join and Aggregation: Insert Records}{50}{subsection.5.7.3}
-\contentsline {subsection}{\numberline {5.7.4}Join and Aggregation: Update View Table}{50}{subsection.5.7.4}
-\contentsline {section}{\numberline {5.8}Experiment 6 (Join and Selection)}{51}{section.5.8}
-\contentsline {subsection}{\numberline {5.8.1}Join and Selection: Compute base tables and view tables}{51}{subsection.5.8.1}
-\contentsline {subsection}{\numberline {5.8.2}Join and Selection: View Re-computation vs Maintenance}{51}{subsection.5.8.2}
-\contentsline {subsection}{\numberline {5.8.3}Join and Selection: Insert Records}{53}{subsection.5.8.3}
-\contentsline {subsection}{\numberline {5.8.4}Join and Selection: Update View Table}{53}{subsection.5.8.4}
-\contentsline {chapter}{\numberline {6}Discussion and Conclusion}{55}{chapter.6}
-\contentsline {chapter}{\numberline {7}Future Work}{57}{chapter.7}
-\contentsline {part}{Appendix}{61}{part*.40}
-\contentsline {chapter}{\nonumberline Bibliography}{61}{chapter*.41}
+\contentsline {chapter}{\numberline {4}Failure Detection}{21}{chapter.4}
+\contentsline {section}{\numberline {4.1}Master Failure}{21}{section.4.1}
+\contentsline {section}{\numberline {4.2}Region Server Failure}{21}{section.4.2}
+\contentsline {chapter}{\numberline {5}Implementation}{23}{chapter.5}
+\contentsline {section}{\numberline {5.1}Prerequisite}{23}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}Static Loading of coprocessor}{23}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.2}Static Unloading of coprocesssor}{24}{subsection.5.1.2}
+\contentsline {subsection}{\numberline {5.1.3}Dynamic Loading of coprocessor}{24}{subsection.5.1.3}
+\contentsline {subsubsection}{\nonumberline Using HBase shell}{24}{section*.14}
+\contentsline {subsubsection}{\nonumberline Using Java API}{25}{section*.15}
+\contentsline {subsection}{\numberline {5.1.4}Dynamic Unloading of coprocessor}{25}{subsection.5.1.4}
+\contentsline {subsubsection}{\nonumberline Using HBase shell}{25}{section*.16}
+\contentsline {subsubsection}{\nonumberline Using Java API}{26}{section*.17}
+\contentsline {section}{\numberline {5.2}Proposed Method}{26}{section.5.2}
+\contentsline {subsubsection}{\nonumberline Creation of Intermediate table}{26}{section*.18}
+\contentsline {subsection}{\numberline {5.2.1}Aggregation}{28}{subsection.5.2.1}
+\contentsline {subsubsection}{\nonumberline New row is inserted}{28}{section*.20}
+\contentsline {subsubsection}{\nonumberline Existing value of a row is updated}{30}{section*.22}
+\contentsline {subsubsection}{\nonumberline Existing key of a row is updated}{32}{section*.24}
+\contentsline {subsubsection}{\nonumberline Existing row is deleted}{34}{section*.26}
+\contentsline {subsection}{\numberline {5.2.2}Join and Aggregation}{36}{subsection.5.2.2}
+\contentsline {subsubsection}{\nonumberline New row is inserted}{36}{section*.28}
+\contentsline {subsubsection}{\nonumberline Existing value of a row is updated}{38}{section*.30}
+\contentsline {subsubsection}{\nonumberline Existing key of a row is updated}{38}{section*.31}
+\contentsline {subsubsection}{\nonumberline Existing row is deleted}{38}{section*.32}
+\contentsline {subsection}{\numberline {5.2.3}Join and Selection}{38}{subsection.5.2.3}
+\contentsline {chapter}{\numberline {6}Evaluation}{39}{chapter.6}
+\contentsline {section}{\numberline {6.1}Experiment Setup (Pseudo Distributed Mode)}{39}{section.6.1}
+\contentsline {subsection}{\numberline {6.1.1}Deployment}{39}{subsection.6.1.1}
+\contentsline {subsection}{\numberline {6.1.2}Table Configuration}{39}{subsection.6.1.2}
+\contentsline {subsection}{\numberline {6.1.3}Control Parameter}{40}{subsection.6.1.3}
+\contentsline {section}{\numberline {6.2}Experiment 1 (Aggregation)}{40}{section.6.2}
+\contentsline {subsection}{\numberline {6.2.1}Aggregation: View Re-computation vs Maintenance}{40}{subsection.6.2.1}
+\contentsline {subsection}{\numberline {6.2.2}Aggregation: Insert Records}{42}{subsection.6.2.2}
+\contentsline {subsection}{\numberline {6.2.3}Aggregation: Update View Table}{42}{subsection.6.2.3}
+\contentsline {section}{\numberline {6.3}Experiment 2 (Join and Aggregation)}{43}{section.6.3}
+\contentsline {subsection}{\numberline {6.3.1}Join and Aggregation: Insert records}{43}{subsection.6.3.1}
+\contentsline {subsection}{\numberline {6.3.2}Join and Aggregation: View Re-computation vs Maintenance}{43}{subsection.6.3.2}
+\contentsline {subsection}{\numberline {6.3.3}Join and Aggregation: Insert Records}{43}{subsection.6.3.3}
+\contentsline {subsection}{\numberline {6.3.4}Join and Aggregation: Update View Table}{44}{subsection.6.3.4}
+\contentsline {section}{\numberline {6.4}Experiment 3 (Join and Selection)}{46}{section.6.4}
+\contentsline {subsection}{\numberline {6.4.1}Join and Selection: Insert records}{46}{subsection.6.4.1}
+\contentsline {subsection}{\numberline {6.4.2}Join and Selection: View Re-computation vs Maintenance}{46}{subsection.6.4.2}
+\contentsline {subsection}{\numberline {6.4.3}Join and Selection: Insert Records}{46}{subsection.6.4.3}
+\contentsline {subsection}{\numberline {6.4.4}Join and Selection: Update View Table}{46}{subsection.6.4.4}
+\contentsline {section}{\numberline {6.5}Experiment Setup (Fully Distributed Mode)}{47}{section.6.5}
+\contentsline {subsection}{\numberline {6.5.1}Deployment}{47}{subsection.6.5.1}
+\contentsline {subsection}{\numberline {6.5.2}Table Configuration}{47}{subsection.6.5.2}
+\contentsline {subsection}{\numberline {6.5.3}Control Parameter}{49}{subsection.6.5.3}
+\contentsline {section}{\numberline {6.6}Experiment 4 (Aggregation)}{49}{section.6.6}
+\contentsline {subsection}{\numberline {6.6.1}Aggregation: View Re-computation vs Maintenance}{49}{subsection.6.6.1}
+\contentsline {subsection}{\numberline {6.6.2}Aggregation: Insert Records}{51}{subsection.6.6.2}
+\contentsline {subsection}{\numberline {6.6.3}Aggregation: Update View Table}{51}{subsection.6.6.3}
+\contentsline {section}{\numberline {6.7}Experiment 5 (Join and Aggregation)}{51}{section.6.7}
+\contentsline {subsection}{\numberline {6.7.1}Join and Aggregation: Compute base tables and view table}{52}{subsection.6.7.1}
+\contentsline {subsection}{\numberline {6.7.2}Join and Aggregation: View Re-computation vs Maintenance}{52}{subsection.6.7.2}
+\contentsline {subsection}{\numberline {6.7.3}Join and Aggregation: Insert Records}{52}{subsection.6.7.3}
+\contentsline {subsection}{\numberline {6.7.4}Join and Aggregation: Update View Table}{52}{subsection.6.7.4}
+\contentsline {section}{\numberline {6.8}Experiment 6 (Join and Selection)}{53}{section.6.8}
+\contentsline {subsection}{\numberline {6.8.1}Join and Selection: Compute base tables and view tables}{53}{subsection.6.8.1}
+\contentsline {subsection}{\numberline {6.8.2}Join and Selection: View Re-computation vs Maintenance}{53}{subsection.6.8.2}
+\contentsline {subsection}{\numberline {6.8.3}Join and Selection: Insert Records}{55}{subsection.6.8.3}
+\contentsline {subsection}{\numberline {6.8.4}Join and Selection: Update View Table}{55}{subsection.6.8.4}
+\contentsline {chapter}{\numberline {7}Conclusion}{57}{chapter.7}
+\contentsline {chapter}{\numberline {8}Future Work}{59}{chapter.8}
+\contentsline {part}{Appendix}{63}{part*.40}
+\contentsline {chapter}{\nonumberline Bibliography}{63}{chapter*.41}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.4.22)  25 JUL 2016 13:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.4.22)  25 JUL 2016 16:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1077,145 +1077,144 @@ Package pdftex.def Info: figures/IntermediateTable.pdf used on input line 427.
 LaTeX Warning: Float too large for page by 68.25842pt on input line 431.
 
 [27] [28 <./figures/IntermediateTable.pdf>]
-<figures/NewRowInsertAggr.pdf, id=805, 597.23125pt x 845.1575pt>
+<figures/NewRowInsertAggr.pdf, id=807, 597.23125pt x 845.1575pt>
 File: figures/NewRowInsertAggr.pdf Graphic file (type pdf)
 
 <use figures/NewRowInsertAggr.pdf>
-Package pdftex.def Info: figures/NewRowInsertAggr.pdf used on input line 465.
+Package pdftex.def Info: figures/NewRowInsertAggr.pdf used on input line 467.
 (pdftex.def)             Requested size: 433.35742pt x 613.25868pt.
 
 
-LaTeX Warning: Float too large for page by 68.25842pt on input line 469.
+LaTeX Warning: Float too large for page by 68.25842pt on input line 471.
 
 [29] [30 <./figures/NewRowInsertAggr.pdf>]
-<figures/ValueUpdateAggr.pdf, id=828, 597.23125pt x 845.1575pt>
+<figures/ValueUpdateAggr.pdf, id=831, 597.23125pt x 845.1575pt>
 File: figures/ValueUpdateAggr.pdf Graphic file (type pdf)
 
 <use figures/ValueUpdateAggr.pdf>
-Package pdftex.def Info: figures/ValueUpdateAggr.pdf used on input line 478.
+Package pdftex.def Info: figures/ValueUpdateAggr.pdf used on input line 479.
 (pdftex.def)             Requested size: 433.35742pt x 613.25868pt.
 
 
-LaTeX Warning: Float too large for page by 68.25842pt on input line 482.
+LaTeX Warning: Float too large for page by 68.25842pt on input line 483.
 
-[31] [32 <./figures/ValueUpdateAggr.pdf>]
-<figures/KeyUpdateAggr.pdf, id=846, 597.23125pt x 845.1575pt>
+<figures/KeyUpdateAggr.pdf, id=833, 597.23125pt x 845.1575pt>
 File: figures/KeyUpdateAggr.pdf Graphic file (type pdf)
 
 <use figures/KeyUpdateAggr.pdf>
-Package pdftex.def Info: figures/KeyUpdateAggr.pdf used on input line 493.
+Package pdftex.def Info: figures/KeyUpdateAggr.pdf used on input line 495.
 (pdftex.def)             Requested size: 433.35742pt x 613.25868pt.
 
 
-LaTeX Warning: Float too large for page by 68.25842pt on input line 497.
+LaTeX Warning: Float too large for page by 68.25842pt on input line 499.
 
-[33] [34 <./figures/KeyUpdateAggr.pdf>]
-<figures/DeleteExistingRowAggr.pdf, id=865, 597.23125pt x 845.1575pt>
+[31] [32 <./figures/ValueUpdateAggr.pdf>] [33 <./figures/KeyUpdateAggr.pdf>]
+<figures/DeleteExistingRowAggr.pdf, id=866, 597.23125pt x 845.1575pt>
 File: figures/DeleteExistingRowAggr.pdf Graphic file (type pdf)
 
 <use figures/DeleteExistingRowAggr.pdf>
 Package pdftex.def Info: figures/DeleteExistingRowAggr.pdf used on input line 5
-08.
+11.
 (pdftex.def)             Requested size: 433.35742pt x 613.25868pt.
 
 
-LaTeX Warning: Float too large for page by 68.25842pt on input line 512.
+LaTeX Warning: Float too large for page by 68.25842pt on input line 515.
 
-[35] [36 <./figures/DeleteExistingRowAggr.pdf>]
-<figures/NewRowInsertJoinAggr.pdf, id=887, 597.23125pt x 845.1575pt>
+[34] [35 <./figures/DeleteExistingRowAggr.pdf>]
+<figures/NewRowInsertJoinAggr.pdf, id=888, 597.23125pt x 845.1575pt>
 File: figures/NewRowInsertJoinAggr.pdf Graphic file (type pdf)
 
 <use figures/NewRowInsertJoinAggr.pdf>
-Package pdftex.def Info: figures/NewRowInsertJoinAggr.pdf used on input line 54
-5.
+Package pdftex.def Info: figures/NewRowInsertJoinAggr.pdf used on input line 55
+2.
 (pdftex.def)             Requested size: 433.35742pt x 613.25868pt.
 
 
-LaTeX Warning: Float too large for page by 68.25842pt on input line 549.
+LaTeX Warning: Float too large for page by 68.25842pt on input line 556.
 
-[37] [38 <./figures/NewRowInsertJoinAggr.pdf>] [39] [40]
+[36] [37 <./figures/NewRowInsertJoinAggr.pdf>] [38] [39] [40]
 chapter 6.
 
-Underfull \hbox (badness 10000) in paragraph at lines 600--604
+Underfull \hbox (badness 10000) in paragraph at lines 613--617
 
  []
 
 [41
 
 ]
-<figures/Aggregation_exp_standalone.pdf, id=951, 597.23125pt x 845.1575pt>
+<figures/Aggregation_exp_standalone.pdf, id=954, 597.23125pt x 845.1575pt>
 File: figures/Aggregation_exp_standalone.pdf Graphic file (type pdf)
 
 <use figures/Aggregation_exp_standalone.pdf>
 Package pdftex.def Info: figures/Aggregation_exp_standalone.pdf used on input l
-ine 636.
+ine 649.
 (pdftex.def)             Requested size: 433.35742pt x 613.25868pt.
 
 
-LaTeX Warning: Float too large for page by 68.25842pt on input line 639.
+LaTeX Warning: Float too large for page by 68.25842pt on input line 652.
 
 [42] [43 <./figures/Aggregation_exp_standalone.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 642--644
+Underfull \hbox (badness 10000) in paragraph at lines 655--657
 
  []
 
 [44] [45]
-<figures/JoinAndAggr_exp_standalone.pdf, id=1000, 597.23125pt x 845.1575pt>
+<figures/JoinAndAggr_exp_standalone.pdf, id=1003, 597.23125pt x 845.1575pt>
 File: figures/JoinAndAggr_exp_standalone.pdf Graphic file (type pdf)
 
 <use figures/JoinAndAggr_exp_standalone.pdf>
 Package pdftex.def Info: figures/JoinAndAggr_exp_standalone.pdf used on input l
-ine 687.
+ine 700.
 (pdftex.def)             Requested size: 433.35742pt x 613.25868pt.
 
 
-LaTeX Warning: Float too large for page by 68.25842pt on input line 691.
+LaTeX Warning: Float too large for page by 68.25842pt on input line 704.
 
 [46] [47 <./figures/JoinAndAggr_exp_standalone.pdf>] [48]
-<figures/JoinAndSel_exp_standalone.pdf, id=1038, 597.23125pt x 845.1575pt>
+<figures/JoinAndSel_exp_standalone.pdf, id=1041, 597.23125pt x 845.1575pt>
 File: figures/JoinAndSel_exp_standalone.pdf Graphic file (type pdf)
 
 <use figures/JoinAndSel_exp_standalone.pdf>
 Package pdftex.def Info: figures/JoinAndSel_exp_standalone.pdf used on input li
-ne 725.
+ne 738.
 (pdftex.def)             Requested size: 433.35742pt x 613.25868pt.
 
 
-LaTeX Warning: Float too large for page by 68.25842pt on input line 729.
+LaTeX Warning: Float too large for page by 68.25842pt on input line 742.
 
 [49] [50 <./figures/JoinAndSel_exp_standalone.pdf>]
-<figures/Aggr_exp_dist.pdf, id=1063, 597.23125pt x 845.1575pt>
+<figures/Aggr_exp_dist.pdf, id=1066, 597.23125pt x 845.1575pt>
 File: figures/Aggr_exp_dist.pdf Graphic file (type pdf)
 
 <use figures/Aggr_exp_dist.pdf>
-Package pdftex.def Info: figures/Aggr_exp_dist.pdf used on input line 766.
+Package pdftex.def Info: figures/Aggr_exp_dist.pdf used on input line 779.
 (pdftex.def)             Requested size: 433.35742pt x 613.25868pt.
 
 
-LaTeX Warning: Float too large for page by 68.25842pt on input line 770.
+LaTeX Warning: Float too large for page by 68.25842pt on input line 783.
 
 [51] [52 <./figures/Aggr_exp_dist.pdf>] [53] [54]
-<figures/JoinAndAggr_exp_dist.pdf, id=1111, 597.23125pt x 845.1575pt>
+<figures/JoinAndAggr_exp_dist.pdf, id=1114, 597.23125pt x 845.1575pt>
 File: figures/JoinAndAggr_exp_dist.pdf Graphic file (type pdf)
 
 <use figures/JoinAndAggr_exp_dist.pdf>
-Package pdftex.def Info: figures/JoinAndAggr_exp_dist.pdf used on input line 82
-9.
+Package pdftex.def Info: figures/JoinAndAggr_exp_dist.pdf used on input line 84
+2.
 (pdftex.def)             Requested size: 433.35742pt x 613.25868pt.
 
 
-LaTeX Warning: Float too large for page by 68.25842pt on input line 833.
+LaTeX Warning: Float too large for page by 68.25842pt on input line 846.
 
 [55] [56 <./figures/JoinAndAggr_exp_dist.pdf>]
-<figures/JoinSel_exp_dist.pdf, id=1141, 597.23125pt x 845.1575pt>
+<figures/JoinSel_exp_dist.pdf, id=1144, 597.23125pt x 845.1575pt>
 File: figures/JoinSel_exp_dist.pdf Graphic file (type pdf)
 
 <use figures/JoinSel_exp_dist.pdf>
-Package pdftex.def Info: figures/JoinSel_exp_dist.pdf used on input line 852.
+Package pdftex.def Info: figures/JoinSel_exp_dist.pdf used on input line 865.
 (pdftex.def)             Requested size: 433.35742pt x 613.25868pt.
 
 
-LaTeX Warning: Float too large for page by 68.25842pt on input line 856.
+LaTeX Warning: Float too large for page by 68.25842pt on input line 869.
 
 [57] [58 <./figures/JoinSel_exp_dist.pdf>]
 chapter 7.
@@ -1229,22 +1228,22 @@ chapter 8.
 
 ]
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <24.88> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 877.
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 890.
  [63] [64] (./main.bbl
 chapter without number
 [65
 
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 889.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 902.
  [66]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 889.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 902.
  (./main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 889.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 889.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 902.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 902.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 2B4F315D0921C2B956978C19B5AF66C5;5847.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 889.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 902.
  ) 
 Here is how much of TeX's memory you used:
  12995 strings out of 493029
@@ -1253,7 +1252,7 @@ Here is how much of TeX's memory you used:
  15973 multiletter control sequences out of 15000+600000
  24448 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 43i,11n,66p,1542b,1109s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 43i,11n,66p,1567b,1109s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/
@@ -1262,10 +1261,10 @@ type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/pal
 atino/uplb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/s
 hare/texlive/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on main.pdf (80 pages, 1151078 bytes).
+Output written on main.pdf (80 pages, 1153129 bytes).
 PDF statistics:
- 1294 PDF objects out of 1440 (max. 8388607)
- 1105 compressed objects within 12 object streams
+ 1297 PDF objects out of 1440 (max. 8388607)
+ 1108 compressed objects within 12 object streams
  275 named destinations out of 1000 (max. 500000)
  715 words of extra memory for PDF output out of 10000 (max. 10000000)
 

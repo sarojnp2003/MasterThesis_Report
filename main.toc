@@ -48,17 +48,17 @@
 \contentsline {subsection}{\numberline {5.2.3}Aggregation}{29}{subsection.5.2.3}
 \contentsline {subsubsection}{\nonumberline New row is inserted}{29}{section*.21}
 \contentsline {subsubsection}{\nonumberline Existing value of a row is updated}{31}{section*.23}
-\contentsline {subsubsection}{\nonumberline Existing key of a row is updated}{33}{section*.25}
-\contentsline {subsubsection}{\nonumberline Existing row is deleted}{35}{section*.27}
-\contentsline {subsection}{\numberline {5.2.4}Join and Aggregation}{37}{subsection.5.2.4}
-\contentsline {subsubsection}{\nonumberline New row is inserted}{37}{section*.29}
-\contentsline {subsubsection}{\nonumberline Existing value of a row is updated}{39}{section*.31}
-\contentsline {subsubsection}{\nonumberline Existing key of a row is updated}{39}{section*.32}
-\contentsline {subsubsection}{\nonumberline Existing row is deleted}{39}{section*.33}
+\contentsline {subsubsection}{\nonumberline Existing key of a row is updated}{31}{section*.25}
+\contentsline {subsubsection}{\nonumberline Existing row is deleted}{34}{section*.27}
+\contentsline {subsection}{\numberline {5.2.4}Join and Aggregation}{36}{subsection.5.2.4}
+\contentsline {subsubsection}{\nonumberline New row is inserted}{36}{section*.29}
+\contentsline {subsubsection}{\nonumberline Existing value of a row is updated}{38}{section*.31}
+\contentsline {subsubsection}{\nonumberline Existing key of a row is updated}{38}{section*.32}
+\contentsline {subsubsection}{\nonumberline Existing row is deleted}{38}{section*.33}
 \contentsline {subsection}{\numberline {5.2.5}Join and Selection}{39}{subsection.5.2.5}
 \contentsline {subsubsection}{\nonumberline New row is inserted}{39}{section*.34}
-\contentsline {subsubsection}{\nonumberline Existing value of a row is updated}{40}{section*.35}
-\contentsline {subsubsection}{\nonumberline Existing key of a row is updated}{40}{section*.36}
+\contentsline {subsubsection}{\nonumberline Existing value of a row is updated}{39}{section*.35}
+\contentsline {subsubsection}{\nonumberline Existing key of a row is updated}{39}{section*.36}
 \contentsline {subsubsection}{\nonumberline Existing row is deleted}{40}{section*.37}
 \contentsline {chapter}{\numberline {6}Evaluation}{41}{chapter.6}
 \contentsline {section}{\numberline {6.1}Experiment Setup (Pseudo Distributed Mode)}{41}{section.6.1}

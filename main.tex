@@ -404,17 +404,29 @@ In this section, we will explain about the algorithms we've implemented to maint
     \item Join and Selection
 \end{enumerate}
 
-One of the most important features in our implementation is the introduction of intermediate table. We have introduced intermediate table in order to restrict the scanning of the entire base table for a simple get, put or delete operation. Scanning billions of rows for such operations can be expensive in terms of processing power and CPU usage. 
+One of the most important features in our implementation is the introduction of intermediate table. We have introduced an intermediate table in order to restrict scanning of the entire base table for a simple get, put or delete operation. Scanning billions of rows for such operations can be expensive in terms of processing power and CPU usage. When an update/delete operation happens in the base table, updates in view table are calculated on the basis of updates in the intermediate table.
 
-\subsubsection{Creation of Intermediate table}
+\subsection{Creation of an Intermediate table}
 \label{subsec:intermediatetable}
 
-If there are two base tables, then we merge column families of both tables into the intermediate table. If there is only one base table, then we have the same column family in our intermediate table. The $key$ from base table becomes row key for the intermediate table, $row key$ of the base table becomes $column$ $qualifier$ in the intermediate table. So the value for key and row key from base table is now plotted in intermediate table for that particular key. So whenever there is a CRUD operation for a particular key, we can scan row for the particular key instead of scanning the whole table. The figure below explains the transformation of base table into an intermediate table in more detail. 
+We create an intermediate table in such a way that we have a single row for all the unique keys in the base table. This architecture restricts scanning the entire base table for any update or delete operation. Instead, we only scan particular row containing the key for which an update or delete operation is triggered. In our implement, there are two ways in which we create our intermediate table.
+
+\subsubsection{Single Base Table}
+\label{Single Base Table}
+In this scenario, we have one base table and we have to create an intermediate table from the base table. The $columnFamily$ of the base table becomes $columnFamily$ in the intermediate table. The unique values of column $Key$ of the base table becomes $rowKey$ in the intermediate table and $rowKey$ of the base table becomes $column$ in the intermediate table. Once we create our intermediate table, we put the values from the base table into the intermediate table. Fig(a) in \ref{Intermediate Table} shows a graphical transformation of a single base table into an intermediate table. Now for any update or delete operations for a particular Key/Value in the base table, only a single row for that particular Key is updated in an intermediate table. This implementation restricts scanning of the whole base table for a single update/delete operation.
+
+\subsubsection{Two Base Tables}
+\label{Two Base Tables}
+In this scenario, we have two base tables and we have to create an intermediate table from the two base tables. The both $columnFamilies$ of base tables are merged together into two $columnFamilies$ in the intermediate table. The unique values of column $Key$ of both base table becomes $rowKey$ in the intermediate table and $rowKey$ of the base table becomes $column$ in the intermediate table. Once we create an intermediate table from two base tables as described, we put values from both the base tables into the intermediate table. Fig(b) in \ref{Intermediate Table} shows a graphical transformation of a two base tables into an intermediate table. Now for any update or delete operations for a particular Key/Value in the base tables, only a single row for that particular Key is updated in an intermediate table. This implementation restricts scanning of the whole base table for a single update/delete operation.
+
+\subsection{Creation of View Table}
+A view table contains resultset of a query on the base table. In our implementation, view table is created on the basis of an intermediate table. Once we have our intermediate table, we apply certain algorithms on the intermediate table and create view table. Once we have our view table, our task is to maintain consistency between base table and view table. If any operation changes the state of base table, we reflect those changes in intermediate table and view table. The algorithm we've implemented maintains consistency incrementally, not re-computing view table for every changes in the base table. We will discuss our approach of this incremental maintenance in the sections below.
 
 \begin{figure}
     \centering
     \includegraphics[width=\linewidth]{IntermediateTable}
-    \caption{Intermediate Table}
+    \caption{Creation of an Intermediate Table}
+    \label{Intermediate Table}
     
 \end{figure}
 
@@ -422,7 +434,7 @@ If there are two base tables, then we merge column families of both tables into 
 \subsection{Aggregation}
 \label{sec:aggregationImpl}
 
-In our implementation, we've implemented basic aggregation functions like sum, count, min and max. All these operations are carried out based on a particular key. The base table contains key,value pairs. We construct an intermediate table from the base table. The reason behind constructing intermediate table is to restrict scanning of the whole base table for an update/delete trigger for a particular key in a base table. We take the unique keys and map them as a row key in the intermediate table, and accordingly the values are plotted. Once all the values are plotted in the intermediate table, we then construct view table. The view table contains aggregate functions like Sum, Count, Min and Max for each row Key i.e. for each unique keys of the base table. 
+In our implementation, we've implemented basic aggregation functions like sum, count, min and max. All these operations are carried out based on a particular key. The base table contains key,value pairs. We construct an intermediate table from the base table. The reason behind constructing an intermediate table is to restrict scanning of the whole base table for an update/delete trigger for a particular key in a base table. We take the unique keys and map them as a row key in the intermediate table, and accordingly the values are plotted. Once all the values are plotted in the intermediate table, we then construct view table. The view table contains aggregate functions like Sum, Count, Min and Max for each row Key i.e. for each unique keys of the base table. 
 
 %The figure below explains how we map base table to a view table.
 
@@ -549,7 +561,29 @@ The implementation for this scenario is same as described in subsection \ref{sub
 
 \subsection{Join and Selection}
 \label{subsec:joinandselection}
-This approach is similar to approach described in subsection \ref{subsec:joinandaggregation}. We do not use any aggregation functions but instead just select the values and put them in the view table. As already described in \ref{subsec:joinandaggregation}, there are also four possible scenarios where we update view table incrementally.
+
+The approach implemented in this subsection is similar to the approach described in subsection \ref{subsec:joinandaggregation}. We have two base tables with key,value pairs. We create an intermediate table from two base tables as described in subsection \ref{subsec:intermediatetable}. For Join and Selection, we join two base tables on the basis of k-fk join and put result in the view table. In this approach, there are also certain scenarios where we have to maintain consistency between base tables and a view table.
+
+\begin{enumerate}
+	\item New row is inserted
+	\item Existing value of a row is updated
+	\item Existing key of a row is updated
+	\item Existing row is deleted
+\end{enumerate}
+
+\subsubsection{New row is inserted}
+\label{New row is inserted JoinSelection}
+When a client inserts new row with key,value pair in a base table, we have to update our intermediate table and view table accordingly to maintain consistency between them. Updating intermediate table is not a big problem here, we just put new key,value pair for that particular rowKey in a corresponding column family. Since k-fk join is involved, we need to figure out the new rows generated with respect to the newly inserted key,value pair. The first list contains newly inserted key,value pair for that particular rowKey. The second list contains all the key,value pairs for the same rowKey. Now we get a cartesian product of key,value pairs that are to be inserted into the view table. Now we are able to maintain consistency whenever a new row is inserted in a base table.
+
+\subsubsection{Existing value of a row is updated} 
+When an existing value of a particular key is updated in a base table, we update the particular value in our intermediate table. The update process in an intermediate table is straightforward i.e. we just update value for that particular row and column. Now in order to update our view table, we need to find all the rows that are affected by an update statement. We create two lists and the first list contains key,value pair of the row which was just updated. The second list contains all the key,value pairs for the same rowKey. Now we get a cartesian product of key,value pairs that are to be updated into the view table. This way we maintain consistency between base tables and view table when an existing row is updated in the base table.
+
+
+\subsubsection{Existing key of a row is updated}
+In this scenario, we first save key,value pair of the row to be deleted from base table. After the entry has been deleted from the base table, we delete an entry from the intermediate table. Now we have to find all the rows to be deleted from the view table for that particular key. In this process, we create two list and find out all the rows to be deleted from the view table. The first list contains key,value pair which we saved earlier. The second list contains all the key,value pairs for the same rowKey. Now we get a cartesian product of key,value pairs that are to be deleted from the view table. Then we delete all the affected rows from the view table. Now we have to update old key to a new key in a base table. Once the base table has been updated, we update our intermediate table accordingly. Now we need to find out the rows to be inserted into the view table as it involves k-fk join among the base tables. We do that by creating two lists, first list containing new key,value pair and second list containing all the key,value pairs for that rowKey. Now we get a cartesian product of key,value pairs that are to be inserted into the view table.
+
+\subsubsection{Existing row is deleted}
+When a row is deleted from the base table, we simply delete an entry from the intermediate table. The next task is to find all the rows that are to be deleted from the view table. This is a similar process as described in the sub section above. We first create two lists here, first list contains the key,value pair of the row that was deleted and the second row contains all the key,value pairs for the same row. Now we get a cartesian product of key,value pairs that are to be deleted the view table. We delete all the rows from the view table. This way we can maintain consistency between base table and view table when a row is deleted from the base table.
 
 \newpage
 \chapter{Evaluation}
@@ -831,7 +865,7 @@ We have presented an approach to maintain consistency between base table and vie
 \label{Future Work}
 We have used HBase Client API and HBase shell to read and write data into the HBase tables. Many of us are more familiar with SQL queries, we also can use SQL like queries to read from and write into hbase tables. Apache Spark provides Spark DataFrame DataSource which helps to integrate Spark SQL with HBase and write SQL alike queries to read and write into hbase tables. Apache Hive also provides HiveQL for SQL like query to the HBase tables. 
 \newline
-We ran our experiment in a laptop with two virtual machine acting as a multi-node cluster. 
+We ran our experiment in a laptop with two virtual machine acting as a multi-node cluster. It would be more interesting to run our experiment on cluster of more than 20 nodes with a  dataset of few hundred millions records and see the results.
 
 
 		% ---------------------------------------------------------------------------

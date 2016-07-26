@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.4.22)  25 JUL 2016 16:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.4.22)  26 JUL 2016 13:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -853,7 +853,7 @@ Class scrbook Warning: \float@addtolists detected!
 ]
 chapter 2.
 [3] [4] [5]
-Overfull \hbox (1.0906pt too wide) in paragraph at lines 134--135
+Overfull \hbox (1.0906pt too wide) in paragraph at lines 141--142
 []\OT1/ppl/m/n/10.95 HBase is an open source sort-edMap Data-s-tore from Apache
  Soft-ware Foun-da-tion. HBase
  []
@@ -861,23 +861,23 @@ Overfull \hbox (1.0906pt too wide) in paragraph at lines 134--135
 <figures/HBase.pdf, id=503, 597.23125pt x 845.1575pt>
 File: figures/HBase.pdf Graphic file (type pdf)
  <use figures/HBase.pdf>
-Package pdftex.def Info: figures/HBase.pdf used on input line 141.
+Package pdftex.def Info: figures/HBase.pdf used on input line 148.
 (pdftex.def)             Requested size: 433.35742pt x 613.25868pt.
 
 
-LaTeX Warning: Float too large for page by 68.25842pt on input line 144.
+LaTeX Warning: Float too large for page by 68.25842pt on input line 151.
 
 [6] [7 <./figures/HBase.pdf>]
-LaTeX Font Info:    Try loading font information for OT1+phv on input line 160.
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 167.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1phv.fd
 File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 )
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 160.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 167.
 
-Underfull \hbox (badness 10000) in paragraph at lines 177--181
+Underfull \hbox (badness 10000) in paragraph at lines 184--188
 
  []
 
@@ -885,27 +885,27 @@ Underfull \hbox (badness 10000) in paragraph at lines 177--181
 File: figures/HBase_Architecture.pdf Graphic file (type pdf)
 
 <use figures/HBase_Architecture.pdf>
-Package pdftex.def Info: figures/HBase_Architecture.pdf used on input line 185.
+Package pdftex.def Info: figures/HBase_Architecture.pdf used on input line 192.
 
 (pdftex.def)             Requested size: 433.35742pt x 613.25868pt.
 
 
-LaTeX Warning: Float too large for page by 68.25842pt on input line 188.
+LaTeX Warning: Float too large for page by 68.25842pt on input line 195.
 
 [9] [10 <./figures/HBase_Architecture.pdf>] [11]
-Overfull \hbox (6.6089pt too wide) in paragraph at lines 212--213
+Overfull \hbox (6.6089pt too wide) in paragraph at lines 219--220
 \OT1/ppl/m/n/10.95 database trig-gers and End-point co-pro-ces-sor that re-sem-
 bles stored pro-ce-dures of RDBMS[[]] 
  []
 
 
-Overfull \hbox (4.41823pt too wide) in paragraph at lines 225--226
+Overfull \hbox (4.41823pt too wide) in paragraph at lines 232--233
 []\OT1/ppl/m/n/10.95 RegionServerObserver: Like-wise in Re-gionOb-server, Re-gi
 on-Server-Ob-server pro-vides
  []
 
 
-Overfull \hbox (15.7855pt too wide) in paragraph at lines 227--228
+Overfull \hbox (15.7855pt too wide) in paragraph at lines 234--235
 []\OT1/ppl/m/n/10.95 WALObserver: WALOb-server in-ter-face pro-vides a hook for
  Write-Ahead-Log(WAL)[[]]
  []
@@ -914,12 +914,12 @@ Overfull \hbox (15.7855pt too wide) in paragraph at lines 227--228
 File: figures/PutRequestLifeCycle.pdf Graphic file (type pdf)
 
 <use figures/PutRequestLifeCycle.pdf>
-Package pdftex.def Info: figures/PutRequestLifeCycle.pdf used on input line 235
+Package pdftex.def Info: figures/PutRequestLifeCycle.pdf used on input line 242
 .
 (pdftex.def)             Requested size: 433.35742pt x 613.25868pt.
 
 
-LaTeX Warning: Float too large for page by 68.25842pt on input line 238.
+LaTeX Warning: Float too large for page by 68.25842pt on input line 245.
 
 
 <figures/PutRequestWithObserverCoprocessor.pdf, id=622, 597.23125pt x 845.1575p
@@ -927,15 +927,15 @@ t>
 File: figures/PutRequestWithObserverCoprocessor.pdf Graphic file (type pdf)
  <use figures/PutRequestWithObserverCoprocessor.pdf>
 Package pdftex.def Info: figures/PutRequestWithObserverCoprocessor.pdf used on 
-input line 244.
+input line 251.
 (pdftex.def)             Requested size: 433.35742pt x 613.25868pt.
 
 
-LaTeX Warning: Float too large for page by 68.25842pt on input line 247.
+LaTeX Warning: Float too large for page by 68.25842pt on input line 254.
 
 [13] [14 <./figures/PutRequestLifeCycle.pdf>] [15 <./figures/PutRequestWithObse
 rverCoprocessor.pdf>]
-LaTeX Font Info:    Try loading font information for TS1+ppl on input line 252.
+LaTeX Font Info:    Try loading font information for TS1+ppl on input line 259.
 
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ppl.fd
 File: ts1ppl.fd 2001/06/04 font definitions for TS1/ppl.
@@ -943,19 +943,19 @@ File: ts1ppl.fd 2001/06/04 font definitions for TS1/ppl.
 File: figures/EndPointCoprocessor.pdf Graphic file (type pdf)
 
 <use figures/EndPointCoprocessor.pdf>
-Package pdftex.def Info: figures/EndPointCoprocessor.pdf used on input line 256
+Package pdftex.def Info: figures/EndPointCoprocessor.pdf used on input line 263
 .
 (pdftex.def)             Requested size: 433.35742pt x 613.25868pt.
 
 
-LaTeX Warning: Float too large for page by 68.25842pt on input line 259.
+LaTeX Warning: Float too large for page by 68.25842pt on input line 266.
 
 [16] [17 <./figures/EndPointCoprocessor.pdf>] [18
 
 ]
 chapter 3.
 [19]
-Overfull \hbox (12.11688pt too wide) in paragraph at lines 283--284
+Overfull \hbox (12.11688pt too wide) in paragraph at lines 290--291
 []\OT1/ppl/m/n/10.95 Instance Di-men-sion: This di-men-sion ad-dresses prob-lem
 s re-lated to in-stance of database
  []
@@ -968,71 +968,71 @@ chapter 4.
 
 ]
 chapter 5.
-LaTeX Font Info:    Try loading font information for OML+ppl on input line 309.
+LaTeX Font Info:    Try loading font information for OML+ppl on input line 316.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omlppl.fd
 File: omlppl.fd 
 )
 LaTeX Font Info:    Font shape `OML/ppl/m/n' in size <10.95> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 309.
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 320.
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 316.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 327.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-Underfull \hbox (badness 10000) in paragraph at lines 318--322
+Underfull \hbox (badness 10000) in paragraph at lines 325--329
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 318--322
+Underfull \hbox (badness 10000) in paragraph at lines 325--329
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 323--325
+Underfull \hbox (badness 10000) in paragraph at lines 330--332
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 323--325
+Underfull \hbox (badness 10000) in paragraph at lines 330--332
 
  []
 
 [23]
-LaTeX Font Info:    Try loading font information for OMS+ppl on input line 344.
+LaTeX Font Info:    Try loading font information for OMS+ppl on input line 351.
 
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsppl.fd
 File: omsppl.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ppl/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 344.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 351.
 
-Underfull \hbox (badness 10000) in paragraph at lines 342--348
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 342--348
+Underfull \hbox (badness 10000) in paragraph at lines 349--355
 
  []
 
 
-Overfull \hbox (1.39188pt too wide) in paragraph at lines 342--348
+Underfull \hbox (badness 10000) in paragraph at lines 349--355
+
+ []
+
+
+Overfull \hbox (1.39188pt too wide) in paragraph at lines 349--355
 \OT1/ppl/m/n/10.95 alter 'BaseTableA', METHOD =\OML/cmm/m/it/10.95 >\OT1/ppl/m/
 n/10.95 '\OT1/pcr/m/n/10.95 table[]att\OT1/ppl/m/n/10.95 ', 'co-pro-ces-sor' =\
 OML/cmm/m/it/10.95 >\OT1/ppl/m/n/10.95 'file:///home/saroj-
  []
 
 
-Overfull \hbox (10.05624pt too wide) in paragraph at lines 342--348
+Overfull \hbox (10.05624pt too wide) in paragraph at lines 349--355
 \OT1/ppl/m/n/10.95 gautam/Documents/HBase-coprocessor-0.0.1-SNAPSHOT-jar-with-d
 ependencies.jar[] 
  []
 
 
-Overfull \hbox (27.05775pt too wide) in paragraph at lines 349--352
+Overfull \hbox (27.05775pt too wide) in paragraph at lines 356--359
 \OT1/ppl/m/n/10.95 hbase\OML/cmm/m/it/10.95 >\OT1/ppl/m/n/10.95 describe '\OML/
 cmm/m/it/10.95 <\OT1/pcr/m/n/10.95 table[]name\OML/cmm/m/it/10.95 > \OT1/ppl/m/
 n/10.95 should list the co-pro-ces-sor un-der \OT1/pcr/m/n/10.95 TABLE[]ATTRIBU
@@ -1040,29 +1040,29 @@ TES.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 349--352
+Underfull \hbox (badness 10000) in paragraph at lines 356--359
 
  []
 
 [24] (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
-Underfull \hbox (badness 10000) in paragraph at lines 358--362
+Underfull \hbox (badness 10000) in paragraph at lines 365--369
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 358--362
+Underfull \hbox (badness 10000) in paragraph at lines 365--369
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 371--373
+Underfull \hbox (badness 10000) in paragraph at lines 378--380
 
  []
 
 
-Overfull \hbox (26.5463pt too wide) in paragraph at lines 376--377
+Overfull \hbox (26.5463pt too wide) in paragraph at lines 383--384
 [][][][][][][][][][][][][] 
  []
 
@@ -1070,43 +1070,43 @@ Overfull \hbox (26.5463pt too wide) in paragraph at lines 376--377
 File: figures/IntermediateTable.pdf Graphic file (type pdf)
 
 <use figures/IntermediateTable.pdf>
-Package pdftex.def Info: figures/IntermediateTable.pdf used on input line 427.
+Package pdftex.def Info: figures/IntermediateTable.pdf used on input line 434.
 (pdftex.def)             Requested size: 433.35742pt x 613.25868pt.
 
 
-LaTeX Warning: Float too large for page by 68.25842pt on input line 431.
+LaTeX Warning: Float too large for page by 68.25842pt on input line 438.
 
 [27] [28 <./figures/IntermediateTable.pdf>]
 <figures/NewRowInsertAggr.pdf, id=807, 597.23125pt x 845.1575pt>
 File: figures/NewRowInsertAggr.pdf Graphic file (type pdf)
 
 <use figures/NewRowInsertAggr.pdf>
-Package pdftex.def Info: figures/NewRowInsertAggr.pdf used on input line 467.
+Package pdftex.def Info: figures/NewRowInsertAggr.pdf used on input line 474.
 (pdftex.def)             Requested size: 433.35742pt x 613.25868pt.
 
 
-LaTeX Warning: Float too large for page by 68.25842pt on input line 471.
+LaTeX Warning: Float too large for page by 68.25842pt on input line 478.
 
 [29] [30 <./figures/NewRowInsertAggr.pdf>]
 <figures/ValueUpdateAggr.pdf, id=831, 597.23125pt x 845.1575pt>
 File: figures/ValueUpdateAggr.pdf Graphic file (type pdf)
 
 <use figures/ValueUpdateAggr.pdf>
-Package pdftex.def Info: figures/ValueUpdateAggr.pdf used on input line 479.
+Package pdftex.def Info: figures/ValueUpdateAggr.pdf used on input line 486.
 (pdftex.def)             Requested size: 433.35742pt x 613.25868pt.
 
 
-LaTeX Warning: Float too large for page by 68.25842pt on input line 483.
+LaTeX Warning: Float too large for page by 68.25842pt on input line 490.
 
 <figures/KeyUpdateAggr.pdf, id=833, 597.23125pt x 845.1575pt>
 File: figures/KeyUpdateAggr.pdf Graphic file (type pdf)
 
 <use figures/KeyUpdateAggr.pdf>
-Package pdftex.def Info: figures/KeyUpdateAggr.pdf used on input line 495.
+Package pdftex.def Info: figures/KeyUpdateAggr.pdf used on input line 502.
 (pdftex.def)             Requested size: 433.35742pt x 613.25868pt.
 
 
-LaTeX Warning: Float too large for page by 68.25842pt on input line 499.
+LaTeX Warning: Float too large for page by 68.25842pt on input line 506.
 
 [31] [32 <./figures/ValueUpdateAggr.pdf>] [33 <./figures/KeyUpdateAggr.pdf>]
 <figures/DeleteExistingRowAggr.pdf, id=866, 597.23125pt x 845.1575pt>
@@ -1114,11 +1114,11 @@ File: figures/DeleteExistingRowAggr.pdf Graphic file (type pdf)
 
 <use figures/DeleteExistingRowAggr.pdf>
 Package pdftex.def Info: figures/DeleteExistingRowAggr.pdf used on input line 5
-11.
+18.
 (pdftex.def)             Requested size: 433.35742pt x 613.25868pt.
 
 
-LaTeX Warning: Float too large for page by 68.25842pt on input line 515.
+LaTeX Warning: Float too large for page by 68.25842pt on input line 522.
 
 [34] [35 <./figures/DeleteExistingRowAggr.pdf>]
 <figures/NewRowInsertJoinAggr.pdf, id=888, 597.23125pt x 845.1575pt>
@@ -1126,35 +1126,35 @@ File: figures/NewRowInsertJoinAggr.pdf Graphic file (type pdf)
 
 <use figures/NewRowInsertJoinAggr.pdf>
 Package pdftex.def Info: figures/NewRowInsertJoinAggr.pdf used on input line 55
-2.
+9.
 (pdftex.def)             Requested size: 433.35742pt x 613.25868pt.
 
 
-LaTeX Warning: Float too large for page by 68.25842pt on input line 556.
+LaTeX Warning: Float too large for page by 68.25842pt on input line 563.
 
 [36] [37 <./figures/NewRowInsertJoinAggr.pdf>] [38] [39] [40]
 chapter 6.
 
-Underfull \hbox (badness 10000) in paragraph at lines 613--617
+Underfull \hbox (badness 10000) in paragraph at lines 620--624
 
  []
 
 [41
 
 ]
-<figures/Aggregation_exp_standalone.pdf, id=954, 597.23125pt x 845.1575pt>
-File: figures/Aggregation_exp_standalone.pdf Graphic file (type pdf)
+<figures/Aggregation_exp1_standalone.pdf, id=954, 597.23125pt x 845.1575pt>
+File: figures/Aggregation_exp1_standalone.pdf Graphic file (type pdf)
 
-<use figures/Aggregation_exp_standalone.pdf>
-Package pdftex.def Info: figures/Aggregation_exp_standalone.pdf used on input l
-ine 649.
+<use figures/Aggregation_exp1_standalone.pdf>
+Package pdftex.def Info: figures/Aggregation_exp1_standalone.pdf used on input 
+line 656.
 (pdftex.def)             Requested size: 433.35742pt x 613.25868pt.
 
 
-LaTeX Warning: Float too large for page by 68.25842pt on input line 652.
+LaTeX Warning: Float too large for page by 68.25842pt on input line 659.
 
-[42] [43 <./figures/Aggregation_exp_standalone.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 655--657
+[42] [43 <./figures/Aggregation_exp1_standalone.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 662--664
 
  []
 
@@ -1164,11 +1164,11 @@ File: figures/JoinAndAggr_exp_standalone.pdf Graphic file (type pdf)
 
 <use figures/JoinAndAggr_exp_standalone.pdf>
 Package pdftex.def Info: figures/JoinAndAggr_exp_standalone.pdf used on input l
-ine 700.
+ine 707.
 (pdftex.def)             Requested size: 433.35742pt x 613.25868pt.
 
 
-LaTeX Warning: Float too large for page by 68.25842pt on input line 704.
+LaTeX Warning: Float too large for page by 68.25842pt on input line 711.
 
 [46] [47 <./figures/JoinAndAggr_exp_standalone.pdf>] [48]
 <figures/JoinAndSel_exp_standalone.pdf, id=1041, 597.23125pt x 845.1575pt>
@@ -1176,22 +1176,22 @@ File: figures/JoinAndSel_exp_standalone.pdf Graphic file (type pdf)
 
 <use figures/JoinAndSel_exp_standalone.pdf>
 Package pdftex.def Info: figures/JoinAndSel_exp_standalone.pdf used on input li
-ne 738.
+ne 745.
 (pdftex.def)             Requested size: 433.35742pt x 613.25868pt.
 
 
-LaTeX Warning: Float too large for page by 68.25842pt on input line 742.
+LaTeX Warning: Float too large for page by 68.25842pt on input line 749.
 
 [49] [50 <./figures/JoinAndSel_exp_standalone.pdf>]
 <figures/Aggr_exp_dist.pdf, id=1066, 597.23125pt x 845.1575pt>
 File: figures/Aggr_exp_dist.pdf Graphic file (type pdf)
 
 <use figures/Aggr_exp_dist.pdf>
-Package pdftex.def Info: figures/Aggr_exp_dist.pdf used on input line 779.
+Package pdftex.def Info: figures/Aggr_exp_dist.pdf used on input line 786.
 (pdftex.def)             Requested size: 433.35742pt x 613.25868pt.
 
 
-LaTeX Warning: Float too large for page by 68.25842pt on input line 783.
+LaTeX Warning: Float too large for page by 68.25842pt on input line 790.
 
 [51] [52 <./figures/Aggr_exp_dist.pdf>] [53] [54]
 <figures/JoinAndAggr_exp_dist.pdf, id=1114, 597.23125pt x 845.1575pt>
@@ -1199,22 +1199,22 @@ File: figures/JoinAndAggr_exp_dist.pdf Graphic file (type pdf)
 
 <use figures/JoinAndAggr_exp_dist.pdf>
 Package pdftex.def Info: figures/JoinAndAggr_exp_dist.pdf used on input line 84
-2.
+9.
 (pdftex.def)             Requested size: 433.35742pt x 613.25868pt.
 
 
-LaTeX Warning: Float too large for page by 68.25842pt on input line 846.
+LaTeX Warning: Float too large for page by 68.25842pt on input line 853.
 
 [55] [56 <./figures/JoinAndAggr_exp_dist.pdf>]
 <figures/JoinSel_exp_dist.pdf, id=1144, 597.23125pt x 845.1575pt>
 File: figures/JoinSel_exp_dist.pdf Graphic file (type pdf)
 
 <use figures/JoinSel_exp_dist.pdf>
-Package pdftex.def Info: figures/JoinSel_exp_dist.pdf used on input line 865.
+Package pdftex.def Info: figures/JoinSel_exp_dist.pdf used on input line 872.
 (pdftex.def)             Requested size: 433.35742pt x 613.25868pt.
 
 
-LaTeX Warning: Float too large for page by 68.25842pt on input line 869.
+LaTeX Warning: Float too large for page by 68.25842pt on input line 876.
 
 [57] [58 <./figures/JoinSel_exp_dist.pdf>]
 chapter 7.
@@ -1228,26 +1228,26 @@ chapter 8.
 
 ]
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <24.88> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 890.
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 897.
  [63] [64] (./main.bbl
 chapter without number
 [65
 
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 902.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 909.
  [66]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 902.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 909.
  (./main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 902.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 902.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 909.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 909.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 2B4F315D0921C2B956978C19B5AF66C5;5847.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 902.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 909.
  ) 
 Here is how much of TeX's memory you used:
  12995 strings out of 493029
- 199142 string characters out of 6136234
+ 199147 string characters out of 6136234
  360875 words of memory out of 5000000
  15973 multiletter control sequences out of 15000+600000
  24448 words of font info for 64 fonts, out of 8000000 for 9000
@@ -1261,7 +1261,7 @@ type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/pal
 atino/uplb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplr8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/s
 hare/texlive/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on main.pdf (80 pages, 1153129 bytes).
+Output written on main.pdf (80 pages, 1153184 bytes).
 PDF statistics:
  1297 PDF objects out of 1440 (max. 8388607)
  1108 compressed objects within 12 object streams

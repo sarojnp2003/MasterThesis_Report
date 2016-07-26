@@ -79,7 +79,7 @@
 \chapter{Introduction}
 \label{chap:introduction}
 
-
+\section{Introduction}
 The Internet has touched many aspects of human lives. It has revolutionized the way we communicate, interact, shop, etc. Over the years, the internet has become an infinite repository of information. For instance, social networks such as Facebook records  500 TB of data each day\cite{daniel:datastats}, including 2.7 billion likes and 300 million photos. As of 2012, Facebook already has 100 petabytes of photos\cite{daniel:datastats}. Google, on the other hand, processes 3.5 billion requests per day \cite{daniel:datastats}. To deal with the scale of the ever growing information, we are in the need of efficient and scalable databases than ever before. 
 
 In the early 2000s, where there were fewer data shared on social media, data were stored in a relational database. Relational databases were designed in such a fashion to store a small amount of data and maintain integrity between them\cite{matt:rdb}. The amount of information we share on social media is expected to grow from 4.4 zettabytes in 2013 to 44 zettabytes in 2020(1 zettabyte is 1 trillion gigabytes)\cite{matt:rdb}. The scaling in RDBMS depends on adding more powerful CPU's and memory, i.e. only the vertical scaling is possible which is rather expensive.  One of the advantages of the big data storage system is that it can be scaled horizontally and is also useful for storing unstructured or semi-structured data. 
@@ -92,11 +92,16 @@ In this thesis, we discuss several algorithms that allow efficient maintenance a
 
 % Whenever we see our friends posting pictures on Facebook or Instagram, we like them or comment on them. Whenever we feel like sharing our thoughts, we either update status on Facebook or just tweet about it. If we need some relevant information, we just google it. The amount of data generated in such a fashion has to be stored somewhere. Companies like Facebook stores 500 TB of data each day\cite{daniel:datastats}, including 2.7 billion likes and 300 million photos. As of 2012, Facebook already has 100 petabytes of photos\cite{daniel:datastats}. Google, on the other hand, processes 3.5 billion requests per day \cite{daniel:datastats}. In the early 2000s, where there were fewer data shared on social media, data were stored in a relational database. Relational databases were designed in such a fashion to store a small amount of data and maintain integrity between them\cite{matt:rdb}. The amount of information we share on social media is expected to grow from 4.4 zettabytes in 2013 to 44 zettabytes in 2020(1 zettabyte is 1 trillion gigabytes)\cite{matt:rdb}. The scaling in RDBMS depends on adding more powerful CPU's and memory, i.e. only the vertical scaling is possible which is rather expensive.  One of the advantages of the big data storage system is that it can be scaled horizontally and is also useful for storing unstructured or semi-structured data. 
 
-% HBase is an open source sortedMap Datastore from Apache Software Foundation which is used as a database to store huge volume of data. HBase supports horizontal scalability, i.e. parts of a table can be put on several machines. This way a table is broken down into multiple pieces, thus making computation fast. But when we are talking about petabytes of data, scanning each part of the table for a single user query is still considered to be expensive regarding processing time. There are several techniques to reduce this effort, but we will be talking about $Materialized$ $Views$ approach. 
-
-
-
 %In Chapter \ref{chap:background}, we analyse the fundamentals of views and view maintenance. In Chapter \ref{chap:relatedwork}, we present research, that is related to this thesis. In Chapter \ref{chap:analysis}, we define the requirements of the View Maintenance System and discuss possible alternatives.  In Chapter \ref{chap:architecture}, we align the architecture of the system and define its functionalities. In Chapter \ref{chap:viewconsistency}, we discuss threats to consistency and apply consistency techniques. In Chapter \ref{chap:loadbalancing}, we show how load balancing can be accomplished in the View Maintenance System. In Chapter \ref{chap:failuredetection}, we take counter measures to component failure. In Chapter \ref{chap:implementation}, we show challenges of the implementation. Finally, we evaluate and interpret the behaviour of the system in Chapter \ref{chap:evaluation}.\\%
+
+\section{Motivation}
+\label{Motivation}
+
+Our motivation in this thesis is to maintain consistency between base tables and view table that are split across multiple nodes in a cluster. In the era of early 90's when Internet access was limited, relational database systems were widely used to store data generated through the Internet. In the early 2000, when more people had an access to Internet, huge amount of data were generated and new research were carried out to store data in a distributed storage systems. In the year 2007, Apache Software Foundation released the first prototype of HBase, an open source sortedMap Datastore that runs on top of Hadoop. HBase data storage system provided a solution for horizontal scalability, i.e. data was stored in a distributed fashion. In the late 2000's, Internet became more accessible and the size of date grew bigger and bigger. Though data was stored in a distributed fashion, there were researchers carrying out research on faster retrieval of data from the big chunk of datasets. Oracle first introduced the concept of Materialized Views that provided a faster querying mechanism over a large dataset. Materialized Views are the database object that stores the result of a query in a
+table or a disk. Instead querying a table, queries were redirected to the Materialized Views for faster retrieval. However, there was a challenge to maintain consistency between a table and its materialized view. Our aim here is to maintain consistency between base tables and a view table in a HBase database systems. One of the solutions were to re-create materialized view whenever there were changes in base tables. Re-creating view table every  time when changes happened in the base table was not a ideal solution. HBase released a feature called coprocessor from version 0.92 onwards that provided a functionality of triggers used in relational database management systems. We used coprocessor functionality to maintain consistency between base tables and a view table incrementally in our implementation.
+
+\section{Contribution}
+In Chapter \ref{chap:background}, we will briefly discuss the fundamentals of Materialized Views, HBase and Incremental View Maintenance. In Chapter \ref{chap:relatedwork}, we will present past research on Incremental View Maintenance. In Chapter \ref{Failure Detection}, we discussion about the failure scenarios and prevention. In Chapter \ref{Implementation}, we define some prerequisite and propose an algorithm to maintain consistency among base tables and view table. In Chapter \ref{Evaluation}, we perform different experiments to prove our hypothesis. In Chapter \ref{Conclusion}, we provide conclusion of our experiments and in Chapter \ref{Future Work}, we provide some ideas that can be implemented in the near future.
 
 
 \chapter{Background}
@@ -142,7 +147,7 @@ Join and Selection case is similar to the Join and Aggregation case, the only di
 
 Before the evolution of HBase, Relational database systems were used particularly for storing and processing of data. Relational database systems have been used widely over a decade and are considered to be successful. In a relational database, multiple tables are used to store different types of data, this segregation of data gives more clear and systematic view of the data\cite{relational:dbs}. However, one of the biggest drawbacks in Relational database is the difficulty of scaling horizontally. The major disadvantage of relational database design is the performance if the number of tables between which the relationships has to be defined is large, i.e. more operation power needed for computation\cite{relational:dbs}. 
 
-HBase is an open source sortedMap Datastore from Apache Software Foundation. HBase is modelled after Google's BigTable framework. It is a Hadoop database that is used for storing and retrieving data with random access. HBase architecture is designed to run on a cluster of computers rather than a single machine \cite{coprocessor:detail}. HBase aims to scale horizontally by adding more machines to the cluster. HBase runs on top of HDFS(Hadoop Distribution File System) that provides the functionality alike of Google's Big Table and provides a fault-tolerant way of storing a large volume of semi-structured and unstructured data\cite{bigdata:analysis}.
+HBase is an open source sortedMap Datastore from Apache Software Foundation. HBase is modeled after Google's BigTable framework. It is a Hadoop database that is used for storing and retrieving data with random access. HBase architecture is designed to run on a cluster of computers rather than a single machine \cite{coprocessor:detail}. HBase aims to scale horizontally by adding more machines to the cluster. HBase runs on top of HDFS(Hadoop Distribution File System) that provides the functionality alike of Google's Big Table and provides a fault-tolerant way of storing a large volume of semi-structured and unstructured data\cite{bigdata:analysis}.
 
 HBase is built on top of Hadoop and Zookeeper\cite{coprocessor:detail}. Both Hadoop and Zookeeper are open source projects from Apache Software Foundation. Apache Hadoop is an open source framework that facilitates storing and processing large dataset in a distributed fashion. Zookeeper, which was developed under Apache software foundations, as a sub-project of Hadoop, is an open source distributed configuration service for large distributes applications. A basic table structure of HBase consists of Row Key, which is similar to the primary key in a relational database table, Column Family and Column Qualifier. The figure below describes a HBase table and it's mapping to the relational database table.
 
@@ -271,8 +276,9 @@ Endpoint coprocessor is similar to the Stored Procedures in RDBMS. This type of 
 
 When a request is invoked from a client, an instance of Batch.call() encapsulates the request invocation and the request is forwarded to coprocessorExec() method of HTableInterface. Then the coprocessorExec() handles the request invocation and distributes the request to all the Regions of the RegionServer. Assuming that no interruptions occurs and all the requests are completed, the results is then returned to client and aggregated\cite{coprocessor:detail}.
 
-\newpage
+
 \chapter{Related Work}
+\label{chap:relatedwork}
 In this chapter, we will discuss the existing research that have been made to maintain consistency between base table and view table.
 
 \section{Foundations}
@@ -311,6 +317,7 @@ HBase Master monitors all the available Region Servers in a cluster. There can b
 
 \newpage
 \chapter{Implementation}
+\label{Implementation}
 In this section, we will first discuss the prerequisite of implementation and then the proposed method for our research.
 
 \section{Prerequisite}
@@ -611,6 +618,7 @@ When a row is deleted from the base table, we simply delete an entry from the in
 
 \newpage
 \chapter{Evaluation}
+\label{Evaluation}
 In this chapter we perform different kinds of experiments on both Pseudo Distributed mode (single node cluster) and Fully Distributed mode (multi node cluster). We will further discuss about every types of experiments we performed and the dataset we used. We will then present the result of our experiments.
 
 \section{Experiment Setup (Pseudo Distributed Mode)}

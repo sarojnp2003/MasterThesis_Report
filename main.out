@@ -1,81 +1,83 @@
 \BOOKMARK [0][-]{section*.3}{Acknowledgements}{}% 1
 \BOOKMARK [0][-]{section*.4}{Abstract}{}% 2
-\BOOKMARK [0][-]{chapter.1}{Introduction}{}% 3
-\BOOKMARK [1][-]{section.1.1}{Introduction}{chapter.1}% 4
-\BOOKMARK [1][-]{section.1.2}{Motivation}{chapter.1}% 5
-\BOOKMARK [1][-]{section.1.3}{Contribution}{chapter.1}% 6
-\BOOKMARK [0][-]{chapter.2}{Background}{}% 7
-\BOOKMARK [1][-]{section.2.1}{Views}{chapter.2}% 8
-\BOOKMARK [1][-]{section.2.2}{Materialized Views}{chapter.2}% 9
-\BOOKMARK [1][-]{section.2.3}{View Maintenance}{chapter.2}% 10
-\BOOKMARK [1][-]{section.2.4}{Incremental Maintenance of Materialized View}{chapter.2}% 11
-\BOOKMARK [2][-]{subsection.2.4.1}{Aggregation}{section.2.4}% 12
-\BOOKMARK [2][-]{subsection.2.4.2}{Join and Aggregation}{section.2.4}% 13
-\BOOKMARK [2][-]{subsection.2.4.3}{Join and Selection}{section.2.4}% 14
-\BOOKMARK [1][-]{section.2.5}{HBase}{chapter.2}% 15
-\BOOKMARK [2][-]{subsection.2.5.1}{HBase Architecture}{section.2.5}% 16
-\BOOKMARK [1][-]{section.2.6}{Hadoop Distributed File System}{chapter.2}% 17
-\BOOKMARK [2][-]{subsection.2.6.1}{NameNode}{section.2.6}% 18
-\BOOKMARK [2][-]{subsection.2.6.2}{SecondaryNameNode}{section.2.6}% 19
-\BOOKMARK [2][-]{subsection.2.6.3}{DataNode}{section.2.6}% 20
-\BOOKMARK [1][-]{section.2.7}{Coprocessor}{chapter.2}% 21
-\BOOKMARK [2][-]{subsection.2.7.1}{Observer coprocessor}{section.2.7}% 22
-\BOOKMARK [2][-]{subsection.2.7.2}{Endpoint coprocessor}{section.2.7}% 23
-\BOOKMARK [0][-]{chapter.3}{Related Work}{}% 24
-\BOOKMARK [1][-]{section.3.1}{Foundations}{chapter.3}% 25
-\BOOKMARK [0][-]{chapter.4}{Failure Detection}{}% 26
-\BOOKMARK [1][-]{section.4.1}{Master Failure}{chapter.4}% 27
-\BOOKMARK [1][-]{section.4.2}{Region Server Failure}{chapter.4}% 28
-\BOOKMARK [0][-]{chapter.5}{Implementation}{}% 29
-\BOOKMARK [1][-]{section.5.1}{Prerequisite}{chapter.5}% 30
-\BOOKMARK [2][-]{subsection.5.1.1}{Static Loading of coprocessor}{section.5.1}% 31
-\BOOKMARK [2][-]{subsection.5.1.2}{Static Unloading of coprocesssor}{section.5.1}% 32
-\BOOKMARK [2][-]{subsection.5.1.3}{Dynamic Loading of coprocessor}{section.5.1}% 33
-\BOOKMARK [2][-]{subsection.5.1.4}{Dynamic Unloading of coprocessor}{section.5.1}% 34
-\BOOKMARK [1][-]{section.5.2}{Proposed Method}{chapter.5}% 35
-\BOOKMARK [2][-]{subsection.5.2.1}{Creation of an Intermediate table}{section.5.2}% 36
-\BOOKMARK [2][-]{subsection.5.2.2}{Creation of View Table}{section.5.2}% 37
-\BOOKMARK [2][-]{subsection.5.2.3}{Aggregation}{section.5.2}% 38
-\BOOKMARK [2][-]{subsection.5.2.4}{Join and Aggregation}{section.5.2}% 39
-\BOOKMARK [2][-]{subsection.5.2.5}{Join and Selection}{section.5.2}% 40
-\BOOKMARK [0][-]{chapter.6}{Evaluation}{}% 41
-\BOOKMARK [1][-]{section.6.1}{Experiment Setup \(Pseudo Distributed Mode\)}{chapter.6}% 42
-\BOOKMARK [2][-]{subsection.6.1.1}{Deployment}{section.6.1}% 43
-\BOOKMARK [2][-]{subsection.6.1.2}{Table Configuration}{section.6.1}% 44
-\BOOKMARK [2][-]{subsection.6.1.3}{Control Parameter}{section.6.1}% 45
-\BOOKMARK [1][-]{section.6.2}{Experiment 1 \(Aggregation\)}{chapter.6}% 46
-\BOOKMARK [2][-]{subsection.6.2.1}{Aggregation: View Re-computation vs Maintenance}{section.6.2}% 47
-\BOOKMARK [2][-]{subsection.6.2.2}{Aggregation: Insert Records}{section.6.2}% 48
-\BOOKMARK [2][-]{subsection.6.2.3}{Aggregation: Update View Table}{section.6.2}% 49
-\BOOKMARK [1][-]{section.6.3}{Experiment 2 \(Join and Aggregation\)}{chapter.6}% 50
-\BOOKMARK [2][-]{subsection.6.3.1}{Join and Aggregation: Insert records}{section.6.3}% 51
-\BOOKMARK [2][-]{subsection.6.3.2}{Join and Aggregation: View Re-computation vs Maintenance}{section.6.3}% 52
-\BOOKMARK [2][-]{subsection.6.3.3}{Join and Aggregation: Insert Records}{section.6.3}% 53
-\BOOKMARK [2][-]{subsection.6.3.4}{Join and Aggregation: Update View Table}{section.6.3}% 54
-\BOOKMARK [1][-]{section.6.4}{Experiment 3 \(Join and Selection\)}{chapter.6}% 55
-\BOOKMARK [2][-]{subsection.6.4.1}{Join and Selection: Insert records}{section.6.4}% 56
-\BOOKMARK [2][-]{subsection.6.4.2}{Join and Selection: View Re-computation vs Maintenance}{section.6.4}% 57
-\BOOKMARK [2][-]{subsection.6.4.3}{Join and Selection: Insert Records}{section.6.4}% 58
-\BOOKMARK [2][-]{subsection.6.4.4}{Join and Selection: Update View Table}{section.6.4}% 59
-\BOOKMARK [1][-]{section.6.5}{Experiment Setup \(Fully Distributed Mode\)}{chapter.6}% 60
-\BOOKMARK [2][-]{subsection.6.5.1}{Deployment}{section.6.5}% 61
-\BOOKMARK [2][-]{subsection.6.5.2}{Table Configuration}{section.6.5}% 62
-\BOOKMARK [2][-]{subsection.6.5.3}{Control Parameter}{section.6.5}% 63
-\BOOKMARK [1][-]{section.6.6}{Experiment 4 \(Aggregation\)}{chapter.6}% 64
-\BOOKMARK [2][-]{subsection.6.6.1}{Aggregation: View Re-computation vs Maintenance}{section.6.6}% 65
-\BOOKMARK [2][-]{subsection.6.6.2}{Aggregation: Insert Records}{section.6.6}% 66
-\BOOKMARK [2][-]{subsection.6.6.3}{Aggregation: Update View Table}{section.6.6}% 67
-\BOOKMARK [1][-]{section.6.7}{Experiment 5 \(Join and Aggregation\)}{chapter.6}% 68
-\BOOKMARK [2][-]{subsection.6.7.1}{Join and Aggregation: Compute base tables and view table}{section.6.7}% 69
-\BOOKMARK [2][-]{subsection.6.7.2}{Join and Aggregation: View Re-computation vs Maintenance}{section.6.7}% 70
-\BOOKMARK [2][-]{subsection.6.7.3}{Join and Aggregation: Insert Records}{section.6.7}% 71
-\BOOKMARK [2][-]{subsection.6.7.4}{Join and Aggregation: Update View Table}{section.6.7}% 72
-\BOOKMARK [1][-]{section.6.8}{Experiment 6 \(Join and Selection\)}{chapter.6}% 73
-\BOOKMARK [2][-]{subsection.6.8.1}{Join and Selection: Compute base tables and view tables}{section.6.8}% 74
-\BOOKMARK [2][-]{subsection.6.8.2}{Join and Selection: View Re-computation vs Maintenance}{section.6.8}% 75
-\BOOKMARK [2][-]{subsection.6.8.3}{Join and Selection: Insert Records}{section.6.8}% 76
-\BOOKMARK [2][-]{subsection.6.8.4}{Join and Selection: Update View Table}{section.6.8}% 77
-\BOOKMARK [0][-]{chapter.7}{Conclusion}{}% 78
-\BOOKMARK [0][-]{chapter.8}{Future Work}{}% 79
-\BOOKMARK [-1][]{part*.45}{Appendix}{}% 80
-\BOOKMARK [0][-]{chapter*.46}{Bibliography}{part*.45}% 81
+\BOOKMARK [0][-]{section*.5}{Abbreviation}{}% 3
+\BOOKMARK [0][-]{chapter.1}{Introduction}{}% 4
+\BOOKMARK [1][-]{section.1.1}{Introduction}{chapter.1}% 5
+\BOOKMARK [1][-]{section.1.2}{Motivation}{chapter.1}% 6
+\BOOKMARK [1][-]{section.1.3}{Contribution}{chapter.1}% 7
+\BOOKMARK [0][-]{chapter.2}{Background}{}% 8
+\BOOKMARK [1][-]{section.2.1}{Views}{chapter.2}% 9
+\BOOKMARK [1][-]{section.2.2}{Materialized Views}{chapter.2}% 10
+\BOOKMARK [1][-]{section.2.3}{View Maintenance}{chapter.2}% 11
+\BOOKMARK [1][-]{section.2.4}{Incremental Maintenance of Materialized View}{chapter.2}% 12
+\BOOKMARK [1][-]{section.2.5}{View Types}{chapter.2}% 13
+\BOOKMARK [2][-]{subsection.2.5.1}{Aggregation}{section.2.5}% 14
+\BOOKMARK [2][-]{subsection.2.5.2}{Join and Aggregation}{section.2.5}% 15
+\BOOKMARK [2][-]{subsection.2.5.3}{Join and Selection}{section.2.5}% 16
+\BOOKMARK [1][-]{section.2.6}{HBase}{chapter.2}% 17
+\BOOKMARK [2][-]{subsection.2.6.1}{HBase Architecture}{section.2.6}% 18
+\BOOKMARK [1][-]{section.2.7}{Hadoop Distributed File System}{chapter.2}% 19
+\BOOKMARK [2][-]{subsection.2.7.1}{NameNode}{section.2.7}% 20
+\BOOKMARK [2][-]{subsection.2.7.2}{SecondaryNameNode}{section.2.7}% 21
+\BOOKMARK [2][-]{subsection.2.7.3}{DataNode}{section.2.7}% 22
+\BOOKMARK [1][-]{section.2.8}{Coprocessor}{chapter.2}% 23
+\BOOKMARK [2][-]{subsection.2.8.1}{Observer coprocessor}{section.2.8}% 24
+\BOOKMARK [2][-]{subsection.2.8.2}{Endpoint coprocessor}{section.2.8}% 25
+\BOOKMARK [0][-]{chapter.3}{Related Work}{}% 26
+\BOOKMARK [1][-]{section.3.1}{Foundations}{chapter.3}% 27
+\BOOKMARK [0][-]{chapter.4}{Failure Detection}{}% 28
+\BOOKMARK [1][-]{section.4.1}{Master Failure}{chapter.4}% 29
+\BOOKMARK [1][-]{section.4.2}{Region Server Failure}{chapter.4}% 30
+\BOOKMARK [0][-]{chapter.5}{Implementation}{}% 31
+\BOOKMARK [1][-]{section.5.1}{Prerequisite}{chapter.5}% 32
+\BOOKMARK [2][-]{subsection.5.1.1}{Static Loading of coprocessor}{section.5.1}% 33
+\BOOKMARK [2][-]{subsection.5.1.2}{Static Unloading of coprocesssor}{section.5.1}% 34
+\BOOKMARK [2][-]{subsection.5.1.3}{Dynamic Loading of coprocessor}{section.5.1}% 35
+\BOOKMARK [2][-]{subsection.5.1.4}{Dynamic Unloading of coprocessor}{section.5.1}% 36
+\BOOKMARK [1][-]{section.5.2}{Proposed Method}{chapter.5}% 37
+\BOOKMARK [2][-]{subsection.5.2.1}{Creation of an Intermediate table}{section.5.2}% 38
+\BOOKMARK [2][-]{subsection.5.2.2}{Creation of View Table}{section.5.2}% 39
+\BOOKMARK [2][-]{subsection.5.2.3}{Aggregation}{section.5.2}% 40
+\BOOKMARK [2][-]{subsection.5.2.4}{Join and Aggregation}{section.5.2}% 41
+\BOOKMARK [2][-]{subsection.5.2.5}{Join and Selection}{section.5.2}% 42
+\BOOKMARK [0][-]{chapter.6}{Evaluation}{}% 43
+\BOOKMARK [1][-]{section.6.1}{Experiment Setup \(Pseudo Distributed Mode\)}{chapter.6}% 44
+\BOOKMARK [2][-]{subsection.6.1.1}{Deployment}{section.6.1}% 45
+\BOOKMARK [2][-]{subsection.6.1.2}{Table Configuration}{section.6.1}% 46
+\BOOKMARK [2][-]{subsection.6.1.3}{Control Parameter}{section.6.1}% 47
+\BOOKMARK [1][-]{section.6.2}{Experiment 1 \(Aggregation\)}{chapter.6}% 48
+\BOOKMARK [2][-]{subsection.6.2.1}{Aggregation: View Re-computation vs Maintenance}{section.6.2}% 49
+\BOOKMARK [2][-]{subsection.6.2.2}{Aggregation: Insert Records}{section.6.2}% 50
+\BOOKMARK [2][-]{subsection.6.2.3}{Aggregation: Update View Table}{section.6.2}% 51
+\BOOKMARK [1][-]{section.6.3}{Experiment 2 \(Join and Aggregation\)}{chapter.6}% 52
+\BOOKMARK [2][-]{subsection.6.3.1}{Join and Aggregation: Insert records}{section.6.3}% 53
+\BOOKMARK [2][-]{subsection.6.3.2}{Join and Aggregation: View Re-computation vs Maintenance}{section.6.3}% 54
+\BOOKMARK [2][-]{subsection.6.3.3}{Join and Aggregation: Insert Records}{section.6.3}% 55
+\BOOKMARK [2][-]{subsection.6.3.4}{Join and Aggregation: Update View Table}{section.6.3}% 56
+\BOOKMARK [1][-]{section.6.4}{Experiment 3 \(Join and Selection\)}{chapter.6}% 57
+\BOOKMARK [2][-]{subsection.6.4.1}{Join and Selection: Insert records}{section.6.4}% 58
+\BOOKMARK [2][-]{subsection.6.4.2}{Join and Selection: View Re-computation vs Maintenance}{section.6.4}% 59
+\BOOKMARK [2][-]{subsection.6.4.3}{Join and Selection: Insert Records}{section.6.4}% 60
+\BOOKMARK [2][-]{subsection.6.4.4}{Join and Selection: Update View Table}{section.6.4}% 61
+\BOOKMARK [1][-]{section.6.5}{Experiment Setup \(Fully Distributed Mode\)}{chapter.6}% 62
+\BOOKMARK [2][-]{subsection.6.5.1}{Deployment}{section.6.5}% 63
+\BOOKMARK [2][-]{subsection.6.5.2}{Table Configuration}{section.6.5}% 64
+\BOOKMARK [2][-]{subsection.6.5.3}{Control Parameter}{section.6.5}% 65
+\BOOKMARK [1][-]{section.6.6}{Experiment 4 \(Aggregation\)}{chapter.6}% 66
+\BOOKMARK [2][-]{subsection.6.6.1}{Aggregation: View Re-computation vs Maintenance}{section.6.6}% 67
+\BOOKMARK [2][-]{subsection.6.6.2}{Aggregation: Insert Records}{section.6.6}% 68
+\BOOKMARK [2][-]{subsection.6.6.3}{Aggregation: Update View Table}{section.6.6}% 69
+\BOOKMARK [1][-]{section.6.7}{Experiment 5 \(Join and Aggregation\)}{chapter.6}% 70
+\BOOKMARK [2][-]{subsection.6.7.1}{Join and Aggregation: Compute base tables and view table}{section.6.7}% 71
+\BOOKMARK [2][-]{subsection.6.7.2}{Join and Aggregation: View Re-computation vs Maintenance}{section.6.7}% 72
+\BOOKMARK [2][-]{subsection.6.7.3}{Join and Aggregation: Insert Records}{section.6.7}% 73
+\BOOKMARK [2][-]{subsection.6.7.4}{Join and Aggregation: Update View Table}{section.6.7}% 74
+\BOOKMARK [1][-]{section.6.8}{Experiment 6 \(Join and Selection\)}{chapter.6}% 75
+\BOOKMARK [2][-]{subsection.6.8.1}{Join and Selection: Compute base tables and view tables}{section.6.8}% 76
+\BOOKMARK [2][-]{subsection.6.8.2}{Join and Selection: View Re-computation vs Maintenance}{section.6.8}% 77
+\BOOKMARK [2][-]{subsection.6.8.3}{Join and Selection: Insert Records}{section.6.8}% 78
+\BOOKMARK [2][-]{subsection.6.8.4}{Join and Selection: Update View Table}{section.6.8}% 79
+\BOOKMARK [0][-]{chapter.7}{Conclusion}{}% 80
+\BOOKMARK [0][-]{chapter.8}{Future Work}{}% 81
+\BOOKMARK [-1][]{part*.46}{Appendix}{}% 82
+\BOOKMARK [0][-]{chapter*.47}{Bibliography}{part*.46}% 83

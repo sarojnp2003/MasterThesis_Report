@@ -65,6 +65,8 @@
 	\input{components/acknowledgements}
 	
 	\input{components/abstract}
+	
+	\input{components/abbreviation}
 
 	\tableofcontents
   
@@ -127,19 +129,22 @@ Once the Materialized views are created, our query is redirected to Materialized
 
 Recomputing Materialized view from scratch every time there is an update on base table is expensive. The other approach is to update the part of Materialized view table with respect to the update in Base Table. Our target is to maintain consistency between Materialized views and base table whenever there is an update on the base table.
 
+\section{View Types}
+\label{View Types}
+There can be several types of Views but in our implementation we have only used three different types of views namely $Aggregation$, $Join$ $and$ $Aggregation$ and $Join$ $and$ $Selection$. In $Aggregation$ view type, we have a single base table and data is merged based on a particular key. Both  $Join$ $and$ $Aggregation$ and $Join$ $and$ $Selection$ have two base tables and k-fk join is involved among them. 
 
 \subsection{Aggregation}
 In Aggregation view type, the data from the base table is merged on the basis of a particular key. In our implementation, we've implemented basic aggregation functions like sum, count, min and max. All these operations are carried out based on a particular key. So a unique key has sum, count, min and max operations. Whenever an update is triggered to update value for a particular key in the base table, in this case, count remains same and sum, min and max has to be recalculated. If a delete is triggered for a particular key in the base table, each of the aggregation functions has to be recalculated. 
 
 
 \subsection{Join and Aggregation}
-In Join and Aggregation case, we have at least two base tables. Joins being one of the complex structure itself, incremental view maintenance implementation involves a lot of complex cases. Here, to reduce complexity, we join two base tables on the basis of $key$ to form a new intermediate table. We group all the values of both base tables based on their keys. This way, for any update or delete trigger, the complexity of scanning whole base table is reduced to a single row. In our intermediate table, each of the base table is merged to a column family, join is applied and then result is stored in the view table. 
+In Join and Aggregation case, we have at least two base tables that involves k-fk join. In this implementation, records are selected after apply k-fk join depending upon the condition. One of the base table contains the primary key and another base table contains foreign key. Joins being one of the complex structure itself, incremental view maintenance implementation involves a lot of complex cases. Here, to reduce complexity, we join two base tables on the basis of $key$ to form a new intermediate table. We group all the values of both base tables based on their keys. This way, for any update or delete trigger, the complexity of scanning whole base table is reduced to a single row. In our intermediate table, each of the base table is merged to a column family, join is applied and then result is stored in the view table. 
 
 In the intermediate table, the unique keys from both the base tables act as the row key, both column families from base table are merged in the intermediate table. Now for a particular row key, the values are selected from base table and plotted in the intermediate table. Now join is applied between both column families of a particular row key, and sum of the join is inserted in the view table.  
 
 
 \subsection{Join and Selection}
-Join and Selection case is similar to the Join and Aggregation case, the only difference is instead of applying aggregation function, the join is applied for a particular row key and value is selected and inserted into the view table.
+This View type also involves k-fk join among the two base tables. In this implementation, records are selected after apply k-fk join depending upon the condition. One of the base table contains the primary key and another base table contains foreign key. Join and Selection case is similar to the Join and Aggregation case, the only difference is instead of applying aggregation function, the join is applied for a particular rowKey and value is selected and inserted into the view table. 
 
 \newpage
 \section{HBase}

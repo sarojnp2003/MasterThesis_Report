@@ -21,27 +21,24 @@ Warning--entry type for "loading:coprocessors" isn't style-file defined
 --line 641 of file bibliography/literature.bib
 Warning--entry type for "hbase:site" isn't style-file defined
 --line 659 of file bibliography/literature.bib
-Warning--entry type for "relational:dbs" isn't style-file defined
---line 677 of file bibliography/literature.bib
 Warning--entry type for "hbase:architecture" isn't style-file defined
---line 695 of file bibliography/literature.bib
+--line 677 of file bibliography/literature.bib
 Warning--entry type for "hbase:zookeeper" isn't style-file defined
---line 713 of file bibliography/literature.bib
+--line 695 of file bibliography/literature.bib
 Warning--entry type for "hbase:insights" isn't style-file defined
---line 731 of file bibliography/literature.bib
-Warning--entry type for "hadoop:architecture" isn't style-file defined
---line 749 of file bibliography/literature.bib
+--line 713 of file bibliography/literature.bib
 Warning--entry type for "HDFS:architecture" isn't style-file defined
---line 767 of file bibliography/literature.bib
+--line 765 of file bibliography/literature.bib
 Warning--entry type for "HDFS:datanode" isn't style-file defined
---line 785 of file bibliography/literature.bib
+--line 783 of file bibliography/literature.bib
 Warning--entry type for "HDFS:namenodeanddatanode" isn't style-file defined
---line 803 of file bibliography/literature.bib
+--line 801 of file bibliography/literature.bib
 Warning--entry type for "HDFS:secondarynamenode" isn't style-file defined
---line 821 of file bibliography/literature.bib
+--line 819 of file bibliography/literature.bib
 Warning--to sort, need author or key in loading:coprocessors
 Warning--to sort, need author or key in hbase:site
 Warning--empty journal in incrementalmaintenance:materializedviews
+Warning--empty journal in hadoop:architecture
 Warning--empty journal in maintenance:optimizingqueries
 Warning--empty journal in bigdata:analysis
 Warning--empty journal in coprocessor:detail
@@ -52,45 +49,45 @@ Warning--empty journal in cloudera:instandupg
 Warning--empty journal in incremental:materializedviews
 Warning--empty journal in database:concepts
 Warning--empty year in database:concepts
-You've used 29 entries,
+You've used 28 entries,
             2118 wiz_defined-function locations,
-            619 strings with 6864 characters,
-and the built_in function-call counts, 7386 in all, are:
-= -- 664
-> -- 356
+            616 strings with 6774 characters,
+and the built_in function-call counts, 7159 in all, are:
+= -- 646
+> -- 343
 < -- 2
-+ -- 145
-- -- 114
-* -- 448
-:= -- 1225
-add.period$ -- 69
-call.type$ -- 29
-change.case$ -- 144
++ -- 140
+- -- 110
+* -- 440
+:= -- 1193
+add.period$ -- 68
+call.type$ -- 28
+change.case$ -- 139
 chr.to.int$ -- 0
 cite$ -- 42
-duplicate$ -- 263
-empty$ -- 635
-format.name$ -- 114
-if$ -- 1529
+duplicate$ -- 259
+empty$ -- 608
+format.name$ -- 110
+if$ -- 1476
 int.to.chr$ -- 0
-int.to.str$ -- 29
-missing$ -- 13
-newline$ -- 130
-num.names$ -- 54
-pop$ -- 238
+int.to.str$ -- 28
+missing$ -- 14
+newline$ -- 127
+num.names$ -- 52
+pop$ -- 225
 preamble$ -- 1
-purify$ -- 115
+purify$ -- 111
 quote$ -- 0
-skip$ -- 240
+skip$ -- 230
 stack$ -- 0
-substring$ -- 274
-swap$ -- 33
+substring$ -- 269
+swap$ -- 31
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 116
-warning$ -- 13
-while$ -- 65
-width$ -- 31
-write$ -- 253
+type$ -- 112
+warning$ -- 14
+while$ -- 63
+width$ -- 30
+write$ -- 246
 (There was 1 error message)

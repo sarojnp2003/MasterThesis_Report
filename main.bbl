@@ -34,7 +34,8 @@ Jose~A. Blakeley, Per-Ake Larson, and Frank~Wm Tompa.
 \bibitem{hadoop:architecture}
 Robert Chansler, Hairong Kuang, Sanjay Radia, Konstantin Shvachko, and Suresh
   Srinivas.
-\newblock The hadoop distributed file system, 2011.
+\newblock The hadoop distributed file system.
+\newblock October 2013.
 
 \bibitem{maintenance:optimizingqueries}
 Surajit Chaudhuri, Ravi Krishnamurthy, Spyros Potamianosz, and Kyuseok Shim.
@@ -96,10 +97,6 @@ Edureka Inc.
 \bibitem{coprocessor:types}
 Mingjie Lai, Eugene Koontz, and Andrew Purtell.
 \newblock Coprocessor introduction, 2012.
-
-\bibitem{relational:dbs}
-Sayed Mahbub and Hasan Amiri.
-\newblock Advantage \& disadvantage of relational database, Apr 2016.
 
 \bibitem{hbase:architecture}
 Carol McDonald.

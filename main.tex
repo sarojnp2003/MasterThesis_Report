@@ -82,6 +82,7 @@
 \label{chap:introduction}
 
 \section{Introduction}
+\label{Introduction}
 The Internet has touched many aspects of human lives. It has revolutionized the way we communicate, interact, shop, etc. Over the years, the internet has become an infinite repository of information. For instance, social networks such as Facebook records  500 TB of data each day\cite{daniel:datastats}, including 2.7 billion likes and 300 million photos. As of 2012, Facebook already has 100 petabytes of photos\cite{daniel:datastats}. Google, on the other hand, processes 3.5 billion requests per day \cite{daniel:datastats}. To deal with the scale of the ever growing information, we are in the need of efficient and scalable databases than ever before. 
 
 In the early 2000s, where there were fewer data shared on social media, data were stored in a relational database. Relational databases were designed in such a fashion to store a small amount of data and maintain integrity between them\cite{matt:rdb}. The amount of information we share on social media is expected to grow from 4.4 zettabytes in 2013 to 44 zettabytes in 2020(1 zettabyte is 1 trillion gigabytes)\cite{matt:rdb}. The scaling in RDBMS depends on adding more powerful CPU's and memory, i.e. only the vertical scaling is possible which is rather expensive.  One of the advantages of the big data storage system is that it can be scaled horizontally and is also useful for storing unstructured or semi-structured data. 
@@ -154,9 +155,8 @@ This View type also involves k-fk join among the two base tables. In this implem
 \section{HBase}
 \label{sec:hbase}
 
-Before the evolution of HBase, Relational database systems were used particularly for storing and processing of data. Relational database systems have been used widely over a decade and are considered to be successful. In a relational database, multiple tables are used to store different types of data, this segregation of data gives more clear and systematic view of the data\cite{relational:dbs}. However, one of the biggest drawbacks in Relational database is the difficulty of scaling horizontally. The major disadvantage of relational database design is the performance if the number of tables between which the relationships has to be defined is large, i.e. more operation power needed for computation\cite{relational:dbs}. 
-
-HBase is an open source sortedMap Datastore from Apache Software Foundation. HBase is modeled after Google's BigTable framework. It is a Hadoop database that is used for storing and retrieving data with random access. HBase architecture is designed to run on a cluster of computers rather than a single machine \cite{coprocessor:detail}. HBase aims to scale horizontally by adding more machines to the cluster. HBase runs on top of HDFS(Hadoop Distribution File System) that provides the functionality alike of Google's Big Table and provides a fault-tolerant way of storing a large volume of semi-structured and unstructured data\cite{bigdata:analysis}.
+Before the evolution of HBase, Relational Database Systems were used particularly for storing and processing of data. Relational database systems have been used widely over a decade and are considered to be successful. In a relational database model, we use different tables for different purposes, each table having their own purpose provides  
+a clear picture of the data. As discussed in Chapter \ref{chap:introduction}, Section \ref{Introduction}, the amount of informations shared over Internet were increasing rapidly. One of the major drawbacks of relational database model was unable to scale horizontally. Large scale distributed database were developed to overcome the problem with relational database models. No-SQL database concepts were developed that provided an API to manipulate data with operations such as get, put and delete. HBase is an open source sortedMap Datastore from Apache Software Foundation. HBase is modeled after Google's BigTable framework. It is a Hadoop database that is used for storing and retrieving data with random access. HBase architecture is designed to run on a cluster of computers rather than a single machine \cite{coprocessor:detail}. HBase aims to scale horizontally by adding more machines to the cluster. HBase runs on top of HDFS(Hadoop Distribution File System) that provides the functionality alike of Google's Big Table and provides a fault-tolerant way of storing a large volume of semi-structured and unstructured data\cite{bigdata:analysis}.
 
 HBase is built on top of Hadoop and Zookeeper\cite{coprocessor:detail}. Both Hadoop and Zookeeper are open source projects from Apache Software Foundation. Apache Hadoop is an open source framework that facilitates storing and processing large dataset in a distributed fashion. Zookeeper, which was developed under Apache software foundations, as a sub-project of Hadoop, is an open source distributed configuration service for large distributes applications. A basic table structure of HBase consists of Row Key, which is similar to the primary key in a relational database table, Column Family and Column Qualifier. The figure below describes a HBase table and it's mapping to the relational database table.
 
@@ -171,14 +171,17 @@ HBase is built on top of Hadoop and Zookeeper\cite{coprocessor:detail}. Both Had
 \newpage
 \subsection{HBase Architecture}
 \label{HBase Architecture}
+
 HBase architecture consists of three major components and three sub components. The major components are Master, Region server and zookeeper. The three sub components are Write-Ahead-Log(WAL), HFile and Memstore\cite{hbase:insights}. HBase architecture is based on Master-Slave architecture, where the Master is known as HMaster, is the master node and Region Servers are the slave nodes. Whenever the write request is sent, HMaster receives the request and forwards it to the respective Region Server\cite{hbase:insights}. 
 
 \subsubsection{HMaster}
 \label{hmaster}
+
 HBase Master is mainly responsible for region assignments within the region servers and DDL operations like creating and deleting tables\cite{hbase:architecture}. Apart from these roles, HMaster is also responsible for assigning the regions and re-assigning of the regions for recovery or load balancing\cite{hbase:architecture}. HMaster also monitors all the instances of Region Servers in the cluster\cite{hbase:architecture} and mainly provides administrative operations.
 
 \subsubsection{Region Servers}
 \label{region serves}
+
 Region servers are systems within HBase that acts like a data node\cite{hbase:insights}. When a HMaster receives a write request, it forwards the request to the Region Server. Region server can have multiple regions within it, and it directs the request to the specific region. Region servers are mainly responsible for handling data related operations and communication. Region servers handle the read/write request for all the regions within it. 
 A Region Server runs on data node and it has four sub components as described below\cite{hbase:architecture}
 \begin{description}
@@ -215,6 +218,7 @@ The figure below explains the HBase Architecture and its components.
 \newpage
 \section{Hadoop Distributed File System}
 \label{Hadoop Distributed File System}
+
 The Hadoop Distributed File System (HDFS) is an open source distributed file system developed for the Hadoop framework. HDFS is designed to store very large data sets and run on a commodity hardware. In HDFS, each files are divided into blocks of fixed size and are stored across multiple machines\cite{HDFS:architecture}. HDFS is also based on client-server architecture and each HDFS cluster consists of a single NameNode, also called as Master Node and multiple DataNodes, known as Slave nodes. All the metadata are stored in NameNode wheres the application data resides in DataNodes\cite{hadoop:architecture}.
 
 \subsection{NameNode}

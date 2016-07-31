@@ -16,6 +16,23 @@
 %% Final document
 \documentclass[11pt,a4paper,bibtotoc,idxtotoc,headsepline,footsepline,footexclude,BCOR12mm,DIV13]{scrbook}
 
+\usepackage{multirow}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+\lstset{ %
+  backgroundcolor=\color{white},   % choose the background color
+  basicstyle=\footnotesize,        % size of fonts used for the code
+  breaklines=true,                 % automatic line breaking only at whitespace
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  keywordstyle=\color{blue},       % keyword style
+  stringstyle=\color{mymauve},     % string literal style
+}
 
 %\documentclass[11pt,a4paper,bibtotoc,idxtotoc,headsepline,footsepline,footexclude,BCOR20mm,DIV10]{scrbook}
 
@@ -161,12 +178,44 @@ a clear picture of the data. As discussed in Chapter \ref{chap:introduction}, Se
 HBase is built on top of Hadoop and Zookeeper\cite{coprocessor:detail}. Both Hadoop and Zookeeper are open source projects from Apache Software Foundation. Apache Hadoop is an open source framework that facilitates storing and processing large dataset in a distributed fashion. Zookeeper, which was developed under Apache software foundations, as a sub-project of Hadoop, is an open source distributed configuration service for large distributes applications. A basic table structure of HBase consists of Row Key, which is similar to the primary key in a relational database table, Column Family and Column Qualifier. The figure below describes a HBase table and it's mapping to the relational database table.
 
 
-\begin{figure}
-	\centering
-	\includegraphics[width=\linewidth]{HBase}
-	\caption{HBase}
-	\label{fig:HBase}
-\end{figure}
+\begin{table*}[htb!]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\multirow{2}{*}{\textbf{RowKey}} & \multicolumn{2}{c|}{\textbf{Column Family}}\\
+\cline{2-3}
+& \textbf{Column Qualifier1} & \textbf{Column Qualifier2}\\
+\hline
+1 & A & 10\\
+2 & B & 20\\
+3 & C & 30\\
+\hline
+\end{tabular}
+\caption{HBase Table in Tabular view}
+\label{table:HbaseTabularView}
+\end{table*}
+
+\begin{table*}[htb!]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Row Key} & \textbf{Data}\\
+\hline
+1 & Fill in here\\
+2 & Fill in here\\
+3 & Fill in here\\
+\hline
+\end{tabular}
+\caption{HBase Table mapping to RDBMS Table}
+\label{table:HbaseTableRDBMSMapping}
+\end{table*}
+
+% \begin{figure}
+% 	\centering
+% 	\includegraphics[width=\linewidth]{HBase}
+% 	\caption{HBase}
+% 	\label{fig:HBase}
+% \end{figure}
 
 \newpage
 \subsection{HBase Architecture}
@@ -686,9 +735,9 @@ To evaluate performance in View Re-computation vs Maintenance, we first create a
 % In the figure \ref{sec:AggrExpStandalone}, $Fig(a)$ shows the time taken to insert records in view table vs update view table incrementally whenever there is an update in the base table. This experiment is run in three different datasets and in each datasets we know that updating view table takes significantly less amount of time than recomputing view table. Fig(d) shows shows the performance calculated in recomputing base table vs incremental maintenance. In the x-axis, we show types of client operations performed in base table and in y-axis we show performance optimized in percent. We calculate performance using the formula,
 In Figure \ref{sec:AggrExpStandalone}, $Fig(a)$, we compare the time taken while inserting records using the above methods. In figure \ref{sec:AggrExpStandalone}, $Fig(a)$, we observe that incremental update outperforms re-compute method by orders of magnitude. Further, In Fig \ref{sec:AggrExpStandalone}, $Fig(b)$, we report the percentage improvement achieved by an incremental update for four different operations over the re-compute baseline. Here we observe that incremental method yields up to 88\% improvement over the baseline.
 \newline
-\begin{equation}
+\begin{align*}
 \text{performance} = \frac{\text{time taken to compute view table} - \text{incremental update}}{\text{time taken to compute view table}} \times 100
-\end{equation}
+\end{align*}
 	 
 % One of the reasons for this performance optimization is that when recomputing a view table, we first have to perform read operation on base table and then write operation on view table. In incremental maintenance approach, only write operation is performed for every rows affected by the client operation on base table. The other reason is that the no. of rows updated in view table are less in comparison to the total no of rows in the base table. %
 The reason for the significant improvement in performance of incremental update over the baseline is due to read-write and recompute overhead.

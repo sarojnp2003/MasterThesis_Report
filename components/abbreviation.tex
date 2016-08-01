@@ -2,19 +2,32 @@
 % Included by MAIN.TEX
 
 
-\clearemptydoublepage
-\phantomsection
-\addcontentsline{toc}{chapter}{Abbreviation}	
+% \clearemptydoublepage
+% \phantomsection
+% \addcontentsline{toc}{chapter}{Abbreviation}	
 
 
 
 
 
-\vspace*{2cm}
-\begin{center}
-{\Large \bf Abbreviation}
-\end{center}
-\vspace{1cm}
+% \vspace*{2cm}
+% \begin{center}
+% {\Large \bf Abbreviation}
+% \end{center}
+% \vspace{1cm}
+
+\chapter*{List of Abbreviation}
+\label{acronyms}
+% add the list of abbreviation into table of content
+\addcontentsline{toc}{chapter}{Abbreviation}  
+\begin{itemize}
+
+\item[]
+\begin{acronym}[Symbols]
+%\setlength{\itemsep}{0ex}
+	\acro{}[CS]{Computer Science}\\
+\end{acronym}
+\end{itemize}
 
     
 	

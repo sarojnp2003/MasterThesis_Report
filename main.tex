@@ -83,8 +83,6 @@
 	
 	\input{components/abstract}
 	
-	\input{components/abbreviation}
-
 	\tableofcontents
   
  % \input{components/outline}
@@ -278,39 +276,39 @@ One of the features HBase provides is multiple values of a single cell within di
 \subsection{HBase Architecture}
 \label{HBase Architecture}
 
-HBase architecture consists of three major components and three sub components. The major components are Master, Region server and zookeeper. The three sub components are Write-Ahead-Log(WAL), HFile and Memstore\cite{hbase:insights}. HBase architecture is based on Master-Slave architecture, where the Master is known as HMaster, is the master node and Region Servers are the slave nodes. Whenever the write request is sent, HMaster receives the request and forwards it to the respective Region Server\cite{hbase:insights}. 
+HBase architecture consists of three major components and three sub components. The major components are master, region server and zookeeper. The three sub components are write-ahead log(WAL), HFile and memstore \cite{hbase:insights}. HBase architecture is based on master-slave architecture, where the master known as HMaster, is the master node and region servers are the slave nodes. Whenever the write request is sent, HMaster receives the request and forwards it to the respective region server \cite{hbase:insights}. 
 
 \subsubsection{HMaster}
 \label{hmaster}
 
-HBase Master is mainly responsible for region assignments within the region servers and DDL operations like creating and deleting tables\cite{hbase:architecture}. Apart from these roles, HMaster is also responsible for assigning the regions and re-assigning of the regions for recovery or load balancing\cite{hbase:architecture}. HMaster also monitors all the instances of Region Servers in the cluster\cite{hbase:architecture} and mainly provides administrative operations.
+HBase master is mainly responsible for region assignments within the region servers and DDL operations like creating and deleting tables \cite{hbase:architecture}. Apart from these roles, HMaster is also responsible for assigning the regions and re-assigning of the regions for recovery or load balancing \cite{hbase:architecture}. HMaster also monitors all the instances of Region Servers in the cluster \cite{hbase:architecture} and mainly provides administrative operations.
 
 \subsubsection{Region Servers}
 \label{region serves}
 
-Region servers are systems within HBase that acts like a data node\cite{hbase:insights}. When a HMaster receives a write request, it forwards the request to the Region Server. Region server can have multiple regions within it, and it directs the request to the specific region. Region servers are mainly responsible for handling data related operations and communication. Region servers handle the read/write request for all the regions within it. 
-A Region Server runs on data node and it has four sub components as described below\cite{hbase:architecture}
+Region servers are systems within HBase that acts like a data node \cite{hbase:insights}. When a HMaster receives a write request, it forwards the request to the region server. Region server can have multiple regions within it, and it directs the request to the specific region. Region servers are mainly responsible for handling data related operations and communication. Region servers handle the read/write request for all the regions within it. 
+A region server runs on data node and it has four sub components as described below \cite{hbase:architecture}
 \begin{description}
-	\item[$\bullet$]  Write Ahead Log(WAL): Write Ahead Log is basically a log file. Region server adds each request to WAL first before sending that request to the appropriate region. It is mainly used for recovery in case of failure\cite{hbase:insights}. If the request is not written in the WAL file, there is a possibility of data loss in case of Region Server failure.
+	\item[$\bullet$]  \emph{write-ahead log}: Write Ahead Log is basically a log file. Region server adds each request to WAL first before sending that request to the appropriate region. It is mainly used for recovery in case of failure \cite{hbase:insights}. If the request is not written in the WAL file, there is a possibility of data loss in case of Region Server failure.
 \end{description}
 
 \begin{description}
-	\item[$\bullet$]  BlockCache: BlockCache is the read cache that is used to store frequently read data\cite{hbase:insights}. When the cache is full, last read data is removed from the cache.
+	\item[$\bullet$]  \emph{BlockCache}: BlockCache is the read cache that is used to store frequently read data \cite{hbase:insights}. When the cache is full, last read data is removed from the cache.
 \end{description}
 
 \begin{description}
-	\item[$\bullet$] MemStore: MemStore is the write cache. All the new data that has not been written to the disk are stored in MemStore. It is mainly responsible for keeping tracks of all the logs for read and write operations to be performed for a specific Region Server\cite{hbase:architecture}. Each column family in a region has one MemStore\cite{hbase:insights}.
+	\item[$\bullet$] \emph{MemStore}: MemStore is the write cache. All the new data that has not been written to the disk are stored in MemStore. It is mainly responsible for keeping tracks of all the logs for read and write operations to be performed for a specific Region Server \cite{hbase:architecture}. Each column family in a region has one MemStore \cite{hbase:insights}.
 \end{description}
 
 \begin{description}
-	\item[$\bullet$] HFile: In HBase, column family is a collection of multiple HFiles. HFiles are used to store rows as keyValue pairs and are immutable and sorted\cite{hbase:insights}.
+	\item[$\bullet$] \emph{HFile}: In HBase, column family is a collection of multiple HFiles. HFiles are used to store rows as keyValue pairs and are immutable and sorted \cite{hbase:insights}.
 \end{description}
 
 \subsubsection{Zookeeper}
 \label{zookeeper}
-Zookeeper an open source project under Apache Software Foundations, is a distributed software system that provides a infrastructure for synchronization across the clusters. It provides coordination between distributed processes across the cluster so that client receives consistent data. The architecture of Zookeeper is based on client-server model. The client acts as a node that make use of the service and server acts as a node that provides the service\cite{hbase:zookeeper}. Many Zookeeper servers can be collected together, that is known as $Zookeeper$ $ensemble$\cite{hbase:zookeeper}. Each server node of the zookeeper at a given time can handle large number of client connections. It is essential to know if the connection is alive, so the client node sends a ping request to the server it is connected to make sure it is connected and alive\cite{hbase:zookeeper}. The server, after receiving ping request, sends an acknowledgement to indicate that server is alive. If the client doesnot receive acknowledgement within a given specific time, then the client connects to another zookeeper server within a $Zookeeper$ $ensemble$ and the client session is transferred to the new zookeeper server\cite{hbase:zookeeper}.
+Zookeeper an open source project under Apache Software Foundations, is a distributed software system that provides a infrastructure for synchronization across the clusters. It provides coordination between distributed processes across the cluster so that client receives consistent data. The architecture of Zookeeper is based on client-server model. The client acts as a node that make use of the service and server acts as a node that provides the service \cite{hbase:zookeeper}. Many Zookeeper servers can be collected together, that is known as \emph{zookeeper ensemble} \cite{hbase:zookeeper}. Each server node of the zookeeper at a given time can handle large number of client connections. It is essential to know if the connection is alive, so the client node sends a ping request to the server it is connected to make sure it is connected and alive \cite{hbase:zookeeper}. The server, after receiving ping request, sends an acknowledgement to indicate that server is alive. If the client doesnot receive acknowledgement within a given specific time, then the client connects to another zookeeper server within a \emph{zookeeper ensemble} and the client session is transferred to the new zookeeper server \cite{hbase:zookeeper}.
 \newline
-HBase has a tight integration with Zookeeper. HBase uses Zookeeper as a distributed coordination service to facilitate synchronization between the servers in a cluster. HBase also uses Zookeeper to keep track of state of the servers, which servers are alive and available\cite{hbase:architecture}. Whenever a HBase instance is started, it automatically starts Zookeeper instance, as Zookeeper comes integrated with HBase\cite{hbase:insights}. Zookeeper is used to keep tracks of the number of regions servers available, and the data hold by each region servers. 
+HBase has a tight integration with Zookeeper. HBase uses Zookeeper as a distributed coordination service to facilitate synchronization between the servers in a cluster. HBase also uses Zookeeper to keep track of state of the servers, which servers are alive and available \cite{hbase:architecture}. Whenever a HBase instance is started, it automatically starts Zookeeper instance, as Zookeeper comes integrated with HBase \cite{hbase:insights}. Zookeeper is used to keep tracks of the number of regions servers available, and the data hold by each region servers. 
 \newline
 
 The figure below explains the HBase Architecture and its components.
@@ -325,66 +323,87 @@ The figure below explains the HBase Architecture and its components.
 \section{Hadoop Distributed File System}
 \label{Hadoop Distributed File System}
 
-The Hadoop Distributed File System (HDFS) is an open source distributed file system developed for the Hadoop framework. HDFS is designed to store very large data sets and run on a commodity hardware. In HDFS, each files are divided into blocks of fixed size and are stored across multiple machines\cite{HDFS:architecture}. HDFS is also based on client-server architecture and each HDFS cluster consists of a single NameNode, also called as Master Node and multiple DataNodes, known as Slave nodes. All the metadata are stored in NameNode wheres the application data resides in DataNodes\cite{hadoop:architecture}.
+The Hadoop Distributed File System (HDFS) is an open source distributed file system developed for the Hadoop framework. HDFS is designed to store very large data sets and run on a commodity hardware. In HDFS, each files are divided into blocks of fixed size and are stored across multiple machines \cite{HDFS:architecture}. HDFS is also based on client-server architecture and each HDFS cluster consists of a single NameNode, also called as Master Node and multiple DataNodes, known as Slave nodes. All the metadata are stored in NameNode wheres the application data resides in DataNodes \cite{hadoop:architecture}.
 
-\subsection{NameNode}
+\subsection{Namenode}
 \label{NameNode}
-NameNode is the master node of HDFS file system. NameNode is the centerpiece in the HDFS architecture and is responsible for keeping the directory tree of all the files in a system\cite{HDFS:namenodeanddatanode}. Namenode does not store any data of the files, it stores 
-only the metadata like namespace information and block information of HDFS\cite{HDFS:namenodeanddatanode}, and the data are stored in Data nodes. NameNode maps files into the set of blocks, and maps those blocks to a data nodes and directs data nodes to execute I/O operations\cite{HDFS:namenodeanddatanode}. For example, when a client wants to locate a particular file, Namenode intercepts the request from the client and returns response by retrieving all the possible data nodes where the file resides. Since there is only one NameNode in the HDFS cluster, it is subjected to a single point of failure in HDFS Cluster. If a Namenode is down, all the running processes will terminate as a result of which the entire HDFS cluster goes offline\cite{HDFS:namenodeanddatanode}.  
+NameNode is the master node of HDFS file system. Namenode is the centerpiece in the HDFS architecture and is responsible for keeping the directory tree of all the files in a system \cite{HDFS:namenodeanddatanode}. Namenode does not store any data of the files, it stores 
+only the metadata like namespace information and block information of HDFS \cite{HDFS:namenodeanddatanode}, and the data are stored in Data nodes. Namenode maps files into the set of blocks, and maps those blocks to a data nodes and directs data nodes to execute I/O operations \cite{HDFS:namenodeanddatanode}. For example, when a client wants to locate a particular file, namenode intercepts the request from the client and returns response by retrieving all the possible data nodes where the file resides. Since there is only one namenode in the HDFS cluster, it is subjected to a single point of failure in HDFS Cluster. If a namenode is down, all the running processes will terminate as a result of which the entire HDFS cluster goes offline \cite{HDFS:namenodeanddatanode}.  
 
-\subsection{SecondaryNameNode}
+\subsection{Secondarynamenode}
 \label{SecondaryNameNode}
-As the name suggests, it is assumed that SecondaryNameNode is used as a backup node in case of single point of failure. From subsection \ref{NameNode}, we know that NameNode stores meta information like namespace and block information. All these informations are stored in main memory and also in the physical disc for persistence storage\cite{HDFS:secondarynamenode}. Whenever a NameNode is started, the snapshot of the file system is stored in fsimage file and logs of the changes made after NameNode is started is written in Edit logs. There might be an issue when edit logs become very large and hard to manage. So SecondaryNameNode is used as a checkpoint in the HDFS. It fetches the edit logs from the namenode in reqular interval and updates fsimage with edit logs.The recent fsimage is copied back to the NameNode\cite{HDFS:secondarynamenode}. Since SecondaryNameNode cannot process the metadata to the disc\cite{HDFS:architecture}, it can not be used as a substitution to the NameNode.
+As the name suggests, it is assumed that secondarynamenode is used as a backup node in case of single point of failure. From subsection \ref{NameNode}, we know that namenode stores meta information like namespace and block information. All these informations are stored in main memory and also in the physical disc for persistence storage \cite{HDFS:secondarynamenode}. Whenever a namenode is started, the snapshot of the file system is stored in fsimage file and logs of the changes made after namenode is started is written in edit logs. There might be an issue when edit logs become very large and hard to manage. So secondarynamenode is used as a checkpoint in the HDFS. It fetches the edit logs from the namenode in reqular interval and updates fsimage with edit logs.The recent fsimage is copied back to the namenode \cite{HDFS:secondarynamenode}. Since secondarynamenode cannot process the metadata to the disc \cite{HDFS:architecture}, it can not be used as a substitution to the namenode.
 
-\subsection{DataNode}
+\subsection{Datanode}
 \label{DataNode}
-DataNodes are the slave nodes in the HDFS file system. There can be one or many data nodes in a HDFS cluster. The data nodes are responsible for storing the files in a HDFS cluster. When the DataNode is started, it sends information about all the files and blocks stored in that node to the NameNode\cite{HDFS:datanode}. DataNode, likewise NameNode, is also expected to fail at some point. But this doesnot let the HDFS cluster to go offline. In such scenario, NameNode will replicate the blocks and files managed by failed DataNode\cite{HDFS:namenodeanddatanode}. 
+Datanodes are the slave nodes in the HDFS file system. There can be one or many data nodes in a HDFS cluster. The data nodes are responsible for storing the files in a HDFS cluster. When the datanode is started, it sends information about all the files and blocks stored in that node to the namenode \cite{HDFS:datanode}. Datanode, likewise namenode, is also expected to fail at some point. But this doesnot let the HDFS cluster to go offline. In such scenario, namenode will replicate the blocks and files managed by failed datanode \cite{HDFS:namenodeanddatanode}. 
 
 
 \section{Coprocessor}
 \label{sec:coprocessor}
 
-HBase Coprocessor framework provides a library to run user code in the HBase Region Server. The advantage of this framework is that it decreases the communication overhead of transferring the data from HBase region server to the client, thus improving the performance by allowing the real computation to happen in the HBase region server\cite{coprocessor:coprocessor}. There are two types of coprocessor, Observer coprocessor  which acts more like relational database triggers and Endpoint coprocessor that resembles stored procedures of RDBMS\cite{coprocessor:types} 
+HBase Coprocessor framework provides a library to run user code in the HBase region server. The advantage of this framework is that it decreases the communication overhead of transferring the data from HBase region server to the client, thus improving the performance by allowing the real computation to happen in the HBase region server \cite{coprocessor:coprocessor}. There are two types of coprocessor, \emph{observer coprocessor}  which acts more like relational database triggers and \emph{endpoint coprocessor} that resembles stored procedures of RDBMS \cite{coprocessor:types}. 
 
 
 \subsection{Observer coprocessor}
 \label{sec:observercoprocessor}
-Observer coprocessor as stated earlier, is more like database triggers that executes our code when certain events occur. In the figure below, we first try to explain a simple life cycle of put() operation as an example\cite{coprocessor:detail}. Observer coprocessor resides between the client and the HMaster. Observer coprocessor can be triggered after every get(), put() or delete() command. The CoprocessorHost class is responsible for observer registration and execution\cite{coprocessor:detail}.  During the life cycle of events, Observer coprocessor allows us to hook triggers in two stages. The first one is before the occurrence of the event and the other is after the completion of the event. For example, if we want to perform some computations before the occurrence of put event, we can use prePut() method to perform our custom computation. Then the life cycle of put event starts and after the life cycle of put event is completed, we can use postPut() method to perform custom computation. In the figure below, we try to explain the lifecycle of observer coprocessor when a put event is fired\cite{coprocessor:detail}.
+Observer coprocessor as stated earlier, is more like database triggers that executes our code when certain events occur. In the figure below, we first try to explain a simple life cycle of put() operation as an example \cite{coprocessor:detail}. Observer coprocessor resides between the client and the HMaster. Observer coprocessor can be triggered after every get(), put() or delete() command. The CoprocessorHost class is responsible for observer registration and execution \cite{coprocessor:detail}.  During the life cycle of events, observer coprocessor allows us to hook triggers in two stages. The first one is before the occurrence of the event and the other is after the completion of the event. For example, if we want to perform some computations before the occurrence of put event, we can use prePut() method to perform our custom computation. Then the life cycle of put event starts and after the life cycle of put event is completed, we can use postPut() method to perform custom computation. In the figure below, we try to explain the lifecycle of observer coprocessor when a put event is fired \cite{coprocessor:detail}.
 \newline
-There are four types of Observer Interfaces provided as of HBase version 1.1.3\cite{hbase:essential}.
+There are four types of Observer Interfaces provided as of HBase version 1.1.3 \cite{hbase:essential}.
 
 \begin{enumerate}
     
-\item RegionObserver: RegionObserver runs on all the Region of a HBase table. RegionObserver provides hook for data manipulation for events like put(), get() add delete() events. All the data manipulations are done with pre-hook and post hook\cite{hbase:essential} such as pre and post observers. For instance, preGetOp() and postGetOp() provides hook for manipulating get request. 
+\item \emph{RegionObserver}: RegionObserver runs on all the Region of a HBase table. RegionObserver provides hook for data manipulation for events like put(), get() add delete() events. All the data manipulations are done with pre-hook and post hook \cite{hbase:essential} such as pre and post observers. For instance, preGetOp() and postGetOp() provides hook for manipulating get request. 
 
-\item RegionServerObserver: Likewise in RegionObserver, RegionServerObserver provides a hook for data manipulation for events like merge, commits and rollback. All the data manipulation are done with pre-hook and post hook such as preMerge() and postMerge(). 
+\item \emph{RegionServerObserver}: Likewise in RegionObserver, RegionServerObserver provides a hook for data manipulation for events like merge, commits and rollback. All the data manipulation are done with pre-hook and post hook such as preMerge() and postMerge() \cite{hbase:essential}. 
 
-\item WALObserver: WALObserver interface provides a hook for Write-Ahead-Log(WAL)\cite{hbase:essential} related operations. This interface provides only preWALWrite() which is triggered before WALEdit is written to Write-Ahead-Log and postWALWrite() which is triggered after WALEdit is written to a Write-Ahead-Log.
+\item \emph{WALObserver}: WALObserver interface provides a hook for WAL \cite{hbase:essential} related operations. This interface provides only preWALWrite() which is triggered before WALEdit is written to WAL and postWALWrite() which is triggered after WALEdit is written to a WAL \cite{hbase:essential}.
 
-\item MasterObserver: MasterObserver Interface provides a hook for data manipulation for DDL events such as table creation, table deletion or table modification\cite{cloudera:instandupg}. For instance, if the secondary indexes need to be deleted when primary table is deleted, we can use postDeleteTable(). The MasterObserver runs on the master node.
+\item \emph{MasterObserver}: MasterObserver Interface provides a hook for data manipulation for DDL events such as table creation, table deletion or table modification \cite{cloudera:instandupg}. For instance, if the secondary indexes need to be deleted when primary table is deleted, we can use postDeleteTable(). The MasterObserver runs on the master node.
 
 \end{enumerate}
 
+
+In the figure \ref{Life cycle of put request}, We can see the life cycle of a put request with observer coprocessor implemented \cite{coprocessor:detail}.
+
+\subsubsection{Life cycle a of put request}
+\label{subsubsec:Life cycle of put request}
+
+A client creates a \emph{put} request and sends that request to the region server. There can be multiple region servers and multiple regions within a region server. HMaster dispatches a client request to an appropriate region server and region server forwards that request to an appropriate region. The region receives put request and performs the required operation and return back the response to the region server. Region server then returns back the response to the client. In the figure \ref{Life cycle of put request}, Fig(a) shows the life cycle of a put request in graphical representation. 
+
+
+\subsubsection{Life cycle a of put request with observer coprocessor}
+\label{subsubsec:Life cycle of put request with observer coprocessor}
+
+Observer coprocessor resides between client and HBase. Observer coprocesser can be triggered after every get(), put() or delete() operations. The CoprocessorHost class provided by observer coprocessor is responsible for coprocessor registration and execution \cite{coprocessor:detail}. In the figure \ref{Life cycle of put request}, Fig(b) shows the life cycle of a put request when observer coprocessor is introduced. A client sends a put request and that request is dispatched to an appropriate region serve and then to region. In the region where observer coprocessor is registered, the put request is intercepted by the CoprocessorHost class, and invoices prePut() on each observer registered on each table. After the completion of prePut(), the request is released by the observer and functions normally. Assuming no interruptions in prePut(), the request is carried out to postPut() and the request is once again intercepted by CoprocesserHost. After the request is released, the request is dispached region server and the region server returns the response to the client.
+
 \begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{PutRequestLifeCycle}
-    \caption{Life cycle of put request}
-    
+	\centering
+	\includegraphics[width=\linewidth]{Put_Life_Cycle}
+	\caption{Life cycle of put request}
+	\label{Life cycle of put request}
+	
 \end{figure}
 
-In the figure below, We can see the life-cycle of a put request with observer coprocessor implemented.
 
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{PutRequestWithObserverCoprocessor}
-    \caption{Life cycle of put request with observer coprocessor}
-    
-\end{figure}
+%\begin{figure}
+%	\centering
+%	\includegraphics[width=\linewidth]{PutRequestLifeCycle}
+%	\caption{Life cycle of put request}
+%	
+%\end{figure}
+%
+%\begin{figure}
+%    \centering
+%    \includegraphics[width=\linewidth]{PutRequestWithObserverCoprocessor}
+%    \caption{Life cycle of put request with observer coprocessor}
+%    
+%\end{figure}
 
 \newpage
 \subsection{Endpoint coprocessor}
 
-Endpoint coprocessor is similar to the Stored Procedures in RDBMS. This type of coprocessor is more useful in the scenario where the computation is needed for the whole table and are not provided by observer coprocessor\cite{hbase:coprocessors}. Invoking the endpoint coprocessor is similar to invoking any other commands in HBase from the client\textquotesingle s point of view but the result is based on the code that defines the coprocessor\cite{coprocessor:detail}. The figure below explains the Aggregation example\cite{coprocessor:detail}.
+Endpoint coprocessor is similar to the Stored Procedures in RDBMS. This type of coprocessor is more useful in the scenario where the computation is needed for the whole table and are not provided by observer coprocessor \cite{hbase:coprocessors}. Invoking the endpoint coprocessor is similar to invoking any other commands in HBase from the client\textquotesingle s point of view but the result is based on the code that defines the coprocessor \cite{coprocessor:detail}. The figure below explains the Aggregation example \cite{coprocessor:detail}.
 
 \begin{figure}
     \centering
@@ -393,7 +412,7 @@ Endpoint coprocessor is similar to the Stored Procedures in RDBMS. This type of 
     
 \end{figure}
 
-When a request is invoked from a client, an instance of Batch.call() encapsulates the request invocation and the request is forwarded to coprocessorExec() method of HTableInterface. Then the coprocessorExec() handles the request invocation and distributes the request to all the Regions of the RegionServer. Assuming that no interruptions occurs and all the requests are completed, the results is then returned to client and aggregated\cite{coprocessor:detail}.
+When a request is invoked from a client, an instance of Batch.call() encapsulates the request invocation and the request is forwarded to coprocessorExec() method of HTableInterface. Then the coprocessorExec() handles the request invocation and distributes the request to all the Regions of the RegionServer. Assuming that no interruptions occurs and all the requests are completed, the results is then returned to client and aggregated \cite{coprocessor:detail}.
 
 
 \chapter{Related Work}
@@ -402,25 +421,25 @@ In this chapter, we will discuss the existing research that have been made to ma
 
 \section{Foundations}
 \label{Foundations}
-In the early 90's when relational database systems were popular and widely used, several research were conducted to optimize the query processing time. The idea of using materialized view when-ever possible to evaluate a query for the benefit of improved query processing was proposed more than a decade ago\cite{maintenance:optimizingqueries}. Several methods have been proposed for incremental view maintenance in the past\cite{blakeley:efficiently, gupta:maintaining, agrawal:efficient}.
+In the early 90's when relational database systems were popular and widely used, several research were conducted to optimize the query processing time. The idea of using materialized view when-ever possible to evaluate a query for the benefit of improved query processing was proposed more than a decade ago \cite{maintenance:optimizingqueries}. Several methods have been proposed for incremental view maintenance in the past \cite{blakeley:efficiently, gupta:maintaining, agrawal:efficient}.
 
-In\cite{incremental:materializedviews}, the researchers have investigated the problem of incremental maintenance of a materialized view. The researchers in paper\cite{incremental:materializedviews} have proposed an auxiliary relations to reduce the cost of view maintenance. They proposed a view that can be represented by an operator tree\cite{database:concepts} where leaf nodes represented database relations and non-leaf nodes represented relational algebraic operations. An auxiliary relation was maintained for each node, and the key of auxiliary relations is a foreign key that matched the primary key of each relation, thus maintaining referential integrity between auxiliary relations and base relations\cite{database:concepts}. These auxiliary relations are also changed in response to the base relations changes.
+In \cite{incremental:materializedviews}, the researchers have investigated the problem of incremental maintenance of a materialized view. The researchers in paper \cite{incremental:materializedviews} have proposed an auxiliary relations to reduce the cost of view maintenance. They proposed a view that can be represented by an operator tree \cite{database:concepts} where leaf nodes represented database relations and non-leaf nodes represented relational algebraic operations. An auxiliary relation was maintained for each node, and the key of auxiliary relations is a foreign key that matched the primary key of each relation, thus maintaining referential integrity between auxiliary relations and base relations \cite{database:concepts}. These auxiliary relations are also changed in response to the base relations changes.
 
-In paper \cite{incrementalmaintenance:materializedviews}, the researchers have demonstrated an algorithm for incremental view maintenance based on graph-based data model and query language Lorel developed at Stanford. Their algorithm produces a set of queries that computes the changes to be made to the view table based on the changes to the base table. Researchers proposed a view specification extension to Lorel query language\cite{incrementalmaintenance:materializedviews} that introduced two objects in the view model: $select-from-where$ and $with$. The $select-from-where$ model specified the primary objects imported to the view and the later one $with$ model specified paths from primary objects to the adjunct objects\cite{incrementalmaintenance:materializedviews}. Their algorithm generates a set of maintenance statements for a given view and a database object, evaluates the updates on the database to generate new set of view updates and finally installs the updates in the view\cite{incrementalmaintenance:materializedviews}.
+In paper \cite{incrementalmaintenance:materializedviews}, the researchers have demonstrated an algorithm for incremental view maintenance based on graph-based data model and query language Lorel developed at Stanford. Their algorithm produces a set of queries that computes the changes to be made to the view table based on the changes to the base table. Researchers proposed a view specification extension to Lorel query language \cite{incrementalmaintenance:materializedviews} that introduced two objects in the view model: \emph{select-from-where} and \emph{with}. The \emph{select-from-where} model specified the primary objects imported to the view and the later one \emph{with} model specified paths from primary objects to the adjunct objects \cite{incrementalmaintenance:materializedviews}. Their algorithm generates a set of maintenance statements for a given view and a database object, evaluates the updates on the database to generate new set of view updates and finally installs the updates in the view \cite{incrementalmaintenance:materializedviews}.
 
 In paper \cite{maintenance:materializedviews}, the researchers have classified four dimensions along which the view maintenance problems has to be studied. 
 \begin{itemize}
-	\item Information Dimension: This dimension deals with the amount of information available for view maintenance. Some of the prior information regarding integrity constraints and keys, access to materialized views has to be known before developing an algorithm for incremental maintenance.
+	\item \emph{Information Dimension}: This dimension deals with the amount of information available for view maintenance. Some of the prior information regarding integrity constraints and keys, access to materialized views has to be known before developing an algorithm for incremental maintenance.
 	
-	\item Modification Dimension: This dimension deals with problem statements related to modification of a system. Some prior knowledge has to be acquired such as what modifications can be handled by a view maintenance algorithm, how update tuples are handled, are they handled directly or are they modeled as deletion followed by insertion tuples.
+	\item \emph{Modification Dimension}: This dimension deals with problem statements related to modification of a system. Some prior knowledge has to be acquired such as what modifications can be handled by a view maintenance algorithm, how update tuples are handled, are they handled directly or are they modeled as deletion followed by insertion tuples.
 	
-	\item Language Dimension: This dimension addresses problem related with select-project-join query, i.e. does view consists of entire SQL or subset of SQL. It also defines problem statements whether SQL statement can use aggregation function, recursion function or closure. 
+	\item \emph{Language Dimension}: This dimension addresses problem related with select-project-join query, i.e. does view consists of entire SQL or subset of SQL. It also defines problem statements whether SQL statement can use aggregation function, recursion function or closure. 
 	
-	\item Instance Dimension: This dimension addresses problems related to instance of database such as if view maintenance algorithm works for all the instances of the database for just for some particular instances. 
+	\item \emph{Instance Dimension}: This dimension addresses problems related to instance of database such as if view maintenance algorithm works for all the instances of the database for just for some particular instances. 
 
 \end{itemize}
 
-In paper \cite{maintenance:optimizingqueries}, researchers found that blind applications using materialized views resulted in much worse results than application not using materialized views. The research found out that using materialized views to optimize query performance depends on the query and statistical properties of the database\cite{maintenance:optimizingqueries}. The statistical properties of the database are time-varying and also most of the times, queries are generated using tools, $cost-based$ decision has to be taken whether to use or not to use materialized views to answer a given query in the database\cite{maintenance:optimizingqueries}. There might also be cases where more than one materialized view can be relevant for a given query, so in this case, incorrect alternatives has to be avoided to gain performance advantage. Researchers in paper \cite{maintenance:optimizingqueries} have proposed an algorithm for optimizing materialized views in three steps. In the first step, the query is translated into canonical unfolded form, i.e. system that supports views. In the second step, they identify possible ways to generate one or more materialized views for a given query. In the third step, they use efficient join enumeration algorithm to predict the cost of each alternative formulations and the path with least cost is selected\cite{maintenance:optimizingqueries}.
+In paper \cite{maintenance:optimizingqueries}, researchers found that blind applications using materialized views resulted in much worse results than application not using materialized views. The research found out that using materialized views to optimize query performance depends on the query and statistical properties of the database \cite{maintenance:optimizingqueries}. The statistical properties of the database are time-varying and also most of the times, queries are generated using tools, \emph{cost-based} decision has to be taken whether to use or not to use materialized views to answer a given query in the database \cite{maintenance:optimizingqueries}. There might also be cases where more than one materialized view can be relevant for a given query, so in this case, incorrect alternatives has to be avoided to gain performance advantage. Researchers in paper  \cite{maintenance:optimizingqueries} have proposed an algorithm for optimizing materialized views in three steps. In the first step, the query is translated into canonical unfolded form, i.e. system that supports views. In the second step, they identify possible ways to generate one or more materialized views for a given query. In the third step, they use efficient join enumeration algorithm to predict the cost of each alternative formulations and the path with least cost is selected \cite{maintenance:optimizingqueries}.
 
 \chapter{Failure Detection}
 \label{Failure Detection}
@@ -428,49 +447,56 @@ Many of the large scale distributed systems are often subjected to Failure. Like
 
 \section{Master Failure}
 \label{Master Failure}
-The primary job of HBase Master is to monitor all the available Region Server Instances in the cluster. In order for HBase to be up and running, HBase Master should always be available. HMaster, with no exception, is subjected to failure at some point of time. If no master is running at some point of time, the entire system goes offline. So to avoid such failure, HBase always has a single running master and multiple backup masters running at the same time. The master and backup masters are managed by Zookeeper. When the running master goes offline, Zookeeper appoints a new master from the available backup masters.
+The primary job of HBase master is to monitor all the available region server instances in the cluster. In order for HBase to be up and running, HBase master should always be available. HMaster, with no exception, is subjected to failure at some point of time. If no master is running at some point of time, the entire system goes offline. So to avoid such failure, HBase always has a single running master and multiple backup masters running at the same time. The master and backup masters are managed by zookeeper. When the running master goes offline, zookeeper appoints a new master from the available backup masters.
 
 \section{Region Server Failure}
 \label{Region Server Failure}
-HBase Master monitors all the available Region Servers in a cluster. There can be multiple ways in which the region servers can go offline. When a particular region server fails, all the regions within that region server also go offline. Zookeeper then finds out about the failed region server when it looses heart beat with it. After the failed region server is detected, Zookeeper notifies HMaster about the failed Region Server. HMaster then reassigns all the regions from failed region server to the active region server. Now HMaster has to recover memstore edits from the failed region server. The Write-Ahead-Log(WAL) of the failed region server is split into separate files and stored in new region server's data node by HMaster.
+HBase master monitors all the available region servers in a cluster. There can be multiple ways in which the region servers can go offline. When a particular region server fails, all the regions within that region server also go offline. Zookeeper then finds out about the failed region server when it looses heart beat with it. After the failed region server is detected, zookeeper notifies HMaster about the failed region server. HMaster then reassigns all the regions from failed region server to the active region server. Now HMaster has to recover memstore edits from the failed region server. The WAL of the failed region server is split into separate files and stored in new region server's data node by HMaster.
 
-\newpage
+
 \chapter{Implementation}
 \label{Implementation}
 In this section, we will first discuss the prerequisite of implementation and then the proposed method for our research.
 
 \section{Prerequisite}
-Before we begin with our implementation of the coprocessor, there are few steps to load coprocessor into our HBase table. The coprocessor can be loaded to the base tables in two ways: statically and dynamically\cite{loading:coprocessors}. 
+Before we begin with our implementation of the coprocessor, there are few steps to load coprocessor into our HBase table. The coprocessor can be loaded to the base tables in two ways: statically and dynamically \cite{loading:coprocessors}. 
 
-\subsection{Static Loading of coprocessor}
-We have to define coprocessor properties in a $hbase$-$site.xml$ file inside a \textless property\textgreater \space element followed by \textless name\textgreater \space and a \textless value\textgreater \space sub element. The \textless name\textgreater \space sub element should have one of the followings\cite{hbase:site}:
+\subsection{Static loading and unloading of coprocessor}
+
+\subsubsection{Static Loading of coprocessor}
+We have to define coprocessor properties in a \emph{hbase-site.xml} file inside a \textless property\textgreater \space element followed by \textless name\textgreater \space and a \textless value\textgreater \space sub element. The \textless name\textgreater \space sub element should have one of the followings \cite{hbase:site}:
 
 \begin{enumerate}
+	
     \item hbase.coprocessor.region.classes for RegionObservers and Endpoints coprocessor
     \item hbase.coprocessor.wal.classes for WALObservers
     \item hbase.coprocessor.master.classes for MasterObservers
     
 \end{enumerate}
 
-The \textless value\textgreater \space sub-element should contain the full path of the coprocessor implementation class. A typical example for static loading of coprocessor looks as,\newline \newline \textless property\textgreater \newline
+
+The \textless value\textgreater \space sub-element should contain the full path of the coprocessor implementation class. A typical example for static loading of coprocessor looks as,\newline \newline 
+\textless property\textgreater \newline
 \textless name\textgreater hbase.coprocessor.region.classes\textless /name\textgreater \newline
 \textless value\textgreater \texttt{org.apache.hbase.HBase\_coprocessor.HBaseCoprocessor}\textless /value\textgreater \newline
 \textless /property\textgreater \newline
 
- If we have multiple classes, then the path in \textless value\textgreater \space sub-element should be comma separated. In this setup, the framework will attempt to load all the configured classes, so we have to create a jar with dependencies, for all the classes and place the location of the jar to HBase classpath. For that, we have to export /path/to/jar in $hbase$-$env.sh$ file. A typical example for exporting classpath is given below, \newline \newline
+ If we have multiple classes, then the path in \textless value\textgreater \space sub-element should be comma separated. In this setup, the framework will attempt to load all the configured classes, so we have to create a jar with dependencies, for all the classes and place the location of the jar to HBase classpath. For that, we have to export /path/to/jar in \emph{hbase-env.sh} file. A typical example for exporting classpath is given below, \newline \newline
  export \texttt{HBASE\_CLASSPATH}='/path/to/jar' \newline
  
 Now if HBase is restarted without any errors, we have managed to load system coprocessor successfully. 
 
-\subsection{Static Unloading of coprocesssor}
+\subsubsection{Static Unloading of coprocesssor}
 \begin{enumerate}
     \item Delete entry from $hbase$-$site.xml$
     \item Delete entry for $hbase$-$env.sh$
     \item Restart HBase
 \end{enumerate}
 
-\subsection{Dynamic Loading of coprocessor}
-In this approach, rather than loading coprocessor to all the tables in a Region, the coprocessor is loaded to specific tables of the region. There are two implementations of loading coprocessor dynamically, from HBase shell or using Java API\cite{hbase:site}.
+\subsection{Dynamic loading and unloading of coprocessor}
+
+\subsubsection{Dynamic loading of coprocessor}
+In this approach, rather than loading coprocessor to all the tables in a Region, the coprocessor is loaded to specific tables of the region. There are two implementations of loading coprocessor dynamically, from HBase shell or using Java API \cite{hbase:site}.
 
 \subsubsection{Using HBase shell}
 \begin{enumerate}
@@ -489,10 +515,10 @@ In this approach, rather than loading coprocessor to all the tables in a Region,
 
 \end{enumerate}
 
-In the above scenario, the coprocessor tries to read class information from \texttt{table\_att} property. There are certain arguments separated by pipe (\text{\textbar}). The first argument in the value is the file path to the jar file that contains the implementation class. The second argument contains the full classname of the implemented coprocessor. The last argument represents the execution sequence of registered observers. If this field is left blank, the framework will itself assign a default priority value\cite{hbase:site}.
+In the above scenario, the coprocessor tries to read class information from \texttt{table\_att} property. There are certain arguments separated by pipe (\text{\textbar}). The first argument in the value is the file path to the jar file that contains the implementation class. The second argument contains the full classname of the implemented coprocessor. The last argument represents the execution sequence of registered observers. If this field is left blank, the framework will itself assign a default priority value \cite{hbase:site}.
 
 \subsubsection{Using Java API}
-Prior to HBase version 0.96, the coprocessors were loaded in a different way. After HBase version 0.96 and newer, HTableDescriptor class provides addCoprocessor() method that helps to load coprocessor in an easier way. A code snippet\cite{loading:coprocessors} below will give us a basic insight of how coprocessor is loaded dynamically from Java API in older versions and newer versions of HBase.
+Prior to HBase version 0.96, the coprocessors were loaded in a different way. After HBase version 0.96 and newer, HTableDescriptor class provides addCoprocessor() method that helps to load coprocessor in an easier way. A code snippet \cite{loading:coprocessors} below will give us a basic insight of how coprocessor is loaded dynamically from Java API in older versions and newer versions of HBase.
 \newline \newline
 \textbf{Older than 0.96} \newline
 \lstset{language=Java}
@@ -515,7 +541,7 @@ hTableDescriptor.addCoprocessor(<class_name>.class.getCanonicalName(),
 admin.enableTable(<table_name>)
 \end{lstlisting}
 
-\subsection{Dynamic Unloading of coprocessor}
+\subsubsection{Dynamic Unloading of coprocessor}
 Dynamic unloading of coprocessor can also be done in two ways, from shell and from Java API. 
 
 \subsubsection{Using HBase shell}
@@ -550,11 +576,11 @@ We create an intermediate table in such a way that we have a single row for all 
 
 \subsubsection{Single Base Table}
 \label{Single Base Table}
-In this scenario, we have one base table and we have to create an intermediate table from the base table. The $columnFamily$ of the base table becomes $columnFamily$ in the intermediate table. The unique values of column $Key$ of the base table becomes $rowKey$ in the intermediate table and $rowKey$ of the base table becomes $column$ in the intermediate table. Once we create our intermediate table, we put the values from the base table into the intermediate table. Fig(a) in \ref{Intermediate Table} shows a graphical transformation of a single base table into an intermediate table. Now for any update or delete operations for a particular Key/Value in the base table, only a single row for that particular Key is updated in an intermediate table. This implementation restricts scanning of the whole base table for a single update/delete operation.
+In this scenario, we have one base table and we have to create an intermediate table from the base table. The $columnFamily$ of the base table becomes $columnFamily$ in the intermediate table. The unique values of column $key$ of the base table becomes $rowKey$ in the intermediate table and $rowKey$ of the base table becomes $column$ in the intermediate table. Once we create our intermediate table, we put the values from the base table into the intermediate table. Fig(a) in \ref{Intermediate Table} shows a graphical transformation of a single base table into an intermediate table. Now for any update or delete operations for a particular key/value in the base table, only a single row for that particular key is updated in an intermediate table. This implementation restricts scanning of the whole base table for a single update/delete operation.
 
 \subsubsection{Two Base Tables}
 \label{Two Base Tables}
-In this scenario, we have two base tables and we have to create an intermediate table from the two base tables. The both $columnFamilies$ of base tables are merged together into two $columnFamilies$ in the intermediate table. The unique values of column $Key$ of both base table becomes $rowKey$ in the intermediate table and $rowKey$ of the base table becomes $column$ in the intermediate table. Once we create an intermediate table from two base tables as described, we put values from both the base tables into the intermediate table. Fig(b) in \ref{Intermediate Table} shows a graphical transformation of a two base tables into an intermediate table. Now for any update or delete operations for a particular Key/Value in the base tables, only a single row for that particular Key is updated in an intermediate table. This implementation restricts scanning of the whole base table for a single update/delete operation.
+In this scenario, we have two base tables and we have to create an intermediate table from the two base tables. The both $columnFamilies$ of base tables are merged together into two $columnFamilies$ in the intermediate table. The unique values of column $key$ of both base table becomes $rowKey$ in the intermediate table and $rowKey$ of the base table becomes $column$ in the intermediate table. Once we create an intermediate table from two base tables as described, we put values from both the base tables into the intermediate table. Fig(b) in \ref{Intermediate Table} shows a graphical transformation of a two base tables into an intermediate table. Now for any update or delete operations for a particular key/value in the base tables, only a single row for that particular key is updated in an intermediate table. This implementation restricts scanning of the whole base table for a single update/delete operation.
 
 \subsection{Creation of View Table}
 A view table contains resultset of a query on the base table. In our implementation, view table is created on the basis of an intermediate table. Once we have our intermediate table, we apply certain algorithms on the intermediate table and create view table. Once we have our view table, our task is to maintain consistency between base table and view table. If any operation changes the state of base table, we reflect those changes in intermediate table and view table. The algorithm we've implemented maintains consistency incrementally, not re-computing view table for every changes in the base table. We will discuss our approach of this incremental maintenance in the sections below.
@@ -602,7 +628,7 @@ As we have already discussed put() request life cycle in \ref{sec:observercoproc
 \begin{figure}
     \centering
     \includegraphics[width=\linewidth]{NewRowInsertAggr}
-    \caption{New row insert}
+    \caption{Aggregation: New row insert}
     \label{sec:newrowinsertagggregation}
     
 \end{figure}
@@ -614,7 +640,7 @@ Whenever an existing value of a key is updated, the base table is updated accord
 \begin{figure}
     \centering
     \includegraphics[width=\linewidth]{ValueUpdateAggr}
-    \caption{Update value for a existing row key}
+    \caption{Aggregation: Update value for a existing row key}
     \label{sec:updatevalueforexistingkey}
     
 \end{figure}  
@@ -623,14 +649,14 @@ Whenever an existing value of a key is updated, the base table is updated accord
 \subsubsection{Existing key of a row is updated}
 \label{subsubsec:keyupdate}
 
-Whenever there is a trigger to update a Key of the particular rowKey, we first catch the request via prePut() method. In this scenario, we first save key,value pair of the row to be deleted from base table and new key,value pair to be inserted into the base table. Then we release the request and the Key is updated in the base table. In this case, now we have old key,value pair and the new key,value pair. 
+Whenever there is a trigger to update a key of the particular rowKey, we first catch the request via prePut() method. In this scenario, we first save key,value pair of the row to be deleted from base table and new key,value pair to be inserted into the base table. Then we release the request and the key is updated in the base table. In this case, now we have old key,value pair and the new key,value pair. 
 
 In the postPut() method, first we find the column to be deleted from the intermediate table. Then we delete that particular column from the intermediate table. After we delete column from an intermediate table, we need to update aggregation functions in the view table. We create a list and put all the key,value pairs for that particular rowKey of the intermediate table. From the list we update our aggregation functions and then update the result on the view table. After the process is complete without any interruptions, the process is similar as of inserting new key,value pair. We put new key,value pair in our intermediate table and now we need to update aggregation functions in the view table. We create a list and put all the key,value pairs for that particular rowKey of the intermediate table. From the list we update our aggregation functions and then update the result on the view table. In the figure \ref{sec:updateKeyforexistingrow}, the old key $A$ is updated to new key $B$. In the intermediate table, the plotting for old key $A$ is deleted and aggregation functions for old key $A$ are also updated in the view table. After the process is completed, new values for updated key $B$ is plotted in the intermediate table and then the view table for row key $B$ is also updated accordingly.
 
 \begin{figure}
     \centering
     \includegraphics[width=\linewidth]{KeyUpdateAggr}
-    \caption{Update Key for a existing row key}
+    \caption{Aggregation: Update Key for a existing row key}
     \label{sec:updateKeyforexistingrow}
     
 \end{figure} 
@@ -643,15 +669,6 @@ When an existing row is deleted in the base table, we first get key,value pair i
 
 In the figure \ref{sec:deleteexistingrow}, we have a delete() call for row key $5$. The $key$ for row key $5$ is $C$. Now we delete the row key $5$ from the base table. After that, we delete the plotting for key $C$ in our intermediate table. Since the key $C$ has only one plotting, we delete entry for row key $C$ from the view table instead of recomputing aggregation functions for row key $C$. 
 
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{DeleteExistingRowAggr}
-    \caption{Delete an existing row}
-    \label{sec:deleteexistingrow}
-    
-\end{figure} 
-
-\newpage
 \subsection{Join and Aggregation}
 \label{subsec:joinandaggregation}
 
@@ -666,17 +683,17 @@ For Join and Aggregation, we have two base tables with key,value pairs. We creat
 %    \includegraphics[width=\linewidth]{JoinAndAggregation}
 %    \caption{Join and Aggregation}
 %    \label{sec:joinandaggregation}
-    
+
 %\end{figure}
 
 %\newpage
 %There are certain scenarios where coprocessor is triggered for an update and delete operations.
 
 \begin{enumerate}
-    \item New row is inserted
-    \item Existing value of a row is updated
-    \item Existing key of a row is updated
-    \item Existing row is deleted
+	\item New row is inserted
+	\item Existing value of a row is updated
+	\item Existing key of a row is updated
+	\item Existing row is deleted
 \end{enumerate}
 
 \subsubsection{New row is inserted}
@@ -684,20 +701,36 @@ For Join and Aggregation, we have two base tables with key,value pairs. We creat
 When a client inserts new row with key,value pair in a base table, we have to update our intermediate table and view table accordingly to maintain consistency between them. Updating intermediate table is not a big problem here, we just need to put new key,value pair for that particular rowKey in a corresponding column family. In the prePut() method, we determine the key,value pair to be inserted into the base table. When the request is triggered in postPut() method, we need to update intermediate table and view table accordingly. Since K-FK join is involved, we need to figure out the new rows generated with respect to the newly inserted key,value pair. The first list contains newly inserted key,value pair for that particular rowKey. The second list contains all the key,value pairs for the same rowKey. Now we get a cartesian product of key,value pairs, value containing the sum of the K-FK joins that are to be inserted into the view table. Now the result is inserted into the veiw table. This way, we are able to maintain consistency whenever a new row is inserted in a base table.
 The figure \ref{sec:insertnewrowjoinandaggr} describes the scenario in more detail. The updated table on the right has new values plotted in red.
 
+\subsubsection{New row is inserted}
+
+When a client inserts new row with key,value pair in a base table, we have to update our intermediate table and view table accordingly to maintain consistency between them. Updating intermediate table is not a big problem here, we just need to put new key,value pair for that particular rowKey in a corresponding column family. In the prePut() method, we determine the key,value pair to be inserted into the base table. When the request is triggered in postPut() method, we need to update intermediate table and view table accordingly. Since K-FK join is involved, we need to figure out the new rows generated with respect to the newly inserted key,value pair. The first list contains newly inserted key,value pair for that particular rowKey. The second list contains all the key,value pairs for the same rowKey. Now we get a cartesian product of key,value pairs, value containing the sum of the K-FK joins that are to be inserted into the view table. Now the result is inserted into the veiw table. This way, we are able to maintain consistency whenever a new row is inserted in a base table.
+The figure \ref{sec:insertnewrowjoinandaggr} describes the scenario in more detail. The updated table on the right has new values plotted in red.
+
+\subsubsection{Existing value of a row is updated}
+%When a value of a $key$ is updated in the base table, the consistency should also be maintained in the view table. So when the base table is updated, the request is triggered by the postPut() method and intermediate table and view tables are updated accordingly.
+
+When an existing value of a particular key is updated in a base table, we update the particular value in our intermediate table. In the prePut() method, we determine key,value pair for the row to be updated and in the postPut() method, we update our intermediate table and view table accordingly. The update process in an intermediate table is straightforward i.e. we just update value for that particular row and column. Now in order to update our view table, we need to find all the rows that are affected by an update statement as K-FK join is involved. We create two lists and the first list contains key,value pair of the row which was just updated. The second list contains all the key,value pairs for the same rowKey. Now we get a cartesian product of key,value pairs, and the value containing sum of K-FK joins that are to be updated into the view table. This way we maintain consistency between base tables and view table when an existing row is updated in the base table.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{DeleteExistingRowAggr}
+    \caption{Aggregation: Delete an existing row}
+    \label{sec:deleteexistingrow}
+    
+\end{figure} 
+
+
 \begin{figure}
     \centering
     \includegraphics[width=\linewidth]{NewRowInsertJoinAggr}
-    \caption{New row is inserted for Join and Aggregation}
+    \caption{Join and Aggregation: New row insert}
     \label{sec:insertnewrowjoinandaggr}
     
 \end{figure}
 
 \newpage
 
-\subsubsection{Existing value of a row is updated}
-%When a value of a $key$ is updated in the base table, the consistency should also be maintained in the view table. So when the base table is updated, the request is triggered by the postPut() method and intermediate table and view tables are updated accordingly.
 
-When an existing value of a particular key is updated in a base table, we update the particular value in our intermediate table. In the prePut() method, we determine key,value pair for the row to be updated and in the postPut() method, we update our intermediate table and view table accordingly. The update process in an intermediate table is straightforward i.e. we just update value for that particular row and column. Now in order to update our view table, we need to find all the rows that are affected by an update statement as K-FK join is involved. We create two lists and the first list contains key,value pair of the row which was just updated. The second list contains all the key,value pairs for the same rowKey. Now we get a cartesian product of key,value pairs, and the value containing sum of K-FK joins that are to be updated into the view table. This way we maintain consistency between base tables and view table when an existing row is updated in the base table.
 
 \subsubsection{Existing key of a row is updated}
 %As described in \ref{subsubsec:keyupdate}, when $key$ is modified in the base table, we first have to delete an entry from the intermediate table and view table if the row exists for that particular $key$. Once delete operation is completed without interruption, then we insert the updated key in the intermediate table and view table.
@@ -775,12 +808,12 @@ There are certain control parameters defined for our experiments to determine pe
 
 \section{Experiment 1 (Aggregation)}
 \label{(sec:AggrExp)}
-To evaluate the performance of $Aggregation$ view type, we perform three different experiments. In the first experiment, we compare the single region execution time for $View\Re$-$computation$ and $Incremental \  maintenance$ on three different datasets. Next, we perform the same experiments on a dataset with 100,000 records by varying the number of regions on a single region server.
+To evaluate the performance of $Aggregation$ view type, we perform three different experiments. In the first experiment, we compare the single region execution time for $View\Re$-$computation$ and $Incremental \  maintenance$ on three different datasets. Next, we perform the same experiments on a dataset with 100.000 records by varying the number of regions on a single region server.
  
 \subsection{Aggregation: View Re-computation vs Maintenance}
 % In the first set, we insert 10.000 rows in the base table and we compute intermediate table and view tables accordingly. In the view table, we compute four different aggregation functions $Sum$, $Count$, $Min$ and $Max$. When client issues any update operation, either we re-compute view table from scratch and compute aggregation functions or we update view table incrementally. The graph shows time taken to re-compute view table vs time taken to update view table incrementally for each type of update operations. We conduct same experiment for 1.00.000 and 2.50.000 records. From the graph, we see that updating view table incrementally saves significant amount of time than re-computing view table for every client operation. The graph below shows time required in millisecond to recompute view table and incrementally update view table.
 
-To evaluate performance in View Re-computation vs Maintenance, we first create a base table with 10,000 rows and generate corresponding intermediate and view tables. The view table consists of four different aggregations of the base table data, namely $Sum$, $Count$, $Min$ and $Max$. For operation in a base table, view table can be updated to reflect changes in two different ways, (a) re-compute (b) incremental update. In our experiments, we compare the execution time for these two methods. Further, we perform the experiments for 100,000 and 250,000 records. In our experiments, we report the execution time in milliseconds. In the figure \ref{sec:AggrExpStandalone}, in x-axis, we show types of client operations performed in base table and in y-axis we show performance optimized in percent. 
+To evaluate performance in View Re-computation vs Maintenance, we first create a base table with 10.000 rows and generate corresponding intermediate and view tables. The view table consists of four different aggregations of the base table data, namely $Sum$, $Count$, $Min$ and $Max$. For operation in a base table, view table can be updated to reflect changes in two different ways, (a) re-compute (b) incremental update. In our experiments, we compare the execution time for these two methods. Further, we perform the experiments for 100.000 and 250.000 records. In our experiments, we report the execution time in milliseconds. In the figure \ref{sec:AggrExpStandalone}, in x-axis, we show types of client operations performed in base table and in y-axis we show performance optimized in percent. 
 
 \begin{figure}
 	\centering
@@ -804,7 +837,7 @@ reconstruct the view table. However, in the incremental method, we do not recons
 \subsection{Aggregation: Insert Records}
 \label{Insert Records Aggr}
 
-In this experiment, we wanted to prove that splitting table across multiple regions improves overall performance. In the figure \ref{sec:AggrExpStandalone}, $Fig(c)$, in x-axis we show no. of regions and in y-axis, we show time taken to insert records in millisecond. To prove our hypothesis, we first inserted 1.00.000 records without splitting a table and recorded time taken to insert records. In the second scenario, we split our table in two regions and note time taken to insert 1.00.000 records. We carried out same experiment by splitting our table in three and four regions simultaneously. We noted time taken for each experiments and plotted a graph. From the graph, we see that splitting our table across regions takes less time to insert 1.00.000 records. The reason for this improvement is that the table is split horizontally across all the regions. The $HexStringSplit$ algorithm partitions the table evenly across all the regions, as a result of which the load is distributed equally among all the regions.
+In this experiment, we wanted to prove that splitting table across multiple regions improves overall performance. In the figure \ref{sec:AggrExpStandalone}, $Fig(c)$, in x-axis we show no. of regions and in y-axis, we show time taken to insert records in millisecond. To prove our hypothesis, we first inserted 100.000 records without splitting a table and recorded time taken to insert records. In the second scenario, we split our table in two regions and note time taken to insert 100.000 records. We carried out same experiment by splitting our table in three and four regions simultaneously. We noted time taken for each experiments and plotted a graph. From the graph, we see that splitting our table across regions takes less time to insert 100.000 records. The reason for this improvement is that the table is split horizontally across all the regions. The $HexStringSplit$ algorithm partitions the table evenly across all the regions, as a result of which the load is distributed equally among all the regions.
 
 
 %We ran this experiment to see how it affects the result if we split our tables in multiple regions. We wanted to show that we can improve performance if we split our tables in multiple regions within a region server. In the figure \ref{sec:AggrExpStandalone}, $Fig(b)$ shows that if we split our table in multiple regions, we can reduce the insert operation in our tables. In x-axis we show no. of regions and in y-axis we show time taken in milliseconds to insert records in base table, intermediate table and view table. From the graph we see that, the more no. of regions the less time it takes to insert records. %
@@ -823,7 +856,7 @@ In this experiment, we insert 3.000 records in each of the base tables and apply
 
 \subsection{Join and Aggregation: View Re-computation vs Maintenance}
 \label{Join and Aggregation: View Re-computation vs Maintenance Standalone}
-In this experiment, we wanted to show that by incrementally maintaining our view tables, we can increase the overall performance of the system. We ran this experiment on the basis of data gathered in sub-section \ref{Join and Aggregation: Insert records Standalone}. As a proof, we first ran this experiment on dataset of 1.53.761 records. From the graph \ref{sec:JoinAggrExpStandalone}, $Fig(b)$ shows the time required for re-computing view table vs time required to incrementally update view table. If we need to re-compute view table, in such scenario, we first need to perform read operation on the entire base table and then write operation in view table. Whereas in incremental maintenance, we only update the affected rows in view table. To ensure our hypothesis works, we ran our experiment on bigger dataset of 3.45.658 rows. From the experiment results, we proved that maintaining views incrementally is significantly less expensive than re-computing view table for every client request in base table.
+In this experiment, we wanted to show that by incrementally maintaining our view tables, we can increase the overall performance of the system. We ran this experiment on the basis of data gathered in sub-section \ref{Join and Aggregation: Insert records Standalone}. As a proof, we first ran this experiment on dataset of 153.761 records. From the graph \ref{sec:JoinAggrExpStandalone}, $Fig(b)$ shows the time required for re-computing view table vs time required to incrementally update view table. If we need to re-compute view table, in such scenario, we first need to perform read operation on the entire base table and then write operation in view table. Whereas in incremental maintenance, we only update the affected rows in view table. To ensure our hypothesis works, we ran our experiment on bigger dataset of 345.658 rows. From the experiment results, we proved that maintaining views incrementally is significantly less expensive than re-computing view table for every client request in base table.
 
 \subsection{Join and Aggregation: Insert Records}
 \label{Join and Aggregation: Insert Records Standalone}
@@ -852,7 +885,7 @@ In this experiment, we insert 3.000 records in each of the base tables and apply
 
 \subsection{Join and Selection: View Re-computation vs Maintenance}
 \label{Join and Selection: View Re-computation vs Maintenance Standalone}
-In this experiment, we wanted to show that by incrementally maintaining our view tables, we can increase the overall performance of the system. We ran this experiment on the basis of data gathered in sub-section \ref{Join and Selection: Insert records Standalone}. As a proof, we first ran this experiment on dataset of 1.53.561 records. From the graph \ref{sec:JoinSelExpStandalone}, $Fig(b)$ shows the time required for re-computing view table vs time required to incrementally update view table. If we need to re-compute view table, in such scenario, we first need to perform read operation on the entire base table and then write operation in view table. Whereas in incremental maintenance, we only update the affected rows in view table. To ensure our hypothesis works, we ran our experiment on bigger dataset of 3.45.049 rows. From the experiment results, we proved that maintaining views incrementally is significantly less expensive than re-computing view table for every client request in base table.
+In this experiment, we wanted to show that by incrementally maintaining our view tables, we can increase the overall performance of the system. We ran this experiment on the basis of data gathered in sub-section \ref{Join and Selection: Insert records Standalone}. As a proof, we first ran this experiment on dataset of 153.561 records. From the graph \ref{sec:JoinSelExpStandalone}, $Fig(b)$ shows the time required for re-computing view table vs time required to incrementally update view table. If we need to re-compute view table, in such scenario, we first need to perform read operation on the entire base table and then write operation in view table. Whereas in incremental maintenance, we only update the affected rows in view table. To ensure our hypothesis works, we ran our experiment on bigger dataset of 345.049 rows. From the experiment results, we proved that maintaining views incrementally is significantly less expensive than re-computing view table for every client request in base table.
 
 \subsection{Join and Selection: Insert Records}
 \label{Join and Selection: Insert Records Standalone}
@@ -909,7 +942,7 @@ There are certain control parameters defined for our experiments to determine pe
 In this experiment, we perform three different sub set of experiments to see how we can improve performance by incrementally maintaining consistency between base table and view table. In this experiment, we have three region servers, two region servers running on slave machines and one region server running on master. 
 
 \subsection{Aggregation: View Re-computation vs Maintenance}
-To evaluate performance in View Re-computation vs Maintenance, we first create a base table with 1.00.000 rows and generate corresponding intermediate and view tables. The view table consists of four different aggregations of the base table data, namely $Sum$, $Count$, $Min$ and $Max$. For operation in a base table, view table can be updated to reflect changes in two different ways, (a) re-compute (b) incremental update. In our experiments, we compare the execution time for these two methods. Further, we perform the experiments after splitting table across multiple regions. In our experiments, we report the execution time in milliseconds. In the figure \ref{sec:AggrExpDist}, in x-axis, we show no. of regions and in y-axis we show time taken to insert records in millisecond. 
+To evaluate performance in View Re-computation vs Maintenance, we first create a base table with 100.000 rows and generate corresponding intermediate and view tables. The view table consists of four different aggregations of the base table data, namely $Sum$, $Count$, $Min$ and $Max$. For operation in a base table, view table can be updated to reflect changes in two different ways, (a) re-compute (b) incremental update. In our experiments, we compare the execution time for these two methods. Further, we perform the experiments after splitting table across multiple regions. In our experiments, we report the execution time in milliseconds. In the figure \ref{sec:AggrExpDist}, in x-axis, we show no. of regions and in y-axis we show time taken to insert records in millisecond. 
 
 
 \begin{figure}
@@ -939,7 +972,7 @@ For $Join$ \& $Aggregation$, we create two base tables as it involves k-kf joins
 
 \subsection{Join and Aggregation: Compute base tables and view table}
 \label{Join and Aggregation: Compute base tables and view table}
-In this experiment, we insert 2.000 records in both base tables. We then apply K-FK join and compute intermediate table and view table. We calculate sum based on the result of K-FK join and store it in the view table. In such case, we don't know the no. of rows generated based on the K-FK join so we analyze no. of rows generated as a benchmark for rest of the experiments. We pre-split tables into multiple regions and run the experiment for each of the scenarios. Based on the K-FK join on the base tables, we generated 1.53.000-1.55.000 rows in the view table.
+In this experiment, we insert 2.000 records in both base tables. We then apply K-FK join and compute intermediate table and view table. We calculate sum based on the result of K-FK join and store it in the view table. In such case, we don't know the no. of rows generated based on the K-FK join so we analyze no. of rows generated as a benchmark for rest of the experiments. We pre-split tables into multiple regions and run the experiment for each of the scenarios. Based on the K-FK join on the base tables, we generated 153.000-155.000 rows in the view table.
 
  %First we run this experiment in a single region and see the number of rows generated in the view table after applying K-FK joins. We run this experiment for 2, 3 and 4 regions and split our tables accordingly. In the figure \ref{sec:JoinAggrExpStandalone}, Fig(a) shows the graph of no. of records inserted in view tables. We use this statistics for running other sub-experiments.
 
@@ -967,7 +1000,7 @@ For $Join$ \& $Selection$, we create two base tables as it also involves K-FK jo
 
 \subsection{Join and Selection: Compute base tables and view tables}
 \label{Join and Selection: Compute base tables and view table}
-In this experiment, we insert 2.000 records in both base tables. We then apply K-FK join and compute intermediate table and view table. We then select values based on the result of K-FK join and store it in the view table. In such case, we don't know the no. of rows generated based on the K-FK join so we analyze no. of rows generated as a benchmark for rest of the experiments. We pre-split tables into multiple regions and run the experiment for each of the scenarios. Based on the K-FK join on the base tables, we generated 1.53.000-1.54.000 rows in the view table.
+In this experiment, we insert 2.000 records in both base tables. We then apply K-FK join and compute intermediate table and view table. We then select values based on the result of K-FK join and store it in the view table. In such case, we don't know the no. of rows generated based on the K-FK join so we analyze no. of rows generated as a benchmark for rest of the experiments. We pre-split tables into multiple regions and run the experiment for each of the scenarios. Based on the K-FK join on the base tables, we generated 153.000-154.000 rows in the view table.
 
 \subsection{Join and Selection: View Re-computation vs Maintenance}
 \label{Join and Selection: View Re-computation vs Maintenance Distributed}
@@ -1034,7 +1067,11 @@ We ran our experiment in a laptop with two virtual machine acting as a multi-nod
 
   \clearemptydoublepage
   
+    \input{components/abbreviation}
+  
 	\bibliography{bibliography/literature}
+	
+	
 	
  
 \end{document}

@@ -100,11 +100,11 @@
 
 \section{Introduction}
 \label{Introduction}
-The Internet has touched many aspects of human lives. It has revolutionized the way we communicate, interact, shop, etc. Over the years, the internet has become an infinite repository of information. For instance, social networks such as Facebook records  500 TB of data each day\cite{daniel:datastats}, including 2.7 billion likes and 300 million photos. As of 2012, Facebook already has 100 petabytes of photos\cite{daniel:datastats}. Google, on the other hand, processes 3.5 billion requests per day \cite{daniel:datastats}. To deal with the scale of the ever growing information, we are in the need of efficient and scalable databases than ever before. 
+The Internet has touched many aspects of human lives. It has revolutionized the way we communicate, interact, shop, etc. Over the years, the internet has become an infinite repository of information. For instance, social networks such as Facebook records 500 TB of data each day \cite{daniel:datastats}, including 2.7 billion likes and 300 million photos. As of 2012, Facebook already has 100 petabytes of photos \cite{daniel:datastats}. Google, on the other hand, processes 3.5 billion requests per day \cite{daniel:datastats}. To deal with the scale of the ever growing information, we are in the need of efficient and scalable databases than ever before. 
 
-In the early 2000s, where there were fewer data shared on social media, data were stored in a relational database. Relational databases were designed in such a fashion to store a small amount of data and maintain integrity between them\cite{matt:rdb}. The amount of information we share on social media is expected to grow from 4.4 zettabytes in 2013 to 44 zettabytes in 2020(1 zettabyte is 1 trillion gigabytes)\cite{matt:rdb}. The scaling in RDBMS depends on adding more powerful CPU's and memory, i.e. only the vertical scaling is possible which is rather expensive.  One of the advantages of the big data storage system is that it can be scaled horizontally and is also useful for storing unstructured or semi-structured data. 
+In the early 2000s, where there were fewer data shared on social media, data were stored in a relational database. Relational databases were designed in such a fashion to store a small amount of data and maintain integrity between them \cite {matt:rdb}. The amount of information we share on social media is expected to grow from 4.4 zettabytes in 2013 to 44 zettabytes in 2020 (1 zettabyte is 1 trillion gigabytes) \cite{matt:rdb}. The scaling in RDBMS depends on adding more powerful CPU's and memory, i.e. only the vertical scaling is possible which is rather expensive.  One of the advantages of the big data storage system is that it can be scaled horizontally and is also useful for storing unstructured or semi-structured data. 
 
-To address the large-scale data storage and retrieval various database systems have been developed. HBase is one of the most popular open source sortedMap datastore from Apache Software Foundation for large scale database. HBase supports horizontal scalability, i.e. the table can be stored in a distributed filesystem and can be queried  efficiently. In particular, HBase breaks a table into multiple pieces and distributes the storage in a distributed storage allowing fast storage and retrieval.  However, the demand for efficient processing of queries is highly desired due to ever increasing data churn rate. Hence, for petabytes of data, scanning each part of the table for a single user query is still considered to be expensive regarding the processing time. 
+To address the large-scale data storage and retrieval, various database systems have been developed. HBase is one of the most popular open source sortedMap datastore from Apache Software Foundation for large scale database. HBase supports horizontal scalability, i.e. the table can be stored in a distributed file system and can be queried  efficiently. In particular, HBase breaks a table into multiple pieces and distributes the storage in a distributed storage allowing fast storage and retrieval.  However, the demand for efficient processing of queries is highly desired due to ever increasing data churn rate. Hence, for petabytes of data, scanning each part of the table for a single user query is still considered to be expensive regarding the processing time. 
 
 In this thesis, we discuss several algorithms that allow efficient maintenance and retrieval of data in the context of HBase database. However, the ideas discussed in this thesis generalizes to any sortedMap datastore. In particular, we will  discuss 
 \emph{Materialized  Views} approach for databases.
@@ -121,79 +121,85 @@ In this thesis, we discuss several algorithms that allow efficient maintenance a
 In this thesis, we are concerned about scaling databases to large scale data. In particular, we focus on maintaining consistency between base tables and view table that are split across multiple nodes in a cluster. In the era of early 90's when Internet access was limited, relational database systems were widely used to store data generated through the Internet. However, over the last decade, the amount of data has increased exponentially. To deal with the large scale data various databases have been proposed such as HBase.
 % In the year 2007, Apache Software Foundation released the first prototype of HBase, an open source sortedMap Datastore that runs on top of Hadoop. HBase data storage system provided a solution for horizontal scalability, i.e. data was stored in a distributed fashion. In the late 2000's, Internet became more accessible and the size of date grew bigger and bigger. Though data was stored in a distributed fashion, there were researchers carrying out research on faster retrieval of data from the big chunk of datasets.
 
-In this thesis, we explore \emph{materialized views}, introduced by Oracle, which provides faster querying mechanism over a large dataset. Materialized Views  are the abstraction that allows efficient 
-query and retrieval. Instead querying a table, queries were redirected to the Materialized Views for faster retrieval. However, there are challenges in maintaining consistency between a table and its materialized view. In this thesis, we proposed methods to maintain consistency between base tables and a view table in a HBase database systems. One of the solutions were to re-create materialized view whenever there are changes in base tables. Re-creating view table every  time when changes happened in the base table was not a ideal solution. In this thesis, we leverage an HBase feature, namely coprocessor. We will coprocessor functionality to maintain consistency between base tables and a view table incrementally in our implementation.
+In this thesis, we explore \emph{materialized views}, introduced by Oracle, which provides faster querying mechanism over a large dataset. Materialized views  are the abstraction that allows efficient 
+query and retrieval. Instead querying a table, queries were redirected to the materialized views for faster retrieval. However, there are challenges in maintaining consistency between a table and its materialized view. In this thesis, we proposed methods to maintain consistency between base tables and a view table in a HBase database systems. One of the solutions were to re-create materialized view whenever there are changes in base tables. Re-creating view table every  time when changes happened in the base table was not a ideal solution. In this thesis, we leverage an HBase feature, namely coprocessor. We will coprocessor functionality to maintain consistency between base tables and a view table incrementally in our implementation.
 
 \section{Contribution}
-In Chapter \ref{chap:background}, we will briefly discuss the fundamentals of Materialized Views, HBase and Incremental View Maintenance. In Chapter \ref{chap:relatedwork}, we will present past research on Incremental View Maintenance. In Chapter \ref{Failure Detection}, we discussion about the failure scenarios and prevention. In Chapter \ref{Implementation}, we define some prerequisite and propose an algorithm to maintain consistency among base tables and view table. In Chapter \ref{Evaluation}, we perform different experiments to prove our hypothesis. In Chapter \ref{Conclusion}, we provide conclusion of our experiments and in Chapter \ref{Future Work}, we provide some ideas that can be implemented in the near future.
+In Chapter \ref{chap:background}, we will briefly discuss the fundamentals of materialized views, HBase and incremental view maintenance. In Chapter \ref{chap:relatedwork}, we will present past research on incremental view maintenance. In Chapter \ref{Failure Detection}, we discussion about the failure scenarios and recovery mechanisms. In Chapter \ref{Implementation}, we define some prerequisite and propose an algorithm to maintain consistency among base tables and view table. In Chapter \ref{Evaluation}, we perform different sets of experiments to prove our hypothesis. In Chapter \ref{Conclusion}, we provide conclusion of our experiments and in Chapter \ref{Future Work}, we provide some ideas that can be implemented in the near future.
 
 
 \chapter{Background}
 \label{chap:background}
 
-In this chapter we will first discuss about the fundamentals of $Materialized$ $Views$ and $View$ $Types$. We will further explain about the technologies used widely in today's Distributed Storage Databases. 
+In this chapter we will first discuss about the fundamentals of $Materialized$ $Views$ and $View$ $Types$. We will further explain about the technologies used widely in today's distributed storage databases. 
 
 \section{Views}
 In a relational database management system, a $View$ is defied as result set of a query. View can be subset of a table or joins from multiple tables. Views in relational database systems are generally created for frequently accessed queries involving multiple joins to reduce cost of the operation. Views are nothing but a $SELECT$ statements to fetch desired result sets and are given certain name and saved in database. Views can also hide a complexity of a query. In a large dataset, when a computation is required to fetch data from several tables involving complex business logic, all the complex business logic can be moved to a $view$, and then just use $SELECT$ statement to get data from that view thus hiding the complexity of a query. Views also provide a layer of security mechanism to our database table. We can create a view without the columns containing confidential information, and restrict access to the base table. We can then provide access to the view and carry out desired operation using that view. 
 
-In relational database systems, Views are widely used. However, there are also certain disadvantages of $Views$. In a scenario where base table is deleted, the view of that table becomes inactive. In $MySQL$ database, for every client request, a view is recalculated. This might not be a problem for small applications containing few hundred rows or columns, but re-calculating views for every client request in large dataset can be a bottleneck for performance optimization. To overcome this bottleneck, a new approach called $Materialized View$ is used.
+In relational database systems, Views are widely used. However, there are also certain disadvantages of $Views$. In a scenario where base table is deleted, the view of that table becomes inactive. In $MySQL$ database, for every client request, a view is recalculated. This might not be a problem for small applications containing few hundred rows or columns, but re-calculating views for every client request in large dataset can be a bottleneck for performance optimization. To overcome this bottleneck, a new approach called \emph{materialized view} is used.
 
 
 \section{Materialized Views}
 
-Materialized view is defined as the database object that stores the result of a query in a table or a disk. Materialized views are widely used for gaining performance advantage, i.e. to speed up query processing time over large datasets. The need for Materialized view addresses the problem of having to query large datasets that often needs joins and aggregations between multiple tables. These kind of queries are very expensive regarding execution time and processing power. Materialized views speed up the query processing time by pre-computing joins and aggregations before execution and stores these results in a table or disk\cite{materializedview:oracle}. 
+Materialized view is defined as the database object that stores the result of a query in a table or a disk. Materialized views are widely used for gaining performance advantage, i.e. to speed up query processing time over large datasets. The need for Materialized view addresses the problem of having to query large datasets that often needs joins and aggregations between multiple tables. These kind of queries are very expensive regarding execution time and processing power. Materialized views speed up the query processing time by pre-computing joins and aggregations before execution and stores these results in a table or disk \cite{materializedview:oracle}. 
 
-\section{View Maintenance}
-Once the Materialized views are created, our query is redirected to Materialized View table rather than base table. Whenever there is an update in the base table, the Materialized View table also has to be updated accordingly. One of the solutions would be recomputing the entire Materialized View from the scratch or using the heuristic of inertia\cite{maintenance:materializedviews} approach i.e. incremental maintenance with respect to the base table.
+\section{Materialized View Maintenance}
+Once the materialized views are created, our query is redirected to materialized view table rather than the base table. Whenever there is an update in the base table, the materialized view table also has to be updated accordingly. One of the solutions would be recomputing the entire materialized view from the scratch or using the heuristic of inertia \cite{maintenance:materializedviews} approach i.e. incremental maintenance with respect to the base table.
 
 \section{Incremental Maintenance of Materialized View}
-"A view V is considered consistent with the database DB if the evaluation of the view specification S over the database yields the view instance (V = S(DB)). Therefore, when the database DB is updated to DB0 , we need to update the view V to V0 = S(DB0) in order to preserve its consistency"\cite{incrementalmaintenance:materializedviews}. 
+\emph{"A view V is considered consistent with the database DB if the evaluation of the view specification S over the database yields the view instance (V = S(DB)). Therefore, when the database DB is updated to DB' , we need to update the view V to V' = S(DB') in order to preserve its consistency"} \cite{incrementalmaintenance:materializedviews}. 
 
-Recomputing Materialized view from scratch every time there is an update on base table is expensive. The other approach is to update the part of Materialized view table with respect to the update in Base Table. Our target is to maintain consistency between Materialized views and base table whenever there is an update on the base table.
+Recomputing materialized view from scratch every time there is an update on base table is expensive. The other approach is to update the part of materialized view table with respect to the update in the base table. Our target is to maintain consistency between materialized view and base table whenever there is an update in the base table.
 
 \section{View Types}
 \label{View Types}
-There can be several types of Views but in our implementation we have only used three different types of views namely $Aggregation$, $Join$ $and$ $Aggregation$ and $Join$ $and$ $Selection$. In $Aggregation$ view type, we have a single base table and data is merged based on a particular key. Both  $Join$ $and$ $Aggregation$ and $Join$ $and$ $Selection$ have two base tables and k-fk join is involved among them. 
+There can be several types of views but in our implementation we have only used three different types of views namely \emph{Aggregation, Join \& Aggregation and Join \& Selection}. In $Aggregation$ view type, we have a single base table and data is merged based on a particular key. Both  \emph{Join \& Aggregation and Join \& Selection} have two base tables and K-FK join is involved among them. 
 
 \subsection{Aggregation}
 In Aggregation view type, the data from the base table is merged on the basis of a particular key. In our implementation, we've implemented basic aggregation functions like sum, count, min and max. All these operations are carried out based on a particular key. So a unique key has sum, count, min and max operations. Whenever an update is triggered to update value for a particular key in the base table, in this case, count remains same and sum, min and max has to be recalculated. If a delete is triggered for a particular key in the base table, each of the aggregation functions has to be recalculated. 
 
 
 \subsection{Join and Aggregation}
-In Join and Aggregation case, we have at least two base tables that involves k-fk join. In this implementation, records are selected after apply k-fk join depending upon the condition. One of the base table contains the primary key and another base table contains foreign key. Joins being one of the complex structure itself, incremental view maintenance implementation involves a lot of complex cases. Here, to reduce complexity, we join two base tables on the basis of $key$ to form a new intermediate table. We group all the values of both base tables based on their keys. This way, for any update or delete trigger, the complexity of scanning whole base table is reduced to a single row. In our intermediate table, each of the base table is merged to a column family, join is applied and then result is stored in the view table. 
+In Join and Aggregation case, we have at least two base tables that involves K-FK join. In this implementation, records are selected after apply K-FK join depending upon the condition. One of the base table contains the primary key and another base table contains foreign key. Joins being one of the complex structure itself, incremental view maintenance implementation involves a lot of complex cases. Here, to reduce complexity, we join two base tables on the basis of $key$ to form a new intermediate table. We group all the values of both base tables based on their keys. This way, for any update or delete trigger, the complexity of scanning whole base table is reduced to a single row. In our intermediate table, each of the base table is merged to a column family, join is applied and then result is stored in the view table. 
 
 In the intermediate table, the unique keys from both the base tables act as the row key, both column families from base table are merged in the intermediate table. Now for a particular row key, the values are selected from base table and plotted in the intermediate table. Now join is applied between both column families of a particular row key, and sum of the join is inserted in the view table.  
 
 
 \subsection{Join and Selection}
-This View type also involves k-fk join among the two base tables. In this implementation, records are selected after apply k-fk join depending upon the condition. One of the base table contains the primary key and another base table contains foreign key. Join and Selection case is similar to the Join and Aggregation case, the only difference is instead of applying aggregation function, the join is applied for a particular rowKey and value is selected and inserted into the view table. 
+This View type also involves K-FK join among the two base tables. In this implementation, records are selected after apply K-FK join depending upon the condition. One of the base table contains the primary key and another base table contains foreign key. Join and Selection case is similar to the Join and Aggregation case, the only difference is instead of applying aggregation function, the join is applied for a particular rowKey and value is selected and inserted into the view table. 
 
 \newpage
 \section{HBase}
 \label{sec:hbase}
 
-Before the evolution of HBase, Relational Database Systems were used particularly for storing and processing of data. Relational database systems have been used widely over a decade and are considered to be successful. In a relational database model, we use different tables for different purposes, each table having their own purpose provides  
-a clear picture of the data. As discussed in Chapter \ref{chap:introduction}, Section \ref{Introduction}, the amount of informations shared over Internet were increasing rapidly. One of the major drawbacks of relational database model was unable to scale horizontally. Large scale distributed database were developed to overcome the problem with relational database models. No-SQL database concepts were developed that provided an API to manipulate data with operations such as get, put and delete. HBase is an open source sortedMap Datastore from Apache Software Foundation. HBase is modeled after Google's BigTable framework. It is a Hadoop database that is used for storing and retrieving data with random access. HBase architecture is designed to run on a cluster of computers rather than a single machine \cite{coprocessor:detail}. HBase aims to scale horizontally by adding more machines to the cluster. HBase runs on top of HDFS(Hadoop Distribution File System) that provides the functionality alike of Google's Big Table and provides a fault-tolerant way of storing a large volume of semi-structured and unstructured data\cite{bigdata:analysis}.
+Before the evolution of HBase, relational database systems were used particularly for storing and processing of data. Relational database systems have been used widely over a decade and are considered to be successful. In a relational database model, we use different tables for different purposes, each table having their own purpose provides  
+a clear picture of the data. As discussed in Chapter \ref{chap:introduction}, Section \ref{Introduction}, the amount of informations shared over Internet were increasing rapidly. One of the major drawbacks of relational database model was unable to scale horizontally. Large scale distributed database were developed to overcome the problem with relational database models. NoSQL database concepts were developed that provided an API to manipulate data with operations such as get, put and delete. HBase is an open source sortedMap Datastore from Apache Software Foundation. HBase is modeled after Google's BigTable framework. It is a Hadoop database that is used for storing and retrieving data with random access. HBase architecture is designed to run on a cluster of computers rather than a single machine \cite{coprocessor:detail}. HBase aims to scale horizontally by adding more machines to the cluster. HBase runs on top of HDFS (Hadoop Distribution File System) that provides the functionality alike of Google's Big Table and provides a fault-tolerant way of storing a large volume of semi-structured and unstructured data \cite{bigdata:analysis}.
 
-HBase is built on top of Hadoop and Zookeeper\cite{coprocessor:detail}. Both Hadoop and Zookeeper are open source projects from Apache Software Foundation. Apache Hadoop is an open source framework that facilitates storing and processing large dataset in a distributed fashion. Zookeeper, which was developed under Apache software foundations, as a sub-project of Hadoop, is an open source distributed configuration service for large distributes applications. A basic table structure of HBase consists of Row Key, which is similar to the primary key in a relational database table, Column Family and Column Qualifier. The figure below describes a HBase table and it's mapping to the relational database table.
+HBase is built on top of Hadoop and Zookeeper \cite{coprocessor:detail}. Both Hadoop and Zookeeper are open source projects from Apache Software Foundation. Apache Hadoop is an open source framework that facilitates storing and processing large dataset in a distributed fashion. Zookeeper, which was developed under Apache Software Foundations, as a sub-project of Hadoop, is an open source distributed configuration service for large distributes applications. A basic table structure of HBase consists of Row Key, which is similar to the primary key in a relational database table, Column Family and Column Qualifier. The table \ref{table:HbaseTabularView} describes a HBase table in a tabular form. Data in HBase table are always stored in bytes.\newline \newline 
+
 
 
 \begin{table*}[htb!]
 \centering
 \begin{tabular}{|c|c|c|}
 \hline
-\multirow{2}{*}{\textbf{RowKey}} & \multicolumn{2}{c|}{\textbf{Column Family}}\\
+\multirow{2}{*}{\textbf{RowKey}} & \multicolumn{2}{c|}{\textbf{CF}}\\
 \cline{2-3}
-& \textbf{Column Qualifier1} & \textbf{Column Qualifier2}\\
+& \textbf{CQ1} & \textbf{CQ2}\\
 \hline
 1 & A & 10\\
 2 & B & 20\\
 3 & C & 30\\
+4 & D & 40\\
+5 & E & 50\\
 \hline
 \end{tabular}
 \caption{HBase Table in Tabular view}
 \label{table:HbaseTabularView}
 \end{table*}
+%columnfamily:{‘columnqualifier1’:’A’,’columnqualifier2’:’10’}
+\subsubsection{HBase mapping to RDBMS table}
+\emph{Row Key} in HBase table maps to the primary key in relational table. HBase table can have one or more than one column families. A column family can have one or more than one column qualifiers. Generally, a group of column qualifiers having a similar characteristics are placed under same column family. The table \ref{table:HbaseTableRDBMSMapping} shows mapping of HBase table to relational table.
 
 \begin{table*}[htb!]
 \centering
@@ -201,14 +207,65 @@ HBase is built on top of Hadoop and Zookeeper\cite{coprocessor:detail}. Both Had
 \hline
 \textbf{Row Key} & \textbf{Data}\\
 \hline
-1 & Fill in here\\
-2 & Fill in here\\
-3 & Fill in here\\
+1 & CF:\{'CQ1':'A', 'CQ2':'10'\}\\
+2 & CF:\{'CQ1':'B', 'CQ2':'20'\}\\
+3 & CF:\{'CQ1':'C', 'CQ2':'30'\}\\
 \hline
 \end{tabular}
 \caption{HBase Table mapping to RDBMS Table}
 \label{table:HbaseTableRDBMSMapping}
 \end{table*}
+
+HBase table can have one or more than one column families. The table \ref{table:HbaseTableRDBMSMappingMultipleRow} shows a mapping of HBase table with multiple column families to a relational table.
+
+\begin{table*}[htb!]
+	\centering
+	\begin{tabular}{|c|c|}
+		\hline
+		\textbf{Row Key} & \textbf{Data}\\
+		\hline
+		1 & CF1:\{'CQ1':'A', 'CQ2':'10'\}
+		, CF11:\{'CQ11':'A11', 'CQ12':'20'\}\\
+
+		\hline
+	\end{tabular}
+	\caption{HBase Table with more than one CF}
+	\label{table:HbaseTableRDBMSMappingMultipleRow}
+\end{table*}
+
+One of the features HBase provides is multiple values of a single cell within different timestamps. When we try to get value from that cell, a value with most recent timestamps is returned by default.  The table \ref{table:HbaseTableDiffTimestamp} maps HBase table with multiple values for same cell to relational table and table \ref{table:HbaseTableDiffTimestampExample} show the example of HBase table having different values for same cell.
+
+\begin{table*}[htb!]
+	\centering
+	\begin{tabular}{|c|c|}
+		\hline
+		\textbf{Row Key} & \textbf{Data}\\
+		\hline
+		1 & CF1:\{'CQ1':'A'@timestamp=1417524574905, 'CQ1':'A'@timestamp=1417524575978\}\\
+	
+		
+		\hline
+	\end{tabular}
+	\caption{HBase Table with different values at different timestamp}
+	\label{table:HbaseTableDiffTimestamp}
+\end{table*}
+
+\begin{table*}[htb!]
+	\centering
+	\begin{tabular}{|c|c|}
+		\hline
+		\textbf{Row Key} & \textbf{Column + Cell}\\
+		\hline
+		1 & column=personal:name, timestamp=1417524216501, value=Michael\\
+		1 & column=personal:name, timestamp=1417524218480, value=Thomas\\
+		
+		\hline
+	\end{tabular}
+	\caption{HBase Table with different values at different timestamp example}
+	\label{table:HbaseTableDiffTimestampExample}
+\end{table*}
+
+
 
 % \begin{figure}
 % 	\centering
@@ -598,7 +655,7 @@ In the figure \ref{sec:deleteexistingrow}, we have a delete() call for row key $
 \subsection{Join and Aggregation}
 \label{subsec:joinandaggregation}
 
-For Join and Aggregation, we have two base tables with key,value pairs. We create an intermediate table from two base tables as described in subsection \ref{subsec:intermediatetable}. For Join and Aggregation, we join two base tables on the basis of k-fk join, apply $sum$ aggregation function on the resultset and put result in the view table. In this approach, there are certain scenarios where we have to maintain consistency between base tables and a view table.
+For Join and Aggregation, we have two base tables with key,value pairs. We create an intermediate table from two base tables as described in subsection \ref{subsec:intermediatetable}. For Join and Aggregation, we join two base tables on the basis of K-FK join, apply $sum$ aggregation function on the resultset and put result in the view table. In this approach, there are certain scenarios where we have to maintain consistency between base tables and a view table.
 
 %In this subsection, we have implemented Join and Aggregation functionalities. For this, we have joined two base tables and in the view table, we have the sum of the values for a same $key$. We also have an intermediate table where both the base tables are merged by a particular $key$ and values are plotted in the intermediate table base on that $key$. As described in \ref{sec:aggregationImpl}, we have implemented sum for same $key$ in both the base tables. 
 
@@ -624,7 +681,7 @@ For Join and Aggregation, we have two base tables with key,value pairs. We creat
 
 \subsubsection{New row is inserted}
 
-When a client inserts new row with key,value pair in a base table, we have to update our intermediate table and view table accordingly to maintain consistency between them. Updating intermediate table is not a big problem here, we just need to put new key,value pair for that particular rowKey in a corresponding column family. In the prePut() method, we determine the key,value pair to be inserted into the base table. When the request is triggered in postPut() method, we need to update intermediate table and view table accordingly. Since k-fk join is involved, we need to figure out the new rows generated with respect to the newly inserted key,value pair. The first list contains newly inserted key,value pair for that particular rowKey. The second list contains all the key,value pairs for the same rowKey. Now we get a cartesian product of key,value pairs, value containing the sum of the k-fk joins that are to be inserted into the view table. Now the result is inserted into the veiw table. This way, we are able to maintain consistency whenever a new row is inserted in a base table.
+When a client inserts new row with key,value pair in a base table, we have to update our intermediate table and view table accordingly to maintain consistency between them. Updating intermediate table is not a big problem here, we just need to put new key,value pair for that particular rowKey in a corresponding column family. In the prePut() method, we determine the key,value pair to be inserted into the base table. When the request is triggered in postPut() method, we need to update intermediate table and view table accordingly. Since K-FK join is involved, we need to figure out the new rows generated with respect to the newly inserted key,value pair. The first list contains newly inserted key,value pair for that particular rowKey. The second list contains all the key,value pairs for the same rowKey. Now we get a cartesian product of key,value pairs, value containing the sum of the K-FK joins that are to be inserted into the view table. Now the result is inserted into the veiw table. This way, we are able to maintain consistency whenever a new row is inserted in a base table.
 The figure \ref{sec:insertnewrowjoinandaggr} describes the scenario in more detail. The updated table on the right has new values plotted in red.
 
 \begin{figure}
@@ -640,12 +697,12 @@ The figure \ref{sec:insertnewrowjoinandaggr} describes the scenario in more deta
 \subsubsection{Existing value of a row is updated}
 %When a value of a $key$ is updated in the base table, the consistency should also be maintained in the view table. So when the base table is updated, the request is triggered by the postPut() method and intermediate table and view tables are updated accordingly.
 
-When an existing value of a particular key is updated in a base table, we update the particular value in our intermediate table. In the prePut() method, we determine key,value pair for the row to be updated and in the postPut() method, we update our intermediate table and view table accordingly. The update process in an intermediate table is straightforward i.e. we just update value for that particular row and column. Now in order to update our view table, we need to find all the rows that are affected by an update statement as k-fk join is involved. We create two lists and the first list contains key,value pair of the row which was just updated. The second list contains all the key,value pairs for the same rowKey. Now we get a cartesian product of key,value pairs, and the value containing sum of k-fk joins that are to be updated into the view table. This way we maintain consistency between base tables and view table when an existing row is updated in the base table.
+When an existing value of a particular key is updated in a base table, we update the particular value in our intermediate table. In the prePut() method, we determine key,value pair for the row to be updated and in the postPut() method, we update our intermediate table and view table accordingly. The update process in an intermediate table is straightforward i.e. we just update value for that particular row and column. Now in order to update our view table, we need to find all the rows that are affected by an update statement as K-FK join is involved. We create two lists and the first list contains key,value pair of the row which was just updated. The second list contains all the key,value pairs for the same rowKey. Now we get a cartesian product of key,value pairs, and the value containing sum of K-FK joins that are to be updated into the view table. This way we maintain consistency between base tables and view table when an existing row is updated in the base table.
 
 \subsubsection{Existing key of a row is updated}
 %As described in \ref{subsubsec:keyupdate}, when $key$ is modified in the base table, we first have to delete an entry from the intermediate table and view table if the row exists for that particular $key$. Once delete operation is completed without interruption, then we insert the updated key in the intermediate table and view table.
 
-In this scenario, we first save key,value pair of the row to be deleted from base table in prePut() method. After the entry has been deleted from the base table, we delete an entry from the intermediate table in the postPut() method. Now we have to find all the rows to be deleted from the view table for that particular key. In this process, we create two list and find out all the rows to be deleted from the view table. The first list contains key,value pair which we saved earlier. The second list contains all the key,value pairs for the same rowKey. Now we get a cartesian product of key,value pairs that are to be deleted from the view table. Then we delete all the affected rows from the view table. Now we have to update old key to a new key in a base table. Once the base table has been updated, we update our intermediate table accordingly. Now we need to find out the rows to be inserted into the view table as it involves k-fk join among the base tables. We do that by creating two lists, first list containing new key,value pair and second list containing all the key,value pairs for that rowKey. Now we get a cartesian product of key,value pairs, and the value containing sum of k-fk joins that are to be inserted into the view table.
+In this scenario, we first save key,value pair of the row to be deleted from base table in prePut() method. After the entry has been deleted from the base table, we delete an entry from the intermediate table in the postPut() method. Now we have to find all the rows to be deleted from the view table for that particular key. In this process, we create two list and find out all the rows to be deleted from the view table. The first list contains key,value pair which we saved earlier. The second list contains all the key,value pairs for the same rowKey. Now we get a cartesian product of key,value pairs that are to be deleted from the view table. Then we delete all the affected rows from the view table. Now we have to update old key to a new key in a base table. Once the base table has been updated, we update our intermediate table accordingly. Now we need to find out the rows to be inserted into the view table as it involves K-FK join among the base tables. We do that by creating two lists, first list containing new key,value pair and second list containing all the key,value pairs for that rowKey. Now we get a cartesian product of key,value pairs, and the value containing sum of K-FK joins that are to be inserted into the view table.
 
 \subsubsection{Existing row is deleted}
 %The implementation for this scenario is same as described in subsection \ref{subsubsec:rowdelete}. The entry is first deleted from the base table, and if an entry exists in the intermediate table and view table, the entries are deleted from those table accordingly.
@@ -655,7 +712,7 @@ When a row is deleted from the base table, we simply delete an entry from the in
 \subsection{Join and Selection}
 \label{subsec:joinandselection}
 
-The approach implemented in this subsection is similar to the approach described in subsection \ref{subsec:joinandaggregation}. We have two base tables with key,value pairs. We create an intermediate table from two base tables as described in subsection \ref{subsec:intermediatetable}. For Join and Selection, we join two base tables on the basis of k-fk join and put result in the view table. In this approach, there are also certain scenarios where we have to maintain consistency between base tables and a view table.
+The approach implemented in this subsection is similar to the approach described in subsection \ref{subsec:joinandaggregation}. We have two base tables with key,value pairs. We create an intermediate table from two base tables as described in subsection \ref{subsec:intermediatetable}. For Join and Selection, we join two base tables on the basis of K-FK join and put result in the view table. In this approach, there are also certain scenarios where we have to maintain consistency between base tables and a view table.
 
 \begin{enumerate}
 	\item New row is inserted
@@ -666,14 +723,14 @@ The approach implemented in this subsection is similar to the approach described
 
 \subsubsection{New row is inserted}
 \label{New row is inserted JoinSelection}
-When a client inserts new row with key,value pair in a base table, we have to update our intermediate table and view table accordingly to maintain consistency between them. Updating intermediate table is not a big problem here, we just put new key,value pair for that particular rowKey in a corresponding column family. Since k-fk join is involved, we need to figure out the new rows generated with respect to the newly inserted key,value pair. The first list contains newly inserted key,value pair for that particular rowKey. The second list contains all the key,value pairs for the same rowKey. Now we get a cartesian product of key,value pairs that are to be inserted into the view table. Now we are able to maintain consistency whenever a new row is inserted in a base table.
+When a client inserts new row with key,value pair in a base table, we have to update our intermediate table and view table accordingly to maintain consistency between them. Updating intermediate table is not a big problem here, we just put new key,value pair for that particular rowKey in a corresponding column family. Since K-FK join is involved, we need to figure out the new rows generated with respect to the newly inserted key,value pair. The first list contains newly inserted key,value pair for that particular rowKey. The second list contains all the key,value pairs for the same rowKey. Now we get a cartesian product of key,value pairs that are to be inserted into the view table. Now we are able to maintain consistency whenever a new row is inserted in a base table.
 
 \subsubsection{Existing value of a row is updated} 
 When an existing value of a particular key is updated in a base table, we update the particular value in our intermediate table. The update process in an intermediate table is straightforward i.e. we just update value for that particular row and column. Now in order to update our view table, we need to find all the rows that are affected by an update statement. We create two lists and the first list contains key,value pair of the row which was just updated. The second list contains all the key,value pairs for the same rowKey. Now we get a cartesian product of key,value pairs that are to be updated into the view table. This way we maintain consistency between base tables and view table when an existing row is updated in the base table.
 
 
 \subsubsection{Existing key of a row is updated}
-In this scenario, we first save key,value pair of the row to be deleted from base table. After the entry has been deleted from the base table, we delete an entry from the intermediate table. Now we have to find all the rows to be deleted from the view table for that particular key. In this process, we create two list and find out all the rows to be deleted from the view table. The first list contains key,value pair which we saved earlier. The second list contains all the key,value pairs for the same rowKey. Now we get a cartesian product of key,value pairs that are to be deleted from the view table. Then we delete all the affected rows from the view table. Now we have to update old key to a new key in a base table. Once the base table has been updated, we update our intermediate table accordingly. Now we need to find out the rows to be inserted into the view table as it involves k-fk join among the base tables. We do that by creating two lists, first list containing new key,value pair and second list containing all the key,value pairs for that rowKey. Now we get a cartesian product of key,value pairs that are to be inserted into the view table.
+In this scenario, we first save key,value pair of the row to be deleted from base table. After the entry has been deleted from the base table, we delete an entry from the intermediate table. Now we have to find all the rows to be deleted from the view table for that particular key. In this process, we create two list and find out all the rows to be deleted from the view table. The first list contains key,value pair which we saved earlier. The second list contains all the key,value pairs for the same rowKey. Now we get a cartesian product of key,value pairs that are to be deleted from the view table. Then we delete all the affected rows from the view table. Now we have to update old key to a new key in a base table. Once the base table has been updated, we update our intermediate table accordingly. Now we need to find out the rows to be inserted into the view table as it involves K-FK join among the base tables. We do that by creating two lists, first list containing new key,value pair and second list containing all the key,value pairs for that rowKey. Now we get a cartesian product of key,value pairs that are to be inserted into the view table.
 
 \subsubsection{Existing row is deleted}
 When a row is deleted from the base table, we simply delete an entry from the intermediate table. The next task is to find all the rows that are to be deleted from the view table. This is a similar process as described in the sub section above. We first create two lists here, first list contains the key,value pair of the row that was deleted and the second row contains all the key,value pairs for the same row. Now we get a cartesian product of key,value pairs that are to be deleted the view table. We delete all the rows from the view table. This way we can maintain consistency between base table and view table when a row is deleted from the base table.
@@ -758,11 +815,11 @@ In section \ref{Insert Records Aggr}, we proved that we can improve optimization
 
 \section{Experiment 2 (Join and Aggregation)}
 \label{(sec:Join and Aggregation Exp)} 
-For $Join$ \& $Aggregation$, we create two base tables as it involves k-kf joins, an intermediate table and a view table. We insert 3.000 rows in both the base table, apply k-fk joins and calculate sum for those joins and insert result in the view table. We then run experiments to see how we can improve performance as we split our tables across multiple regions.
+For $Join$ \& $Aggregation$, we create two base tables as it involves K-FK joins, an intermediate table and a view table. We insert 3.000 rows in both the base table, apply K-FK joins and calculate sum for those joins and insert result in the view table. We then run experiments to see how we can improve performance as we split our tables across multiple regions.
 
 \subsection{Join and Aggregation: Insert records}
 \label{Join and Aggregation: Insert records Standalone}
-In this experiment, we insert 3.000 records in each of the base tables and apply k-fk join in the two base tables. First we run this experiment in a single region and see the number of rows generated in the view table after applying k-fk joins. We run this experiment for 2, 3 and 4 regions and split our tables accordingly. In the figure \ref{sec:JoinAggrExpStandalone}, Fig(a) shows the graph of no. of records inserted in view tables. We use this statistics for running other sub-experiments.
+In this experiment, we insert 3.000 records in each of the base tables and apply K-FK join in the two base tables. First we run this experiment in a single region and see the number of rows generated in the view table after applying K-FK joins. We run this experiment for 2, 3 and 4 regions and split our tables accordingly. In the figure \ref{sec:JoinAggrExpStandalone}, Fig(a) shows the graph of no. of records inserted in view tables. We use this statistics for running other sub-experiments.
 
 \subsection{Join and Aggregation: View Re-computation vs Maintenance}
 \label{Join and Aggregation: View Re-computation vs Maintenance Standalone}
@@ -787,11 +844,11 @@ In section \ref{Join and Aggregation: Insert Records Standalone}, we showed that
 
 \section{Experiment 3 (Join and Selection)}
 \label{(sec:Join and Selection Exp Standalone)} 
-For $Join$ \& $Selection$, we create two base tables as it also involves k-kf joins, an intermediate table and a view table. We insert 3.000 rows in both the base table, apply k-fk joins and select values for those joins and insert result in the view table. We then run experiments to see how we can improve performance as we split our tables across multiple regions.
+For $Join$ \& $Selection$, we create two base tables as it also involves K-FK joins, an intermediate table and a view table. We insert 3.000 rows in both the base table, apply K-FK joins and select values for those joins and insert result in the view table. We then run experiments to see how we can improve performance as we split our tables across multiple regions.
 
 \subsection{Join and Selection: Insert records}
 \label{Join and Selection: Insert records Standalone}
-In this experiment, we insert 3.000 records in each of the base tables and apply k-fk join in the two base tables. First we run this experiment in a single region and see the number of rows generated in the view table after applying k-fk joins. We run this experiment for 2, 3 and 4 regions and split our tables accordingly across those regions. In the figure \ref{sec:JoinSelExpStandalone}, Fig(a) shows the graph of no. of records inserted in view tables. We use this statistics for running other sub-experiments.
+In this experiment, we insert 3.000 records in each of the base tables and apply K-FK join in the two base tables. First we run this experiment in a single region and see the number of rows generated in the view table after applying K-FK joins. We run this experiment for 2, 3 and 4 regions and split our tables accordingly across those regions. In the figure \ref{sec:JoinSelExpStandalone}, Fig(a) shows the graph of no. of records inserted in view tables. We use this statistics for running other sub-experiments.
 
 \subsection{Join and Selection: View Re-computation vs Maintenance}
 \label{Join and Selection: View Re-computation vs Maintenance Standalone}
@@ -878,24 +935,24 @@ In section \ref{Insert Records Aggr Dist}, we proved that we can improve perform
 
 \section{Experiment 5 (Join and Aggregation)}
 \label{(sec:Join and Aggregation Dist)} 
-For $Join$ \& $Aggregation$, we create two base tables as it involves k-kf joins and generate corresponding intermediate and view tables. We insert 2.000 rows in both the base table, apply k-fk joins and calculate sum for k-fk joins and insert result in the view table. We then run experiments to see how we can improve performance as we split our tables in multiple regions across multiple region servers.
+For $Join$ \& $Aggregation$, we create two base tables as it involves k-kf joins and generate corresponding intermediate and view tables. We insert 2.000 rows in both the base table, apply K-FK joins and calculate sum for K-FK joins and insert result in the view table. We then run experiments to see how we can improve performance as we split our tables in multiple regions across multiple region servers.
 
 \subsection{Join and Aggregation: Compute base tables and view table}
 \label{Join and Aggregation: Compute base tables and view table}
-In this experiment, we insert 2.000 records in both base tables. We then apply k-fk join and compute intermediate table and view table. We calculate sum based on the result of k-fk join and store it in the view table. In such case, we don't know the no. of rows generated based on the k-fk join so we analyze no. of rows generated as a benchmark for rest of the experiments. We pre-split tables into multiple regions and run the experiment for each of the scenarios. Based on the k-fk join on the base tables, we generated 1.53.000-1.55.000 rows in the view table.
+In this experiment, we insert 2.000 records in both base tables. We then apply K-FK join and compute intermediate table and view table. We calculate sum based on the result of K-FK join and store it in the view table. In such case, we don't know the no. of rows generated based on the K-FK join so we analyze no. of rows generated as a benchmark for rest of the experiments. We pre-split tables into multiple regions and run the experiment for each of the scenarios. Based on the K-FK join on the base tables, we generated 1.53.000-1.55.000 rows in the view table.
 
- %First we run this experiment in a single region and see the number of rows generated in the view table after applying k-fk joins. We run this experiment for 2, 3 and 4 regions and split our tables accordingly. In the figure \ref{sec:JoinAggrExpStandalone}, Fig(a) shows the graph of no. of records inserted in view tables. We use this statistics for running other sub-experiments.
+ %First we run this experiment in a single region and see the number of rows generated in the view table after applying K-FK joins. We run this experiment for 2, 3 and 4 regions and split our tables accordingly. In the figure \ref{sec:JoinAggrExpStandalone}, Fig(a) shows the graph of no. of records inserted in view tables. We use this statistics for running other sub-experiments.
 
 \subsection{Join and Aggregation: View Re-computation vs Maintenance}
 \label{Join and Aggregation: View Re-computation vs Maintenance Distributed}
 
-To evaluate performance in View Re-computation vs Maintenance, we first create two base tables with 2.000 rows and generate corresponding intermediate and view tables. The view table consists of a aggregation(sum) of k-fk join between the two base table data. We wanted to show that incrementally maintaining our view tables yields in significant improvement on the performance. To prove our assumption, we ran our experiment on the basis of rows generated in section \ref{Join and Aggregation: Compute base tables and view table}. From the Figure \ref{sec:JoinAggrExpDist}, Fig(a) shows time taken to re-compute view table vs time taken to incrementally update view table. Here we observe that incremental method yields up to 98\% improvement over the baseline. The reason for the significant improvement in performance of incremental update over the baseline is due to read-write and recompute overhead. In the re-compute method, we need to read the whole base table and
+To evaluate performance in View Re-computation vs Maintenance, we first create two base tables with 2.000 rows and generate corresponding intermediate and view tables. The view table consists of a aggregation (sum) of K-FK join between the two base table data. We wanted to show that incrementally maintaining our view tables yields in significant improvement on the performance. To prove our assumption, we ran our experiment on the basis of rows generated in section \ref{Join and Aggregation: Compute base tables and view table}. From the Figure \ref{sec:JoinAggrExpDist}, Fig(a) shows time taken to re-compute view table vs time taken to incrementally update view table. Here we observe that incremental method yields up to 98\% improvement over the baseline. The reason for the significant improvement in performance of incremental update over the baseline is due to read-write and recompute overhead. In the re-compute method, we need to read the whole base table and
 reconstruct the view table. However, in the incremental method, we do not reconstruct the view table but only update the rows that are affected by the operation on the base table. 
 
 
 \subsection{Join and Aggregation: Insert Records}
 \label{Join and Aggregation: Insert Records Distributed}
-In this experiment we first create two base tables with 2.000 rows and generate corresponding intermediate and view tables. The view table consists of aggregation(sum) of k-fk join between the two base table data. In this experiment we wanted to prove that evenly distributing load to multiple regions can yield to a significant performance optimization. For that we evenly distributed base tables, intermediate table and a view table across all the regions on a multiple region servers.  
+In this experiment we first create two base tables with 2.000 rows and generate corresponding intermediate and view tables. The view table consists of aggregation(sum) of K-FK join between the two base table data. In this experiment we wanted to prove that evenly distributing load to multiple regions can yield to a significant performance optimization. For that we evenly distributed base tables, intermediate table and a view table across all the regions on a multiple region servers.  
 To prove our assumption, we ran our experiment on the basis of rows generated in section \ref{Join and Aggregation: Compute base tables and view table}. In the x-axis, we showed no. of regions and in y-axis we showed time taken in millisecond to complete the operation. From the figure \ref{sec:JoinAggrExpDist}, Fig(c), we can see that splitting tables into multiple regions and using load balancing can significantly reduce operation time.
 
 \subsection{Join and Aggregation: Update View Table} 
@@ -906,16 +963,16 @@ In the figure \ref{sec:JoinAggrExpDist}, $Fig(d)$, we show time taken to update 
 
 \section{Experiment 6 (Join and Selection)}
 \label{(sec:Join and Selection Exp Distributed)} 
-For $Join$ \& $Selection$, we create two base tables as it also involves k-kf joins, an intermediate table and a view table. We insert 3.000 rows in both the base table, apply k-fk joins and select values for those joins and insert result in the view table. We then run experiments to see how we can improve performance as we split our tables across multiple regions.
+For $Join$ \& $Selection$, we create two base tables as it also involves K-FK joins, an intermediate table and a view table. We insert 3.000 rows in both the base table, apply K-FK joins and select values for those joins and insert result in the view table. We then run experiments to see how we can improve performance as we split our tables across multiple regions.
 
 \subsection{Join and Selection: Compute base tables and view tables}
 \label{Join and Selection: Compute base tables and view table}
-In this experiment, we insert 2.000 records in both base tables. We then apply k-fk join and compute intermediate table and view table. We then select values based on the result of k-fk join and store it in the view table. In such case, we don't know the no. of rows generated based on the k-fk join so we analyze no. of rows generated as a benchmark for rest of the experiments. We pre-split tables into multiple regions and run the experiment for each of the scenarios. Based on the k-fk join on the base tables, we generated 1.53.000-1.54.000 rows in the view table.
+In this experiment, we insert 2.000 records in both base tables. We then apply K-FK join and compute intermediate table and view table. We then select values based on the result of K-FK join and store it in the view table. In such case, we don't know the no. of rows generated based on the K-FK join so we analyze no. of rows generated as a benchmark for rest of the experiments. We pre-split tables into multiple regions and run the experiment for each of the scenarios. Based on the K-FK join on the base tables, we generated 1.53.000-1.54.000 rows in the view table.
 
 \subsection{Join and Selection: View Re-computation vs Maintenance}
 \label{Join and Selection: View Re-computation vs Maintenance Distributed}
 
-To evaluate performance in View Re-computation vs Maintenance, we first create two base tables with 2.000 rows and generate corresponding intermediate and view tables. The view table consists of a selection of k-fk join between the two base table data. We wanted to show that incrementally maintaining our view tables yields in significant improvement on the performance. To prove our assumption, we ran our experiment on the basis of rows generated in section \ref{Join and Selection: Compute base tables and view table}. From the Figure \ref{sec:JoinSelExpDist}, Fig(a) shows time taken to re-compute view table vs time taken to incrementally update view table. Here we observe that incremental method yields up to 98\% improvement over the baseline. The reason for the significant improvement in performance of incremental update over the baseline is due to read-write and recompute overhead. In the re-compute method, we need to read the whole base table and
+To evaluate performance in View Re-computation vs Maintenance, we first create two base tables with 2.000 rows and generate corresponding intermediate and view tables. The view table consists of a selection of K-FK join between the two base table data. We wanted to show that incrementally maintaining our view tables yields in significant improvement on the performance. To prove our assumption, we ran our experiment on the basis of rows generated in section \ref{Join and Selection: Compute base tables and view table}. From the Figure \ref{sec:JoinSelExpDist}, Fig(a) shows time taken to re-compute view table vs time taken to incrementally update view table. Here we observe that incremental method yields up to 98\% improvement over the baseline. The reason for the significant improvement in performance of incremental update over the baseline is due to read-write and recompute overhead. In the re-compute method, we need to read the whole base table and
 reconstruct the view table. However, in the incremental method, we do not reconstruct the view table but only update the rows that are affected by the operation on the base table. 
 
 \begin{figure}
@@ -932,7 +989,7 @@ reconstruct the view table. However, in the incremental method, we do not recons
 \subsection{Join and Selection: Insert Records}
 \label{Join and Selection: Insert Records Distributed}
 
-In this experiment we first create two base tables with 2.000 rows and generate corresponding intermediate and view tables. The view table consists of selection of k-fk join between the two base table data. In this experiment we wanted to prove that evenly distributing load to multiple regions can yield to a significant performance optimization. For that we evenly distributed base tables, intermediate table and a view table across all the regions on a multiple region servers.  
+In this experiment we first create two base tables with 2.000 rows and generate corresponding intermediate and view tables. The view table consists of selection of K-FK join between the two base table data. In this experiment we wanted to prove that evenly distributing load to multiple regions can yield to a significant performance optimization. For that we evenly distributed base tables, intermediate table and a view table across all the regions on a multiple region servers.  
 To prove our assumption, we ran our experiment on the basis of rows generated in section \ref{Join and Selection: Compute base tables and view table}. In the x-axis, we showed no. of regions and in y-axis we showed time taken in millisecond to complete the operation. From the figure \ref{sec:JoinSelExpDist}, Fig(c), we can see that splitting tables into multiple regions and using load balancing can significantly reduce operation time.
 
 \subsection{Join and Selection: Update View Table} 
@@ -952,7 +1009,7 @@ In the figure \ref{sec:JoinSelExpDist}, $Fig(d)$, we show time taken to update v
 
 \chapter{Conclusion}
 \label{Conclusion}
-We have presented an approach to maintain consistency between base table and view table incrementally using HBase Coprocessor. We have provided a solution for incremental maintenance of view table without re-computing view table for every updates on base table. We managed to load coprocessor in the base table. For every updates on the base table, we managed to trigger required updates on the view table using coprocessor and apply them in the view table. This solution addressed the problem of having read-write overhead for re-computing view table even for small changes in the base table. We introduced an intermediate table where all the values for a particular key were plotted in a single row. So for every update for a particular key on base table, we only need to scan one row in intermediate table to determine updates required in view table. This architecture overcomes read overhead i.e. we only need to scan one particular row instead of scanning whole base table to determine changes required for view table. As we overcome read-write overhead, we managed to improve performance of the system up to 98\% in the best case scenario. To prove our hypothesis, we ran experiments on different datasets ranging from 10.000 rows to 2.50.000 rows. We tested our solution for different view types namely $Sum$, $Count$, $Min$, $Max$ and $k-fk$ $join$ views. We performed several experiments both on pseudo-distributed mode and fully distributed mode. In both environments, we were able to optimize performance significantly. 
+We have presented an approach to maintain consistency between base table and view table incrementally using HBase Coprocessor. We have provided a solution for incremental maintenance of view table without re-computing view table for every updates on base table. We managed to load coprocessor in the base table. For every updates on the base table, we managed to trigger required updates on the view table using coprocessor and apply them in the view table. This solution addressed the problem of having read-write overhead for re-computing view table even for small changes in the base table. We introduced an intermediate table where all the values for a particular key were plotted in a single row. So for every update for a particular key on base table, we only need to scan one row in intermediate table to determine updates required in view table. This architecture overcomes read overhead i.e. we only need to scan one particular row instead of scanning whole base table to determine changes required for view table. As we overcome read-write overhead, we managed to improve performance of the system up to 98\% in the best case scenario. To prove our hypothesis, we ran experiments on different datasets ranging from 10.000 rows to 2.50.000 rows. We tested our solution for different view types namely $Sum$, $Count$, $Min$, $Max$ and $K-FK$ $join$ views. We performed several experiments both on pseudo-distributed mode and fully distributed mode. In both environments, we were able to optimize performance significantly. 
 
 
 \chapter{Future Work}

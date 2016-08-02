@@ -19,6 +19,7 @@
 \usepackage{multirow}
 \usepackage{listings}
 \usepackage{color}
+\usepackage{xcolor}
 \usepackage{acronym}  % allow generation of acronym
 
 \definecolor{mygreen}{rgb}{0,0.6,0}
@@ -466,30 +467,32 @@ Before we begin with our implementation of the coprocessor, there are few steps 
 \subsubsection{Static Loading of coprocessor}
 We have to define coprocessor properties in a \emph{hbase-site.xml} file inside a \textless property\textgreater \space element followed by \textless name\textgreater \space and a \textless value\textgreater \space sub element. The \textless name\textgreater \space sub element should have one of the followings \cite{hbase:site}:
 
+
 \begin{enumerate}
 	
-    \item hbase.coprocessor.region.classes for RegionObservers and Endpoints coprocessor
-    \item hbase.coprocessor.wal.classes for WALObservers
-    \item hbase.coprocessor.master.classes for MasterObservers
+    \item \textbf{\textcolor{purple} {hbase.coprocessor.region.classes}} for RegionObservers and Endpoints coprocessor
+    \item \textbf{\textcolor{purple} {hbase.coprocessor.wal.classes}} for WALObservers
+    \item \textbf{\textcolor{purple} {hbase.coprocessor.master.classes}} for MasterObservers
     
 \end{enumerate}
 
 
-The \textless value\textgreater \space sub-element should contain the full path of the coprocessor implementation class. A typical example for static loading of coprocessor looks as,\newline \newline 
+The \textless value\textgreater \space sub-element should contain the full path of the coprocessor implementation class. A typical example for static loading of coprocessor looks as,\newline \newline
+\textbf{\textcolor{purple}{
 \textless property\textgreater \newline
 \textless name\textgreater hbase.coprocessor.region.classes\textless /name\textgreater \newline
 \textless value\textgreater \texttt{org.apache.hbase.HBase\_coprocessor.HBaseCoprocessor}\textless /value\textgreater \newline
-\textless /property\textgreater \newline
+\textless /property\textgreater}} \newline
 
- If we have multiple classes, then the path in \textless value\textgreater \space sub-element should be comma separated. In this setup, the framework will attempt to load all the configured classes, so we have to create a jar with dependencies, for all the classes and place the location of the jar to HBase classpath. For that, we have to export /path/to/jar in \emph{hbase-env.sh} file. A typical example for exporting classpath is given below, \newline \newline
- export \texttt{HBASE\_CLASSPATH}='/path/to/jar' \newline
+ If we have multiple classes, then the path in \textless value\textgreater \space sub-element should be comma separated. In this setup, the framework will attempt to load all the configured classes, so we have to create a jar with dependencies, for all the classes and place the location of the jar to HBase classpath. For that, we have to export \textcolor{purple}{/path/to/jar} in \emph{hbase-env.sh} file. A typical example for exporting classpath is given below, \newline \newline
+ \textcolor{purple}{export \textbf{\texttt{HBASE\_CLASSPATH}}='/path/to/jar'} \newline
  
 Now if HBase is restarted without any errors, we have managed to load system coprocessor successfully. 
 
 \subsubsection{Static Unloading of coprocesssor}
 \begin{enumerate}
-    \item Delete entry from $hbase$-$site.xml$
-    \item Delete entry for $hbase$-$env.sh$
+    \item Delete entry from \emph{hbase-site.xml}
+    \item Delete entry for \emph{hbase-env.sh}
     \item Restart HBase
 \end{enumerate}
 
@@ -501,21 +504,21 @@ In this approach, rather than loading coprocessor to all the tables in a Region,
 \subsubsection{Using HBase shell}
 \begin{enumerate}
 	\item disable table \newline
-			\space \space hbase\textgreater disable '\textless \texttt{table\_name}\textgreater'
+			\space \space \textbf{\textcolor{purple}{ hbase\textgreater disable '\textless \texttt{table\_name}\textgreater'}}
 	\item load coprocessor using the following command \newline
-	alter '\textless \texttt{table\_name}\textgreater', \newline 
-	METHOD =\textgreater '\textless \texttt{table\_att}\textgreater', 'coprocessor' =\textgreater '/file/to/path\text{\textbar}\newline/source/path/to/impementation/class\text{\textbar}1001\text{\textbar}'
+	\textbf{\textcolor{purple}{alter '\textless \texttt{table\_name}\textgreater', \newline 
+	METHOD =\textgreater '\textless \texttt{table\_att}\textgreater', 'coprocessor' =\textgreater '/file/to/path\text{\textbar}\newline/source/path/to/impementation/class\text{\textbar}1001\text{\textbar}'}}
 	\newline \newline
 	A typical example looks like,\newline \newline
-	alter 'BaseTableA', METHOD =\textgreater '\texttt{table\_att}', 'coprocessor' =\textgreater 'file:///home/saroj-gautam/Documents/HBase-coprocessor-0.0.1-SNAPSHOT-jar-with-dependencies.jar\text{\textbar}\texttt \newline {org.apache.hbase.HBase\_coprocessor.HBaseCoprocessor}\text{\textbar}1001\text{\textbar}'
+	\textbf{\textcolor{purple}{alter 'BaseTableA', METHOD =\textgreater '\texttt{table\_att}', 'coprocessor' =\textgreater 'file:///home/saroj-gautam/Documents/HBase-coprocessor-0.0.1-SNAPSHOT-jar-with-dependencies.jar\text{\textbar}\texttt \newline {org.apache.hbase.HBase\_coprocessor.HBaseCoprocessor}\text{\textbar}1001\text{\textbar}'}}
 	
 	\item enable table \newline
 	See if coprocessor is loaded successfully. We can see it by seeing the table properties. \newline 
-	hbase\textgreater describe '\textless \texttt{table\_name}\textgreater \space should list the coprocessor under \texttt{TABLE\_ATTRIBUTES.} \newline
+	\textbf{\textcolor{purple}{hbase\textgreater describe '\textless \texttt{table\_name}\textgreater'}} \space should list the coprocessor under \textbf{\textcolor{purple}{\texttt{TABLE\_ATTRIBUTES.}}} \newline
 
 \end{enumerate}
 
-In the above scenario, the coprocessor tries to read class information from \texttt{table\_att} property. There are certain arguments separated by pipe (\text{\textbar}). The first argument in the value is the file path to the jar file that contains the implementation class. The second argument contains the full classname of the implemented coprocessor. The last argument represents the execution sequence of registered observers. If this field is left blank, the framework will itself assign a default priority value \cite{hbase:site}.
+In the above scenario, the coprocessor tries to read class information from \textbf{\textcolor{purple}{\texttt{table\_att}}} property. There are certain arguments separated by pipe (\text{\textbar}). The first argument in the value is the file path to the jar file that contains the implementation class. The second argument contains the full classname of the implemented coprocessor. The last argument represents the execution sequence of registered observers. If this field is left blank, the framework will itself assign a default priority value \cite{hbase:site}.
 
 \subsubsection{Using Java API}
 Prior to HBase version 0.96, the coprocessors were loaded in a different way. After HBase version 0.96 and newer, HTableDescriptor class provides addCoprocessor() method that helps to load coprocessor in an easier way. A code snippet \cite{loading:coprocessors} below will give us a basic insight of how coprocessor is loaded dynamically from Java API in older versions and newer versions of HBase.
@@ -546,13 +549,15 @@ Dynamic unloading of coprocessor can also be done in two ways, from shell and fr
 
 \subsubsection{Using HBase shell}
 \begin{enumerate}
-    \item disable table
-    hbase\textgreater disable '\textless \texttt{table\_name}\textgreater'
-    \item alter table, remove coprocessor
-    hbase\textgreater alter '\textless \texttt{table\_name}\textgreater', \newline
-    METHOD =\textgreater '\texttt{table\_att\_unset}', NAME=\textgreater 'coprocessor\$1' =\textgreater
-    \item enable table
-    hbase\textgreater enable '\textless \texttt{table\_name}\textgreater'
+    \item disable table \newline
+    \textbf{\textcolor{purple}{hbase\textgreater disable '\textless \texttt{table\_name}\textgreater'}}
+    \item alter table and remove coprocessor from the table \newline
+    \textbf{\textcolor{purple}{hbase\textgreater alter '\textless \texttt{table\_name}\textgreater', 
+    METHOD =\textgreater '\texttt{table\_att\_unset}', NAME=\textgreater 'coprocessor\$1' }}
+    \item enable table \newline
+    \textbf{\textcolor{purple}{hbase\textgreater enable '\textless \texttt{table\_name}\textgreater'}}
+    \item see table properties to make sure coprocessor is unloaded successfully \newline\textbf{\textcolor{purple}{hbase\textgreater describe '\textless \texttt{table\_name}\textgreater'}} \newline
+    If coprocessor is unloaded successfully, coprocessor should not be seen in table properties.
      
 \end{enumerate}
 

@@ -172,7 +172,7 @@ This View type also involves K-FK join among the two base tables. In this implem
 \label{sec:hbase}
 
 Before the evolution of HBase, relational database systems were used particularly for storing and processing of data. Relational database systems have been used widely over a decade and are considered to be successful. In a relational database model, we use different tables for different purposes, each table having their own purpose provides  
-a clear picture of the data. As discussed in Chapter \ref{chap:introduction}, Section \ref{Introduction}, the amount of information shared over Internet were increasing rapidly. One of the major drawbacks of relational database model was unable to scale horizontally. Large scale distributed database were developed to overcome the problem with relational database models. NoSQL database concepts were developed that provided an API to manipulate data with operations such as get, put and delete. HBase is an open source sortedMap Datastore from Apache Software Foundation. HBase is modeled after Google's BigTable framework. It is a Hadoop database that is used for storing and retrieving data with random access. HBase architecture is designed to run on a cluster of computers rather than a single machine \cite{coprocessor:detail}. HBase aims to scale horizontally by adding more machines to the cluster. HBase runs on top of HDFS (Hadoop Distribution File System) that provides the functionality alike of Google's Big Table and provides a fault-tolerant way of storing a large volume of semi-structured and unstructured data \cite{bigdata:analysis}.
+a clear picture of the data. As discussed in Chapter \ref{chap:introduction}, Section \ref{Introduction}, the amount of information shared over Internet are increasing rapidly. One of the major drawbacks of relational database model was unable to scale horizontally. Large scale distributed database were developed to overcome the problem with relational database models. NoSQL database concepts were developed that provided an API to manipulate data with operations such as get, put and delete. HBase is an open source sortedMap Datastore from Apache Software Foundation. HBase is modeled after Google's BigTable framework. It is a Hadoop database that is used for storing and retrieving data with random access. HBase architecture is designed to run on a cluster of computers rather than a single machine \cite{coprocessor:detail}. HBase aims to scale horizontally by adding more machines to the cluster. HBase runs on top of HDFS (Hadoop Distribution File System) that provides the functionality alike of Google's Big Table and provides a fault-tolerant way of storing a large volume of semi-structured and unstructured data \cite{bigdata:analysis}.
 
 HBase is built on top of Hadoop and Zookeeper \cite{coprocessor:detail}. Both Hadoop and Zookeeper are open source projects from Apache Software Foundation. Apache Hadoop is an open source framework that facilitates storing and processing large dataset in a distributed fashion. Zookeeper, which was developed under Apache Software Foundations, as a sub-project of Hadoop, is an open source distributed configuration service for large distributes applications. A basic table structure of HBase consists of Row Key, which is similar to the primary key in a relational database table, Column Family and Column Qualifier. The table \ref{table:HbaseTabularView} describes a HBase table in a tabular form. Data in HBase table are always stored in bytes.\newline \newline 
 
@@ -277,20 +277,20 @@ One of the features HBase provides is multiple values of a single cell within di
 \subsection{HBase Architecture}
 \label{HBase Architecture}
 
-HBase architecture consists of three major components and three sub components. The major components are master, region server and zookeeper. The three sub components are write-ahead log(WAL), HFile and memstore \cite{hbase:insights}. HBase architecture is based on master-slave architecture, where the master known as HMaster, is the master node and region servers are the slave nodes. Whenever the write request is sent, HMaster receives the request and forwards it to the respective region server \cite{hbase:insights}. 
+HBase architecture consists of three major components and three sub components. The major components are master, region server and zookeeper. The three sub components are write-ahead log(WAL), HFile and MemStore \cite{hbase:insights}. HBase architecture is based on master-slave architecture, where the master known as HMaster, is the master node and region servers are the slave nodes. Whenever the write request is sent, HMaster receives the request and forwards it to the respective region server \cite{hbase:insights}. 
 
 \subsubsection{HMaster}
 \label{hmaster}
 
-HBase master is mainly responsible for region assignments within the region servers and DDL operations like creating and deleting tables \cite{hbase:architecture}. Apart from these roles, HMaster is also responsible for assigning the regions and re-assigning of the regions for recovery or load balancing \cite{hbase:architecture}. HMaster also monitors all the instances of Region Servers in the cluster \cite{hbase:architecture} and mainly provides administrative operations.
+HBase master is mainly responsible for region assignments within the region servers and DDL operations like creating and deleting tables \cite{hbase:architecture}. Apart from these roles, HMaster is also responsible for assigning the regions and re-assigning of the regions for recovery or load balancing \cite{hbase:architecture}. HMaster also monitors all the instances of region servers in the cluster \cite{hbase:architecture} and mainly provides administrative operations.
 
 \subsubsection{Region Servers}
 \label{region serves}
 
 Region servers are systems within HBase that acts like a data node \cite{hbase:insights}. When a HMaster receives a write request, it forwards the request to the region server. Region server can have multiple regions within it, and it directs the request to the specific region. Region servers are mainly responsible for handling data related operations and communication. Region servers handle the read/write request for all the regions within it. 
-A region server runs on data node and it has four sub components as described below \cite{hbase:architecture}
+A region server runs on data node and it has four sub components as described below \cite{hbase:architecture}.
 \begin{description}
-	\item[$\bullet$]  \emph{write-ahead log}: Write Ahead Log is basically a log file. Region server adds each request to WAL first before sending that request to the appropriate region. It is mainly used for recovery in case of failure \cite{hbase:insights}. If the request is not written in the WAL file, there is a possibility of data loss in case of Region Server failure.
+	\item[$\bullet$]  \emph{Write-ahead log}: Write-ahead log is basically a log file. Region server adds each request to WAL first before sending that request to the appropriate region. It is mainly used for recovery in case of failure \cite{hbase:insights}. If the request is not written in the WAL file, there is a possibility of data loss in case of region server failure.
 \end{description}
 
 \begin{description}
@@ -298,11 +298,11 @@ A region server runs on data node and it has four sub components as described be
 \end{description}
 
 \begin{description}
-	\item[$\bullet$] \emph{MemStore}: MemStore is the write cache. All the new data that has not been written to the disk are stored in MemStore. It is mainly responsible for keeping tracks of all the logs for read and write operations to be performed for a specific Region Server \cite{hbase:architecture}. Each column family in a region has one MemStore \cite{hbase:insights}.
+	\item[$\bullet$] \emph{MemStore}: MemStore is the write cache. All the new data that has not been written to the disk are stored in MemStore. It is mainly responsible for keeping tracks of all the logs for read and write operations to be performed for a specific region server \cite{hbase:architecture}. Each column family in a region has one MemStore \cite{hbase:insights}.
 \end{description}
 
 \begin{description}
-	\item[$\bullet$] \emph{HFile}: In HBase, column family is a collection of multiple HFiles. HFiles are used to store rows as keyValue pairs and are immutable and sorted \cite{hbase:insights}.
+	\item[$\bullet$] \emph{HFile}: In HBase, column family is a collection of multiple HFiles. HFiles are used to store rows as key/value pairs and are immutable and sorted \cite{hbase:insights}.
 \end{description}
 
 \subsubsection{Zookeeper}
@@ -324,7 +324,7 @@ The figure below explains the HBase Architecture and its components.
 \section{Hadoop Distributed File System}
 \label{Hadoop Distributed File System}
 
-The Hadoop Distributed File System (HDFS) is an open source distributed file system developed for the Hadoop framework. HDFS is designed to store very large data sets and run on a commodity hardware. In HDFS, each files are divided into blocks of fixed size and are stored across multiple machines \cite{HDFS:architecture}. HDFS is also based on client-server architecture and each HDFS cluster consists of a single NameNode, also called as Master Node and multiple DataNodes, known as Slave nodes. All the metadata are stored in NameNode wheres the application data resides in DataNodes \cite{hadoop:architecture}.
+The Hadoop Distributed File System (HDFS) is an open source distributed file system developed for the Hadoop framework. HDFS is designed to store very large data sets and run on a commodity hardware. In HDFS, each files are divided into blocks of fixed size and are stored across multiple machines \cite{HDFS:architecture}. HDFS is also based on client-server architecture and each HDFS cluster consists of a single NameNode, also called as master node and multiple DataNodes, known as slave nodes. All the metadata are stored in NameNode wheres the application data resides in DataNodes \cite{hadoop:architecture}.
 
 \subsection{Namenode}
 \label{NameNode}
@@ -348,19 +348,19 @@ HBase Coprocessor framework provides a library to run user code in the HBase reg
 
 \subsection{Observer coprocessor}
 \label{sec:observercoprocessor}
-Observer coprocessor as stated earlier, is more like database triggers that executes our code when certain events occur. In the figure below, we first try to explain a simple life cycle of put() operation as an example \cite{coprocessor:detail}. Observer coprocessor resides between the client and the HMaster. Observer coprocessor can be triggered after every get(), put() or delete() command. The CoprocessorHost class is responsible for observer registration and execution \cite{coprocessor:detail}.  During the life cycle of events, observer coprocessor allows us to hook triggers in two stages. The first one is before the occurrence of the event and the other is after the completion of the event. For example, if we want to perform some computations before the occurrence of put event, we can use prePut() method to perform our custom computation. Then the life cycle of put event starts and after the life cycle of put event is completed, we can use postPut() method to perform custom computation. In the figure below, we try to explain the lifecycle of observer coprocessor when a put event is fired \cite{coprocessor:detail}.
+Observer coprocessor as stated earlier, is more like database triggers that executes our code when certain events occur. In the figure \ref{Life cycle of put request}, Fig(a) explains a simple life cycle of put() request as an example \cite{coprocessor:detail}. Observer coprocessor resides between the client and the HMaster. Observer coprocessor can be triggered after every get(), put() or delete() command. The CoprocessorHost class is responsible for observer registration and execution \cite{coprocessor:detail}.  During the life cycle of events, observer coprocessor allows us to hook triggers in two stages. The first one is before the occurrence of the event and the other is after the completion of the event. For example, if we want to perform some computations before the occurrence of put event, we can use prePut() method to perform our custom computation. Then the life cycle of put event starts and after the life cycle of put event is completed, we can use postPut() method to perform custom computation. In the figure \ref{Life cycle of put request}, Fig(b) explains the lifecycle of observer coprocessor when a put event is fired \cite{coprocessor:detail}.
 \newline
-There are four types of Observer Interfaces provided as of HBase version 1.1.3 \cite{hbase:essential}.
+There are four types of observer interfaces provided as of HBase version 1.1.3 \cite{hbase:essential}.
 
 \begin{enumerate}
     
-\item \emph{RegionObserver}: RegionObserver runs on all the Region of a HBase table. RegionObserver provides hook for data manipulation for events like put(), get() add delete() events. All the data manipulations are done with pre-hook and post hook \cite{hbase:essential} such as pre and post observers. For instance, preGetOp() and postGetOp() provides hook for manipulating get request. 
+\item \emph{RegionObserver}: RegionObserver runs on all the region of a HBase table. RegionObserver provides hook for data manipulation for events like put(), get() add delete() events. All the data manipulations are done with pre-hook and post hook \cite{hbase:essential} such as pre and post observers. For instance, preGetOp() and postGetOp() provides hook for manipulating get request. 
 
 \item \emph{RegionServerObserver}: Likewise in RegionObserver, RegionServerObserver provides a hook for data manipulation for events like merge, commits and rollback. All the data manipulation are done with pre-hook and post hook such as preMerge() and postMerge() \cite{hbase:essential}. 
 
 \item \emph{WALObserver}: WALObserver interface provides a hook for WAL \cite{hbase:essential} related operations. This interface provides only preWALWrite() which is triggered before WALEdit is written to WAL and postWALWrite() which is triggered after WALEdit is written to a WAL \cite{hbase:essential}.
 
-\item \emph{MasterObserver}: MasterObserver Interface provides a hook for data manipulation for DDL events such as table creation, table deletion or table modification \cite{cloudera:instandupg}. For instance, if the secondary indexes need to be deleted when primary table is deleted, we can use postDeleteTable(). The MasterObserver runs on the master node.
+\item \emph{MasterObserver}: MasterObserver interface provides a hook for data manipulation for DDL events such as table creation, table deletion or table modification \cite{cloudera:instandupg}. For instance, if the secondary indexes need to be deleted when primary table is deleted, we can use postDeleteTable(). The MasterObserver runs on the master node.
 
 \end{enumerate}
 
@@ -404,12 +404,13 @@ Observer coprocessor resides between client and HBase. Observer coprocesser can 
 \newpage
 \subsection{Endpoint coprocessor}
 
-Endpoint coprocessor is similar to the Stored Procedures in RDBMS. This type of coprocessor is more useful in the scenario where the computation is needed for the whole table and are not provided by observer coprocessor \cite{hbase:coprocessors}. Invoking the endpoint coprocessor is similar to invoking any other commands in HBase from the client\textquotesingle s point of view but the result is based on the code that defines the coprocessor \cite{coprocessor:detail}. The figure below explains the Aggregation example \cite{coprocessor:detail}.
+Endpoint coprocessor is similar to the Stored Procedures in RDBMS. This type of coprocessor is more useful in the scenario where the computation is needed for the whole table and are not provided by observer coprocessor \cite{hbase:coprocessors}. Invoking the endpoint coprocessor is similar to invoking any other commands in HBase from the client\textquotesingle s point of view but the result is based on the code that defines the coprocessor \cite{coprocessor:detail}. The figure \ref{Endpoint Coprocessor} explains the Aggregation example \cite{coprocessor:detail}.
 
 \begin{figure}
     \centering
     \includegraphics[width=\linewidth]{EndPointCoprocessor}
     \caption{EndPoint Coprocessor}
+    \label{Endpoint Coprocessor}
     
 \end{figure}
 

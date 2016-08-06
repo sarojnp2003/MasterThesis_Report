@@ -130,17 +130,17 @@ In Chapter \ref{chap:background}, we will briefly discuss the fundamentals of ma
 \chapter{Background}
 \label{chap:background}
 
-In this chapter we will first discuss about the fundamentals of $Materialized$ $Views$ and $View$ $Types$. We will further explain about the technologies used widely in today's distributed storage databases. 
+In this chapter we will discuss about the fundamentals of \emph{Materialized Views} and \emph{View Types}. We will further explain about the technologies used widely in today's distributed storage databases. 
 
 \section{Views}
-In a relational database management system, a $View$ is defied as result set of a query. View can be subset of a table or joins from multiple tables. Views in relational database systems are generally created for frequently accessed queries involving multiple joins to reduce cost of the operation. Views are nothing but a $SELECT$ statements to fetch desired result sets and are given certain name and saved in database. Views can also hide a complexity of a query. In a large dataset, when a computation is required to fetch data from several tables involving complex business logic, all the complex business logic can be moved to a $view$, and then just use $SELECT$ statement to get data from that view thus hiding the complexity of a query. Views also provide a layer of security mechanism to our database table. We can create a view without the columns containing confidential information, and restrict access to the base table. We can then provide access to the view and carry out desired operation using that view. 
+In RDBMS, a \emph{View} is defined as result set of a query. View can be subset of a table or joins from multiple tables. Views in relational database systems are generally created for frequently accessed queries involving multiple joins to reduce cost of the operation. Views are simply a \emph{SELECT} statements to fetch desired result sets and are given certain name and saved in database. Views can also hide a complexity of a query. In a large dataset, when a computation is required to fetch data from several tables involving complex business logic, all the complex business logic can be moved to a \emph{view}, and then just use \emph{SELECT} statement to get data from that view thus, hiding the complexity of a query. Views also provide a layer of security mechanism to our database table. We can create a view without the columns containing confidential information, and restrict access to the base table. We can then provide access to the view and carry out desired operation using that view. 
 
-In relational database systems, Views are widely used. However, there are also certain disadvantages of $Views$. In a scenario where base table is deleted, the view of that table becomes inactive. In $MySQL$ database, for every client request, a view is recalculated. This might not be a problem for small applications containing few hundred rows or columns, but re-calculating views for every client request in large dataset can be a bottleneck for performance optimization. To overcome this bottleneck, a new approach called \emph{materialized view} is used.
+In relational database systems, views are widely used. However, there are also certain disadvantages of views. In a scenario where base table is deleted, the view of that table becomes inactive. In \emph{SQL} database, for every client request, a view is recalculated. This might not be a problem for small applications containing few hundred rows or columns, but re-calculating views for every client request in large dataset can be a bottleneck for performance optimization. To overcome this bottleneck, a new approach called \emph{materialized view} is used.
 
 
 \section{Materialized View}
 
-Materialized view is defined as the database object that stores the result of a query in a table or a disk. Materialized views are widely used for gaining performance advantage, i.e. to speed up query processing time over large datasets. The need for materialized view addresses the problem of having to query large datasets that often needs joins and aggregations between multiple tables. These kind of queries are very expensive regarding execution time and processing power. Materialized views speeds up the query processing time by pre-computing joins and aggregations before execution and stores these results in a table or disk \cite{materializedview:oracle}. 
+Materialized view is defined as the database object that stores the result of a query in a table or a disk. Materialized views are widely used for gaining performance advantage, i.e. to speed up query processing time over large datasets. The need for materialized view addresses the problem of having to query large datasets that often needs joins and aggregations between multiple tables. These kind of queries are very expensive regarding execution time and processing power. Materialized view speeds up the query processing time by pre-computing joins and aggregations before execution and stores these results in a table or disk \cite{incremental:materializedviews}. 
 
 \section{Materialized View Maintenance}
 Once the materialized views are created, our query is redirected to materialized view table rather than the base table. Whenever there is an update in the base table, the materialized view table also has to be updated accordingly. One of the solutions would be recomputing the entire materialized view from the scratch or using the heuristic of inertia \cite{maintenance:materializedviews} approach i.e. incremental maintenance with respect to the base table.
@@ -155,27 +155,26 @@ Recomputing materialized view from scratch every time there is an update on base
 There can be several types of views but in our implementation we have only used three different types of views namely \emph{Aggregation}, \emph{Join \& Aggregation} and \emph{Join \& Selection}. In $Aggregation$ view type, we have a single base table and data is merged based on a particular key. Both  \emph{Join \& Aggregation} and \emph{Join \& Selection} have two base tables and K-FK join is involved among them. 
 
 \subsection{Aggregation}
-In Aggregation view type, the data from the base table is merged on the basis of a particular key. In our implementation, we've implemented basic aggregation functions like \emph{sum, count, min} and \emph{max}. All these operations are carried out based on a particular key. So a unique key has sum, count, min and max operations. Whenever an update is triggered for a particular key in the base table, each of the aggregation functions has to be re-evaluated for that particular key in the view table.
+In Aggregation view type, the data from the base table is merged on the basis of a particular key. In our implementation, we've implemented basic aggregation functions like \emph{sum, count, min} and \emph{max}. All these operations are carried out based on a particular key. Any unique key can have sum, count, min and max operations. Whenever an update is triggered for a particular key in the base table, each of the aggregation functions has to be re-evaluated for that particular key in the view table.
 
 
 \subsection{Join and Aggregation}
-In \emph{Join and Aggregation} view type, we have at least two base tables that involves K-FK join. In this implementation, records are selected after apply K-FK join depending upon the condition. One of the base table contains the primary key and another base table contains foreign key. Joins being one of the complex structure itself, incremental view maintenance implementation involves a lot of complex cases. Here, to reduce complexity, we join two base tables on the basis of $key$ to form a new intermediate table. We group all the values of both base tables based on their keys. This way, for any update or delete trigger, the complexity of scanning whole base table is reduced to a single row. In our intermediate table, each of the base table is merged to a column family, join is applied and then result is stored in the view table. 
+In Join and Aggregation view type, we have at least two base tables that involves K-FK join. In this implementation, records are selected after applying K-FK join depending upon the condition. One of the base table contains the primary key and another base table contains foreign key. Joins being one of the complex structure itself, incremental view maintenance implementation involves a lot of complex cases. Here, to reduce complexity, we join two base tables on the basis of $key$ to form a new intermediate table. We group all the values of both base tables based on their keys. This way, for any update or delete trigger, the complexity of scanning whole base table is reduced to a single row. In our intermediate table, each of the base table is merged to a column family, join is applied and then result is stored in the view table. 
 
-In the intermediate table, the unique keys from both the base tables act as the row key, both column families from base table are merged in the intermediate table. Now for a particular row key, the values are selected from base table and plotted in the intermediate table. Now join is applied between both column families of a particular row key, and sum of the join is inserted in the view table.  
+In the intermediate table, the unique keys from both the base tables act as the row key, both column families from the base table are merged in the intermediate table. Now for a particular row key, the values are selected from the base table and inserted in the intermediate table. Now join is applied between both column families of a particular row key, and sum of the join is inserted in the view table.  
 
 
 \subsection{Join and Selection}
-This View type also involves K-FK join among the two base tables. In this implementation, records are selected after apply K-FK join depending upon the condition. One of the base table contains the primary key and another base table contains foreign key. Join and Selection case is similar to the Join and Aggregation case, the only difference is instead of applying aggregation function, the join is applied for a particular rowKey and value is selected and inserted into the view table. 
+This view type also involves K-FK join among the two base tables. In this implementation, records are selected after applying K-FK join depending upon the condition. One of the base table contains the primary key and another base table contains foreign key. Join and Selection case is similar to the Join and Aggregation case, the only difference is instead of applying aggregation function, the join is applied for a particular row key and value is selected and inserted into the view table. 
 
 \newpage
 \section{HBase}
 \label{sec:hbase}
 
 Before the evolution of HBase, relational database systems were used particularly for storing and processing of data. Relational database systems have been used widely over a decade and are considered to be successful. In a relational database model, we use different tables for different purposes, each table having their own purpose provides  
-a clear picture of the data. As discussed in Chapter \ref{chap:introduction}, the amount of information shared over Internet are increasing rapidly. One of the major drawbacks of relational database model was unable to scale horizontally. Large scale distributed database were developed to overcome the problem with relational database models. NoSQL database concepts were developed that provided an API to manipulate data with operations such as get, put and delete. HBase is an open source sortedMap Datastore from Apache Software Foundation. HBase is modeled after Google's BigTable framework. It is a Hadoop database that is used for storing and retrieving data with random access. HBase architecture is designed to run on a cluster of computers rather than a single machine \cite{coprocessor:detail}. HBase aims to scale horizontally by adding more machines to the cluster. HBase runs on top of HDFS (Hadoop Distribution File System) that provides the functionality alike of Google's Big Table and provides a fault-tolerant way of storing a large volume of semi-structured and unstructured data \cite{bigdata:analysis}.
+a clear picture of the data. As discussed in Chapter \ref{chap:introduction}, the amount of information shared over Internet are increasing rapidly. One of the major drawbacks of relational database model was horizontal scalability. Large scale distributed database were developed to overcome the problem with relational database models. NoSQL database concepts were developed that provided an API to manipulate data with operations such as get, put and delete. HBase is an open source sortedMap Datastore from Apache Software Foundation. HBase is modeled after Google's BigTable framework. It is a Hadoop database that is used for storing and retrieving data with random access. HBase architecture is designed to run on a cluster of computers rather than a single machine \cite{coprocessor:detail}. HBase aims to scale horizontally by adding more machines to the cluster. HBase runs on top of HDFS (Hadoop Distribution File System) that provides the functionality similar to that of Google's BigTable and provides a fault-tolerant way of storing a large volume of semi-structured and unstructured data \cite{bigdata:analysis}.
 
-HBase is built on top of Hadoop and Zookeeper \cite{coprocessor:detail}. Both Hadoop and Zookeeper are open source projects from Apache Software Foundation. Apache Hadoop is an open source framework that facilitates storing and processing large dataset in a distributed fashion. Zookeeper, which was developed under Apache Software Foundations, as a sub-project of Hadoop, is an open source distributed configuration service for large distributes applications. A basic table structure of HBase consists of Row Key, which is similar to the primary key in a relational database table, Column Family and Column Qualifier. The table \ref{table:HbaseTabularView} describes a HBase table in a tabular form. Data in HBase table are always stored in bytes.\newline \newline 
-
+HBase is built on top of Hadoop and Zookeeper \cite{coprocessor:detail}. Both Hadoop and Zookeeper are open source projects from Apache Software Foundation. Apache Hadoop is a framework that facilitates storing and processing large dataset in a distributed fashion. Zookeeper, developed as a sub-project of Hadoop, is an open source distributed configuration service for large distributed applications. A basic table structure of HBase consists of Row Key, which is similar to the primary key in a relational database table, Column Family and Column Qualifier. The table \ref{table:HbaseTabularView} describes a HBase table in a tabular form. Data in HBase table are always stored in bytes \cite{hbase:site}.\newline  
 
 
 \begin{table*}[htb!]
@@ -193,7 +192,7 @@ HBase is built on top of Hadoop and Zookeeper \cite{coprocessor:detail}. Both Ha
 5 & E & 50\\
 \hline
 \end{tabular}
-\caption{HBase Table in Tabular view}
+\caption{HBase table in tabular view}
 \label{table:HbaseTabularView}
 \end{table*}
 %columnfamily:{‘columnqualifier1’:’A’,’columnqualifier2’:’10’}
@@ -211,7 +210,7 @@ HBase is built on top of Hadoop and Zookeeper \cite{coprocessor:detail}. Both Ha
 3 & CF:\{'CQ1':'C', 'CQ2':'30'\}\\
 \hline
 \end{tabular}
-\caption{HBase Table mapping to RDBMS Table}
+\caption{HBase table mapping to RDBMS table}
 \label{table:HbaseTableRDBMSMapping}
 \end{table*}
 
@@ -228,7 +227,7 @@ HBase table can have one or more than one column families. The table \ref{table:
 
 		\hline
 	\end{tabular}
-	\caption{HBase Table with more than one CF}
+	\caption{HBase table with more than one CF}
 	\label{table:HbaseTableRDBMSMappingMultipleRow}
 \end{table*}
 
@@ -245,7 +244,7 @@ One of the features HBase provides is multiple values of a single cell within di
 		
 		\hline
 	\end{tabular}
-	\caption{HBase Table with different values at different timestamp}
+	\caption{HBase table with different values at different timestamp}
 	\label{table:HbaseTableDiffTimestamp}
 \end{table*}
 
@@ -260,7 +259,7 @@ One of the features HBase provides is multiple values of a single cell within di
 		
 		\hline
 	\end{tabular}
-	\caption{HBase Table with different values at different timestamp example}
+	\caption{HBase table with different values at different timestamp example}
 	\label{table:HbaseTableDiffTimestampExample}
 \end{table*}
 
@@ -277,17 +276,17 @@ One of the features HBase provides is multiple values of a single cell within di
 \subsection{HBase Architecture}
 \label{HBase Architecture}
 
-HBase architecture consists of three major components and three sub components. The major components are master, region server and zookeeper. The three sub components are write-ahead log(WAL), HFile and MemStore \cite{hbase:insights}. HBase architecture is based on master-slave architecture, where the master known as HMaster, is the master node and region servers are the slave nodes. Whenever the write request is sent, HMaster receives the request and forwards it to the respective region server \cite{hbase:insights}. 
+HBase architecture consists of three major components and three sub components. The three major components are master, region server and zookeeper. The three sub components are write-ahead log(WAL), HFile and MemStore \cite{hbase:insights}. HBase architecture is based on master-slave architecture, where the master known as HMaster, is the master node and region servers are the slave nodes. Whenever the write request is sent, HMaster receives the request and forwards it to the respective region server \cite{hbase:insights}. 
 
 \subsubsection{HMaster}
 \label{hmaster}
 
-HBase master is mainly responsible for region assignments within the region servers and DDL operations like creating and deleting tables \cite{hbase:architecture}. Apart from these roles, HMaster is also responsible for assigning the regions and re-assigning of the regions for recovery or load balancing \cite{hbase:architecture}. HMaster also monitors all the instances of region servers in the cluster \cite{hbase:architecture} and mainly provides administrative operations.
+HMaster is mainly responsible for region assignments within the region servers and DDL operations like creating and deleting tables \cite{hbase:architecture}. Apart from these roles, HMaster is also responsible for assigning the regions and re-assigning of the regions for recovery or load balancing \cite{hbase:architecture}. HMaster also monitors all the instances of region servers in the cluster and mainly provides administrative operations \cite{hbase:architecture}.
 
 \subsubsection{Region Servers}
 \label{region serves}
 
-Region servers are systems within HBase that acts like a data node \cite{hbase:insights}. When a HMaster receives a write request, it forwards the request to the region server. Region server can have multiple regions within it, and it directs the request to the specific region. Region servers are mainly responsible for handling data related operations and communication. Region servers handle the read/write request for all the regions within it. 
+Region servers are systems within HBase that acts like a data node \cite{hbase:insights}. When a HMaster receives a write request, it forwards the request to the region server. Region server can have multiple regions within it, and it directs the request to the specific region. Region servers are mainly responsible for handling the data related operations and communication. Region servers handle the read/write request for all the regions within it. 
 A region server runs on data node and it has four sub components as described below \cite{hbase:architecture}.
 \begin{description}
 	\item[$\bullet$]  \emph{Write-ahead log}: Write-ahead log is basically a log file. Region server adds each request to WAL first before sending that request to the appropriate region. It is mainly used for recovery in case of failure \cite{hbase:insights}. If the request is not written in the WAL file, there is a possibility of data loss in case of region server failure.
@@ -360,7 +359,7 @@ There are four types of observer interfaces provided as of HBase version 1.1.3 \
 
 \item \emph{WALObserver}: WALObserver interface provides a hook for WAL \cite{hbase:essential} related operations. This interface provides only preWALWrite() which is triggered before WALEdit is written to WAL and postWALWrite() which is triggered after WALEdit is written to a WAL \cite{hbase:essential}.
 
-\item \emph{MasterObserver}: MasterObserver interface provides a hook for data manipulation for DDL events such as table creation, table deletion or table modification \cite{cloudera:instandupg}. For instance, if the secondary indexes need to be deleted when primary table is deleted, we can use postDeleteTable(). The MasterObserver runs on the master node.
+\item \emph{MasterObserver}: MasterObserver interface provides a hook for data manipulation for DDL events such as table creation, table deletion or table modification \cite{coprocessor:types}. For instance, if the secondary indexes need to be deleted when primary table is deleted, we can use postDeleteTable(). The MasterObserver runs on the master node.
 
 \end{enumerate}
 
@@ -461,7 +460,7 @@ HBase master monitors all the available region servers in a cluster. There can b
 In this section, we will first discuss the prerequisite of implementation and then the proposed method for our research.
 
 \section{Prerequisite}
-Before we begin with our implementation of the coprocessor, there are few steps to load coprocessor into our HBase table. The coprocessor can be loaded to the base tables in two ways: statically and dynamically \cite{loading:coprocessors}. 
+Before we begin with our implementation of the coprocessor, there are few steps to load coprocessor into our HBase table. The coprocessor can be loaded to the base tables in two ways: statically and dynamically \cite{hbase:site}. 
 
 \subsection{Static loading and unloading of coprocessor}
 
@@ -522,7 +521,7 @@ In this approach, rather than loading coprocessor to all the tables in a Region,
 In the above scenario, the coprocessor tries to read class information from \textbf{\textcolor{purple}{\texttt{table\_att}}} property. There are certain arguments separated by pipe (\text{\textbar}). The first argument in the value is the file path to the jar file that contains the implementation class. The second argument contains the full classname of the implemented coprocessor. The last argument represents the execution sequence of registered observers. If this field is left blank, the framework will itself assign a default priority value \cite{hbase:site}.
 
 \subsubsection{Using Java API}
-Prior to HBase version 0.96, the coprocessors were loaded in a different way. After HBase version 0.96 and newer, HTableDescriptor class provides addCoprocessor() method that helps to load coprocessor in an easier way. A code snippet below will give us a basic insight of how coprocessor is loaded dynamically from Java API in older versions and newer versions of HBase \cite{loading:coprocessors} .
+Prior to HBase version 0.96, the coprocessors were loaded in a different way. After HBase version 0.96 and newer, HTableDescriptor class provides addCoprocessor() method that helps to load coprocessor in an easier way. A code snippet below will give us a basic insight of how coprocessor is loaded dynamically from Java API in older versions and newer versions of HBase \cite{hbase:site} .
 
 \subsubsection{Older than 0.96}
 \lstset{language=Java}

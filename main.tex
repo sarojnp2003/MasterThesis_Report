@@ -314,7 +314,7 @@ HBase has a tight integration with Zookeeper. HBase uses Zookeeper as a distribu
 The figure below explains the HBase Architecture and its components.
 \begin{figure}
 	\centering
-	\includegraphics[width=\linewidth]{HBase_Architecture}
+	\includegraphics[width=\linewidth]{HBase_Architecture1}
 	\caption{HBase Architecture}
 	\label{fig:hbasetable}
 \end{figure}
@@ -404,16 +404,15 @@ Observer coprocessor resides between client and HBase. Observer coprocesser can 
 \subsection{Endpoint coprocessor}
 
 Endpoint coprocessor is similar to the Stored Procedures in RDBMS. This type of coprocessor is more useful in the scenario where the computation is needed for the complete table and are not provided by observer coprocessor \cite{hbase:coprocessors}. Invoking the endpoint coprocessor is similar to invoking any other commands in HBase from the client\textquotesingle s point of view but the result is based on the code that defines the coprocessor \cite{coprocessor:detail}. The figure \ref{Endpoint Coprocessor} explains the Aggregation example \cite{coprocessor:detail}.
+When a request is invoked from a client, an instance of \emph{Batch.call()} encapsulates the request invocation and the request is forwarded to \emph{coprocessorExec()} method of HTableInterface. Then the coprocessorExec() handles the request invocation and distributes the request to all the regions of the region server. Assuming that no interruptions occurs and all the requests are completed, the results is then returned to client and aggregated \cite{coprocessor:detail}.
 
-\begin{figure}
+\begin{figure}[h!]
     \centering
     \includegraphics[width=\linewidth]{EndPointCoprocessor}
     \caption{EndPoint Coprocessor}
     \label{Endpoint Coprocessor}
     
 \end{figure}
-
-When a request is invoked from a client, an instance of \emph{Batch.call()} encapsulates the request invocation and the request is forwarded to \emph{coprocessorExec()} method of HTableInterface. Then the coprocessorExec() handles the request invocation and distributes the request to all the regions of the region server. Assuming that no interruptions occurs and all the requests are completed, the results is then returned to client and aggregated \cite{coprocessor:detail}.
 
 
 \chapter{Related Work}

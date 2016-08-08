@@ -311,7 +311,7 @@ Zookeeper an open source project under Apache Software Foundations, is a distrib
 HBase has a tight integration with Zookeeper. HBase uses Zookeeper as a distributed coordination service to facilitate synchronization between the servers in a cluster. HBase also uses Zookeeper to keep track of state of the servers, which servers are alive and available \cite{hbase:architecture}. Whenever a HBase instance is started, it automatically starts Zookeeper instance, as Zookeeper comes integrated with HBase \cite{hbase:insights}. Zookeeper is used to keep tracks of the number of regions servers available, and the data hold by each region servers. 
 \newline
 
-The figure below explains the HBase Architecture and its components.
+The figure \ref{fig:hbasetable} explains the HBase Architecture and its components.
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{HBase_Architecture1}
@@ -347,7 +347,7 @@ HBase Coprocessor framework provides a library to run user code in the HBase reg
 
 \subsection{Observer coprocessor}
 \label{sec:observercoprocessor}
-Observer coprocessor as stated earlier, is more like database triggers that executes our code when certain events occur. In the figure \ref{Life cycle of put request}, Fig(a) explains a simple life cycle of put() request as an example \cite{coprocessor:detail}. Observer coprocessor resides between the client and the HMaster. Observer coprocessor can be triggered after every get(), put() or delete() command. The \textcolor{purple} {CoprocessorHost} class is responsible for observer registration and execution \cite{coprocessor:detail}.  During the life cycle of events, observer coprocessor allows us to hook triggers in two stages. The first one is before the occurrence of the event and the other is after the completion of the event. For example, if we want to perform some computations before the occurrence of put event, we can use prePut() method to perform our custom computation. Then the life cycle of put event starts and after the life cycle of put event is completed, we can use postPut() method to perform custom computation. In the figure \ref{Life cycle of put request}, Fig(b) explains the lifecycle of observer coprocessor when a put event is fired \cite{coprocessor:detail}.
+Observer coprocessor as stated earlier, is more like database triggers that executes our code when certain events occur. Figure \ref{Life cycle of put request} explains a simple life cycle of put() request as an example \cite{coprocessor:detail}. Observer coprocessor resides between the client and the HMaster. Observer coprocessor can be triggered after every get(), put() or delete() command. The \textcolor{purple} {CoprocessorHost} class is responsible for observer registration and execution \cite{coprocessor:detail}.  During the life cycle of events, observer coprocessor allows us to hook triggers in two stages. The first one is before the occurrence of the event and the other is after the completion of the event. For example, if we want to perform some computations before the occurrence of put event, we can use prePut() method to perform our custom computation. Then the life cycle of put event starts and after the life cycle of put event is completed, we can use postPut() method to perform custom computation. Figure \ref{Life cycle of put request with observer coprocessor} explains the lifecycle of observer coprocessor when a put event is fired \cite{coprocessor:detail}.
 \newline
 There are four types of observer interfaces provided as of HBase version 1.1.3 \cite{hbase:essential}.
 
@@ -369,19 +369,28 @@ In the figure \ref{Life cycle of put request}, We can see the life cycle of a pu
 \subsubsection{Life cycle a of put request}
 \label{subsubsec:Life cycle of put request}
 
-A client creates a \emph{put} request and sends that request to the region server. There can be multiple region servers and multiple regions within a region server. HMaster dispatches a client request to an appropriate region server and region server forwards that request to an appropriate region. The region receives put request and performs the required operation and return back the response to the region server. Region server then returns back the response to the client. In the figure \ref{Life cycle of put request}, Fig(a) shows the life cycle of a put request in graphical representation. 
+A client creates a \emph{put} request and sends that request to the region server. There can be multiple region servers and multiple regions within a region server. HMaster dispatches a client request to an appropriate region server and region server forwards that request to an appropriate region. The region receives put request and performs the required operation and return back the response to the region server. Region server then returns back the response to the client. Figure \ref{Life cycle of put request} shows the life cycle of a put request in graphical representation. 
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\linewidth]{Put_Life_Cycle_2}
+	\caption{Life cycle of put request}
+	\label{Life cycle of put request}
+	
+\end{figure}
 
 
 \subsubsection{Life cycle a of put request with observer coprocessor}
 \label{subsubsec:Life cycle of put request with observer coprocessor}
 
-Observer coprocessor resides between client and HBase. Observer coprocesser can be triggered after every get(), put() or delete() operations. The \textcolor{purple} {CoprocessorHost} class provided by observer coprocessor is responsible for coprocessor registration and execution \cite{coprocessor:detail}. In the figure \ref{Life cycle of put request}, Fig(b) shows the life cycle of a put request when observer coprocessor is introduced. A client sends a put request and that request is dispatched to an appropriate region server and then to region. In the region where observer coprocessor is registered, the put request is intercepted by the \textcolor{purple} {CoprocessorHost} class, and invoices prePut() on each observer registered on each table. After the completion of prePut(), the request is released by the observer and functions normally. Assuming no interruptions in prePut(), the request is carried out to postPut() and the request is once again intercepted by \textcolor{purple} {CoprocessorHost}. After the request is released, the request is dispached to the region server and the region server returns the response to the client.
+Observer coprocessor resides between client and HBase. Observer coprocesser can be triggered after every get(), put() or delete() operations. The \textcolor{purple} {CoprocessorHost} class provided by observer coprocessor is responsible for coprocessor registration and execution \cite{coprocessor:detail}. Figure \ref{Life cycle of put request with observer coprocessor} shows the life cycle of a put request when observer coprocessor is introduced. A client sends a put request and that request is dispatched to an appropriate region server and then to region. In the region where observer coprocessor is registered, the put request is intercepted by the \textcolor{purple} {CoprocessorHost} class, and invoices prePut() on each observer registered on each table. After the completion of prePut(), the request is released by the observer and functions normally. Assuming no interruptions in prePut(), the request is carried out to postPut() and the request is once again intercepted by \textcolor{purple} {CoprocessorHost}. After the request is released, the request is dispatched to the region server and the region server returns the response to the client.
+\newline \newline
 
-\begin{figure}
+\begin{figure}[h!]
 	\centering
-	\includegraphics[width=\linewidth]{Put_Life_Cycle}
-	\caption{Life cycle of put request}
-	\label{Life cycle of put request}
+	\includegraphics[width=\linewidth]{Put_Life_Cycle_4}
+	\caption{Life cycle of put request with observer coprocessor}
+	\label{Life cycle of put request with observer coprocessor}
 	
 \end{figure}
 
@@ -582,20 +591,99 @@ We create an intermediate table in such a way that we have a single row for all 
 \label{Single Base Table}
 In this scenario, we have one base table and we have to create an intermediate table from the base table. The \emph{column family} of the base table becomes \emph{column family} in the intermediate table. The unique values of column $key$ of the base table becomes $rowKey$ in the intermediate table and $rowKey$ of the base table becomes $column$ in the intermediate table. Once we create our intermediate table, we put the values from the base table into the intermediate table. Fig(a) in \ref{Intermediate Table} shows a graphical transformation of a single base table into an intermediate table. Now for any update or delete operations for a particular key/value in the base table, only a single row for that particular key is updated in an intermediate table. This implementation restricts scanning of the whole base table for a single update/delete operation.
 
+\begin{table*}[htb!]
+	\centering
+	\begin{tabular}{|c|c|c|}
+		\hline
+		\multirow{2}{*}{\textbf{RowKey}} & \multicolumn{2}{c|}{\textbf{HColumn}}\\
+		\cline{2-3}
+		& \textbf{Key} & \textbf{Value}\\
+		\hline
+		x1 & A & 10\\
+		\hline
+		x2 & B & 20\\
+	
+		\hline
+	\end{tabular}
+	\caption{Base table}
+	\label{table:BaseTable}
+\end{table*}
+
+\begin{table*}[htb!]
+	\centering
+	\begin{tabular}{|c|c|c|}
+		\hline
+		\multirow{2}{*}{\textbf{RowKey}} & \multicolumn{2}{c|}{\textbf{HColumn}}\\
+		\cline{2-3}
+		& \textbf{x1} & \textbf{x2}\\
+		\hline
+		A & x1,10 & \\
+		\hline
+		B &  & x2,20\\
+		
+		\hline
+	\end{tabular}
+	\caption{Intermediate table from a base table}
+	\label{HBase:IntermediateTable}
+\end{table*}
+
 \subsubsection{Two Base Tables}
 \label{Two Base Tables}
 In this scenario, we have two base tables and we have to create an intermediate table from the two base tables. The both $columnFamilies$ of base tables are merged together into two $columnFamilies$ in the intermediate table. The unique values of column $key$ of both base table becomes $rowKey$ in the intermediate table and $rowKey$ of the base table becomes $column$ in the intermediate table. Once we create an intermediate table from two base tables as described, we put values from both the base tables into the intermediate table. Fig(b) in \ref{Intermediate Table} shows a graphical transformation of a two base tables into an intermediate table. Now for any update or delete operations for a particular key/value in the base tables, only a single row for that particular key is updated in an intermediate table.
 
+\begin{table*}[htb!]
+	\centering
+	\begin{tabular}{|c|c|c|}
+		\hline
+		\multirow{2}{*}{\textbf{RowKey}} & \multicolumn{2}{c|}{\textbf{HColumnA}}\\
+		\cline{2-3}
+		& \textbf{Key} & \textbf{Value}\\
+		\hline
+		x1 & A & 10\\
+		\hline
+		x2 & B & 20\\
+		
+		\hline
+	\end{tabular}
+	\caption{Base table A}
+	\label{table:BaseTable1}
+\end{table*}
+
+\begin{table*}[htb!]
+	\centering
+	\begin{tabular}{|c|c|c|}
+		\hline
+		\multirow{2}{*}{\textbf{RowKey}} & \multicolumn{2}{c|}{\textbf{HColumnB}}\\
+		\cline{2-3}
+		& \textbf{Key} & \textbf{Value}\\
+		\hline
+		y1 & A & 10\\
+		\hline
+		y2 & C & 20\\
+		
+		\hline
+	\end{tabular}
+	\caption{Base table B}
+	\label{table:BaseTable2}
+\end{table*}
+
+\begin{table*}[htb!]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		\multirow{2}{*}{\textbf{RowKey}} & \multicolumn{2}{l|}{\textbf{HColumnA}} & \multicolumn{2}{l|}{\textbf{HColumnB}} \\ 
+		\cline{2-5} 
+		& x1            & x2            & y1            & y2            \\ \hline
+		A                       & x1,10         &               & y1,10         &               \\ \hline
+		B                       &               & x2,20         &               &               \\ \hline
+		C                       &               &               &               & y2,20         \\ \hline
+	\end{tabular}
+	\caption{Intermediate table from two base tables}
+	\label{table:Intermediate Table}
+\end{table*}
+
 \subsection{Creation of View Table}
 A view table contains result set of a query on the base table. In our implementation, view table is created on the basis of an intermediate table. Once we have our intermediate table, we apply certain algorithms on the intermediate table and create view table. Once we have our view table, our task is to maintain consistency between base table and view table. If any operation changes the state of base table, we reflect those changes in intermediate table and view table. The algorithm we've implemented maintains consistency incrementally, not re-computing view table for every changes in the base table. We will discuss our approach of this incremental maintenance in the sections below.
-
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{IntermediateTable}
-    \caption{Creation of an Intermediate Table}
-    \label{Intermediate Table}
-    
-\end{figure}
 
 \newpage
 \subsection{Aggregation}

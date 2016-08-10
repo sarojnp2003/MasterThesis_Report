@@ -721,7 +721,7 @@ As we have already discussed put() request life cycle in \ref{sec:observercoproc
 \begin{figure}
     \centering
     \includegraphics[width=\linewidth]{NewRowInsertAggr}
-    \caption{Aggregation: New row insert}
+    \caption{Aggregation: Insert a row with new (key,value) pair}
     \label{sec:newrowinsertagggregation}
     
 \end{figure}
@@ -733,7 +733,7 @@ In this scenario, the value of particular \emph{key} is updated, so only three a
 \begin{figure}
     \centering
     \includegraphics[width=\linewidth]{ValueUpdateAggr}
-    \caption{Aggregation: Update value for a existing row key}
+    \caption{Aggregation: Update value for an existing key}
     \label{sec:updatevalueforexistingkey}
     
 \end{figure}  
@@ -817,7 +817,7 @@ Most of the implementation for this scenario is similar as explained in subsecti
 \begin{figure}
     \centering
     \includegraphics[width=\linewidth]{NewRowInsertJoinAggr}
-    \caption{Join and Aggregation: New row insert}
+    \caption{Join and Aggregation: Insert a row with new (key,value) pair}
     \label{sec:insertnewrowjoinandaggr}
     
 \end{figure}
@@ -924,7 +924,7 @@ To evaluate performance in \emph{View Re-computation vs Maintenance}, we first c
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{Aggregation_exp1_standalone}
-	\caption{Aggregation Experiment Standalone}
+	\caption{Aggregation experiment in pseudo-distributed mode}
 	\label{sec:AggrExpStandalone}
 \end{figure} 
 \newpage
@@ -999,7 +999,7 @@ This experiment is similar to the experiment we ran for section \ref{Join and Ag
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{JoinAndAggr_exp_standalone}
-	\caption{Join and Aggregation Experiment Standalone}
+	\caption{Join and Aggregation experiment in pseudo-distributed mode}
 	\label{sec:JoinAggrExpStandalone}
 	
 \end{figure} 
@@ -1029,7 +1029,7 @@ The table configuration for fully-distributed mode is similar to pseudo-distribu
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{JoinAndSel_exp_standalone}
-	\caption{Join and Selection Experiment Standalone}
+	\caption{Join and Selection experiment in pseudo-distributed mode}
 	\label{sec:JoinSelExpStandalone}
 	
 \end{figure} 
@@ -1073,7 +1073,7 @@ From the figure \ref{sec:AggrExpDist} Fig(a) \& Fig(b), we proved that increment
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{Aggr_exp_dist}
-	\caption{Aggregation Experiment Distributed}
+	\caption{Aggregation experiment in fully-distributed mode}
 	\label{sec:AggrExpDist}
 	
 \end{figure} 
@@ -1152,7 +1152,7 @@ In this experiment, we first create two base tables with 2.000 rows and generate
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{JoinAndAggr_exp_dist}
-	\caption{Join and Aggregation Experiment Distributed}
+	\caption{Join and Aggregation experiment in fully-distributed mode}
 	\label{sec:JoinAggrExpDist}
 	
 \end{figure} 
@@ -1167,7 +1167,7 @@ In section \ref{Join and Selection: Insert Records Distributed},  we proved that
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{JoinSel_exp_dist}
-	\caption{Join and Selection Experiment Distributed}
+	\caption{Join and Selection experiment in fully-distributed mode}
 	\label{sec:JoinSelExpDist}
 	
 \end{figure} 
@@ -1187,9 +1187,11 @@ In summary, this thesis proposes an incremental architecture that leverages HBas
 
 \chapter{Future Work}
 \label{Future Work}
-We have used HBase client API and HBase shell to read and write data into the HBase tables. Many of us are more familiar with SQL queries, we also can use SQL like queries to read from and write into HBase tables. Apache Spark provides Spark DataFrame DataSource which helps to integrate Spark SQL with HBase and write SQL alike queries to read and write into HBase tables. Apache Hive also provides HiveQL for SQL like query to the HBase tables. 
+
+In this thesis we have implemented basic aggregation functions namely \emph{count, sum, min} and \emph{max}. However, there can be more complex aggregation functions like user defined aggregation function. We certainly want to implement user defined aggregations at some point of time in near future. Also, in our implementation, join operation is carried out based on key-foreign key implementation. We would also like to further research on different complex structures of joins, like join operation carried out on non-primary key.\newline \newline
+We have used HBase client API and HBase shell to read and write data into the HBase tables. Many of us are more familiar with SQL queries, we also can use SQL like queries to read from and write into HBase tables. Apache Spark provides Spark DataFrame DataSource which helps to integrate Spark SQL with HBase and write SQL alike queries to read and write into HBase tables. Apache Hive also provides HiveQL for SQL like query to the HBase tables.\newline
 \newline
-We ran our experiment in a laptop with a primary operating system and two virtual machines acting as a multi-node cluster. It would be more interesting to run our experiment in a cluster of more than 20 nodes with a dataset of few hundred millions records and see the results.
+We ran our experiment in a laptop with a primary operating system and two virtual machines acting as a multi-node cluster. It would be more interesting to run our experiment in a cluster of more than 20 nodes with a dataset of few hundred million rows and few million columns and analyze the results.
 
 
 \cleardoublepage
